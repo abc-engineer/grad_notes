@@ -1,1 +1,1 @@
-mastter degree of graduate
+Notes from my graduate studies and coursework.
