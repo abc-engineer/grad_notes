@@ -114,9 +114,8 @@ $$
 S &= \sum_{n=1}^{\infty} P(n) \\
   &= p + (1-p)p + (1-p)^2p + (1-p)^3p + \cdots \\
 (1-p)S &= (1-p)p + (1-p)^2p + (1-p)^3p + \cdots \\
-S - (1-p)S &= p \\
-pS &= p \\
-S &= 1
+S - (1-p)S &= pS = p\\
+S= 1
 \end{aligned}
 $$
 	
