@@ -19,19 +19,19 @@
 	- 확률변수: 무작위로 정해지는 수치적 결과
 
 ### Simple Examples
-Toss a fair coin
+#### Toss a fair coin
 - Experiment: 동전던지기
 - Sample space: Ω = {H, T} (앞, 뒤 2가지)
 - Probability function: P(H) = 0.5, P(T ) = 0.5
 
-Fair coin 3번 던지기
+#### Fair coin 3번 던지기
 - Experiment: 동전을 3회 던져서 그 결과를 기록
 - Sample space: Ω = {HHH, HHT , HTH, HTT , THH, THT , TTH, TTT }
 - Probability function: 각 결과는 모두 똑같이 일어날 가능성을 가지며, 그 확률은 1/8 이다.
 	- 샘플스페이스가 작은 경우 probability table을 작성 할 수 있다.
 
 
-양성자의 질량을 재는 실험. 
+#### 양성자의 질량을 재는 실험. 
 - Experiment: 정해진 절차를 따라 질량을 측정하고 그 결과를 보고한다.
 - Sample space: Ω = [0, ∞) 모든 양수
 - Probability function: 가능한 결과가 연속체(continuum) 를 이루기 때문에 확률함수는 없다.  
@@ -43,7 +43,7 @@ Fair coin 3번 던지기
 		- 연속구간에서는 신경써서 처리 해야 함.
 
 
-택시가 지나간 것을 카운팅
+#### 택시가 지나간 것을 카운팅
 - 이런 문제는 푸아송 디스트리부션을 사용한다는 것을 알고 넘어 가면됨
 - 람다 이런 식으로 확률 함수를 할당 할 수 있음
 - 람다를 어떻게 하냐에 따라 확률을 조절 할 수 있음.
@@ -52,7 +52,7 @@ Fair coin 3번 던지기
 - 당연히 푸아송 디스트리부션도 합치면 1이 나와야 함.
 - 이건 테일러 시리즈(Taylor series)를 이용하면 확인 할 수 있음.
 
-
+#### 2dice_choice samlpe space
 샘플스페이스를 1가지로 한정 할 필요는 없음
 - 첫번째 주사위 값, 두번째 주사위 값을 (1,2) 이런식으로 세트로 적을수 있음
 	- {(1, 1), (2, 1), (3, 1), . . . (6, 6)}
@@ -133,10 +133,10 @@ For events A, L and R contained in a sample space Ω.
 
 
 ### Example2
-Consider the 2 events: 
-▶ A : ’X is a multiple of 2’. 
-▶ B : ’X is odd and less than 10’. 
-Suppose P(A) = 0.6 and P(B) = 0.25.
+Consider the 2 events:  
+▶ A : ’X is a multiple of 2’.  
+▶ B : ’X is odd and less than 10’.  
+Suppose P(A) = 0.6 and P(B) = 0.25. 
 - What is A ∩ B ?
 	- 어떤 수가 동시에 짝수이면서 홀수일 수는 없으므로
 	- $A \cap B = \emptyset$
