@@ -88,10 +88,10 @@
 - 0<p(w)<1, 확률함수는 0~1사이
 - 모든 P(w)의 합은 1
 	-  if S = {ω1, ω2, . . . , ωn} then P (ω1) + P (ω2) + . . . + P (ωn) = 1.
-	-  notation:
+	-  notation:  
    		$\displaystyle\sum_{j=1}^{n} P (ω_j ) = 1$
 #### Event 확률
-이벤트의 확률은 각각의 outcome의 합으로 구한다.
+이벤트의 확률은 각각의 outcome의 합으로 구한다.  
 	$P(E)=\displaystyle\sum_{\omega\in E} P (ω)$
 
 ### Example
@@ -110,7 +110,7 @@ S - (1-p)S &= p \\
 pS &= p \\
 S &= 1
 \end{aligned}
-```
+
 	- P(n) 확률식을 증명
 		- n번째 동전이 앞면이 되려면 n-1번째 까지는 모두 뒷면이 나와야함.
 		- 뒷면이 나올 확률은 1-p이고 n-1 번째 까지 반복되어야 하기 때문에 그 확률은 $(1 − p)^{n−1}$
