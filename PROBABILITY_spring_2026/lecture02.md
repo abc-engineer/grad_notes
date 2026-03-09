@@ -101,7 +101,8 @@
 - Probability function: $P(n) = (1 − p)^{n−1}p$
 - challenge
 	- 확률의 합이 1임을 확인  
-```math
+```md
+$$
 \begin{aligned}
 S &= \sum_{n=1}^{\infty} P(n) \\
   &= p + (1-p)p + (1-p)^2p + (1-p)^3p + \cdots \\
@@ -110,6 +111,7 @@ S - (1-p)S &= p \\
 pS &= p \\
 S &= 1
 \end{aligned}
+$$
 
 	- P(n) 확률식을 증명
 		- n번째 동전이 앞면이 되려면 n-1번째 까지는 모두 뒷면이 나와야함.
