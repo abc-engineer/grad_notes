@@ -1,4 +1,4 @@
-
+2026-03-09 08:20
 
 ### 수업 특이사항
 - 중간 고사 없음
@@ -154,5 +154,5 @@ set의 곱(집합의 곱)
 
 ### Formulas
 
-- Permutations: $_{n}P_{k} = \displaystyle\frac{n!} {(n−k)!} = n(n − 1)⋯(n − k + 1)$
-- Combinations: $_{n}C_{k} = \displaystyle\binom{n}{k} = \displaystyle\frac{n!} {k!(n−k)!} = \displaystyle\frac{_{n} P_{k}} {k!}$
+- Permutations: ${}_nP_k = \frac{n!}{(n-k)!} = n(n-1)\cdots(n-k+1)$
+- Combinations: ${}_nC_k = \binom{n}{k} = \frac{n!}{k!(n-k)!} = \frac{{}_nP_k}{k!}$
