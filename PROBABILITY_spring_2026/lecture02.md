@@ -88,10 +88,11 @@
 - 0<p(w)<1, 확률함수는 0~1사이
 - 모든 P(w)의 합은 1
 	-  if S = {ω1, ω2, . . . , ωn} then P (ω1) + P (ω2) + . . . + P (ωn) = 1.
-	-  notation: $\displaystyle\sum_{j=1}^{n} P (ω_j ) = 1$
+	-  notation:
+   		$\displaystyle\sum_{j=1}^{n} P (ω_j ) = 1$
 #### Event 확률
 이벤트의 확률은 각각의 outcome의 합으로 구한다.
-- $P(E)=\displaystyle\sum_{\omega\in E} P (ω)$
+	$P(E)=\displaystyle\sum_{\omega\in E} P (ω)$
 
 ### Example
 첫번째로 앞면이 나오게 되는 동전의 던진 횟수
@@ -99,8 +100,17 @@
 - Sample space: Ω = {1, 2, 3, . . .}
 - Probability function: $P(n) = (1 − p)^{n−1}p$
 - challenge
-	- 확률의 합이 1임을 확인
-		 $\begin{align}S &= \sum_{n=1}^∞  P(n) = p + (1 − p)p + (1 − p)2p...\\ (1 − p)S &= (1 − p)p + (1 − p)2p + (1 − p)3p... \\S − (1 − p)S &= pS = p, \\S &= 1\end{align}$
+	- 확률의 합이 1임을 확인  
+$$
+\begin{aligned}
+S &= \sum_{n=1}^{\infty} P(n) \\
+  &= p + (1-p)p + (1-p)^2p + (1-p)^3p + \cdots \\
+(1-p)S &= (1-p)p + (1-p)^2p + (1-p)^3p + \cdots \\
+S - (1-p)S &= p \\
+pS &= p \\
+S &= 1
+\end{aligned}
+$$
 	- P(n) 확률식을 증명
 		- n번째 동전이 앞면이 되려면 n-1번째 까지는 모두 뒷면이 나와야함.
 		- 뒷면이 나올 확률은 1-p이고 n-1 번째 까지 반복되어야 하기 때문에 그 확률은 $(1 − p)^{n−1}$
