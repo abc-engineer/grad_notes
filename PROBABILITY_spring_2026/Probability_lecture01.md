@@ -85,20 +85,25 @@
 
 ### Sets and Notations
 집합 S는 원소들의 모음
-- 원소(Element)
+- Element: 원소
 	- x는 집합 S의 원소 
-	- x ∈ S
-- 부분집합(Subset)
+	- $x ∈ S$
+- Subset: 부분집합
 	- A의 모든 원소가 S에 속해 있을 때
-	- A ⊂ S
-- 여집합(Complement)
+	- $A ⊂ S$
+- Complement: 여집합
 	- A가 S 안에 들어있을때 A가 속해 있지 않는 집합
-	- $A^c$ or S − A
+	- $A^c$ or $S − A$
 - Union: 합집합
+	- $A ∪ B$
 - intersection:교집합
+	- $A ∩ B$
 - Empty set:공집합
+	- $\emptyset$
 - Disjoint: 서로소, 교집합이 공집합
+	- $A \cap B=\emptyset$
 - Difference: 차집합
+	- $A - B$
 	- 교환법칙 성립 안함.
 
 
