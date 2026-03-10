@@ -22,7 +22,7 @@
 #### Toss a fair coin
 - Experiment: 동전던지기
 - Sample space: Ω = {H, T} (앞, 뒤 2가지)
-- Probability function: P(H) = 0.5, P(T ) = 0.5
+- Probability function: P(H) = 0.5, P(T) = 0.5
 
 #### Fair coin 3번 던지기
 - Experiment: 동전을 3회 던져서 그 결과를 기록
