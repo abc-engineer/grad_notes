@@ -25,20 +25,16 @@
 	- 실험(확률적 과정)을 하면 outcome이 나오는데 아웃컴마다 확률이 관련 되어 있고 이 아웃컴의 집합이 이벤트
 	- 샘플스페이스: 모든 결과(outcome)의 집합
 
-
 #### Example
 - Fair coin을 3번 던져서 첫번째 동전 앞면이 나왔을때 뒤에 2번 모두 앞면이 나올 확률은?
 - 참고)
 	- Fair coin을 3번 던졌을때 3번 다 앞면이 나올 확률: 1/8
-		- Sample space Ω = {HHH, HHT , HTH, HTT , THH, THT , TTH, TTT }.
+    		- Sample space Ω = {HHH, HHT , HTH, HTT , THH, THT , TTH, TTT }.
 	- 1번째 동전이 앞면이 나올 확률: 1/4
 		- Sample space Ω' = {HHH, HHT , HTH, HTT}.
-
-
 - 첫번째 던진 동전이 앞면이라는 정보를 얻었기 때문에 샘플스페이스는 줄어들고(8 -> 4) 확률도 변함.(1/8 -> 1/4)
 - 이런게 조건부 확률
 	- 추가적인 컨디션을 고려하여 계산하는 확률이라 conditional Probability
-
 
 #### Notation
 - P(A∣B)
@@ -46,10 +42,8 @@
 	- ‘the conditional probability of A given B’ 
 	- ‘the probability of A conditioned on B’ 
 	- ‘the probability of A given B’
-
 - A라는 이벤트(이벤트는 무조건 집합)가 있는데 B라는 집합
 - A의 확률인데 B가 일어났다는 것을 알때  A의 확률이 조건부 확률
-
 
 #### P(A ∩ B)/P(B)
 - P(A)를 표본공간 전체에서 A가 차지하는 면적의 비율이라고 생각해 보자.    
@@ -62,8 +56,6 @@
 	- 조건부 확률은 전체 중의 A가 아니라 B가 일어났을때 A 의 확률 즉 B중의 A,B의 교집합
 	- 그래서 A,B의 교집합을 B로 나눴을 때 확률 또는 면적이 됨.
 	- P(A ∩ B)=P(A) 일때는 P(A)/P(B)
-
-
 - 당연히 P(B)가 0이면 안됨
 - 상식적으로 B가 일어날 확률이 0일때 A가 일어날 확률이란말이 성립할 수 없음
 - P(A ∩ B)/P(B)=P(A)/P(B)=1/8/1/2=1/4
@@ -102,7 +94,6 @@
 P(A ∩ B) = P(A ∣ B) ⋅ P(B)
 - 체인 룰이라고도 함.
 - $P(S1∩S2∩⋯∩Sn)=P(S1)P(S2∣S1)P(S3∣S1∩S2)⋯P(Sn∣S1∩S2∩⋯∩Sn−1)$
-
 - events: S1 = ’first card is a spade’ and S2 = ’second card is a spade
 	- P (S2 ∣ S1) = 12/51
 	- P (S1 ∩ S2) = 3/51
@@ -123,7 +114,8 @@ P(A ∩ B) = P(A ∣ B) ⋅ P(B)
 - 각각의 이벤트가 disjoint이고 샘플스페이스의 합이 전체를 커버하면 Law of Total Probability가 성립함.
 - 이렇게 나누는것을  partition이라고 함.
 
-
+### Probability Urns(확률 항아리 모델)
+확률 개념을 설명하기 위해 공이 들어있는 항아리(urn)를 사용하는 고전적인 확률 모델입니다. (자주 등장하는 추상적인 실험 모델입니다.)
 #### Example1
 - 항아리에 5개의 빨간공, 2개의 녹색공이있는데 2개의 공을 뽑았을때 두번째 공이 빨간색일 확률?
 - sample space is Ω = {rr, rg, gr, gg}는 4개 밖에 없음
@@ -145,8 +137,7 @@ P(A ∩ B) = P(A ∣ B) ⋅ P(B)
 - 항아리가 예시지만 다른문제에 다양하게 적용가능
 	- 원소, 사람, 자동차 등등
 - 여기서 중요한 요소 중 하나는 공을 한 번 꺼낸 후 다시 항아리에 넣는지 여부(복원 추출 여부)
-### Probability Urns(확률 항아리 모델)
-확률 개념을 설명하기 위해 공이 들어있는 항아리(urn)를 사용하는 고전적인 확률 모델입니다. (자주 등장하는 추상적인 실험 모델입니다.)
+
 
 
 
@@ -199,7 +190,7 @@ P(A ∩ B) = P(A ∣ B) ⋅ P(B)
 - 두번째 노드에 도달하는 확률은 오늘길 에 만나 확률을 곱하면 됨.
 - 곱셈법칙(multiplication rule)에 따르면 어떤 노드에 도달할 확률은 그 노드까지 가는 경로에 있는 확률들을 모두 곱한 값과 같다.
 - 예를 들어, 가장 왼쪽에 있는 $R_2$로 표시된 노드는 $R_1$ 노드에서 시작되기 때문에 실제로는 사건 $R_1 \cap R_2$ 를 의미한다.
-- 따라서 곱셈법칙에 의해 $P(R_1 \cap R_2) = P(R_1) \cdot P(R_2 \mid R_1) = \frac{5}{7} \cdot \frac{4}{7}$
+- 따라서 곱셈법칙에 의해 $P(R_1 \cap R_2) = P(R_1) \cdot P(R_2 \mid R_1) = \displaystyle\frac{5}{7} \cdot \frac{4}{7}$
 - 즉, 이것은 그 노드까지 가는 경로(path)에 있는 확률들을 그대로 곱한 것과 정확히 같다.
 
 
@@ -218,22 +209,22 @@ P(A ∩ B) = P(A ∣ B) ⋅ P(B)
 #### Example
 - Precise Trees (정확한 트리)
 	- 모든 사건과 확률을 정확하게 표시한 확률 트리
-	- Start
-	 ├─ H (1/2)
-	 │   ├─ H (1/2)
-	 │   └─ T (1/2)
-	 └─ T (1/2)
-	     ├─ H (1/2)
-	     └─ T (1/2)
+	- Start  
+	 ├─ H (1/2)  
+	 │   ├─ H (1/2)  
+	 │   └─ T (1/2)  
+	 └─ T (1/2)  
+	     ├─ H (1/2)  
+	     └─ T (1/2)  
 - Shorthand Trees (축약 트리)
 	- 일부 정보를 생략하여 간단히 표현한 확률 트리
-	- Start
-	 ├─ H
-	 │   ├─ H
-	 │   └─ T
-	 └─ T
-	     ├─ H
-	     └─ T
+	- Start  
+	 ├─ H  
+	 │   ├─ H  
+	 │   └─ T  
+	 └─ T  
+	     ├─ H  
+	     └─ T  
 
 
 ### Independence
@@ -278,14 +269,14 @@ A is independent of B if P(A ∣ B) = P(A)
 
 
 - 이상적인 실험(실세계 데이터 아님)을 여러번 반복하게 되면 서로가 독립이다.
-#### Example
+#### Example1
 - H1 = ‘heads on first toss’ and let H2 = ‘heads on second toss’. 
 - Are H1 and H2 independent?
 	- P (H1 ∩ H2) = 1/4 = P (H1) P (H2) 
 	- 둘의 교집합이 1/4 기 때문에 독립이다.
 
 
-#### Example
+#### Example2
 - 페어코인 3번 던질때 
 	- H1= ‘heads on first toss’: 첫 번째 던짐이 앞면(heads)
     - A: 총 3번 던져서 앞면이 정확히 2번
@@ -306,9 +297,7 @@ A is independent of B if P(A ∣ B) = P(A)
 	- P(A)=3/8
 	- 따라서 P(A∣H1)≠P(A)
 
-
-
-#### Example
+#### Example3
 - 표준 카드 덱(playing cards)에서 카드 한 장을 뽑는다. 이때 다음 세 사건의 독립(independence)?
 	- 카드가 에이스이다 (the card is an ace)    
 	- 카드가 하트이다 (the card is a heart)
@@ -362,6 +351,7 @@ A is independent of B if P(A ∣ B) = P(A)
 	- 당연히 invert도도 성립 
 		$P(A ∣ B) =\displaystyle\frac{P(B ∣ A)⋅ P(A)}{ P(B)}$
 - $P(B ∣ A) ⋅ P(A) = P(A ∩ B) = P(A ∣ B) ⋅ P(B)$
+
 - 조건부 확률을 뒤집어서 계산 할때 사용
 - 실제 계산에서는 P(A) 를 전체 확률의 법칙(law of total probability)을 사용하여 계산하는 경우가 많음.
 
@@ -372,6 +362,7 @@ A is independent of B if P(A ∣ B) = P(A)
 - 곱셈법칙(multiplication rule)에 의해
 -  $P(B ∣ A) ⋅ P(A) = P(A ∩ B) = P(A ∣ B) ⋅ P(B)$
 - 이제 양변을 P(A)로 나누면 베이즈 규칙(Bayes’ rule)을 얻을 수 있다.
+
 - 수식을 통해서만 두 식을 뒤집을 수있는가?
 	- 원래 두 명제가 달라지면 결과가 달라질수도 있음
 	- 아래 예시에서 확인
@@ -426,7 +417,7 @@ A is independent of B if P(A ∣ B) = P(A)
 
 
 
-### 기저율 오류(base rate fallacy)
+#### 기저율 오류(base rate fallacy)
 - 모든 검사 중 95%가 정확하다고 해서, 양성 판정의 95%가 실제로 정확하다는 뜻은 아니다.
 	- 인구 집단에서 질병의 기저율(base rate)이 매우 낮기 때문에    
 	- 검사를 받는 사람들의 대부분은 실제로 건강한 사람들이다.    
@@ -434,7 +425,7 @@ A is independent of B if P(A ∣ B) = P(A)
 
 
 
-### Table
+#### Table
 - 트리가 아닌 테이블을 통해서도 계산 할 수 있음
 - 사람이 10000명, 병걸린 사람은 50명, 안걸린 사람은 9950
 - 먼저 총 인원으로 10,000명을 선택하고, 이를 표의 오른쪽 아래에 전체 합계(grand total)로 놓는다.
@@ -453,6 +444,6 @@ A is independent of B if P(A ∣ B) = P(A)
 - 음영부분이 양성결과 나온 사람.
 - 음영중 대부분이 파란 네모 즉 건강한 사람람
 
-### 정리
+#### 정리
 - 베이즈룰은 조건부 확률을 뒤집을때 쓰는 공식
 - 지금은 확률이 주어졌지만 통계 추론으로 넘어가면 데이터를 통해서 계산해야함.
