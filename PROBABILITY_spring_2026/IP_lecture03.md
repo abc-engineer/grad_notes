@@ -369,8 +369,11 @@ A is independent of B if P(A ∣ B) = P(A)
 
 #### 핵심
 - A∩B 가 A와 B에 대해 대칭적(symmetric)
-- 곱셈법칙(multiplication rule)에 의해
--  $P(B ∣ A) ⋅ P(A) = P(A ∩ B) = P(A ∣ B) ⋅ P(B)$
+- 곱셈법칙(multiplication rule)에 의해 조건부 확률 공식을 변형시킬 수 있다.
+	- $P (B ∣ A)=\displaystyle\frac{P (B ∩ A)}  {P (A)}$
+		- 이때, $P(A ∩ B) = P(A ∣ B) ⋅ P(B)$기 때문에
+		- $P(B ∣ A) =\displaystyle\frac{P(A ∣ B) ⋅ P(B)}{ P(A)}$
+	-  $P(B ∣ A) ⋅ P(A) = P(A ∩ B) = P(A ∣ B) ⋅ P(B)$
 - 이제 양변을 P(A)로 나누면 베이즈 규칙(Bayes’ rule)을 얻을 수 있다.
 
 - 수식을 통해서만 두 식을 뒤집을 수있는가?
