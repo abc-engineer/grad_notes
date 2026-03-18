@@ -108,14 +108,14 @@
         - “몇 번째 변수”
 
 - 하나의 데이터만으로는 모델의 성능을 평가하기에 충분하지 않으며, 대신 모든 학습 데이터에 대해 잔차를 종합하여 전체 오차를 평가해야 한다.  
-- 회귀 문제에서 일반적으로 사용되는 방법은 최소제곱오차(least mean squares, 또는 squared error) 함수이다:
-	$\displaystyle J(\boldsymbol{\theta}) = \frac{1}{2} \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right)^2$
+- 회귀 문제에서 일반적으로 사용되는 방법은 최소제곱오차(least mean squares, 또는 squared error) 함수이다:  
+$\displaystyle J(\boldsymbol{\theta}) = \frac{1}{2} \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right)^2$
 
 
 - 이 함수는 비용 함수(cost function) 또는 목적 함수(objective function)라고 하며, 머신러닝에서 중심적인 역할을 한다.  
 - 이 함수는 특정한 파라미터 θ\boldsymbol{\theta}θ 선택이 관측된 데이터를 얼마나 잘 설명하는지를 정량적으로 나타낸다.  
-- 보다 정확하게는, 우리의 목표는 비용 함수를 최소화하는 파라미터 벡터 θ\boldsymbol{\theta}θ를 찾는 것이다:
-	$\displaystyle\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} J(\boldsymbol{\theta})$
+- 보다 정확하게는, 우리의 목표는 비용 함수를 최소화하는 파라미터 벡터 $\boldsymbol{\theta}$를 찾는 것이다:  
+$\displaystyle\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} J(\boldsymbol{\theta})$
 - 여기서 $\boldsymbol{\theta}^∗$는 가능한 한 가장 작은 비용을 달성하는 최적의 파라미터를 의미한다.
 - 데이터 하나의 차이를 구하는게 아니라 데이터 전체의 차이를 구하는 것이 중요함.
 - 함수 값과 실제 값의 차이의 제곱을 더한 것을 $J(𝜃)$
