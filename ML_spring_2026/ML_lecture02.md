@@ -318,8 +318,8 @@ $\displaystyle\frac{1}{2} \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{
 
 
 - 최적의 파라미터 벡터 $\boldsymbol{\theta}$를 구한 후에는, 학습된 모델을 사용하여 새로운 보지 못한 데이터에 대해 예측을 수행할 수 있다.
-- 새로운 입력 $\mathbf{x}_{new}$ 가 주어지면, 예측값은 다음과 같이 간단히 계산된다:
-      $f(\mathbf{x}_{new}) = \boldsymbol{\theta}^T \mathbf{x}_{\text{new}}$
+- 새로운 입력 $x_{new}$ 가 주어지면, 예측값은 다음과 같이 간단히 계산된다:
+      $f(x_{new}) = \boldsymbol{\theta}^T \mathbf{x}_{\text{new}}$
 - 이와 같이 모델은 학습 데이터를 기반으로 일반화하여, 미래의 새로운 데이터에 대해서도 예측을 제공할 수 있다.
 - 이렇게 그려진 선을 이용해 새로운 값을 예측할 수 있음.
 
