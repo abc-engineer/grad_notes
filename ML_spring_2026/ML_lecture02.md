@@ -46,6 +46,10 @@
 	- 쉽게 말하면 $𝑥_0 = 1$ 이여야 $\theta_0$가 값을 유지
 	- 그래야 이렇게 식을 쓸 수 있고 $y = f(\mathbf{x}) = \theta_0 x_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_d x_d$ (단, x0=1)
 	- 이렇게 하면 전체를 하나로 묶을 수 있음: $y = \boldsymbol{\theta}^T \mathbf{x}$
+- 이 식이 가능한 이유는 선형대수 dot product이기 때문, 
+$$\mathbf{x} = \begin{bmatrix} 1 \\ x \\ x_2 \\ \vdots \\ x_d \end{bmatrix}, \quad \boldsymbol{\theta} = \begin{bmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \\ \vdots \\ \theta_d \end{bmatrix}$$
+- 그러면: $\theta^T x = \theta_0 + \theta_1 x + \theta_2 x_2 + \cdots + \theta_d x_d$
+
 
 - x 아래첨자는 피쳐 디멘전 (feature dimension), 서브스크립트 (subscript) 이라고 함.
 	- 피쳐 디멘전 (feature dimension)
@@ -53,16 +57,16 @@
 		- $\mathbf{x} = (x_1, x_2, x_3)$
 		- feature dimension = 3
 	- 서브스크립트 (subscript)
-	- 변수에 붙는 아래 첨자(index)로, “몇 번째 요소인지”를 나타내는 표시
-	- $x_1, x_2, \dots, x_d$
-	- 즉, “순서/위치 표시용 번호”
+		- 변수에 붙는 아래 첨자(index)로, “몇 번째 요소인지”를 나타내는 표시
+		- $x_1, x_2, \dots, x_d$
+		- 즉, “순서/위치 표시용 번호”
 
 - $y = f(\mathbf{x}) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_d x_d$ 이런식은 element 곱 형태라고 함.
 - x,y는 값을 알고 있음 𝜃를 구하는 것이 우리 목표
 
 
 - 이렇게 벡터 형태로 수식을 작성 할 수도 있음
-- $\displaystyle f(x) = \sum_{i=0}^{d} \theta_i x_i=\boldsymbol{\theta}^t \boldsymbol{x}$
+$\displaystyle f(x) = \sum_{i=0}^{d} \theta_i x_i=\boldsymbol{\theta}^t \boldsymbol{x}$
 - 여기서 d는 입력 변수의 개수를 의미하고, x는 특징 벡터를 나타내며, 𝜃는 함수 f의 파라미터 집합을 의미한다.
 
 
