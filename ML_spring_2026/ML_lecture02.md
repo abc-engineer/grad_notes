@@ -620,7 +620,8 @@ $$
 - 𝑦|𝒙; 𝜽 ~ 𝒩 (𝜇, $𝜎^2$)
 	- 입력 x와 파라미터 θ가 주어졌을 때, 출력 y는 평균 μ, 분산 $σ^2$를 갖는 정규분포를 따른다
 
-- 이진 분류 문제에서는 입력 $\mathbf{x}$와 파라미터 $\boldsymbol{\theta}$가 주어졌을 때, 타깃 변수 $y$가 베르누이 분포를 따른다고 가정한다:  
+- 이진 분류 문제에서는 입력 $\mathbf{x}$와 파라미터 $\boldsymbol{\theta}$가 주어졌을 때, 타깃 변수 $y$가 베르누이 분포를 따른다고 가정한다:
+
 $$
 y \mid \mathbf{x}; \boldsymbol{\theta} \sim \text{Bernoulli}(\phi)  
 $$
