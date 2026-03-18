@@ -574,21 +574,22 @@ $$
 
 - 정리하면 다음과 같다:
 - 만약 $y^{(i)} = c$라면,  
-$$\frac{\partial}{\partial \boldsymbol{\theta}_c}\left( - \log \phi_{y^{(i)}}^{(i)} \right)= (\phi_c^{(i)} - 1)\mathbf{x}^{(i)}
-$$    
-- 만약 $y^{(i)} \ne c$라면,  
+
 $$
-\frac{\partial}{\partial \boldsymbol{\theta}_c}
-\left( - \log \phi_{y^{(i)}}^{(i)} \right)
-= \phi_c^{(i)} \mathbf{x}^{(i)}
+\frac{\partial}{\partial \boldsymbol{\theta}_c}\left( - \log \phi_{y^{(i)}}^{(i)} \right)= (\phi_c^{(i)} - 1)\mathbf{x}^{(i)}
+$$    
+
+- 만약 $y^{(i)} \ne c$라면,  
+
+$$
+\frac{\partial}{\partial \boldsymbol{\theta}_c}\left( - \log \phi_{y^{(i)}}^{(i)} \right)= \phi_c^{(i)} \mathbf{x}^{(i)}
 $$
 
 
 - 두 경우를 하나로 합치면, 모든 클래스 ( c )와 학습 데이터 ( i )에 대해 다음과 같이 표현할 수 있다:
-$$  
-\frac{\partial}{\partial \boldsymbol{\theta}_c}  
-\left( - \log \phi_{y^{(i)}}^{(i)} \right)  
-= \left( \phi_c^{(i)} - \mathbf{1}{y^{(i)} = c} \right)\mathbf{x}^{(i)}  
+
+$$
+\frac{\partial}{\partial \boldsymbol{\theta}_c}\left( - \log \phi_{y^{(i)}}^{(i)} \right)= \left( \phi_c^{(i)} - \mathbf{1}{y^{(i)} = c} \right)\mathbf{x}^{(i)}
 $$
 
 - 여기서 $\mathbf{1}[{y^{(i)} = c}]$는 지시 함수(indicator function)로,  $y^{(i)} = c$이면 1, 그렇지 않으면 0의 값을 가진다.
@@ -596,10 +597,10 @@ $$
 
 
 - 따라서 모든 학습 데이터에 대해 크로스 엔트로피 손실을 $\boldsymbol{\theta}_c$로 미분한 결과는 다음과 같다:
+
 $$  
-\frac{\partial L_{\mathrm{CE}}}{\partial \boldsymbol{\theta}_c}  
-= \frac{1}{n} \sum_{i=1}^{n}  
-\left( \phi_c^{(i)} - \mathbf{1}{y^{(i)} = c} \right)\mathbf{x}^{(i)}  $$
+\frac{\partial L_{\mathrm{CE}}}{\partial \boldsymbol{\theta}_c}= \frac{1}{n} \sum_{i=1}^{n}\left( \phi_c^{(i)} - \mathbf{1}{y^{(i)} = c} \right)\mathbf{x}^{(i)}
+$$
 
 - 여기서  $\displaystyle\phi_c^{(i)} = \frac{\exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)})}  {\sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)})}$는 $i$번째 데이터가 클래스 $c$에 속할 예측 확률을 의미하며,$\mathbf{1}{\cdot}$는 지시 함수로, 해당 데이터의 실제 레이블이 클래스 $c$이면 1, 아니면 0이다.
 - 이와 같이 구한 그래디언트를 이용하여 경사하강법을 적용하면 손실 함수를 최소화할 수 있다.
