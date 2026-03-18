@@ -269,7 +269,8 @@ $\displaystyle p\left(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}\right) 
 - y라는 아웃풋이 정규분포를 따른다는 것은, 다양한 y 값들을 랜덤하게 뽑았을때 그 값들은 정규분포 모양을 형성함.
 - 그래서 y 확률값은 정규분포식을 따른다.
 
-- 이를 전체 데이터셋으로 확장하면 우도 함수(likelihood function)를 다음과 같이 정의할 수 있다:$L(\boldsymbol{\theta}) = p(\mathbf{y} \mid \mathbf{X}; \boldsymbol{\theta})$
+- 이를 전체 데이터셋으로 확장하면 우도 함수(likelihood function)를 다음과 같이 정의할 수 있다:
+$L(\boldsymbol{\theta}) = p(\mathbf{y} \mid \mathbf{X}; \boldsymbol{\theta})$
 - 오차항 $\epsilon^{(i)}$들이 서로 독립이라고 가정하면, 전체 우도 함수는 각 데이터의 우도의 곱으로 표현된다:
 
 $$
