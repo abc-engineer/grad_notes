@@ -342,7 +342,7 @@ $\displaystyle\frac{1}{2} \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{
 - 그래서 cost func이 다르게 됨.
 
 - 로지스틱 회귀(Logistic regression)는 입력이 주어졌을 때 출력 변수가 특정 클래스에 속할 확률을 모델링함으로써 이러한 문제를 해결한다.  
-- 이를 위해 입력의 선형 결합에 시그모이드(sigmoid, 또는 로지스틱) 함수를 적용하여, 모든 실수 값을 \[0,1] 범위로 매핑하므로 확률을 모델링하는 데 적합하다:
+- 이를 위해 입력의 선형 결합에 시그모이드(sigmoid, 또는 로지스틱) 함수를 적용하여, 모든 실수 값을 \[0,1] 범위로 매핑하므로 확률을 모델링하는 데 적합하다:  
 	$\displaystyle f_{\boldsymbol{\theta}}(\mathbf{x}) = g(\boldsymbol{\theta}^T \mathbf{x})= \frac{1}{1 + e^{-\boldsymbol{\theta}^T \mathbf{x}}}$
 	- 여기서 $g(\cdot)$는 로지스틱 함수(시그모이드 함수)를 의미한다.
 	- $g(\cdot)$ 기호의 $\cdot$ 자리에는 아무 입력이나 함수가 들어올 수 있음을 뜻함.
@@ -453,7 +453,7 @@ $$
 
 
 - 모델의 원시 클래스 점수, 즉 선형 결합 $\boldsymbol{\theta}_1^T \mathbf{x}^{(i)}, \dots, \boldsymbol{\theta}_C^T \mathbf{x}^{(i)}$를 유효한 확률 분포로 변환하기 위해 일반적으로 소프트맥스(softmax) 함수를 적용한다.  
-- 소프트맥스 함수는 모든 출력 확률이 0 이상이면서, 그 합이 1이 되도록 보장한다:
+- 소프트맥스 함수는 모든 출력 확률이 0 이상이면서, 그 합이 1이 되도록 보장한다:  
 	$\displaystyle\text{softmax}(t_1, \dots, t_C)\left[\frac{e^{t_1}}{\sum_{k=1}^{C} e^{t_k}},  \dots,  \frac{e^{t_C}}{\sum_{k=1}^{C} e^{t_k}}  \right]$
 
 
@@ -464,7 +464,7 @@ $$
 - 소프트 맥스 함수를 사용하면, 클래스간의 값 편차를 크게 해주고
 - 음수를 없앰.
 
-- 이 프레임워크에서, $i$번째 데이터가 클래스 $c$ 로 분류될 확률은 다음과 같이 주어진다:  
+- 이 프레임워크에서, $i$번째 데이터가 클래스 $c$ 로 분류될 확률은 다음과 같이 주어진다:
 $$\displaystyle p(y^{(i)} = c \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}) = \phi_c^{(i)}  = \frac{\exp\left(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}\right)}  {\sum_{k=1}^{C} \exp\left(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}\right)}$$
 
 - 이 식은 각 클래스에 대해 확률을 할당하는 다중 클래스 로지스틱 회귀 모델을 정의한다.  
