@@ -524,16 +524,14 @@ y_c^{(i)} =
 
 - 입력 벡터 $\mathbf{x}^{(i)}$가 주어졌을 때, 만약 $y^{(i)} = c$라면 다음과 같이 된다:  
 
-$$  
-\frac{\partial}{\partial \boldsymbol{\theta}_c}  
-\left( - \log \phi_{y^{(i)}}^{(i)} \right)  
-= - \frac{1}{\phi_c^{(i)}} \cdot  
+$$
+\frac{\partial}{\partial \boldsymbol{\theta}_c}
+\left( - \log \phi_{y^{(i)}}^{(i)} \right)
+= - \frac{1}{\phi_c^{(i)}} \cdot
 \frac{\partial \phi_c^{(i)}}{\partial \boldsymbol{\theta}_c}  
- 
-= - \frac{1}{\phi_c^{(i)}} \cdot  
-\phi_c^{(i)} (1 - \phi_c^{(i)}) \mathbf{x}^{(i)}  
-  
-= (\phi_c^{(i)} - 1)\mathbf{x}^{(i)}  
+= - \frac{1}{\phi_c^{(i)}} \cdot
+\phi_c^{(i)} (1 - \phi_c^{(i)}) \mathbf{x}^{(i)}
+= (\phi_c^{(i)} - 1)\mathbf{x}^{(i)}
 $$
 
 - 이는 다음과 같은 이유에서이다:  
