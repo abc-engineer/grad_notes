@@ -48,7 +48,7 @@
 	- 이렇게 하면 전체를 하나로 묶을 수 있음: $y = \boldsymbol{\theta}^T \mathbf{x}$
 - 이 식이 가능한 이유는 선형대수 dot product이기 때문,  
 
-$$\mathbf{x} = \begin{bmatrix} 1 \\ x \\ x_2 \\ \vdots \\ x_d \end{bmatrix}, \quad \boldsymbol{\theta} = \begin{bmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \\ \vdots \\ \theta_d \end{bmatrix}$$
+$$\begin{aligned}\mathbf{x} = \begin{bmatrix} 1 \\ x \\ x_2 \\ \vdots \\ x_d \end{bmatrix}, \quad \boldsymbol{\theta} = \begin{bmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \\ \vdots \\ \theta_d \end{bmatrix}\end{aligned}$$
 
 - 그러면: $\theta^T x = \theta_0 + \theta_1 x + \theta_2 x_2 + \cdots + \theta_d x_d$
 
