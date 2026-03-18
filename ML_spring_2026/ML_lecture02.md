@@ -173,13 +173,13 @@ $\displaystyle\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J
 단순화를 위해 하나의 학습 데이터 $(x, y)$만 있는 경우를 먼저 살펴보자. 이 경우 J의 정의에서 합(sum)을 생략할 수 있다.
 
 $$
-\begin{align}\displaystyle\frac{\partial}{\partial \theta_j} J(\boldsymbol{\theta}) &= \frac{\partial}{\partial \theta_j} \frac{1}{2} \left( f_{\boldsymbol{\theta}}(\mathbf{x}) - y \right)^2\\
+\begin{aligned}\displaystyle\frac{\partial}{\partial \theta_j} J(\boldsymbol{\theta}) &= \frac{\partial}{\partial \theta_j} \frac{1}{2} \left( f_{\boldsymbol{\theta}}(\mathbf{x}) - y \right)^2\\
 \\
 &= 2 \cdot \frac{1}{2} \left( f_{\boldsymbol{\theta}}(\mathbf{x}) - y \right) \cdot \frac{\partial}{\partial \theta_j} \left( f_{\boldsymbol{\theta}}(\mathbf{x}) - y \right)\\
 \\
 &= \left( f_{\boldsymbol{\theta}}(\mathbf{x}) - y \right) \cdot \frac{\partial}{\partial \theta_j} \left( \sum_{i=0}^{d} \theta_i x_i - y \right)\\
 \\
-&=(fθ(x)−y)x_j\end{align}
+&=(fθ(x)−y)x_j\end{aligned}
 $$
 
 - 단순하지만 파워풀
@@ -261,9 +261,9 @@ $$
 
 
 - 이는 다음을 의미한다:
-	$y^{(i)} \sim \mathcal{N}(\boldsymbol{\theta}^T \mathbf{x}^{(i)}, \sigma^2)$
-- 따라서 $y^{(i)}$가 관측될 우도(likelihood)는 다음과 같이 표현된다:
-	$\displaystyle p\left(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}\right) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left( - \frac{\left(y^{(i)} - \boldsymbol{\theta}^T \mathbf{x}^{(i)}\right)^2}{2\sigma^2} \right)$
+$y^{(i)} \sim \mathcal{N}(\boldsymbol{\theta}^T \mathbf{x}^{(i)}, \sigma^2)$
+- 따라서 $y^{(i)}$가 관측될 우도(likelihood)는 다음과 같이 표현된다:  
+$\displaystyle p\left(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}\right) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left( - \frac{\left(y^{(i)} - \boldsymbol{\theta}^T \mathbf{x}^{(i)}\right)^2}{2\sigma^2} \right)$
 - 이 식은 하나의 데이터 포인트에 대한 우도 함수를 정의한다.
 - y도 정규분포를 따른다고 볼수 있음
 - y라는 아웃풋이 정규분포를 따른다는 것은, 다양한 y 값들을 랜덤하게 뽑았을때 그 값들은 정규분포 모양을 형성함.
@@ -296,12 +296,12 @@ $$
 - 최대우도추정(MLE)의 핵심 아이디어는 단순하다: 주어진 모델 하에서 관측된 데이터가 가장 그럴듯하게 나타나도록 만드는 파라미터 값을 선택하는 것이다.  
 - 즉, 가능한 모든 $\boldsymbol{\theta}$ 중에서 우도 함수 $L(\boldsymbol{\theta})$를 최대화하는 값을 선택한다:
 
-	$\displaystyle\boldsymbol{\theta}^* = \arg\max_{\boldsymbol{\theta}} L(\boldsymbol{\theta})$
+$\displaystyle\boldsymbol{\theta}^* = \arg\max_{\boldsymbol{\theta}} L(\boldsymbol{\theta})$
 
 
 
 우도 함수 $L(\boldsymbol{\theta})$를 직접 최대화하는 대신, 로그를 취한 로그우도(log-likelihood)를 최대화하는 것이 더 쉽다:
-$$\begin{align}\log L(\boldsymbol{\theta})  
+$$\begin{aligned}\log L(\boldsymbol{\theta})  
 &= \log \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma}  
 \exp\left(- \frac{(y^{(i)} - \boldsymbol{\theta}^T \mathbf{x}^{(i)})^2}{2\sigma^2}\right)\\    
 \\
@@ -312,7 +312,7 @@ $$\begin{align}\log L(\boldsymbol{\theta})
 &= \sum_{i=1}^{n} \log \frac{1}{\sqrt{2\pi}\sigma}- \sum_{i=1}^{n} \log \exp\left(- \frac{(y^{(i)} - \boldsymbol{\theta}^T \mathbf{x}^{(i)})^2}{2\sigma^2}\right)\\
 \\
 &= n \log \frac{1}{\sqrt{2\pi}\sigma}- \frac{1}{2\sigma^2} \sum_{i=1}^{n} \left( y^{(i)} - \boldsymbol{\theta}^T \mathbf{x}^{(i)} \right)^2
-\end{align}
+\end{aligned}
 $$
 - log 값을 취하면 시그마로 수식이 변함.
 - 계산이 용이 함.
@@ -366,13 +366,13 @@ $$
 
 
 - 시그모이드 함수의 중요한 성질 중 하나는 그 미분이 간단한 형태를 가진다는 점이다:
-$$\begin{align}g'(z) &= \frac{d}{dz} \left( \frac{1}{1 + e^{-z}} \right)\\
+$$\begin{aligned}g'(z) &= \frac{d}{dz} \left( \frac{1}{1 + e^{-z}} \right)\\
 \\
 &= \frac{e^{-z}}{(1 + e^{-z})^2}\\
 \\
 &= \frac{1}{1 + e^{-z}} \left( 1 - \frac{1}{1 + e^{-z}} \right)\\
 \\
-&= g(z)(1 - g(z))\end{align}  
+&= g(z)(1 - g(z))\end{aligned}  
 $$
 
 - 이제 로지스틱 회귀 모델을 정의했으므로, 다음 단계는 데이터를 가장 잘 설명하는 파라미터 $\boldsymbol{\theta}$를 구하는 것이다.  
@@ -398,7 +398,7 @@ $$
 
 
 
-- $n$개의 서로 독립인 학습 데이터가 있다고 가정하면, 주어진 데이터에 대한 파라미터 $\boldsymbol{\theta}$의 우도는 각 데이터에 대한 확률을 모두 곱한 형태로 표현된다:
+- $n$개의 서로 독립인 학습 데이터가 있다고 가정하면, 주어진 데이터에 대한 파라미터 $\boldsymbol{\theta}$의 우도는 각 데이터에 대한 확률을 모두 곱한 형태로 표현된다:  
 	$\displaystyle L(\boldsymbol{\theta}) = p(\mathbf{y} \mid \mathbf{X}; \boldsymbol{\theta})= \prod_{i=1}^{n} p(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta})$
 	$\displaystyle = \prod_{i=1}^{n}  \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) \right)^{y^{(i)}}  \left( 1 - f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) \right)^{1 - y^{(i)}}$
 - 여러 식을 파이를 이용해서 합칠수 있음
@@ -415,10 +415,10 @@ $$
 	- 경사하강법의 -를 +로만 바꿔주면 됨.
 
 
-- 하나의 학습 데이터 (x, y)에 대해 로그우도를 $\theta_j$로 미분하면 다음과 같다:
+- 하나의 학습 데이터 (x, y)에 대해 로그우도를 $\theta_j$로 미분하면 다음과 같다:  
 	$\displaystyle\frac{\partial}{\partial \theta_j} \log L(\boldsymbol{\theta})= y \cdot \frac{1}{g(\boldsymbol{\theta}^T \mathbf{x})}- (1 - y) \cdot \frac{1}{1 - g(\boldsymbol{\theta}^T \mathbf{x})}  \cdot \frac{\partial}{\partial \theta_j} g(\boldsymbol{\theta}^T \mathbf{x})$
 
-- 시그모이드 함수의 성질 ( g'(z) = g(z)(1 - g(z)) )를 이용하면, 이를 다음과 같이 단순화할 수 있다:
+- 시그모이드 함수의 성질 ( g'(z) = g(z)(1 - g(z)) )를 이용하면, 이를 다음과 같이 단순화할 수 있다:  
 	$\displaystyle= \left( y \cdot \frac{1}{g(\boldsymbol{\theta}^T \mathbf{x})}- (1 - y) \cdot \frac{1}{1 - g(\boldsymbol{\theta}^T \mathbf{x})} \right)  \cdot g(\boldsymbol{\theta}^T \mathbf{x})(1 - g(\boldsymbol{\theta}^T \mathbf{x})) \cdot \frac{\partial}{\partial \theta_j} (\boldsymbol{\theta}^T \mathbf{x})$
     
     $= \left( y (1 - g(\boldsymbol{\theta}^T \mathbf{x})) - (1 - y) g(\boldsymbol{\theta}^T \mathbf{x}) \right) x_j  = \left( y - f_{\boldsymbol{\theta}}(\mathbf{x}) \right) x_j$
@@ -471,8 +471,8 @@ $$
 - 소프트 맥스 함수를 사용하면, 클래스간의 값 편차를 크게 해주고
 - 음수를 없앰.
 
-- 이 프레임워크에서, $i$번째 데이터가 클래스 $c$ 로 분류될 확률은 다음과 같이 주어진다:
-	$$\displaystyle p(y^{(i)} = c \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}) = \phi_c^{(i)}  = \frac{\exp\left(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}\right)}  {\sum_{k=1}^{C} \exp\left(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}\right)}$$
+- 이 프레임워크에서, $i$번째 데이터가 클래스 $c$ 로 분류될 확률은 다음과 같이 주어진다:  
+$$\displaystyle p(y^{(i)} = c \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}) = \phi_c^{(i)}  = \frac{\exp\left(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}\right)}  {\sum_{k=1}^{C} \exp\left(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}\right)}$$
 
 - 이 식은 각 클래스에 대해 확률을 할당하는 다중 클래스 로지스틱 회귀 모델을 정의한다.  
 - 이러한 확률적 모델이 주어졌으므로, 이제 파라미터 ( \boldsymbol{\theta} )를 학습하기 위한 적절한 손실 함수(loss function)를 정의하는 단계로 넘어간다.
@@ -554,7 +554,7 @@ $$
 
 - 이는 다음과 같은 이유에서이다:
 
-$$\begin{align}
+$$\begin{aligned}
 \frac{\partial \phi_c^{(i)}}{\partial \boldsymbol{\theta}_c}  
 &= \frac{\partial}{\partial \boldsymbol{\theta}_c}  
 \left(  
@@ -573,7 +573,7 @@ $$\begin{align}
 &= \phi_c^{(i)} \mathbf{x}^{(i)} - \phi_c^{(i)} \phi_c^{(i)} \mathbf{x}^{(i)}\\
 \\
 &= \phi_c^{(i)} (1 - \phi_c^{(i)}) \mathbf{x}^{(i)}  
-\end{align}
+\end{aligned}
 $$
 
 
