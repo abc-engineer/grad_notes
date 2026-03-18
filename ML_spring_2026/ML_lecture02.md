@@ -553,7 +553,10 @@ $$
 - 입력 벡터 $\mathbf{x}^{(i)}$가 주어졌을 때, 만약 $y^{(i)} \ne c$라면 다음과 같이 된다:
 
 $$  
-\frac{\partial}{\partial \boldsymbol{\theta}_c}\left( - \log \phi_{y^{(i)}}^{(i)} \right)= - \frac{\partial}{\partial \boldsymbol{\theta}_c}\log \phi_{y^{(i)}}^{(i)}= - \frac{1}{\phi_{y^{(i)}}^{(i)}}\cdot\frac{\partial \phi_{y^{(i)}}^{(i)}}{\partial \boldsymbol{\theta}_c}= - \frac{1}{\phi_{y^{(i)}}^{(i)}}\cdot \left( - \phi_{y^{(i)}}^{(i)} \phi_c^{(i)} \mathbf{x}^{(i)} \right)= \phi_c^{(i)} \mathbf{x}^{(i)}  
+\frac{\partial}{\partial \boldsymbol{\theta}_c}\left( - \log \phi_{y^{(i)}}^{(i)} \right)= - \frac{\partial}{\partial \boldsymbol{\theta}_c}\log \phi_{y^{(i)}}^{(i)}
+= - \frac{1}{\phi_{y^{(i)}}^{(i)}}\cdot\frac{\partial \phi_{y^{(i)}}^{(i)}}{\partial \boldsymbol{\theta}_c}
+= - \frac{1}{\phi_{y^{(i)}}^{(i)}}\cdot ( - \phi_{y^{(i)}}^{(i)} \phi_c^{(i)} \mathbf{x}^{(i)} )
+= \phi_c^{(i)} \mathbf{x}^{(i)}  
 $$
 - 이는 다음과 같이 유도된다:  
 
