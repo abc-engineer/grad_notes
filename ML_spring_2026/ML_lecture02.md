@@ -286,8 +286,8 @@ $$
 	- 미분모델에서는 weight가 최소가 되게, 확률에서는 likelihood가 최대가 되는 값을 찾음.
 
 - 최대우도추정(MLE)의 핵심 아이디어는 단순하다: 주어진 모델 하에서 관측된 데이터가 가장 그럴듯하게 나타나도록 만드는 파라미터 값을 선택하는 것이다.  
-- 즉, 가능한 모든 $\boldsymbol{\theta}$ 중에서 우도 함수 $L(\boldsymbol{\theta})$를 최대화하는 값을 선택한다:
-$\displaystyle\boldsymbol{\theta}^* = \arg\max_{\boldsymbol{\theta}} L(\boldsymbol{\theta})$
+- 즉, 가능한 모든 $\boldsymbol{\theta}$ 중에서 우도 함수 $L(\boldsymbol{\theta})$를 최대화하는 값을 선택한다:  
+  $\displaystyle\boldsymbol{\theta}^* = \arg\max_{\boldsymbol{\theta}} L(\boldsymbol{\theta})$
 
 - 우도 함수 $L(\boldsymbol{\theta})$를 직접 최대화하는 대신, 로그를 취한 로그우도(log-likelihood)를 최대화하는 것이 더 쉽다:
 
