@@ -46,7 +46,7 @@
 	- 쉽게 말하면 $𝑥_0 = 1$ 이여야 $\theta_0$가 값을 유지
 	- 그래야 이렇게 식을 쓸 수 있고 $y = f(\mathbf{x}) = \theta_0 x_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_d x_d$ (단, x0=1)
 	- 이렇게 하면 전체를 하나로 묶을 수 있음: $y = \boldsymbol{\theta}^T \mathbf{x}$
-- 이 식이 가능한 이유는 선형대수 dot product이기 때문, 
+- 이 식이 가능한 이유는 선형대수 dot product이기 때문,  
 $$\mathbf{x} = \begin{bmatrix} 1 \\ x \\ x_2 \\ \vdots \\ x_d \end{bmatrix}, \quad \boldsymbol{\theta} = \begin{bmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \\ \vdots \\ \theta_d \end{bmatrix}$$
 - 그러면: $\theta^T x = \theta_0 + \theta_1 x + \theta_2 x_2 + \cdots + \theta_d x_d$
 
