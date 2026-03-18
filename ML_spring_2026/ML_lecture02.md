@@ -113,7 +113,7 @@ $\displaystyle J(\boldsymbol{\theta}) = \frac{1}{2} \sum_{i=1}^{n} \left( f_{\bo
 
 
 - 이 함수는 비용 함수(cost function) 또는 목적 함수(objective function)라고 하며, 머신러닝에서 중심적인 역할을 한다.  
-- 이 함수는 특정한 파라미터 θ\boldsymbol{\theta}θ 선택이 관측된 데이터를 얼마나 잘 설명하는지를 정량적으로 나타낸다.  
+- 이 함수는 특정한 파라미터 $\boldsymbol{\theta}$ 선택이 관측된 데이터를 얼마나 잘 설명하는지를 정량적으로 나타낸다.  
 - 보다 정확하게는, 우리의 목표는 비용 함수를 최소화하는 파라미터 벡터 $\boldsymbol{\theta}$를 찾는 것이다:  
 $\displaystyle\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} J(\boldsymbol{\theta})$
 - 여기서 $\boldsymbol{\theta}^∗$는 가능한 한 가장 작은 비용을 달성하는 최적의 파라미터를 의미한다.
