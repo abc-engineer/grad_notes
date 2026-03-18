@@ -125,9 +125,10 @@ $\displaystyle\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} J(\boldsymb
 
 - 학습 문제를 비용 함수를 최소화하는 문제로 정식화했으므로, 다음 질문은 실제로 최적의 파라미터 $\boldsymbol{\theta}$를 어떻게 찾을 것인가이다.
 - 𝜃값을 가장 작게 구하는 방법
-	1. **경사하강법(Gradient descent)**: 비용 함수를 최소화하기 위해 θ\boldsymbol{\theta}θ를 반복적으로 업데이트하는 최적화 알고리즘이다. 
+	1. **경사하강법(Gradient descent)**: 비용 함수를 최소화하기 위해 $boldsymbol{\theta}$를 반복적으로 업데이트하는 최적화 알고리즘이다. 
 		- 딥러닝도 같은 방법으로 적용 됨.
-	2. **해석적 해법(Analytical solution)**: 선형 방정식 시스템을 풀어 θ\boldsymbol{\theta}θ에 대한 닫힌형 해(closed-form solution)를 제공한다.    
+  
+	2. **해석적 해법(Analytical solution)**: 선형 방정식 시스템을 풀어 $\boldsymbol{\theta}$에 대한 닫힌형 해(closed-form solution)를 제공한다.    
 	3. **확률적 접근(Probabilistic approach)**: 문제를 통계적 추론의 관점에서 다루며, 일반적으로 오차가 정규분포를 따른다고 가정하고 최대우도추정(maximum likelihood estimation)을 사용한다.
 
 
@@ -142,7 +143,7 @@ $\displaystyle\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} J(\boldsymb
 
 
 - 비용 함수를 어떻게 최소화하는지 이해하기 위해서는 이를 기하학적으로 생각해보는 것이 도움이 된다. 
-- 비용 함수 J(θ)J(\boldsymbol{\theta})J(θ)는 파라미터 공간 위에 정의된 하나의 곡면으로 볼 수 있다.
+- 비용 함수 $J(\boldsymbol{\theta})$는 파라미터 공간 위에 정의된 하나의 곡면으로 볼 수 있다.
 - 단순한 경우 이 곡면은 곡선 형태의 그릇(bowl)과 유사한 모양을 가진다.
 - 우리의 목표는 이 곡면에서 가장 낮은 지점을 찾는 것이며, 이는 최소 비용에 해당하고 따라서 최적의 파라미터를 의미한다.
 
@@ -157,8 +158,8 @@ $\displaystyle\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} J(\boldsymb
 - Gradient는 기울기임.
 	- 최저 코스트의 weight기준(기울기가 min또는 0)으로 왼쪽은 기울기가 음수, 오른쪽은 기울기가 양수
 
-- 형식적으로, 경사하강법은 초기값 θ\boldsymbol{\theta}θ에서 시작하여 다음과 같은 업데이트를 반복적으로 수행한다:
-	$\displaystyle\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\boldsymbol{\theta})$
+- 형식적으로, 경사하강법은 초기값 $\boldsymbol{\theta}$에서 시작하여 다음과 같은 업데이트를 반복적으로 수행한다:  
+$\displaystyle\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\boldsymbol{\theta})$
 - 여기서 $\alpha$는 학습률(learning rate)을 의미한다.
 - 학습률이 크면 최소값으로 더 빠르게 이동할 수 있지만, 최솟값을 지나쳐버릴 위험이 있다. 반대로 학습률이 작으면 업데이트가 더 점진적으로 이루어지며, 수렴하는 데 더 많은 반복이 필요할 수 있다.
 
@@ -185,10 +186,10 @@ $$
 - 인공신경망에서도 잘 적용됨.
 - 시험문제에 수학 풀이를 출제 하진 않음.
 
-- 따라서 하나의 학습 데이터에 대해서는 다음과 같은 업데이트 규칙을 얻는다:
+- 따라서 하나의 학습 데이터에 대해서는 다음과 같은 업데이트 규칙을 얻는다:  
 	$\theta_j := \theta_j - \alpha \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right) x_j^{(i)}$
 
-- 아래 식은 여러 학습 데이터를 모두 반영하여 업데이트를 수행하는 경우이다:
+- 아래 식은 여러 학습 데이터를 모두 반영하여 업데이트를 수행하는 경우이다:  
 	$\displaystyle\theta_j := \theta_j - \alpha \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right) x_j^{(i)}$
 - 따라서 회귀 문제는 경사하강법을 반복적으로 적용하여 파라미터를 조정함으로써 비용 함수를 최소화하는 방식으로 해결할 수 있다.
 
