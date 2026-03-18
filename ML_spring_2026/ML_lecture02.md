@@ -441,8 +441,8 @@ $$
 - 총 𝐶개의 classes가 가능
 
 - 이러한 클래스 소속 확률들은 다항분포(multinomial distribution)를 따른다고 가정하며, 이는 $C$개의 클래스별 확률 $\phi_1, \phi_2, \dots, \phi_C$로 정의된다.  
-- 각 파라미터 $\phi_c$는 해당 데이터가 클래스 $c$에 속할 확률을 의미한다. 이러한 확률들은 정의상 모두 더하면 1이 되어야 한다: 
-	$\displaystyle\sum_{c=1}^{C} \phi_c = 1$
+- 각 파라미터 $\phi_c$는 해당 데이터가 클래스 $c$에 속할 확률을 의미한다. 이러한 확률들은 정의상 모두 더하면 1이 되어야 한다:
+$\displaystyle\sum_{c=1}^{C} \phi_c = 1$
 - likelihood 함수를 정의 하고
 - 각각 확률값을 구하고, 그 값들을 더함.
 - 각 확률값이 되려면
@@ -465,16 +465,18 @@ $$
 - 음수를 없앰.
 
 - 이 프레임워크에서, $i$번째 데이터가 클래스 $c$ 로 분류될 확률은 다음과 같이 주어진다:
-$$\displaystyle p(y^{(i)} = c \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}) = \phi_c^{(i)}  = \frac{\exp\left(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}\right)}  {\sum_{k=1}^{C} \exp\left(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}\right)}$$
+$$
+\displaystyle p(y^{(i)} = c \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}) = \phi_c^{(i)}  = \frac{\exp\left(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}\right)}  {\sum_{k=1}^{C} \exp\left(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}\right)}
+$$
 
 - 이 식은 각 클래스에 대해 확률을 할당하는 다중 클래스 로지스틱 회귀 모델을 정의한다.  
-- 이러한 확률적 모델이 주어졌으므로, 이제 파라미터 ( \boldsymbol{\theta} )를 학습하기 위한 적절한 손실 함수(loss function)를 정의하는 단계로 넘어간다.
+- 이러한 확률적 모델이 주어졌으므로, 이제 파라미터 $\boldsymbol{\theta}$를 학습하기 위한 적절한 손실 함수(loss function)를 정의하는 단계로 넘어간다.
 
 
 
 - 일반적인 접근 방식은 입력이 주어졌을 때 관측된 레이블의 우도를 최대화하는 것이다.  
 - 실제 구현에서는 이는 음의 로그우도(negative log-likelihood)를 최소화하는 것과 동일하며, 계산이 용이하고 안정적인 손실 함수를 제공한다.
-- 하나의 학습 데이터 ( i )에 대한 손실 함수는 다음과 같이 정의된다:
+- 하나의 학습 데이터 $i$에 대한 손실 함수는 다음과 같이 정의된다:  
 $$
 L^{(i)}(\boldsymbol{\theta})  
 = - \log p(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta})  
