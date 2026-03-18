@@ -289,7 +289,8 @@ $$
 - 즉, 가능한 모든 $\boldsymbol{\theta}$ 중에서 우도 함수 $L(\boldsymbol{\theta})$를 최대화하는 값을 선택한다:
 $\displaystyle\boldsymbol{\theta}^* = \arg\max_{\boldsymbol{\theta}} L(\boldsymbol{\theta})$
 
-우도 함수 $L(\boldsymbol{\theta})$를 직접 최대화하는 대신, 로그를 취한 로그우도(log-likelihood)를 최대화하는 것이 더 쉽다:  
+- 우도 함수 $L(\boldsymbol{\theta})$를 직접 최대화하는 대신, 로그를 취한 로그우도(log-likelihood)를 최대화하는 것이 더 쉽다:
+
 $$
 \begin{aligned}\log L(\boldsymbol{\theta})  
 &= \log \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma}  
@@ -304,6 +305,7 @@ $$
 &= n \log \frac{1}{\sqrt{2\pi}\sigma}- \frac{1}{2\sigma^2} \sum_{i=1}^{n} \left( y^{(i)} - \boldsymbol{\theta}^T \mathbf{x}^{(i)} \right)^2
 \end{aligned}
 $$
+
 - log 값을 취하면 시그마로 수식이 변함.
 - 계산이 용이 함.
 
