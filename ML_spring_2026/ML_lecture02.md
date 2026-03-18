@@ -553,37 +553,16 @@ $$
 - 입력 벡터 ( \mathbf{x}^{(i)} )가 주어졌을 때, 만약 ( y^{(i)} \ne c )라면 다음과 같이 된다:
 
 $$  
-\frac{\partial}{\partial \boldsymbol{\theta}_c}  
-\left( - \log \phi_{y^{(i)}}^{(i)} \right)  
-= - \frac{\partial}{\partial \boldsymbol{\theta}_c}  
-\log \phi_{y^{(i)}}^{(i)}  
-  
-= - \frac{1}{\phi_{y^{(i)}}^{(i)}}  
-\cdot  
-\frac{\partial \phi_{y^{(i)}}^{(i)}}{\partial \boldsymbol{\theta}_c}  
-  
-= - \frac{1}{\phi_{y^{(i)}}^{(i)}}  
-\cdot \left( - \phi_{y^{(i)}}^{(i)} \phi_c^{(i)} \mathbf{x}^{(i)} \right)  
-  
+\frac{\partial}{\partial \boldsymbol{\theta}_c}\left( - \log \phi_{y^{(i)}}^{(i)} \right)= - \frac{\partial}{\partial \boldsymbol{\theta}_c}\log \phi_{y^{(i)}}^{(i)}
+= - \frac{1}{\phi_{y^{(i)}}^{(i)}}\cdot\frac{\partial \phi_{y^{(i)}}^{(i)}}{\partial \boldsymbol{\theta}_c}
+= - \frac{1}{\phi_{y^{(i)}}^{(i)}}\cdot \left( - \phi_{y^{(i)}}^{(i)} \phi_c^{(i)} \mathbf{x}^{(i)} \right)
 = \phi_c^{(i)} \mathbf{x}^{(i)}  
 $$
 - 이는 다음과 같이 유도된다:  
 
 $$
-\frac{\partial \phi_{y^{(i)}}^{(i)}}{\partial \boldsymbol{\theta}_c}  
-= \frac{\partial}{\partial \boldsymbol{\theta}_c}  
-\left(  
-\frac{\exp(\boldsymbol{\theta}_{y^{(i)}}^T \mathbf{x}^{(i)})}  
-{\sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)})}  
-\right)  
-  
-= - \frac{  
-\exp(\boldsymbol{\theta}_{y^{(i)}}^T \mathbf{x}^{(i)})  
-\cdot \exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}) \mathbf{x}^{(i)}  
-}{  
-\left( \sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}) \right)^2  
-}  
-\cdot \exp (\theta_𝑐^ T x^{{i}} )\cdot x^{(i)} 
+\frac{\partial \phi_{y^{(i)}}^{(i)}}{\partial \boldsymbol{\theta}_c}= \frac{\partial}{\partial \boldsymbol{\theta}_c}\left(\frac{\exp(\boldsymbol{\theta}_{y^{(i)}}^T \mathbf{x}^{(i)})}{\sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)})}\right)= - \frac{\exp(\boldsymbol{\theta}_{y^{(i)}}^T \mathbf{x}^{(i)})\cdot \exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}) \mathbf{x}^{(i)}}{\left( \sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}) \right)^2  
+}\cdot \exp (\theta_𝑐^ T x^{{i}} )\cdot x^{(i)} 
 $$
 
 - 여기서 $c \ne y^{(i)}$이므로, 분자의 미분은 0이고 분모만 영향을 받는다. 몫의 미분을 적용하면:
@@ -593,22 +572,16 @@ $$
 $$
 
 
-
-
-
 - 정리하면 다음과 같다:
 - 만약 $y^{(i)} = c$라면,  
-   $$  
-    \frac{\partial}{\partial \boldsymbol{\theta}_c}  
-    \left( - \log \phi_{y^{(i)}}^{(i)} \right)  
-    = (\phi_c^{(i)} - 1)\mathbf{x}^{(i)}  
-    $$    
+$$\frac{\partial}{\partial \boldsymbol{\theta}_c}\left( - \log \phi_{y^{(i)}}^{(i)} \right)= (\phi_c^{(i)} - 1)\mathbf{x}^{(i)}
+$$    
 - 만약 $y^{(i)} \ne c$라면,  
-    $$  
-    \frac{\partial}{\partial \boldsymbol{\theta}_c}  
-    \left( - \log \phi_{y^{(i)}}^{(i)} \right)  
-    = \phi_c^{(i)} \mathbf{x}^{(i)}  
-    $$
+$$
+\frac{\partial}{\partial \boldsymbol{\theta}_c}
+\left( - \log \phi_{y^{(i)}}^{(i)} \right)
+= \phi_c^{(i)} \mathbf{x}^{(i)}
+$$
 
 
 - 두 경우를 하나로 합치면, 모든 클래스 ( c )와 학습 데이터 ( i )에 대해 다음과 같이 표현할 수 있다:
