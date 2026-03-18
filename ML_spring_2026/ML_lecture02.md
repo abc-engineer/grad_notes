@@ -125,7 +125,7 @@ $\displaystyle\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} J(\boldsymb
 
 - 학습 문제를 비용 함수를 최소화하는 문제로 정식화했으므로, 다음 질문은 실제로 최적의 파라미터 $\boldsymbol{\theta}$를 어떻게 찾을 것인가이다.
 - 𝜃값을 가장 작게 구하는 방법
-	1. **경사하강법(Gradient descent)**: 비용 함수를 최소화하기 위해 $boldsymbol{\theta}}$를 반복적으로 업데이트하는 최적화 알고리즘이다. 
+	1. **경사하강법(Gradient descent)**: 비용 함수를 최소화하기 위해 $\boldsymbol{\theta}$를 반복적으로 업데이트하는 최적화 알고리즘이다. 
 		- 딥러닝도 같은 방법으로 적용 됨.
   
 	2. **해석적 해법(Analytical solution)**: 선형 방정식 시스템을 풀어 $\boldsymbol{\theta}$에 대한 닫힌형 해(closed-form solution)를 제공한다.    
