@@ -465,6 +465,7 @@ $\displaystyle\sum_{c=1}^{C} \phi_c = 1$
 - 음수를 없앰.
 
 - 이 프레임워크에서, $i$번째 데이터가 클래스 $c$ 로 분류될 확률은 다음과 같이 주어진다:
+
 $$
 \displaystyle p(y^{(i)} = c \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}) = \phi_c^{(i)}  = \frac{\exp\left(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}\right)}  {\sum_{k=1}^{C}\exp\left(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}\right)}
 $$
@@ -477,6 +478,7 @@ $$
 - 일반적인 접근 방식은 입력이 주어졌을 때 관측된 레이블의 우도를 최대화하는 것이다.  
 - 실제 구현에서는 이는 음의 로그우도(negative log-likelihood)를 최소화하는 것과 동일하며, 계산이 용이하고 안정적인 손실 함수를 제공한다.
 - 하나의 학습 데이터 $i$에 대한 손실 함수는 다음과 같이 정의된다:  
+
 $$
 L^{(i)}(\boldsymbol{\theta})= - \log p(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta})
 = - \log \left(\frac{\exp\left(\boldsymbol{\theta}_{y^{(i)}}^T \mathbf{x}^{(i)}\right)}
@@ -489,6 +491,7 @@ $$
 
 
 - 전체 ( n )개의 학습 데이터에 대해 모델을 평가하기 위해, 평균 음의 로그우도(negative log-likelihood)를 계산한다:
+  
 $$  
 L(\boldsymbol{\theta})  
 = \frac{1}{n} \sum_{i=1}^{n}
