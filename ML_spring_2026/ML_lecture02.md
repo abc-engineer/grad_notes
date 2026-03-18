@@ -490,15 +490,8 @@ $$
 
 - 전체 ( n )개의 학습 데이터에 대해 모델을 평가하기 위해, 평균 음의 로그우도(negative log-likelihood)를 계산한다:  
 
-$$  
-L(\boldsymbol{\theta})  
-= \frac{1}{n} \sum_{i=1}^{n}
-- \log p(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta})  
-    = \frac{1}{n} \sum_{i=1}^{n}
-- \log \left(  
-    \frac{\exp\left(\boldsymbol{\theta}_{y^{(i)}}^T \mathbf{x}^{(i)}\right)}  
-    {\sum_{k=1}^{C} \exp\left(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}\right)}  
-    \right)  
+$$L(\boldsymbol{\theta})= \frac{1}{n} \sum_{i=1}^{n}- \log p(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}) 
+= \frac{1}{n} \sum_{i=1}^{n}- \log \left(\frac{\exp\left(\boldsymbol{\theta}_{y^{(i)}}^T \mathbf{x}^{(i)}\right)}{\sum_{k=1}^{C} \exp\left(\boldsymbol{\theta}_k^T mathbf{x}^{(i)}\right)}\right)  
 $$
 
 - 이 손실 함수는 크로스 엔트로피 손실(cross-entropy loss)로도 알려져 있으며, 다중 클래스 분류 문제에서 널리 사용된다. 이를 원-핫 인코딩(one-hot encoding)된 레이블을 사용하여 다음과 같이 표현할 수도 있다:
