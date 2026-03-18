@@ -358,6 +358,7 @@ $\displaystyle\frac{1}{2} \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{
 
 
 - 시그모이드 함수의 중요한 성질 중 하나는 그 미분이 간단한 형태를 가진다는 점이다:
+  
 $$\begin{aligned}g'(z) &= \frac{d}{dz} \left( \frac{1}{1 + e^{-z}} \right)\\
 \\
 &= \frac{e^{-z}}{(1 + e^{-z})^2}\\
