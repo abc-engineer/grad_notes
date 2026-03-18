@@ -610,17 +610,17 @@ $$
 ### Generalized Linear Models
 - 지금까지 우리는 회귀와 분류라는 두 가지 유형의 문제를 살펴보았다.
 - 회귀 문제에서는 입력 $\mathbf{x}$와 파라미터 $\boldsymbol{\theta}$가 주어졌을 때, 타깃 변수 $y$가 다음과 같은 정규분포를 따른다고 가정하는 것이 일반적이다:
+
 $$  
 y \mid \mathbf{x}; \boldsymbol{\theta} \sim \mathcal{N}(\mu, \sigma^2)  
 $$
+
 - 여기서 평균 $\mu$는 보통 $\mathbf{x}$와 $\boldsymbol{\theta}$의 함수로 모델링된다.
 - 회귀와 분류 모두 거의 비슷함.
 - 𝑦|𝒙; 𝜽 ~ 𝒩 (𝜇, $𝜎^2$)
 	- 입력 x와 파라미터 θ가 주어졌을 때, 출력 y는 평균 μ, 분산 $σ^2$를 갖는 정규분포를 따른다
 
-
-
-- 이진 분류 문제에서는 입력 $\mathbf{x}$와 파라미터 $\boldsymbol{\theta}$가 주어졌을 때, 타깃 변수 $y$가 베르누이 분포를 따른다고 가정한다:
+- 이진 분류 문제에서는 입력 $\mathbf{x}$와 파라미터 $\boldsymbol{\theta}$가 주어졌을 때, 타깃 변수 $y$가 베르누이 분포를 따른다고 가정한다:  
 $$
 y \mid \mathbf{x}; \boldsymbol{\theta} \sim \text{Bernoulli}(\phi)  
 $$
@@ -631,8 +631,6 @@ $$
 	- 입력 x와 파라미터 θ가 주어지면, y는 확률 ϕ로 1이 되는 베르누이 분포를 따른다.
 	- 이진 분류(binary classification)에서 사용하는 조건부 확률 모델
 - y 값이 어떤 분포를 따르냐에 따라 regreess, classification, multinomial distribution인지 정해진다고 보면 됨.
-
-
 - 이러한 모델들은 모두 더 일반적이고 유연한 프레임워크인 일반화 선형 모델(GLMs, generalized linear models)의 특수한 경우들이다.  
 - GLM은 출력 변수가 다양한 확률분포를 따를 수 있도록 확장하고, 선형 예측값과 출력의 기댓값을 연결하는 함수를 사용한다.  
 - 예를 들어, 선형 회귀는 항등 함수(identity function)를 사용하고, 이진 분류는 로지스틱 함수(logistic function)를 사용하며, 다중 클래스 분류는 소프트맥스 함수(softmax function)를 사용한다.
