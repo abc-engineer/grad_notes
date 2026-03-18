@@ -536,25 +536,17 @@ $$
 
 - 이는 다음과 같은 이유에서이다:  
 
-$$\begin{aligned}
-\frac{\partial \phi_c^{(i)}}{\partial \boldsymbol{\theta}_c}  
-&= \frac{\partial}{\partial \boldsymbol{\theta}_c}  
-\left(  
-\frac{\exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)})}  
-{\sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)})}  
+$$
+\begin{aligned}
+\frac{\partial \phi_c^{(i)}}{\partial \boldsymbol{\theta}_c}
+&= \frac{\partial}{\partial \boldsymbol{\theta}_c}\left(\frac{\exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)})}{\sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)})}  
 \right)\\
 \\
-&= \frac{  
-\exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}) \mathbf{x}^{(i)} \cdot \sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)})
-
-- \exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}) \cdot \exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}) \mathbf{x}^{(i)}  
-    }{  
-    \left( \sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}) \right)^2  
-    }\\
+&= \frac{\exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}) \mathbf{x}^{(i)} \cdot \sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)})- \exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}) \cdot \exp(\boldsymbol{\theta}_c^T \mathbf{x}^{(i)}) \mathbf{x}^{(i)}}{\left( \sum_{k=1}^{C} \exp(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}) \right)^2}\\
 \\
 &= \phi_c^{(i)} \mathbf{x}^{(i)} - \phi_c^{(i)} \phi_c^{(i)} \mathbf{x}^{(i)}\\
 \\
-&= \phi_c^{(i)} (1 - \phi_c^{(i)}) \mathbf{x}^{(i)}  
+&= \phi_c^{(i)} (1 - \phi_c^{(i)}) \mathbf{x}^{(i)}
 \end{aligned}
 $$
 
