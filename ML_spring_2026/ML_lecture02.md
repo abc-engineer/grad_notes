@@ -269,10 +269,6 @@ $\displaystyle p\left(y^{(i)} \mid \mathbf{x}^{(i)}; \boldsymbol{\theta}\right) 
 - y라는 아웃풋이 정규분포를 따른다는 것은, 다양한 y 값들을 랜덤하게 뽑았을때 그 값들은 정규분포 모양을 형성함.
 - 그래서 y 확률값은 정규분포식을 따른다.
 
-
-
-
-
 - 이를 전체 데이터셋으로 확장하면 우도 함수(likelihood function)를 다음과 같이 정의할 수 있다:$L(\boldsymbol{\theta}) = p(\mathbf{y} \mid \mathbf{X}; \boldsymbol{\theta})$
 - 오차항 $\epsilon^{(i)}$들이 서로 독립이라고 가정하면, 전체 우도 함수는 각 데이터의 우도의 곱으로 표현된다:
 
@@ -289,19 +285,13 @@ $$
 	- maximum likelihood estimation (MLE)를 찾는 것,
 	- 미분모델에서는 weight가 최소가 되게, 확률에서는 likelihood가 최대가 되는 값을 찾음.
 
-
-
-
-
 - 최대우도추정(MLE)의 핵심 아이디어는 단순하다: 주어진 모델 하에서 관측된 데이터가 가장 그럴듯하게 나타나도록 만드는 파라미터 값을 선택하는 것이다.  
 - 즉, 가능한 모든 $\boldsymbol{\theta}$ 중에서 우도 함수 $L(\boldsymbol{\theta})$를 최대화하는 값을 선택한다:
-
 $\displaystyle\boldsymbol{\theta}^* = \arg\max_{\boldsymbol{\theta}} L(\boldsymbol{\theta})$
 
-
-
-우도 함수 $L(\boldsymbol{\theta})$를 직접 최대화하는 대신, 로그를 취한 로그우도(log-likelihood)를 최대화하는 것이 더 쉽다:
-$$\begin{aligned}\log L(\boldsymbol{\theta})  
+우도 함수 $L(\boldsymbol{\theta})$를 직접 최대화하는 대신, 로그를 취한 로그우도(log-likelihood)를 최대화하는 것이 더 쉽다:  
+$$
+\begin{aligned}\log L(\boldsymbol{\theta})  
 &= \log \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma}  
 \exp\left(- \frac{(y^{(i)} - \boldsymbol{\theta}^T \mathbf{x}^{(i)})^2}{2\sigma^2}\right)\\    
 \\
@@ -318,16 +308,16 @@ $$
 - 계산이 용이 함.
 
 
-- 따라서 $\log L(\boldsymbol{\theta})$를 최대화하는 것은 다음 식을 최소화하는 것과 동일한 결과를 낳는다: 
-	$\displaystyle\frac{1}{2} \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right)^2$
+- 따라서 $\log L(\boldsymbol{\theta})$를 최대화하는 것은 다음 식을 최소화하는 것과 동일한 결과를 낳는다:
+$\displaystyle\frac{1}{2} \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right)^2$
 - 이 식은 우리가 앞서 정의한 비용 함수 $J(\boldsymbol{\theta})$, 즉 최소제곱 비용 함수와 동일하다.  
 - 즉, 이는 최소제곱 기준(least-squares criterion)과 정확히 같은 식이다.  
 - 따라서 앞서 가정한 확률적 모델 하에서는, 최소제곱 회귀를 수행하는 것이 $\boldsymbol{\theta}$의 최대우도추정(MLE)을 구하는 것과 동등하다.
 
 
 - 최적의 파라미터 벡터 $\boldsymbol{\theta}$를 구한 후에는, 학습된 모델을 사용하여 새로운 보지 못한 데이터에 대해 예측을 수행할 수 있다.
-- 새로운 입력 $\mathbf{x}_{\text{new}}$가 주어지면, 예측값은 다음과 같이 간단히 계산된다:  
-	$f(\mathbf{x}_{\text{new}}) = \boldsymbol{\theta}^T \mathbf{x}_{\text{new}}$
+- 새로운 입력 $\mathbf{x}_{\text{new}}$가 주어지면, 예측값은 다음과 같이 간단히 계산된다:
+  $f(\mathbf{x}_{\text{new}}) = \boldsymbol{\theta}^T \mathbf{x}_{\text{new}}$
 - 이와 같이 모델은 학습 데이터를 기반으로 일반화하여, 미래의 새로운 데이터에 대해서도 예측을 제공할 수 있다.
 - 이렇게 그려진 선을 이용해 새로운 값을 예측할 수 있음.
 
