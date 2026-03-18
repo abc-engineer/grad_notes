@@ -488,10 +488,8 @@ $$
 - -log를 취한다는 것은 경사 하강법을 쓰겠다는 의미 정도로만 보면 됨.
 - 네가티브likelihood 함수
 
+- 전체 ( n )개의 학습 데이터에 대해 모델을 평가하기 위해, 평균 음의 로그우도(negative log-likelihood)를 계산한다:  
 
-
-- 전체 ( n )개의 학습 데이터에 대해 모델을 평가하기 위해, 평균 음의 로그우도(negative log-likelihood)를 계산한다:
-  
 $$  
 L(\boldsymbol{\theta})  
 = \frac{1}{n} \sum_{i=1}^{n}
@@ -503,9 +501,10 @@ L(\boldsymbol{\theta})
     \frac{\exp\left(\boldsymbol{\theta}_{y^{(i)}}^T \mathbf{x}^{(i)}\right)}  
     {\sum_{k=1}^{C} \exp\left(\boldsymbol{\theta}_k^T \mathbf{x}^{(i)}\right)}  
     \right)  
-  $$
+$$
 
 - 이 손실 함수는 크로스 엔트로피 손실(cross-entropy loss)로도 알려져 있으며, 다중 클래스 분류 문제에서 널리 사용된다. 이를 원-핫 인코딩(one-hot encoding)된 레이블을 사용하여 다음과 같이 표현할 수도 있다:
+
 $$
 - \frac{1}{n} \sum_{i=1}^{n} \sum_{c=1}^{C}  
     y_c^{(i)} \log p_c^{(i)},  
@@ -534,7 +533,7 @@ $$
 
 
 
-- 입력 벡터 $\mathbf{x}^{(i)}$가 주어졌을 때, 만약 $y^{(i)} = c$라면 다음과 같이 된다:
+- 입력 벡터 $\mathbf{x}^{(i)}$가 주어졌을 때, 만약 $y^{(i)} = c$라면 다음과 같이 된다:  
 
 $$  
 \frac{\partial}{\partial \boldsymbol{\theta}_c}  
@@ -548,7 +547,7 @@ $$
 = (\phi_c^{(i)} - 1)\mathbf{x}^{(i)}  
 $$
 
-- 이는 다음과 같은 이유에서이다:
+- 이는 다음과 같은 이유에서이다:  
 
 $$\begin{aligned}
 \frac{\partial \phi_c^{(i)}}{\partial \boldsymbol{\theta}_c}  
@@ -572,10 +571,8 @@ $$\begin{aligned}
 \end{aligned}
 $$
 
-
-
-
 - 입력 벡터 ( \mathbf{x}^{(i)} )가 주어졌을 때, 만약 ( y^{(i)} \ne c )라면 다음과 같이 된다:
+
 $$  
 \frac{\partial}{\partial \boldsymbol{\theta}_c}  
 \left( - \log \phi_{y^{(i)}}^{(i)} \right)  
@@ -591,7 +588,7 @@ $$
   
 = \phi_c^{(i)} \mathbf{x}^{(i)}  
 $$
-- 이는 다음과 같이 유도된다:
+- 이는 다음과 같이 유도된다:  
 
 $$
 \frac{\partial \phi_{y^{(i)}}^{(i)}}{\partial \boldsymbol{\theta}_c}  
@@ -611,7 +608,10 @@ $$
 $$
 
 - 여기서 $c \ne y^{(i)}$이므로, 분자의 미분은 0이고 분모만 영향을 받는다. 몫의 미분을 적용하면:
-  $$= - \phi_{y^{(i)}}^{(i)} \phi_c^{(i)} \mathbf{x}^{(i)}$$
+
+$$
+= - \phi_{y^{(i)}}^{(i)} \phi_c^{(i)} \mathbf{x}^{(i)}
+$$
 
 
 
