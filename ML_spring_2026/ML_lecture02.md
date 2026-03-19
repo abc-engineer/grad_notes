@@ -177,7 +177,9 @@ $\displaystyle\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} J(\boldsymb
 
 - 형식적으로, 경사하강법은 초기값 $\boldsymbol{\theta}$에서 시작하여 다음과 같은 업데이트를 반복적으로 수행한다:  
 $\displaystyle\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\boldsymbol{\theta})$
-- 여기서 $\alpha$는 학습률(learning rate)을 의미한다.
+	- 여기서 $\alpha$는 학습률(learning rate)을 의미한다.
+ 	- := 기호 의미: 기존 $\theta_j$ 값을 오른쪽 값으로 갱신한다
+	- $\displaystyle\frac{\partial}{\partial \theta_j} J(\boldsymbol{\theta})$: 편미분 기호 → $\theta_j$ 에 대해 편미분 한다.
 - 학습률이 크면 최소값으로 더 빠르게 이동할 수 있지만, 최솟값을 지나쳐버릴 위험이 있다. 반대로 학습률이 작으면 업데이트가 더 점진적으로 이루어지며, 수렴하는 데 더 많은 반복이 필요할 수 있다.
 
 - 현재 𝜃값에서 -값을 빼서 최적의 cost를 구할 수 있음
