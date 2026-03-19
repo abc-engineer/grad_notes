@@ -209,7 +209,7 @@ $$
 	$\theta_j := \theta_j - \alpha \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right) x_j^{(i)}$
 
 - 아래 식은 여러 학습 데이터를 모두 반영하여 업데이트를 수행하는 경우이다:  
-	$\displaystyle\theta_j := \theta_j - \alpha \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right) x_j^{(i)}$
+	$\displaystyle\theta_j := \theta_j - \alpha \sum_{i=1}^{n} \left( f_{\boldsymbol{\theta}}(\mathbf{x}^{(i)}) - y^{(i)} \right) x^{(i)}$
 - 따라서 회귀 문제는 경사하강법을 반복적으로 적용하여 파라미터를 조정함으로써 비용 함수를 최소화하는 방식으로 해결할 수 있다.
 
 
