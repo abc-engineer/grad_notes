@@ -15,6 +15,7 @@
 - probability function is P(i, j) = 1/36.
 - 이때 합이 7이나오면 500달러를 벌고 아니면 100달러를 잃음.
 - payoff function을 만들수 있음
+- 
 $$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\ -100 & \text{if } i+j\neq 7 \end{cases}$$
 -  샘플이 값이 되어 나오는 펑션을 만들 수 있음
 #### Payoff function
@@ -23,7 +24,7 @@ $$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\ -100 & \text{if } i+j\neq 7 \en
 	- 결과가 나쁘면 **음수** payoff
 	- 손해도 이익도 없으면 **0**
 - 형태
-	- $X(\omega)$ 또는$g(\omega)$
+	- $X(\omega)$ 또는 $g(\omega)$
 		- $\omega$: 실제 결과
 		- $X(\omega)$ or $g(\omega)$: 그 결과에서의 보상(payoff)
 
