@@ -239,7 +239,8 @@ $$
 - 간단하지만 합리적인 유사도 판정 방법임.
 - 다큐먼트를 각 coulmn에 두고 coulmn을 기준으로 벡터화
 - 코사인 유사도 정의: $\cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}|,|\mathbf{w}|}$
-- $d_1$ vs $d_2$:$\mathbf{v}_{d_1} = \[1,114,36,20\],  \mathbf{v}_{d_2} = \[0,80,58,15\]$
+- $d_1$ vs $d_2$: 
+$\mathbf{v}_{d_1} = (1,114,36,20), \mathbf{v}_{d_2} = (0,80,58,15)$
 - 내적  
 
 $$
@@ -403,6 +404,11 @@ $$
 - PMI는 두 단어가 함께 등장할 확률과, 각각 독립적으로 등장할 확률을 비교하는 지표이다  
 
 $$\text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}= \log_2 \frac{\mathrm{count}(w_1, w_2)\cdot N}{\mathrm{count}(w_1)\mathrm{count}(w_2)}$$
+
+$$
+\text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
+= \log_2 \frac{\#(w_1, w_2)\cdot N}{\#(w_1)\#(w_2)}
+$$
 
 - PMI 값 해석
 	- **PMI = 0**  
