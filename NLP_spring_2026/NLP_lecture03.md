@@ -161,14 +161,17 @@
 - 등을 사용해서 구함.
 - Vector notation: an N-dimensional vector $\mathbf{v} = [v_1, v_2, \ldots, v_N] \in \mathbb{R}^N$
 - Vector dot product / inner product: 내적  
+
 $$
 \text{dot product}(\mathbf{v}, \mathbf{w}) = \mathbf{v} \cdot \mathbf{w} = v_1 w_1 + v_2 w_2 + \cdots + v_N w_N = \sum_{i=1}^{N} v_i w_i  
 $$
   - Vector length / norm:  
+
 $$
 |\mathbf{v}| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{\sum_{i=1}^{N} v_i^2}  
 $$
 - Cosine similarity between vectors:  
+
 $$
 \cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}| , |\mathbf{w}|}  
 = \frac{\sum_{i=1}^{N} v_i w_i}{\sqrt{\sum_{i=1}^{N} v_i^2} \sqrt{\sum_{i=1}^{N} w_i^2}}  
@@ -178,16 +181,19 @@ $$
 #### Vector Space Basics: Example
 - Consider two 4-dimensional vectors  $\mathbf{v} = [1, 0, 1, 0] \in \mathbb{R}^4 \quad  \mathbf{w} = [0, 1, 1, 0] \in \mathbb{R}^4$
 - Vector dot product / inner product:  
+
 $$  
 \mathbf{v} \cdot \mathbf{w} = \sum_{i=1}^{N} v_i w_i = 1  
 $$
 - Vector length / norm:  
+
 $$  
 |\mathbf{v}| = \sqrt{\sum_{i=1}^{N} v_i^2} = \sqrt{2}  
 \quad  
 |\mathbf{w}| = \sqrt{\sum_{i=1}^{N} w_i^2} = \sqrt{2}  
 $$
 - Cosine similarity between vectors:  
+
 $$  
 \cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}| |\mathbf{w}|} = \frac{1}{2}  
 $$
@@ -234,20 +240,24 @@ $$
 - 다큐먼트를 각 coulmn에 두고 coulmn을 기준으로 벡터화
 - 코사인 유사도 정의:$\cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}|,|\mathbf{w}|}$
 - $d_1$ vs $d_2$: $\mathbf{v}_{d_1} = [1,114,36,20], \; \mathbf{v}_{d_2} = [0,80,58,15]$
-
 - 내적  
+
 $$
 \mathbf{v}_{d_1} \cdot \mathbf{v}_{d_2}  
 = 1\cdot0 + 114\cdot80 + 36\cdot58 + 20\cdot15  
 = 0 + 9120 + 2088 + 300 = 11508  
 $$
 - 노름  
+
 $$
 |\mathbf{v}_{d_1}| = \sqrt{1^2+114^2+36^2+20^2} = \sqrt{14693}  
-$$ $$  
+$$ 
+
+$$  
 |\mathbf{v}_{d_2}| = \sqrt{0^2+80^2+58^2+15^2} = \sqrt{9989}  
 $$
 - 코사인 유사도  
+
 $$  
 \cos(d_1,d_2) = \frac{11508}{\sqrt{14693}\sqrt{9989}} \approx \mathbf{0.949} $$
 
@@ -291,6 +301,7 @@ $$
 - 어느정도 많이 나온 단어는 그 차이가 줄어듦
 - → 단순 등장 횟수(raw count)를 쓰지 않고,  로그 스케일로 값을 압축(squash) 한다
 - log를 이용하면 특정 구간을 넘어설때 마다 증가폭이 줄어드는 특성이 있어 계산이 가능 함.  
+
 $$
 \mathrm{TF}(w, d) =  
 \begin{cases}  
@@ -308,6 +319,7 @@ $$
 - 문서 빈도 (DF):  
 	- 특정 단어가 몇 개의 문서에 등장하는지를 세는 값
 	- 단어 w가 문서 $d_i$에 등장하면 1, 아니면 0으로 계산  
+
 $$
 DF(w) = \sum_{i=1}^{N} \mathbf{1}(w \in d_i)  
 $$
@@ -326,6 +338,7 @@ $$
     - 문서 구별력이 높은 단어(DF가 낮은 단어)를 강조하기 위함
 - 역문서 빈도 (IDF):  
     - 전체 문서 수 (N)을 문서 빈도 (DF)로 나눈 뒤, 로그를 취한 값  
+
 $$
 \mathrm{IDF}(w) = \log_{10}\left( \frac{N}{DF(w)} \right)  
 $$
@@ -388,6 +401,7 @@ $$
 - p(w1,w2)=(w1,w2)빈도수 / N
 - 분모가 0이 되는경우를 막기 위해 프로그램 구현할때는 스무딩을 이용해서 에러 방지
 - PMI는 두 단어가 함께 등장할 확률과, 각각 독립적으로 등장할 확률을 비교하는 지표이다  
+
 $$
 \text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
 = \log_2 \frac{\#(w_1, w_2)\cdot N}{\#(w_1)\#(w_2)}  
@@ -411,14 +425,10 @@ $$
 - Positive PMI (PPMI)
 	- 음수 PMI 값을 0으로 치환한 것
 	- 너무 낮은 음수값은 의미가 없어서 0으로 치환  
+
 $$  
 \text{PPMI} = \max \left( \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)},\ 0 \right)  
 $$
-
-
-
-이거부터는 다음주에
-
 
 
 ### TF-IDF vs. PMI Weighting
