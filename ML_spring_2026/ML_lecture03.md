@@ -277,14 +277,11 @@ $$
 - 따라서 전체 로그 우도는 다음과 같이 표현된다:  
 
 $$
-\begin{align}  
-L&= \sum_{i=1}^{n}  
-\left[  
-y^{(i)} \log \phi_y + (1 - y^{(i)}) \log(1 - \phi_y)  
-\right] \  
- + \sum_{i=1}^{n} \sum_{j=1}^{d}  
-\left[  
-x_j^{(i)} \log \phi_{j \mid y^{(i)}} +  
+\begin{align}
+L&= \sum_{i=1}^{n}
+\left[y^{(i)} \log \phi_y + (1 - y^{(i)}) \log(1 - \phi_y)  
+\right] \ + \sum_{i=1}^{n} \sum_{j=1}^{d}  
+\left[x_j^{(i)} \log \phi_{j \mid y^{(i)}} +  
 (1 - x_j^{(i)}) \log(1 - \phi_{j \mid y^{(i)}})  
 \right]  
 \end{align}  
