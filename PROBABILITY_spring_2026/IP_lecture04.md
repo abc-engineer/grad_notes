@@ -84,7 +84,8 @@ $$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\
 	- w가 없으면 공집합이 됨.(empty even)
 - 예시1에서 주사위를 2번 굴렸고, X는 random variable 이었다.
 
-$$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\ -100 & \text{if } i+j\neq 7 \end{cases}$$
+$$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\ 
+-100 & \text{if } i+j\neq 7 \end{cases}$$
 - event X = 500는 {(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)}가 됨.
 - P(X = 500) = 6/36=1/6. 
 
