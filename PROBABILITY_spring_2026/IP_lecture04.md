@@ -232,14 +232,14 @@ $$
 ### Binomial Distributions
 - 이항분포 Binomial(n, p), 또는 Bin(n, p)는 서로 독립인 n번의 베르누이(p) 시행에서 성공의 횟수를 모델링한다.
 - 여기에는 계층 구조가 있다.  
-- 하나의 Bernoulli tria은, 예를 들어 동전을 한 번 던지는 것이다.
-- 하나의 binomial tria은 n번의 Bernoulli tria으로 구성된다.  
+- 하나의 Bernoulli trial은, 예를 들어 동전을 한 번 던지는 것이다.
+- 하나의 binomial trial은 n번의 Bernoulli trial으로 구성된다.  
 - 동전 던지기의 경우 베르누이 시행의 표본공간은 {H, T}이다.
 - binomial tria의 표본공간은 길이가 n인 모든 앞면과 뒷면의 순서열이다.
 - 마찬가지로 Bernoulli random variab는 0과 1의 값을 가지며, 이항 확률변수는 $0, 1, 2, \dots, n$의 값을 가진다.
 - 파라미터가 2개
 - 베르누이를 n번 반복한 것임.
-- 베르누이를 n번 반복했을때 몇번 성공했는지가 바이노미얼Binomial(n, p)
+- 베르누이를 n번 반복했을때 몇번 성공했는지가 Binomial(n, p)
 - sample space은 n번 던진 모든 동전의 앞 뒤결과가 샘플스페이스가 됨
 
 - Binomial(1, p)는 Bernoulli(p)와 같다.
