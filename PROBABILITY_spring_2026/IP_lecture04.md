@@ -67,7 +67,7 @@ $$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\
 		- X가 어떤 함수인지 정하면 됨.
 		- $X(i) = i+1$ 이런식으로 가능
 - 정리:
-	- random variable에 집어넣을 input 값$\alpha, \beta, \omega$등은  sample space Ω의 원소여야하고
+	- random variable에 집어넣을 input 값 $\alpha, \beta, \omega$등은  sample space Ω의 원소여야하고
 	- X는 함수임
 		- 서로다른 input이 동일한 output에 대응되는것은 가능
 		- 하나의 input이 다른 output에 대응하는것은 불가능
