@@ -16,7 +16,8 @@
 - 이때 합이 7이나오면 500달러를 벌고 아니면 100달러를 잃음.
 - payoff function을 만들수 있음
 
-$$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\ -100 & \text{if } i+j\neq 7 \end{cases}$$
+$$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\
+-100 & \text{if } i+j\neq 7 \end{cases}$$
 -  샘플이 값이 되어 나오는 펑션을 만들 수 있음
 #### Payoff function
 - 어떤 실험이나 선택의 결과에 따라 얼마를 얻거나 잃는지를 숫자로 나타내는 함수
