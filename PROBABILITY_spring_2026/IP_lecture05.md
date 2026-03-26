@@ -166,7 +166,7 @@ $$
 - 이제 대수적 성질 (1)을 사용하면 계산이 간단해진다.
 
 $$
-X = \sum_{j=1}^{n} X_j ;\Rightarrow; E[X] = \sum_{j=1}^{n} E[X_j] = \sum_{j=1}^{n} p = np  
+X = \sum_{j=1}^{n} X_j \Rightarrow E[X] = \sum_{j=1}^{n} E[X_j] = \sum_{j=1}^{n} p = np  
 $$
 - 또는 기대값을 직접 다음과 같이 계산할 수도 있다:
 
