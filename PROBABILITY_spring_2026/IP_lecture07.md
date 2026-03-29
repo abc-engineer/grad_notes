@@ -301,6 +301,7 @@ $$
 $$\begin{align}
 \int_{-\infty}^{b} f(x)dx &=\int_{-\infty}^{a} f(x)dx+\int_{a}^{b} f(x)dx\\ 
 \Longleftrightarrow \int_{a}^{b} f(x)dx &=\int_{-\infty}^{b} f(x)dx-\int_{-\infty}^{a} f(x)dx\\
+\\
 \Longleftrightarrow P(a \le X \le b) &=F(b)-F(a)
 \end{align}
 $$
