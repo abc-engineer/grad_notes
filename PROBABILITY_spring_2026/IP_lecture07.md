@@ -298,8 +298,7 @@ $$
 
 - Property  5는 대수적으로 다음과 같이 확인할 수 있다:  
 
-$$
-\begin{align}
+$$\begin{align}
 \int_{-\infty}^{b} f(x)dx %=\int_{-\infty}^{a} f(x)dx+\int_{a}^{b} f(x)dx\\ 
 \Longleftrightarrow \int_{a}^{b} f(x)dx %=\int_{-\infty}^{b} f(x)dx-\int_{-\infty}^{a} f(x)dx\\
 \Longleftrightarrow P(a \le X \le b) %=F(b)-F(a)
