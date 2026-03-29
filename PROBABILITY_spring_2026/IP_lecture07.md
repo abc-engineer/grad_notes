@@ -41,29 +41,29 @@
 	- $f(x)dx$ 의 $\Delta x$의 값이 작을 수록 두 값이 유사 해짐
 -  개념적으로 정적분에 대해 두 가지 관점을 익혀야 한다.
 
-$$\int_a^b f(x),dx = \text{곡선 } y=f(x)\text{ 아래의 면적}$$
+$$\int_a^b f(x)dx = \text{곡선 } y=f(x)\text{ 아래의 면적}$$
 
-$$\int_a^b f(x),dx = \text{‘}f(x),dx\text{의 합’}$$
+$$\int_a^b f(x)dx = \text{‘}f(x) dx\text{의 합’}$$
 - 이 둘의 연결은 다음과 같다:  
 
-$$\text{면적} \approx \text{직사각형 면적의 합} = f(x_1),\Delta x + f(x_2),\Delta x + \cdots + f(x_n),\Delta x = \sum_{i=1}^{n} f(x_i),\Delta x$$
+$$\text{면적} \approx \text{직사각형 면적의 합} = f(x_1),\Delta x + f(x_2)\Delta x + \cdots + f(x_n),\Delta x = \sum_{i=1}^{n} f(x_i) \Delta x$$
 - 구간의 너비 $\Delta x$가 작아질수록 이 근사는 더 정확해진다.
 
 
 - random variable X is continuous는 P(c ≤ X ≤ d)과 $f(x)dx$와 같을 때 성립
 -  function f (x) is called the probability density function (pdf). 
 - 연속 확률변수는 값의 범위가 연속적인 구간이며, 그 범위는 유한할 수도 있고 무한할 수도 있다.    
-- 가능한 범위의 예: $[0,1],;[0,\infty),;(-\infty,\infty),;[a,b]$    
+- 가능한 범위의 예: $[0,1], [0,\infty), (-\infty,\infty), [a,b]$    
 - 정의: 확률변수 $X$에 대해 어떤 함수 $f(x)$가 존재하여 모든 $c \le d$에 대해 다음이 성립하면 $X$는 연속 확률변수이다:
 
-$$P(c \le X \le d) = \int_c^d f(x),dx$$  
+$$P(c \le X \le d) = \int_c^d f(x)dx$$  
 - 함수 $f(x)$를 확률밀도함수(pdf)라고 한다.
 
 
 
 - 확률밀도함수(pdf)는 항상 다음 성질을 만족한다:
 1. $f(x)\ge 0$ ($f$는 음이 아닌 함수이다).
-2. $$\int_{-\infty}^{\infty} f(x),dx = 1$$		(이는 $P(-\infty < X < \infty)=1$ 과 동치이다).
+2. $\displaystyle \int_{-\infty}^{\infty} f(x)dx = 1$ (이는 $P(-\infty < X < \infty)=1$ 과 동치이다).
 - 연속확률변수의 확률밀도함수 $f(x)$ 는 이산확률변수의 확률질량함수 $p(x)$ 에 대응하는 개념이다.    
 - 다음 두 가지 중요한 차이가 있다:    
 1. $p(x)$ 와 달리, 확률밀도함수 $f(x)$ 자체는 확률이 아니다. 확률을 얻으려면 적분해야 한다.
@@ -76,11 +76,11 @@ $$P(c \le X \le d) = \int_c^d f(x),dx$$
 - $f(x)dx$를 -무한대~무한대 범위에서 적분하면 확률값은 1이 나옴.
 
 - 그래프 아래 전체면적은 1
-- 연속확률변수 $X$ 의 확률밀도함수(pdf)를 그래프로 나타내면 다음이 성립한다: $$P(c \le X \le d) = \int_{c}^{d} f(x),dx$$
+- 연속확률변수 $X$ 의 확률밀도함수(pdf)를 그래프로 나타내면 다음이 성립한다: $$P(c \le X \le d) = \int_{c}^{d} f(x)dx$$
 - 즉, 이는 $c$ 와 $d$ 사이에서 그래프 아래의 면적과 같다.    
 - 생각해보자: 확률밀도함수 $f(x)$ 아래의 전체 면적은 무엇인가?   
 
-$$\int_{-\infty}^{\infty} f(x),dx = 1$$
+$$\int_{-\infty}^{\infty} f(x)dx = 1$$
 - 따라서 전체 면적은 $1$이다.
 
 
@@ -106,14 +106,14 @@ $$\int_{-\infty}^{\infty} f(x),dx = 1$$
 	- 밀도가 연속적으로 변한다면, 막대의 전체 질량은 적분을 통해 구해야 한다:    
 
 $$  
-\text{Total mass} = \int_{0}^{L} f(x),dx  
+\text{Total mass} = \int_{0}^{L} f(x)dx  
 $$
 
 
 - 이 공식은 막대를 작은 조각들로 나누고 각 조각의 질량을 ‘합산’하는 것에서 유래한다. 즉: 
 
 $$  
-\text{total mass} \approx \sum_{i=1}^{n} f(x_i),\Delta x  
+\text{total mass} \approx \sum_{i=1}^{n} f(x_i)\Delta x  
 $$
 - $\Delta x \to 0$으로 가는 극한에서, 이 합은 적분이 된다.    
 - 확률밀도함수도 정확히 같은 방식으로 작동하지만, 단위는 $\mathrm{kg/m}$ 대신 $\mathrm{확률}/(\text{단위 } x)$이다.    
@@ -132,13 +132,13 @@ $$f(x)=\begin{cases}3 & 0\le x\le \tfrac{1}{3}\\
 - $P(0.1 \le X \le 0.2)$    
 
 $$  
-P(0.1 \le X \le 0.2)=\int_{0.1}^{0.2} 3,dx=3(0.2-0.1)=3 \cdot 0.1=0.3  
+P(0.1 \le X \le 0.2)=\int_{0.1}^{0.2} 3dx=3(0.2-0.1)=3 \cdot 0.1=0.3  
 $$
 
 - $P(0.1 \le X \le 1)$  
 
 $$  
-P(0.1 \le X \le 1)=\int_{0.1}^{1/3} 3,dx=3\left(\tfrac{1}{3}-0.1\right)=3\left(0.333\ldots-0.1\right)=3 \cdot 0.233\ldots=0.7  
+P(0.1 \le X \le 1)=\int_{0.1}^{1/3} 3dx=3\left(\tfrac{1}{3}-0.1\right)=3\left(0.333\ldots-0.1\right)=3 \cdot 0.233\ldots=0.7  
 $$
 - 최종 결과: $P(0.1 \le X \le 0.2)=0.3$, $P(0.1 \le X \le 1)=0.7$
 
@@ -146,7 +146,7 @@ $$
 - $P(0.1 \le X \le 0.2)$는 왼쪽 그림에 해당한다. 적분으로 계산하면:
 
 $$  
-P(0.1 \le X \le 0.2)=\int_{0.1}^{0.2} f(x),dx=\int_{0.1}^{0.2} 3,dx=0.3  
+P(0.1 \le X \le 0.2)=\int_{0.1}^{0.2} f(x)dx=\int_{0.1}^{0.2} 3dx=0.3  
 $$
 
 - 또는 기하적으로 계산할 수도 있다: 직사각형의 넓이 $=3 \cdot 0.1=0.3$
@@ -183,7 +183,7 @@ $$
 - 해설: 앞에서 $C=3$이므로    
 
 $$  
-P(X \le \tfrac{1}{2})=\int_{0}^{1/2} 3x^2,dx  
+P(X \le \tfrac{1}{2})=\int_{0}^{1/2} 3x^2dx  
 $$
 
 $$  
@@ -214,7 +214,7 @@ $$
 - 실제 계산에서는 다음과 같이 적분을 사용한다:    
 
 $$  
-F(b)=P(X \le b)=\int_{-\infty}^{b} f(x),dx  
+F(b)=P(X \le b)=\int_{-\infty}^{b} f(x)dx  
 $$
 - 여기서 $f(x)$는 $X$의 확률밀도함수(pdf)이다.    
 - 이산형 확률변수에서도 cdf를 정의했지만, 실제로 자주 사용되지는 않았다.    
@@ -226,7 +226,7 @@ $$
 - $a \in [0,\tfrac{1}{3}]$인 경우    
 
 $$  
-F(a)=\int_{0}^{a} f(x),dx=\int_{0}^{a} 3,dx=3a  
+F(a)=\int_{0}^{a} f(x)dx=\int_{0}^{a} 3dx=3a  
 $$
 - 또한 $f(x)$는 $[0,\tfrac{1}{3}]$ 밖에서는 0이므로    
 - $a<0$이면 $F(a)=P(X \le a)=0$    
@@ -249,7 +249,7 @@ $$
 - $a \in [0,1]$에서    
 
 $$  
-F(a)=\int_{0}^{a} 3x^2,dx=a^3  
+F(a)=\int_{0}^{a} 3x^2dx=a^3  
 $$
 - 따라서 cdf는    
 
@@ -321,7 +321,7 @@ $$
 - $X$를 다트가 떨어진 $x$좌표라고 하면, $a$와 $b$ 사이에 떨어질 확률은
 
 $$  
-P(a \le X \le b)=\int_{a}^{b} f(x),dx  
+P(a \le X \le b)=\int_{a}^{b} f(x)dx  
 $$
 - 즉, pdf 아래에서 $a$부터 $b$까지의 면적이 바로 확률이 된다.
 
