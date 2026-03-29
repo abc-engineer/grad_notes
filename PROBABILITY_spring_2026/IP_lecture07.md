@@ -304,7 +304,9 @@ $$\begin{align}
 \Longleftrightarrow P(a \le X \le b) &=F(b)-F(a)
 \end{align}
 $$
-- Property  5는 기하적으로도 이해할 수 있다.    
+
+- Property  5는 기하적으로도 이해할 수 있다.
+  
 - $F(b)$는 $-\infty$부터 $b$까지의 전체 면적(확률)을 나타내고, $F(a)$는 $-\infty$부터 $a$까지의 면적이다.    
 - 따라서 두 값의 차이는 구간 $[a,b]$ 아래의 면적, 즉 $P(a \le X \le b)$에 해당한다.
 
