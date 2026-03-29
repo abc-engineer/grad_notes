@@ -299,10 +299,11 @@ $$
 - Property  5는 대수적으로 다음과 같이 확인할 수 있다:  
 
 $$
-\begin{akign}
+\begin{align}
 \int_{-\infty}^{b} f(x)dx %=\int_{-\infty}^{a} f(x)dx+\int_{a}^{b} f(x)dx\\ 
 \Longleftrightarrow \int_{a}^{b} f(x)dx %=\int_{-\infty}^{b} f(x)dx-\int_{-\infty}^{a} f(x)dx\\
-\Longleftrightarrow P(a \le X \le b) %=F(b)-F(a)  
+\Longleftrightarrow P(a \le X \le b) %=F(b)-F(a)
+\end{align}
 $$
 - Property  5는 기하적으로도 이해할 수 있다.    
 - $F(b)$는 $-\infty$부터 $b$까지의 전체 면적(확률)을 나타내고, $F(a)$는 $-\infty$부터 $a$까지의 면적이다.    
