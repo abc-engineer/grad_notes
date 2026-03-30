@@ -626,7 +626,7 @@ $$
 - 더 큰 텍스트 집합에서는 문서 내 단어 빈도가 풍부한 정보를 담고 있다
 - → 셰익스피어의 네 개 희곡을 예로 들어 단어 빈도 통계를 구함
 
-$\mathbf{v}_{d_1} = (1, 114, 36, 20) \quad  \mathbf{v}_{d_2} = (0, 80, 58, 15) \quad  \mathbf{v}_{d_3} = (7, 62, 1, 2) \quad  \mathbf{v}_{d_4} = (13, 89, 4, 3)$
+$$\mathbf{v}_{d_1} = (1, 114, 36, 20) \quad  \mathbf{v}_{d_2} = (0, 80, 58, 15) \quad  \mathbf{v}_{d_3} = (7, 62, 1, 2) \quad  \mathbf{v}_{d_4} = (13, 89, 4, 3)$$
 
 | As You Like It | Twelfth Night | Julius Caesar | Henry V |     |
 | -------------- | ------------- | ------------- | ------- | --- |
@@ -641,8 +641,9 @@ $\mathbf{v}_{d_1} = (1, 114, 36, 20) \quad  \mathbf{v}_{d_2} = (0, 80, 58, 15) \
 - fool, wit 같은 단어가 많이 나오는 다큐먼트는 실제로 희극
 - 간단하지만 합리적인 유사도 판정 방법임.
 - 다큐먼트를 각 coulmn에 두고 coulmn을 기준으로 벡터화
-- 코사인 유사도 정의:$\cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}|,|\mathbf{w}|}$
-- $d_1$ vs $d_2$: $\mathbf{v}_{d_1} = [1,114,36,20], \; \mathbf{v}_{d_2} = [0,80,58,15]$
+- 코사인 유사도 정의: $\cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}|,|\mathbf{w}|}$
+- $d_1$ vs $d_2$:
+- $\mathbf{v}_{d_1} = (1,114,36,20), \; \mathbf{v}_{d_2} = (0,80,58,15)$
 - 내적
 
 $$
