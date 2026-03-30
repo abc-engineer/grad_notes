@@ -469,7 +469,7 @@ $$
 - 특정 도메인 용어 및 저자원 언어에 대한 커버리지가 제한적이다    
 - 개별 단어와 그 의미만 지원하며, 더 복잡한 표현에는 한계가 있다
 
-### Summary: Vector Space Models
+### Summary: Vector Space Models (내용 중복 삭제 확인 필요)
 - 벡터 의미 공간:  
     단어의 의미를 벡터 표현을 통해 나타낸다
 - 코사인 유사도는 벡터 간 유사도를 측정하는 데 가장 널리 사용되는 방법이다
@@ -482,3 +482,430 @@ $$
     문서 내에서 중요한 단어를, 다른 문서와 비교하여 강조한다
 - PMI는  
     확률적(독립성 가정 기반)으로 두 단어 간 연관성 강도를 측정한다
+
+
+### Vector Space Model Basics 
+
+#### Motivation: Representing Texts with Vectors
+- 단어를 이해 하기 위해서는 다른 단어와 어떤 관계를 갖고 얼마나 유사한지등의 지표가 필요함
+- multi-dimensional vectors(다차원 벡터)를 이용해서 단어의 의미를 다차원적으로 파악할 수 있음.
+	- 각각의 벡터 디멘전이 그 역할을 해줌.
+- 단어 유사도는 0에서 10 사이의 척도로 사람이 수동으로 주석을 단 것이다  
+
+
+| vanish | disappear  | 9.8  |
+| ------ | ---------- | ---- |
+| belief | impression | 5.95 |
+| muscle | bone       | 3.65 |
+| modest | flexible   | 0.98 |
+| hole   | agreement  | 0.3  |
+    
+- 단어 의미는 다면적일 수 있다  
+
+| 단어 | Valence | Arousal | Dominance |  
+|---|---|---|---|  
+| courageous | 8.05 | 5.5 | 7.38 |  
+| music | 7.67 | 5.57 | 6.5 |  
+| heartbreak | 2.45 | 5.65 | 3.58 |  
+| cub | 6.71 | 3.95 | 4.24 |
+
+
+
+#### Vector Semantics
+- 단어를 multi-dimensional semantic spac멀티 디멘전널 스페이스에 나타내는 것이 목표
+	- 단어가 유사하면 비슷한 위치(가까운 위치)
+	- 이런 관계들이 벡터 스페이스에서 보존되길 원함.
+
+
+#### Vector Space Basics
+-  N-dimensional vector을 이용
+	- 각각의 원소들이 구성됨.
+- 벡터의 내적
+- 크기
+- 코사인 유사도
+- 등을 사용해서 구함.
+
+- Vector notation: an N-dimensional vector $\mathbf{v} = [v_1, v_2, \ldots, v_N] \in \mathbb{R}^N$
+- Vector dot product / inner product: 내적
+
+$$
+\text{dot product}(\mathbf{v}, \mathbf{w}) = \mathbf{v} \cdot \mathbf{w} = v_1 w_1 + v_2 w_2 + \cdots + v_N w_N = \sum_{i=1}^{N} v_i w_i  
+$$
+  - Vector length / norm:
+
+$$
+|\mathbf{v}| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{\sum_{i=1}^{N} v_i^2}  
+$$
+- Cosine similarity between vectors:
+
+$$
+\cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}| , |\mathbf{w}|}  
+= \frac{\sum_{i=1}^{N} v_i w_i}{\sqrt{\sum_{i=1}^{N} v_i^2} \sqrt{\sum_{i=1}^{N} w_i^2}}  
+$$
+
+
+
+#### Vector Space Basics: Example
+- Consider two 4-dimensional vectors  $\mathbf{v} = [1, 0, 1, 0] \in \mathbb{R}^4 \quad  \mathbf{w} = [0, 1, 1, 0] \in \mathbb{R}^4$
+- Vector dot product / inner product:
+
+$$  
+\mathbf{v} \cdot \mathbf{w} = \sum_{i=1}^{N} v_i w_i = 1  
+$$
+- Vector length / norm:
+
+$$  
+|\mathbf{v}| = \sqrt{\sum_{i=1}^{N} v_i^2} = \sqrt{2}  
+\quad  
+|\mathbf{w}| = \sqrt{\sum_{i=1}^{N} w_i^2} = \sqrt{2}  
+$$
+- Cosine similarity between vectors:
+
+$$  
+\cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}| |\mathbf{w}|} = \frac{1}{2}  
+$$
+
+#### Vector Similarity
+- Cosine similarity
+	- 대칭적이다: (cos(v, w) = cos(w, v))
+	- 벡터 길이의 영향을 안받는게 큰 장점
+	- 단위 벡터를 만들고 각을 이용하여 계산.
+	- 직관적인 기하학적 해석이 가능
+	- 단어를 벡터로 만들면 많은 연산이 가능해짐
+		- 그럼 어떻게 단어를 벡터로 만들까?
+
+#### How to Represent Words as Vectors?
+- One-hot vector
+	- 가장 기본 방법
+	- 인덱스를 이용하면 됨.
+		- 1의 위치가 단어의 고유성을 나타내는 벡터가 됨.
+- 어휘 집합 $V={\text{good}, \text{feel}, \text{I}, \text{sad}, \text{cats}, \text{have}}$가 주어졌다고 하자    
+- 단어를 벡터로 표현하는 가장 간단한 방법은 인덱스를 사용하는 것이다    
+- 원-핫 벡터(one-hot vector): 하나의 값만 1이고 나머지는 0이다    
+- 각 단어는 고유한 차원으로 식별된다  
+
+$$  
+\begin{align}  
+v_{\text{good}} &= [1,0,0,0,0,0] \\  
+v_{\text{feel}} &= [0,1,0,0,0,0] \\  
+v_{\text{I}} &= [0,0,1,0,0,0] \\  
+v_{\text{sad}} &= [0,0,0,1,0,0] \\  
+v_{\text{cats}} &= [0,0,0,0,1,0] \\  
+v_{\text{have}} &= [0,0,0,0,0,1]  
+\end{align}  
+$$
+
+#### Represent Sequences by Word Occurrences
+- One-hot vector로 단어를 벡터로 만들고 나면 문장도 벡터로 표현 가능
+- 인덱스 정보를 활용하면 documents도 벡터로 만들 수 있음
+- 그다음 documents도 코사인 유사도로 계산 가능
+- 한계는 단어가 있냐 없나 수준만 파악가능
+
+$$  
+\begin{align}  
+v_{d1} &= [1,1,1,0,0,0] \\  
+v_{d2} &= [0,1,1,1,0,0] \\  
+v_{d3} &= [0,0,1,0,1,1]  
+\end{align}  
+$$  
+
+$$  
+\begin{align}  
+\cos(v_{d1}, v_{d2}) &= \frac{2}{3} \\  
+\cos(v_{d1}, v_{d3}) &= \frac{1}{3} \\  
+\cos(v_{d2}, v_{d3}) &= \frac{1}{3}  
+\end{align}  
+$$
+
+
+
+#### Term-Document Matrix
+- 빈도 수도 반영할 수 있도록 matrix 만듦
+- 각각 다큐먼트에 이 단어가 몇번 나왔는지 표로 만들고 벡터화 함.
+- As You Like It =\[1,114,36,20]
+- 더 큰 텍스트 집합에서는 문서 내 단어 빈도가 풍부한 정보를 담고 있다
+- → 셰익스피어의 네 개 희곡을 예로 들어 단어 빈도 통계를 구함
+- $\mathbf{v}_{d_1} = [1, 114, 36, 20] \quad  \mathbf{v}_{d_2} = [0, 80, 58, 15] \quad  \mathbf{v}_{d_3} = [7, 62, 1, 2] \quad  \mathbf{v}_{d_4} = [13, 89, 4, 3]$
+
+| As You Like It | Twelfth Night | Julius Caesar | Henry V |     |
+| -------------- | ------------- | ------------- | ------- | --- |
+| **battle**     | 1             | 0             | 7       | 13  |
+| **good**       | 114           | 80            | 62      | 89  |
+| **fool**       | 36            | 58            | 1       | 4   |
+| **wit**        | 20            | 15            | 2       | 3   |
+
+
+
+#### Document Similarity
+- fool, wit 같은 단어가 많이 나오는 다큐먼트는 실제로 희극
+- 간단하지만 합리적인 유사도 판정 방법임.
+- 다큐먼트를 각 coulmn에 두고 coulmn을 기준으로 벡터화
+- 코사인 유사도 정의:$\cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}|,|\mathbf{w}|}$
+- $d_1$ vs $d_2$: $\mathbf{v}_{d_1} = [1,114,36,20], \; \mathbf{v}_{d_2} = [0,80,58,15]$
+- 내적
+
+$$
+\mathbf{v}_{d_1} \cdot \mathbf{v}_{d_2}  
+= 1\cdot0 + 114\cdot80 + 36\cdot58 + 20\cdot15  
+= 0 + 9120 + 2088 + 300 = 11508  
+$$
+- 노름
+
+$$
+|\mathbf{v}_{d_1}| = \sqrt{1^2+114^2+36^2+20^2} = \sqrt{14693}  
+$$ 
+
+$$  
+|\mathbf{v}_{d_2}| = \sqrt{0^2+80^2+58^2+15^2} = \sqrt{9989}  
+$$
+
+- 코사인 유사도
+
+$$  
+\cos(d_1,d_2) = \frac{11508}{\sqrt{14693}\sqrt{9989}} \approx \mathbf{0.949} 
+$$
+
+
+#### Words Represented with Documents
+
+| As You Like It | Twelfth Night | Julius Caesar | Henry V |     |
+| -------------- | ------------- | ------------- | ------- | --- |
+| **battle**     | 1             | 0             | 7       | 13  |
+| **good**       | 114           | 80            | 62      | 89  |
+| **fool**       | 36            | 58            | 1       | 4   |
+| **wit**        | 20            | 15            | 2       | 3   |
+
+- 행벡터를 보면 다큐먼트 관점에서 정보를 파악 할 수 있음
+- “Fool”: “the kind of word that occurs in comedies”
+- “Battle”:은 전쟁 관련된 책이나 역사 책에 많이 나옴.
+- 즉 단어도 벡터화 할 수 있음
+- -> 단어와 다큐먼트 모두 벡터화.
+
+#### Words Represented with Documents
+
+| As You Like It | Twelfth Night | Julius Caesar | Henry V |     |
+| -------------- | ------------- | ------------- | ------- | --- |
+| **battle**     | 1             | 0             | 7       | 13  |
+| **good**       | 114           | 80            | 62      | 89  |
+| **fool**       | 36            | 58            | 1       | 4   |
+| **wit**        | 20            | 15            | 2       | 3   |
+- Document co-occurrence statistics는 거친 맥락을 제공한다.  
+- 단어-문서간 빈도를 활용하여 벡터화
+	- $v_{\text{battle}}=[1,0,7,13]$
+	- $v_{\text{good}}=[114,80,62,89]$
+	- $v_{\text{fool}}=[36,58,1,4]$ 
+	- $v_{\text{wit}}=[20,15,2,3]$ 
+- 코사인 유사도:  
+
+$$\cos(v_{\text{fool}},v_{\text{wit}})=0.93$$
+
+$$\cos(v_{\text{fool}},v_{\text{battle}})=0.09$$  
+
+- 이전에 사용된 원-핫 벡터는 다음과 같다:  
+	- $v_{\text{battle}}=[1,0,0,0]$
+	- $v_{\text{good}}=[0,1,0,0]$
+	- $v_{\text{fool}}=[0,0,1,0]$
+	- $v_{\text{wit}}=[0,0,0,1]$
+-  원-핫 표현 코사인 유사도:  
+
+$$\cos(v_{\text{fool}},v_{\text{wit}})=0$$
+
+$$\cos(v_{\text{fool}},v_{\text{battle}})=0$$
+
+- 이런 방법도 한계가 있음
+	- 다큐먼트 즉 긴 책하나를 같은 맥락으로봄.
+	- 한 다큐먼트 안에서도 같은 단어가 다른 뜻으로 사용되는 경우도 많음.
+	- 더 세밀한 콘텍스트가 필요함.
+
+
+#### Fine-Grained Contexts: Word-Word Matrix
+- 기존에는 단어가 문서에 들어있는지를 이용해서 context로 봤음
+- 이제는 앞뒤 단어 몇개를 이용해서 context로 하자
+	- 훨씬 세밀하게 context로 만듦
+	- 맥락을 확 좁힘.
+- 이러면 Word-Word Matrix을 만들 수 있음.
+	- 체리의 앞 4단어 뒤 4단어를 이용해서 계산
+
+
+| 항목          | aardvark | computer | data | result | pie | sugar |
+| ----------- | -------- | -------- | ---- | ------ | --- | ----- |
+| cherry      | 0        | 2        | 8    | 9      | 442 | 25    |
+| strawberry  | 0        | 0        | 0    | 1      | 60  | 19    |
+| digital     | 0        | 1670     | 1683 | 85     | 5   | 4     |
+| information | 0        | 3325     | 3982 | 378    | 5   | 13    |
+- 중심 단어(center word)를 기준으로 특정 단어들이 몇번 나왔는지 표로 만들 수 있음.
+- 디지털, 정보는 컴퓨터, 데이터등 비슷한 문맥에서 자주 등장
+- 체리 딸기는 파이나 슈가와 함께 자주 등장
+- 여전히 Sparsity이슈가 있음
+
+#### Is Raw Frequency A Good Representation?
+- 빈도를 세는것이 좋은 방법인가?에 대한 의문으로 시작
+- 어떤 맥락에서 자주 등장하면 의미가 있어서 나오기도 하지만, 관습적으로 많이 나오는 단어들이 있음.
+- 굿 같은 단어는 어느 책이나 자주 나옴.
+- distinctively high frequency 구분되게 자주 나오는 단어들은 가중치를 주고 의미 없이 자주나오는 단어들은 패널티를 줘야 함. ->rerate하는 방법이 많이 나옴.
+
+#### Term Frequency (TF)
+- rerate를 위한 방법
+- log 함수를 이용하는 방법을 TF라고 함.
+- 100번 더 나온 단어가 100배 중요하진 않음
+- 어느정도 많이 나온 단어는 그 차이가 줄어듦
+- → 단순 등장 횟수(raw count)를 쓰지 않고,  로그 스케일로 값을 압축(squash) 한다
+- log를 이용하면 특정 구간을 넘어설때 마다 증가폭이 줄어드는 특성이 있어 계산이 가능 함.
+
+$$
+\mathrm{TF}(w, d) =  
+\begin{cases}  
+1 + \log_{10} \text{count}(w, d) & \text{count}(w, d) > 0 \\  
+0 & \text{otherwise}  
+\end{cases}  
+$$
+
+
+#### Document Frequency (DF)
+- 모든 다큐먼트에 많이 나오는 단어는 유니크하게 그 단어를 들어내진 않음
+- good, the 이런 단어들은 정보값이 없음
+- 각각의 단어에 의해 저장되는 정보값이 DF
+	- 다큐먼트에 몇번 나왔는지 세서 저장하면 됨.
+- 둘다 빈도가 같은데 로미오는 1개의 다큐먼트에서, 액션은 31개의 다큐먼트에서 나왔다면 로미오가 더 특별한 단어일 확률이 높음
+- 문서 빈도 (DF):  
+	- 특정 단어가 몇 개의 문서에 등장하는지를 세는 값
+	- 단어 w가 문서 $d_i$에 등장하면 1, 아니면 0으로 계산
+	
+$$
+DF(w) = \sum_{i=1}^{N} \mathbf{1}(w \in d_i)  
+$$
+
+|항목|Collection Frequency|Document Frequency|
+|---|---|---|
+|Romeo|113|1|
+|action|113|31|
+- 주의:  
+    DF는 전체 문서에서의 총 등장 횟수(컬렉션 빈도)가 아님
+	- Rome
+        - 컬렉션 빈도: 113
+        - 문서 빈도: 1
+	- action
+        - 컬렉션 빈도: 113
+        - 문서 빈도: 31
+
+
+#### Inverse Document Frequency (IDF)
+- DF가 낮으면 소수에 다큐먼트에 나오고 중요도가 높다는 뜻 그래서 분모로 들어가고 log를 씌움.
+- 목적:  
+    - 문서 구별력이 높은 단어(DF가 낮은 단어)를 강조하기 위함
+- 역문서 빈도 (IDF):  
+    - 전체 문서 수 (N)을 문서 빈도 (DF)로 나눈 뒤, 로그를 취한 값
+
+$$
+\mathrm{IDF}(w) = \log_{10}\left( \frac{N}{DF(w)} \right)  
+$$
+- 여러 문서에 자주 등장하는 단어 → IDF 낮음 (중요도 낮음) 
+- 소수 문서에만 등장하는 단어 → IDF 높음 (중요도 높음)
+
+#### TF-IDF Weighting
+- 요즘도 많이 사용되는 중요도를 나타내는 기법
+- $\text{TF-IDF}(w,d)=\text{TF}(w,d) \cdot\text{IDF}(w)$
+- TF는 이 단어가 이 다큐먼트에 몇번 나왔는지 로그를 씌워 계산
+	- 다큐에 많이 나올 수록 중요
+	- 단, 너무 많이나온다고 너무 큰 가중치를 안받게 로그 사용
+	- $log(\text{context}(w,d))$
+- IDF는 모든 다큐먼트에 다 나오면 패널티, 일부에만 나오면 가중치
+	- DF를 분모로 보내고 로그를 씌움.
+	- $\displaystyle log \frac{N}{df(w)}$
+- 모든 다큐먼트에 나오면 중요도가 낮아지도록 계산
+- good 같이 어디서나 많이 나오는 단어는 TF-IDF에서 0이 됨.
+	- 스무딩을 쓸수있지만 0으로 사용되기도 함.
+
+#### Q&A
+- 벡터의 크기가 조절가능한가요?
+	- 지금 소개한 빈도수 기반 벡터들은 크기가 정해져있음.
+	- 딥러닝 기반 방법은 벡터를 조절할 수 있음.
+		- 벡터가 크면 좋은가요?
+			- 벡터별로 크기가 다르다면 가장좋겠지만 유사도등을 비교하려면 디멘젼을 맞춰야 하기때문에 어느정도 맞추게 됨.
+- 단어가 유사할때, 단어가 많이 나왔다면 그 유사도가 올라가는데
+	- 여러뜻이 있는 경우 정확히 파악 할 수 없음
+	- 다다음 수업정도에 트랜스포머 등 딥러닝 기법에서 배우게 됨.
+- 현대 LLM은 파라메터를 다 하는게아니고 특정상황을 판별하고 거기에 맞는 에이전트를 호출해서 답하는 방법을 쓰고 있어서 무조건 TF-IDF로 평가한다라고 말하긴 어려움.
+	- 사용하긴 함.
+
+#### How to Define Documents?
+- 다큐먼트는 무엇인가?(어떻게 정의?)
+	- 어플마다 굉장히 다르게 설정
+	- 책한권을 다큐로, 한장 또는 챕터를
+	- 세분하면 문장이나 문단을 다큐먼트로 설정
+- 큰 문서는 더 넓은 맥락을 제공하고, 작은 문서는 더 집중된 통찰을 제공한다    
+- 분석 목적에 따라 달라진다: 여러 문서 전반의 전역적 추세(예: 뉴스 기사)에 관심이 있는지, 아니면 더 국소적인 패턴(예: 법률 문서의 특정 섹션)에 관심이 있는지에 따라 다르다
+
+
+#### Probability-Based Weighting
+- 2번째로 많이 사용하는 weight 방법
+- 확률기반으로 가중치
+- TF-IDF weighting은 인간의 판단이 어느정도 들어간 가중치
+- 이를 보완하기 위해 우연의 일치로 얼마나 자주 나오는지 계산
+
+#### Word Association Based on Probability
+- 두사건이 독립이면 각각의 확률의 곱으로 계산 할수 있음
+- 두단어를 동시에 관측할 확률을 계산 했을때 두 단어를 각각 발견할 확률을 곱하면 됨.
+- 확률 이론에서 두 확률변수 A와 B가 독립이면 다음이 성립한다:  $p(A, B) = p(A)p(B)$
+- 두 단어가 우연히 함께 등장한다면, 다음과 같은 독립성 조건을 만족할 것으로 기대한다: $p(w_1, w_2) = p(w_1)p(w_2)$
+- 만약 $p(w_1, w_2) > p(w_1)p(w_2)$ 라면, 두 단어는 우연보다 더 자주 함께 등장한다 
+- 즉, 연관성이 있음
+	- 독립이면: 같이 나올 확률 = 각자 나올 확률의 곱
+	- 실제가 더 크면: **의미적/통계적 연관성이 존재**
+
+- 분모는 두개가 동시에 관측할 확률
+- 분자는 Joint probability
+- PMI가 1보다 크면 (log를 씌웠으니 0보다 크면) 의미를 갖고 빈번하게 등장
+- Positive PMI (PPMI): replaces all negative PMI values with zero
+- N: Total word counts
+- p(w1)확률: w1이 나온 빈도수/N
+- p(w1,w2)=(w1,w2)빈도수 / N
+- 분모가 0이 되는경우를 막기 위해 프로그램 구현할때는 스무딩을 이용해서 에러 방지
+- PMI는 두 단어가 함께 등장할 확률과, 각각 독립적으로 등장할 확률을 비교하는 지표이다
+
+$$
+\text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
+= \log_2 \frac{\#(w_1, w_2)\cdot N}{\#(w_1)\#(w_2)}  
+$$
+- PMI 값 해석
+	- **PMI = 0**  
+	    - 두 단어가 우연에 의해 기대되는 정도로 함께 등장  
+	    - 특별한 연관성 없음
+	    - p(w1,w2)≤p(w1)p(w2) 
+	- **PMI > 0**  
+	     - 두 단어가 우연보다 더 자주 함께 등장 
+	     - 값이 클수록 연관성이 강함
+    - **PMI < 0**  
+	    - 두 단어가 우연보다 덜 함께 등장  
+	    - 음의 연관성 (실용적 의미는 크지 않음)
+	    - p(w1,w2)<p(w1)p(w2)  
+	    - 음수 PMI
+- PMI = “같이 나올 확률 ÷ 독립 가정 확률”의 로그 
+- 같이 나올수록 값 ↑ → 의미적 연관성 ↑
+- Positive PMI (PPMI)
+	- 음수 PMI 값을 0으로 치환한 것
+	- 너무 낮은 음수값은 의미가 없어서 0으로 치환
+
+$$  
+\text{PPMI} = \max \left( \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)},\ 0 \right)  
+$$
+
+- 원시 카운트(raw counts)  
+
+| 항목 | computer | data | result | pie | sugar |  
+|---|---|---|---|---|---|  
+| cherry | 2 | 8 | 9 | 442 | 25 |  
+| strawberry | 0 | 0 | 1 | 60 | 19 |  
+| digital | 1670 | 1683 | 85 | 5 | 4 |  
+| information | 3325 | 3982 | 378 | 5 | 13 |
+
+- PPMI 가중 행렬(PPMI-weighted matrix)  
+
+| 항목 | computer | data | result | pie | sugar |  
+|---|---|---|---|---|---|  
+| cherry | 0 | 0 | 0 | 4.38 | 3.30 |  
+| strawberry | 0 | 0 | 0 | 4.10 | 5.51 |  
+| digital | 0.18 | 0.01 | 0 | 0 | 0 |  
+| information | 0.02 | 0.09 | 0.28 | 0 | 0 |
+
+- 문제점: 드문 사건에 편향됨 (희귀 단어는 매우 높은 PMI 값을 가지는 경향이 있다)
