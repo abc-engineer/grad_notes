@@ -853,7 +853,7 @@ $$
 
 $$
 \text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
-= \log_2 \frac{\text{\#}(w_1, w_2)\cdot N}{\text{\#}(w_1)\text{\#}(w_2)}  
+= \log_2 \frac{\text{count}(w_1, w_2)\cdot N}{\text{count}(w_1)\text{count}(w_2)}  
 $$
 - PMI 값 해석
 	- **PMI = 0**  
@@ -899,6 +899,7 @@ $$
 - pie와 sugar는 거의 20배의 빈도수가 나오지만 PPMI 적용시 거의 유사함을 확인
 - 문제점: 드문 사건에 편향됨 (희귀 단어는 매우 높은 PMI 값을 가지는 경향이 있다)
 	- 자주 안나오는 단어는 분모가 작아져서 PMI값이 확 커짐.
+
 $$
 \text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
 = \log_2 \frac{\#(w_1, w_2)\cdot N}{\#(w_1)\#(w_2)}  
@@ -910,24 +911,25 @@ $$
 - x가 작을때 가중치가 올라가는 효과를 확인할 수 있음
 - power가 지수라는 뜻
 
-- 파워 스무딩(power smoothing): 확률을 거듭제곱 $\alpha$로 변환하여 작은 확률을 보정(증가)하는 방법이다  
+- 파워 스무딩(power smoothing): 확률을 거듭제곱 $\alpha$로 변환하여 작은 확률을 보정(증가)하는 방법이다 
+
 $$  
 \mathrm{PPMI}=\max\left(\log_2 \frac{p(w_1,w_2)}{p(w_1)p(w_2)},\ 0\right)  
 $$
 
 - 원래 확률:  
+
 $$  
 p(w)=\frac{\#(w)}{\sum_{w'\in V}\#(w')}  
 $$
 
 - 파워 스무딩 적용($\alpha<1$):  
+
 $$  
 p_{\alpha}(w)=\frac{\#(w)^{\alpha}}{\sum_{w'\in V}\#(w')^{\alpha}}  
 $$
 
 - $\alpha=0.75$와 같이 설정하면, 희귀 단어의 확률이 상대적으로 증가하여 학습에 더 자주 사용된다
-
-
 
 - 드물게 발생하는 항목의 카운트를 증가시키는 또 다른 방법은 add-$k$ 스무딩을 적용하는 것이다
 
@@ -971,7 +973,6 @@ $$
     - 따라서 단어 유사도(word similarity)는 더 유연한 개념으로 사용된다
  
 
-
 ### Summary: Classic Word Representations
 - 초기 NLP 발전 단계에서 대규모 어휘 데이터베이스(WordNet)가 구축되었다    
 - WordNet은 사람이 수작업으로 만든 동의어 집합(synset)과 이들 간의 관계 연결 구조로 구성되어 있다 
@@ -980,8 +981,6 @@ $$
 - 구축 및 유지·업데이트에 많은 노력이 필요하다    
 - 특정 도메인 용어 및 저자원 언어에 대한 커버리지가 제한적이다    
 - 개별 단어와 그 의미만 지원하며, 더 복잡한 표현에는 한계가 있다
-
-
 
 
 ### Summary: Vector Space Models
