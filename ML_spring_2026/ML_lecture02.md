@@ -4,7 +4,7 @@
 ### Linear Discriminative Models
 - 입력 x → 출력 y의 조건부 확률 $P(y∣x)$를 직접 모델링하면서, 결정 경계(decision boundary)가 선형(linear)인 모델
 - Discriminative 모델: $P(y∣x)$를 직접 모델링
-- Generative 모델: $P(x,y)$ (참고 $P(x,y)=P(x∣y)P(y) \text{or} P(x∣y)$)를 모델링
+- Generative 모델: $P(x,y)$ (참고 P(x,y)=P(x∣y)P(y) or P(x∣y))를 모델링
 - 기계 학습을 여러개 다룰 것
 	- 초반 6주 정도는 지도학습
 	- 지도 학습에서도 간단한 (그래도 수학은 많이 있음) 선형 모델을 다루혀 함.
@@ -18,14 +18,11 @@
 - 인풋과 아웃풋이 pairs인게 지도 학습
 	- 집값 모델이면 렌트비용이 lable 나머지가 x 즉 피쳐
 - x->function(learning algorithm)->y 로 가는 함수를 구하는게 ML
-
-
 - 지도학습 문제는 일반적으로 분류와 회귀라는 두 가지 주요 범주로 나뉜다.
 - 분류는 범주가 알려진 데이터로 구성된 학습 데이터를 바탕으로, 새로운 관측치가 어떤 범주 또는 클래스에 속하는지를 판단하는 것을 목표로 한다.
 - 반면 회귀는 입력 특징과 타깃 변수 간의 관계를 학습하여 연속적인 수치 값을 예측하는 데 초점을 둔다.
 - 리그레션은 연속적인 값.
 - 분류는 카테고리나 클래스 자료.
-
 - 분류와 회귀는 예측하는 출력의 형태는 다르지만, 두 문제 모두 데이터에서 패턴을 찾아 신뢰할 수 있는 예측을 수행하는 것을 공통된 목표로 가진다. 
 - 이러한 관계를 모델링하는 효과적인 방법 중 하나는 결정 함수를 단순하고 구조적인 형태로 가정하는 것이다.
 - 선형 판별 모델은 이 함수가 입력 특징에 대해 선형이라고 가정하며, 이로 인해 이해하기 쉽고 실제 적용에서도 효과적인 특성을 가진다.
@@ -33,7 +30,6 @@
 	- 선형이 제일 단순한 모델임
 	- 쉽고 빠르게 적용 할 수 있음.
 	- 분류에서는 디시전 라인, 회귀에서는 관계 라인을 찾음
-
 
 ### Linear Regression
 - 연속적인 값을 출력하는 회귀 문제부터 시작한다. 이 설정에서 선형 판별 모델은 예측을 위해 단순한 함수 형태를 가정한다.  
@@ -49,7 +45,7 @@
 - 이 식이 가능한 이유는 선형대수 dot product이기 때문,  
 
 $$
-\begin{aligned}\mathbf{x} = \begin{bmatrix} 1 \\ x \\ x_2 \\ \vdots \\ x_d \end{bmatrix}, \quad \boldsymbol{\theta} = \begin{bmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \\ \vdots \\ \theta_d \end{bmatrix}\end{aligned}
+\begin{aligned}\mathbf{x} = \begin{bmatrix} 1 \\ x \\ x_2 \\ \dots \\ x_d \end{bmatrix}, \quad \boldsymbol{\theta} = \begin{bmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \\ \dots \\ \theta_d \end{bmatrix}\end{aligned}
 $$
 
 - 그러면: $\theta^T x = \theta_0 + \theta_1 x + \theta_2 x_2 + \cdots + \theta_d x_d$
