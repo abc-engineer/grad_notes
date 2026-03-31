@@ -222,7 +222,12 @@ $$
 - 이를 형식적으로 표현하기 위해 다음과 같이 정의한다.  
 - $\mathbf{X}$를 $n \times d$ 행렬로 두고, 각 행은 하나의 학습 데이터에 대한 특징 값을 포함한다고 하자. 또한 $\mathbf{y}$는 학습 데이터의 모든 타깃 값을 포함하는 n차원 벡터이다:
 
-$$\mathbf{X} = \begin{bmatrix} (\mathbf{x}^{(1)})^T \\ \vdots \\ (\mathbf{x}^{(n)})^T \end{bmatrix}, \quad \mathbf{y} = \begin{bmatrix} y^{(1)} \\ \vdots \\ y^{(n)} \end{bmatrix}$$
+$$\mathbf{X} = \begin{bmatrix} (\mathbf{x}^{(1)})^T \\
+\vdots \\
+(\mathbf{x}^{(n)})^T \end{bmatrix}, 
+\quad \mathbf{y} = \begin{bmatrix} y^{(1)} \\
+\vdots \\ 
+y^{(n)} \end{bmatrix}$$
 
 이 표기법을 사용하면 비용 함수는 다음과 같이 더 간결하게 표현할 수 있다:
 
