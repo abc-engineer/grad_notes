@@ -2,9 +2,9 @@
 ## 2강
 
 ### Linear Discriminative Models
-- 입력 x → 출력 y의 조건부 확률 P(y∣x)를 직접 모델링하면서, 결정 경계(decision boundary)가 선형(linear)인 모델
-- Discriminative 모델: P(y∣x)를 직접 모델링
-- Generative 모델: P(x,y) (참고 P(x,y)=P(x∣y)P(y) ) 또는P(x∣y)를 모델링
+- 입력 x → 출력 y의 조건부 확률 $P(y∣x)$를 직접 모델링하면서, 결정 경계(decision boundary)가 선형(linear)인 모델
+- Discriminative 모델: $P(y∣x)$를 직접 모델링
+- Generative 모델: $P(x,y)$ (참고 $P(x,y)=P(x∣y)P(y)$ 또는 $P(x∣y)$)를 모델링
 - 기계 학습을 여러개 다룰 것
 	- 초반 6주 정도는 지도학습
 	- 지도 학습에서도 간단한 (그래도 수학은 많이 있음) 선형 모델을 다루혀 함.
@@ -53,8 +53,6 @@ $$
 $$
 
 - 그러면: $\theta^T x = \theta_0 + \theta_1 x + \theta_2 x_2 + \cdots + \theta_d x_d$
-
-
 - x 아래첨자는 피쳐 디멘전 (feature dimension), 서브스크립트 (subscript) 이라고 함.
 	- 피쳐 디멘전 (feature dimension)
 		- 입력 데이터가 가진 특징(feature)의 개수
@@ -72,16 +70,9 @@ $$
 - 이렇게 벡터 형태로 수식을 작성 할 수도 있음
 $\displaystyle f(x) = \sum_{i=0}^{d} \theta_i x_i=\boldsymbol{\theta}^t \boldsymbol{x}$
 - 여기서 d는 입력 변수의 개수를 의미하고, x는 특징 벡터를 나타내며, 𝜃는 함수 f의 파라미터 집합을 의미한다.
-
-
-
-
-
 - 이제 모델 $f(\mathbf{x}) = \boldsymbol{\theta}^T \mathbf{x}$를 정의했으므로, 다음 단계는 파라미터 $\boldsymbol{\theta}$를 어떻게 선택할 것인지 결정하는 것이다.  
 - 입력-출력 쌍 $(\mathbf{x}^{(i)}, y^{(i)})$로 이루어진 학습 데이터가 주어졌다고 가정하자.  
 - 어떤 파라미터를 선택하더라도 모델은 예측값 $f(\mathbf{x}^{(i)})$을 생성하지만, 일반적으로 이 값은 실제 값 $y^{(i)}$와 정확히 일치하지는 않는다.
-
-
 - 특정 파라미터 선택을 평가하는 자연스러운 방법은 예측값이 실제 값에 얼마나 가까운지를 살펴보는 것이다.  
 - 예측값과 해당 실제 값 사이의 차이를 잔차(residual)라고 한다.  
 - 이 차이가 작으면 모델이 잘 작동하는 것이고, 크면 모델의 성능이 좋지 않음을 의미한다.
@@ -114,6 +105,16 @@ $\displaystyle f(x) = \sum_{i=0}^{d} \theta_i x_i=\boldsymbol{\theta}^t \boldsym
         - “몇 번째 데이터”
     - $x_i$ → **feature 번호 (열)**
         - “몇 번째 변수”
+
+#### 참고_함수 기호
+머신러닝/최적화에서:
+- $f_\theta(x)$) → 모델 (function)
+- $L$ → loss (개별 데이터 기준)
+- $J$ → **전체 데이터에 대한 cost function**
+-  즉,
+	- **L (loss)** = 한 샘플 기준
+	- **J (cost)** = 전체 데이터 평균/합
+
 
 - 하나의 데이터만으로는 모델의 성능을 평가하기에 충분하지 않으며, 대신 모든 학습 데이터에 대해 잔차를 종합하여 전체 오차를 평가해야 한다.  
 - 회귀 문제에서 일반적으로 사용되는 방법은 최소제곱오차(least mean squares, 또는 squared error) 함수이다:  
