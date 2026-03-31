@@ -853,7 +853,7 @@ $$
 
 $$
 \text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
-= \log_2 \frac{\#(w_1, w_2)\cdot N}{\#(w_1)\#(w_2)}  
+= \log_2 \frac{\text{\#}(w_1, w_2)\cdot N}{\text{\#}(w_1)\text{\#}(w_2)}  
 $$
 - PMI 값 해석
 	- **PMI = 0**  
