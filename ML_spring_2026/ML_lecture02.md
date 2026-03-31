@@ -104,7 +104,7 @@ $\displaystyle f(x) = \sum_{i=0}^{d} \theta_i x_i=\boldsymbol{\theta}^t \boldsym
 
 #### 참고_함수 기호
 머신러닝/최적화에서:
-- $f_\theta(x)$) → 모델 (function)
+- $f_\theta(x)$ → 모델 (function)
 - $L$ → loss (개별 데이터 기준)
 - $J$ → **전체 데이터에 대한 cost function**
 -  즉,
