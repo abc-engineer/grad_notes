@@ -902,7 +902,7 @@ $$
 
 $$
 \text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
-= \log_2 \frac{\#(w_1, w_2)\cdot N}{\#(w_1)\#(w_2)}  
+= \log_2 \frac{\text{count}(w_1, w_2)\cdot N}{\text{count}(w_1)\text{count}(w_2)}  
 $$
 
 
@@ -920,13 +920,13 @@ $$
 - 원래 확률:  
 
 $$  
-p(w)=\frac{\#(w)}{\sum_{w'\in V}\#(w')}  
+p(w)=\frac{\text{count}(w)}{\sum_{w'\in V}\text{count}(w')}  
 $$
 
 - 파워 스무딩 적용($\alpha<1$):  
 
 $$  
-p_{\alpha}(w)=\frac{\#(w)^{\alpha}}{\sum_{w'\in V}\#(w')^{\alpha}}  
+p_{\alpha}(w)=\frac{\text{count}(w)^{\alpha}}{\sum_{w'\in V}\text{count}(w')^{\alpha}}  
 $$
 
 - $\alpha=0.75$와 같이 설정하면, 희귀 단어의 확률이 상대적으로 증가하여 학습에 더 자주 사용된다
