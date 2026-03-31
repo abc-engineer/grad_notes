@@ -237,15 +237,17 @@ $$\displaystyle J(\boldsymbol{\theta}) = \frac{1}{2} (\mathbf{X}\boldsymbol{\the
 
 비용 함수 $J$를 최소화하기 위해서는 $\boldsymbol{\theta}$에 대해 미분한 뒤, 그 값을 0으로 두어야 한다:
 
-$$
-\begin{aligned}\nabla_{\boldsymbol{\theta}} J(\boldsymbol{\theta})&= \nabla_{\boldsymbol{\theta}} \frac{1}{2} (\mathbf{X}\boldsymbol{\theta} - \mathbf{y})^T (\mathbf{X}\boldsymbol{\theta} - \mathbf{y})\\
-&= \frac{1}{2} \nabla_{\boldsymbol{\theta}} \left( \boldsymbol{\theta}^T \mathbf{X}^T \mathbf{X} \boldsymbol{\theta}- \mathbf{y}^T \mathbf{X} \boldsymbol{\theta} - \mathbf{y}^T \mathbf{X} \boldsymbol{\theta}- \mathbf{y}^T \mathbf{y} \right)\\  
-&= \frac{1}{2} \nabla_{\boldsymbol{\theta}} \left( \boldsymbol{\theta}^T \mathbf{X}^T \mathbf{X} \boldsymbol{\theta}- 2 (\mathbf{X}^T \mathbf{y})^T \boldsymbol{\theta} \right)\\
-&= \frac{1}{2} \left( 2 \mathbf{X}^T \mathbf{X} \boldsymbol{\theta} - 2 \mathbf{X}^T \mathbf{y} \right)\\
-&= \mathbf{X}^T \mathbf{X} \boldsymbol{\theta} - \mathbf{X}^T \mathbf{y}=0\\
-\\
-∴ \mathbf{X}^T \mathbf{X} \boldsymbol{\theta} &= \mathbf{X}^T \mathbf{y}
-\end{aligned}
+$$  
+\begin{align}  
+\nabla_{\theta}J(\theta)  
+&=\nabla_{\theta}\frac{1}{2}(X\theta-y)^T(X\theta-y)\\  
+&=\frac{1}{2}\nabla_{\theta}\big((X\theta)^T X\theta-(X\theta)^T y-y^T(X\theta)+y^T y\big)\\  
+&=\frac{1}{2}\nabla_{\theta}\big(\theta^T(X^T X)\theta-y^T(X\theta)-y^T(X\theta)\big)\\  
+&=\frac{1}{2}\nabla_{\theta}\big(\theta^T(X^T X)\theta-2(X^T y)^T\theta\big)\\  
+&=\frac{1}{2}\big(2X^T X\theta-2X^T y\big)\\  
+&=X^T X\theta-X^T y=0\\  
+\therefore X^T X\theta&=X^T y 
+\end{align}  
 $$
 
 
