@@ -4,7 +4,7 @@
 ### Linear Discriminative Models
 - 입력 x → 출력 y의 조건부 확률 $P(y∣x)$를 직접 모델링하면서, 결정 경계(decision boundary)가 선형(linear)인 모델
 - Discriminative 모델: $P(y∣x)$를 직접 모델링
-- Generative 모델: $P(x,y)$ (참고 $P(x,y)=P(x∣y)P(y)$ 또는 $P(x∣y)$)를 모델링
+- Generative 모델: $P(x,y)$ (참고 $P(x,y)=P(x∣y)P(y) \text{or} P(x∣y)$)를 모델링
 - 기계 학습을 여러개 다룰 것
 	- 초반 6주 정도는 지도학습
 	- 지도 학습에서도 간단한 (그래도 수학은 많이 있음) 선형 모델을 다루혀 함.
