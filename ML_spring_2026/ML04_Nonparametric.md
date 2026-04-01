@@ -311,7 +311,8 @@ $$
 IG_G=0.5-\frac{4}{8}\cdot 0.375-\frac{4}{8}\cdot 0.375=0.125  
 $$
 
-- B 시나리오:  
+- B 시나리오:
+
 $$  
 I_G(D_{\text{left}})=1-\left(\left(\frac{2}{6}\right)^2+\left(\frac{4}{6}\right)^2\right)=\frac{4}{9},\quad I_G(D_{\text{right}})=1-(1^2+0^2)=0  
 $$  
