@@ -1,5 +1,5 @@
 2026-03-24 08:20
-## 3강 
+## 3강 Generative
 ### Intro
 - 콘다 환경에서 주피터 노트북 첨부 파일 이용해서 예제 확인 할 것.
 - 그라디언트, 아날리틱 솔루션 2가지로 풀수 있는데 둘다 코드 첨부파일로 올림.
@@ -37,6 +37,10 @@
     - 로지스틱 회귀        
     - 서포트 벡터 머신        
     - 일반적인 신경망 모델
+- 큰 liklihood를 갖아야 함.
+- Generative model은 likelihood $P(x \mid y)$가 직접적으로 중요
+- Discriminative model은 likelihood $P(x|y)$가 아니라conditional likelihood $P(y|x)$를 학습에서 최대화하고 예측 할때 $P(y|x)$가 가장 큰 클래스를 선택
+- 수식화 하면 결국 연결됨.
 
 ### generative model
 - 데이터 생성에 관심이 있음
@@ -569,7 +573,6 @@ $$\hat{\mu}_{j,c} = \frac{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c), x_j^{(i)}}{\su
 $$\hat{\sigma}_{j,c}^{2} = \frac{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c), \left(x_j^{(i)} - \hat{\mu}_{j,c}\right)^2}{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c)}$$
 - 이산적인 경우와 마찬가지로, 각 특성의 분포는 각 클래스마다 독립적으로 추정된다.
 
-
 ### Linear Discriminant Analysis(LDA)
 - 많이 쓰고 빠르고 나중에 PCA로 확장됨
 - 생성 모델 측면에서 다룰 수 있고, 기하학적으로다룰 수 있는데 일반적으로 는 기하학적으로 사용
@@ -577,33 +580,304 @@ $$\hat{\sigma}_{j,c}^{2} = \frac{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c), \left(x
 - 기하학적으로는 클래스 간 분리를 최대화하는 방식으로 데이터를 저차원 부분공간에 투영하는 차원 축소 기법으로 볼 수 있다.    
 - 그러나 확률적 관점에서 LDA는 각 클래스 내에서 데이터가 어떻게 분포하는지를 명시적으로 가정하는 생성 모델이다.    
 - 이 모델의 의미를 더 잘 이해하기 위해, 가장 단순한 경우인 이진 분류 문제를 고려하자.
-
 - 𝑝(𝒙|𝑦) 구하는게 포인트고 관건임.
 - 생성적 관점은 자연스럽게 베이즈 결정 규칙으로 이어진다.    
-- 생성적 프레임워크에서 분류는 사후확률을 최대화하는 클래스를 선택하여 수행된다:      $$\arg\max_{y \in {C_1, C_2}} p(y \mid \mathbf{x}) = \arg\max_{y \in {C_1, C_2}} p(\mathbf{x} \mid y),p(y)$$
+- 생성적 프레임워크에서 분류는 사후확률을 최대화하는 클래스를 선택하여 수행된다: 
+
+$$\arg\max_{y \in {C_1, C_2}} p(y \mid \mathbf{x}) = \arg\max_{y \in {C_1, C_2}} p(\mathbf{x} \mid y),p(y)$$
+- 판별모델은 왼쪽항 생성모델은 오른쪽 항.
 - 따라서 분류는 각 클래스 조건부 분포 $p(\mathbf{x} \mid y)$ 하에서 관측된 데이터 벡터 $\mathbf{x}$의 가능도와 클래스 사전확률 $p(y)$에 의해 결정된다.    
 - 여기서 클래스 사전확률 $p(y)$는 일반적으로 (예: 클래스 빈도나 개수로부터) 쉽게 추정할 수 있으므로, 핵심 문제는 클래스 조건부 분포 $p(\mathbf{x} \mid y)$를 어떻게 설정할 것인가이다.
-
-
 - 일반적으로는 가우시안을 이용하는것이 좋음.
 - 많은 실제 문제에서 특징 벡터 $\mathbf{x}$는 연속적이며 고차원이다.    
 - 연속형 데이터에 대한 생성 모델링에서 매우 일반적이고 강력한 가정은 각 클래스 조건부 분포를 다변량 가우시안(정규) 분포로 모델링하는 것이다.    
-- 형식적으로 각 클래스 $C_k$에 대해 데이터는 다음과 같이 생성된다고 가정한다:      $$p(\mathbf{x} \mid y = C_k) = \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)$$- 여기서 $\boldsymbol{\mu}_k$는 클래스 $C_k$의 평균 벡터이고 $\boldsymbol{\Sigma}_k$는 공분산 행렬이다.
+- 형식적으로 각 클래스 $C_k$에 대해 데이터는 다음과 같이 생성된다고 가정한다:
 
-
+$$p(\mathbf{x} \mid y = C_k) = \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)$$
+- 여기서 $\boldsymbol{\mu}_k$는 클래스 $C_k$의 평균 벡터이고 $\boldsymbol{\Sigma}_k$는 공분산 행렬이다.
+- 공분산: 퍼져 있는 정도
 - 가우시안은 원이나 타원으로 표현
 - 중앙값과 어떻게 얼마나 퍼져있는정도가 있어야 가우시안을 할 수 있음
-	- 뮤, 분산??, 공분산 값을 구해야함.
+	-  공분산 값을 구해야함.
 	- 부드러운 곡선(보라색 선)을 그리게 됨.
 - 각 클래스 마다 이 값들을 정해서 새로운 데이터가 어디서 생성될지를 정하게 됨.
+- 공분산 $\boldsymbol{\Sigma}_1$, $\boldsymbol{\Sigma}_2$가 일반적으로 다르고 공분산이 다르면(퍼져있는 정도가 다르면) 선이 곡선임.
 - LDA는 서로다른 클래스의 공분산이 모두 같을 것이라는 가정을 하고 게산을 함.
 - 그러면 곡선인 선이 직선으로 변함.
-
 - 이 단계에서 중요한 관찰을 할 수 있다.    
 - 각 클래스가 서로 다른 임의의 공분산 행렬 $\boldsymbol{\Sigma}_1$, $\boldsymbol{\Sigma}_2$를 갖도록 허용하면, 두 클래스 사이의 결정 경계는 일반적으로 비선형이 된다.    
 - 이러한 모델은 매우 유연할 수 있지만, 더 복잡하며 데이터로부터 더 많은 수의 파라미터를 추정해야 한다.
-
-
 - 공분산이 같다고 전제하면 직선으로 됨.
 - 모델을 단순화하고 더 명확한 기하학적 해석을 얻기 위해 다음과 같은 핵심 가정을 도입한다: 두 클래스가 동일한 공분산 행렬을 공유한다, 즉 $\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \boldsymbol{\Sigma}$이다.    
 - 이러한 공분산 공유 가우시안 가정 하에서, 가우시안 클래스 조건부 밀도를 베이즈 결정 규칙에 대입하면 $\mathbf{x}$에 대해 선형인 결정 함수가 도출된다.
+
+- 선형 규칙이 되는 이유를 보기 위해 다음을 정의한다:  
+
+$$g_k(\mathbf{x})=\log(p(\mathbf{x}\mid C_k)p(C_k))=\log p(\mathbf{x}\mid C_k)+\log p(C_k).$$
+
+- 이제 가우시안 밀도를 대입한다. 공분산 행렬 $\Sigma$를 공유하면  
+
+$$p(\mathbf{x}\mid C_k)=\frac{1}{(2\pi)^{D/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_k)^T\Sigma^{-1}(\mathbf{x}-\boldsymbol{\mu}_k)\right).$$
+
+- 로그를 취하면 다음을 얻는다:  
+
+$$\log p(\mathbf{x}\mid C_k)=-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_k)^T\Sigma^{-1}(\mathbf{x}-\boldsymbol{\mu}_k)-\frac{1}{2}\log|\Sigma|-\frac{D}{2}\log(2\pi).$$
+
+- 마지막 두 항은 클래스 인덱스 $k$에 의존하지 않으므로, 클래스를 비교할 때 서로 상쇄된다.    
+- 따라서 판별함수는 다음과 같다:  
+
+$$g_k(\mathbf{x})=-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_k)^T\Sigma^{-1}(\mathbf{x}-\boldsymbol{\mu}_k)+\log p(C_k).$$
+
+- 이제 두 클래스 간 분류는 다음 결정경계로 결정된다:  
+
+$$g_1(\mathbf{x})-g_2(\mathbf{x})=-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_1)^T\Sigma^{-1}(\mathbf{x}-\boldsymbol{\mu}_1)+\log p(C_1)+\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_2)^T\Sigma^{-1}(\mathbf{x}-\boldsymbol{\mu}_2)-\log p(C_2)=0.$$
+
+- 이차항을 전개하면  
+
+$$ (\mathbf{x}-\boldsymbol{\mu}_k)^T\Sigma^{-1}(\mathbf{x}-\boldsymbol{\mu}_k)=\mathbf{x}^T\Sigma^{-1}\mathbf{x}-2\boldsymbol{\mu}_k^T\Sigma^{-1}\mathbf{x}+\boldsymbol{\mu}_k^T\Sigma^{-1}\boldsymbol{\mu}_k.$$
+
+- 그러면 첫 번째 항 $\mathbf{x}^T\Sigma^{-1}\mathbf{x}$는 두 식에 공통으로 나타나 완전히 상쇄된다.
+- 이러한 상쇄는 두 클래스가 동일한 공분산 행렬 $\Sigma$를 사용하기 때문에 발생한다.
+
+- 상쇄 후에는 다음을 얻는다:  
+
+$$g_1(\mathbf{x})-g_2(\mathbf{x})=(\boldsymbol{\mu}_1-\boldsymbol{\mu}_2)^T\Sigma^{-1}\mathbf{x}-\frac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1-\boldsymbol{\mu}_2^T\Sigma^{-1}\boldsymbol{\mu}_2\right)+\log\frac{p(C_1)}{p(C_2)}=0.$$
+
+- 따라서 결정경계는 다음과 같이 쓸 수 있다:  
+
+$$\mathbf{w}^T\mathbf{x}+b=0,$$  $$\mathbf{w}=\Sigma^{-1}(\boldsymbol{\mu}_1-\boldsymbol{\mu}_2),$$  $$b=-\frac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1-\boldsymbol{\mu}_2^T\Sigma^{-1}\boldsymbol{\mu}_2\right)+\log\frac{p(C_1)}{p(C_2)}.$$
+- 공분산이 같다고 가정을 하기 때문에 선형 식이 완성이 됨.
+- $w$는 $\boldsymbol{\mu}_1-\boldsymbol{\mu}_2$를 공분산으로 나눠준 값. 중요한 값이 됨.
+- 분류기를 실제로 사용하려면, 이제 학습 데이터로부터 미지의 매개변수 $\boldsymbol{\mu}_1$, $\boldsymbol{\mu}_2$, $\Sigma$, 그리고 클래스 사전확률 $p(C_1)$, $p(C_2)$를 추정해야 한다.
+- 이것도 최대우도추정(MLE)으로 유사하게 구할 수 있으며, 증명은 생략한다.
+- 학습 집합이 
+
+$${(\mathbf{x}^{(n)},y^{(n)})}_{n=1}^N,\quad y^{(n)}\in{C_1,C_2}$$
+- 각 클래스의 평균은 해당 클래스에 속한 표본들의 표본평균으로 추정한다:  
+
+$$\hat{\boldsymbol{\mu}}_k=\frac{1}{N_k}\sum_{n\in C_k}\mathbf{x}^{(n)}.$$
+
+- LDA는 두 클래스가 동일한 공분산 행렬을 공유한다고 가정하므로, 각 클래스별로 공분산을 따로 추정할 필요가 없다.
+- 대신 다음과 같은 풀드 공분산(pooled covariance) 추정치를 사용한다: 
+
+$$\hat{\Sigma}=\frac{1}{N}\sum_{k=1}^{2}\sum_{n\in C_k}\left(\mathbf{x}^{(n)}-\hat{\boldsymbol{\mu}}_k\right)\left(\mathbf{x}^{(n)}-\hat{\boldsymbol{\mu}}_k\right)^T.$$
+
+- 클래스 사전확률은 클래스 비율로 간단히 추정할 수 있다:  
+
+$$p(C_k)=\frac{N_k}{N}.$$
+
+
+
+- 위에서 구한 추정치를 다음 식에 대입하면  
+
+$$\hat{\mathbf{w}}=\hat{\Sigma}^{-1}(\hat{\boldsymbol{\mu}}_1-\hat{\boldsymbol{\mu}}_2),$$  
+$$\hat{b}=-\frac{1}{2}\left(\hat{\boldsymbol{\mu}}_1^T\hat{\Sigma}^{-1}\hat{\boldsymbol{\mu}}_1-\hat{\boldsymbol{\mu}}_2^T\hat{\Sigma}^{-1}\hat{\boldsymbol{\mu}}_2\right)+\log\frac{p(C_1)}{p(C_2)}.$$
+
+- 따라서 추정된 선형 결정 규칙은 다음과 같다:
+- 새로운 관측치 $\mathbf{x}$에 대해 아래 식이 참이면 $C_1$로 분류한다.
+
+$$\hat{\mathbf{w}}^T\mathbf{x}+\hat{b}>0$$
+
+- 그렇지 않으면 $C_2$로 분류한다.
+
+### Fisher’s Linear Discriminant Analysis
+- 기하학적인 해석
+	- LDA는 2개의 변수가 그려진 2차 평면에 선을 그었을때 투영된 각각 변수들이 잘 구분되는가를 확인
+	- 투영: 90도로 선을 내린것. 아래 슬라이드 확인
+- 선형 판별 분석(LDA)의 생성적 해석을 바탕으로, 이제 Ronald A. Fisher가 제안한 Fisher의 선형 판별(Fisher’s Linear Discriminant)을 고려한다.    
+- 가우시안–베이지안 접근법은 공분산이 공유된다는 가정 하에 선형 결정경계를 유도하는 반면, Fisher는 문제를 기하학적으로 정식화하였다.    
+- 흥미롭게도 동일한 가정(이진 분류의 경우) 하에서, 두 접근법은 동일한 최적 투영 방향을 도출한다.
+- LDA는 2차원 평면에 1차원 낮은 1차원 선을 그림
+	- 1차원일 필요는 없고 고차원에서는 다른 차원을 낮춰서 그림.
+	- PCA와 비슷하지만 조금은 다름. 다만 목적은 같음
+	- LDA는 지도학습에 더 특화된 PCA 느낌 정도로 이해
+- LDA는 투영되는 최적의 선을 찾는 문제.
+	- 선은 어떻게 찾을까? -> 아래 슬라이드
+- $\mathbb{R}^D$ 공간의 데이터를 하나의 방향 $\mathbf{w}$로 투영한다고 가정하자.    
+- Fisher의 LDA의 핵심 질문은 다음과 같다: 투영 이후 두 클래스가 최대한 잘 분리되도록 하려면 어떤 방향 $\mathbf{w}$를 선택해야 하는가?    
+- 차원을 줄이면 정보 손실은 불가피하지만, 적절히 선택된 $\mathbf{w}$는 클래스 분리에 가장 중요한 정보를 최대한 보존한다.
+- 두 클래스 문제를 고려하자. 클래스 $C_1$에서 $N_1$개의 샘플, 클래스 $C_2$에서 $N_2$개의 샘플이 있다. 
+- 원래 공간에서의 클래스 평균 벡터는 다음과 같다: 
+
+$$\boldsymbol{\mu}_1=\frac{1}{N_1}\sum_{n\in C_1}\mathbf{x}^{(n)},\quad \boldsymbol{\mu}_2=\frac{1}{N_2}\sum_{n\in C_2}\mathbf{x}^{(n)}.$$
+
+- 방향 $\mathbf{w}$로 투영하면 각 데이터는 다음과 같이 변환된다:  
+
+$$y^{(n)}=\mathbf{w}^T\mathbf{x}^{(n)}.$$
+
+- 투영 이후 클래스 평균은 다음과 같이 된다: 
+	- m1,m2는 투영된 값의 중간값이라고 생각하면 됨.
+
+$$m_1=\mathbf{w}^T\boldsymbol{\mu}_1,\quad m_2=\mathbf{w}^T\boldsymbol{\mu}_2.$$
+
+
+
+- 투영 이후 클래스 분리를 측정하는 간단한 방법은, 투영된 클래스 평균의 차이를 보는 것이다:
+
+$$m_2-m_1=\mathbf{w}^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1).$$
+- 평균값의 차이가 크면 둘을 잘 구분한다고 볼 수 있음
+
+- 그래서 이에 따라 다음 목적함수(loss 함수라고 해도 됨)를 정의할 수 있다:  
+
+$$\mathcal{L}(\mathbf{w})=\mathbf{w}^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1).$$
+
+- 이 값은 $\mathbf{w}$ 방향으로 투영한 뒤 두 클래스 중심이 얼마나 떨어져 있는지를 나타낸다. 이 값을 크게 만들면 투영된 클래스 평균들이 더 멀어지므로, 이는 우리가 원하는 바와 정확히 일치한다.
+- 처음에는 단순히 $\mathcal{L}(\mathbf{w})$를 최대화하면 될 것처럼 보인다. 그러나 여기에는 미묘하지만 중요한 문제가 있다.
+- $\mathbf{w}$에 임의의 상수 $c>0$를 곱하면 다음을 얻는다:  
+
+$$\mathcal{L}(c\mathbf{w})=(c\mathbf{w})^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)=c\mathbf{w}^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1).$$
+
+- 사실 w는 방향이 중요함.
+	- 조금 왼쪽에 있으나 오른쪽에 있으나 투영하면 같음.
+- 지금까지 w값은 미분해서 0이 되는 값을 찾거나 안되면 경사하강법으로 계산해왔음
+- 이번 케이스는 제약이 있는 목적함수 임.
+	- 제약이 없으면 C가 무한히 커지면 L도 무한히 커짐
+	- $w^𝑇w$ = 1.로 제한함.
+
+- 목적함수는 $\mathbf{w}$의 크기에 대해 선형적으로 증가한다.
+- 즉, 방향은 그대로 두고 $\mathbf{w}$의 크기만 크게 하면 값을 임의로 크게 만들 수 있다.
+- 다시 말해, 아무 제약 없이 $\mathcal{L}(\mathbf{w})$를 최대화하는 것은 최적의 “방향”을 찾는 데 도움이 되지 않고, 단지 $\mathbf{w}$를 무한히 크게 만드는 결과를 초래한다.
+- 이를 해결하기 위해 **$\mathbf{w}$의 길이를 1로 제한**한다:  
+
+$$\mathbf{w}^T\mathbf{w}=1.$$
+- 그러면 문제는 다음과 같이 바뀐다:  
+
+$$\max_{\mathbf{w}}\ \mathbf{w}^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)\quad \text{subject to}\quad \mathbf{w}^T\mathbf{w}=1.$$
+
+- 이는 제약 조건이 있는 최적화 문제의 한 예이다.
+
+- 이러한 문제를 체계적으로 풀기 위해 라그랑주 승수법을 사용한다:  
+
+$$\mathcal{L}(\mathbf{w},\lambda)=\mathbf{w}^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)-\lambda(\mathbf{w}^T\mathbf{w}-1).$$
+
+- $\mathbf{w}$에 대해 미분하고 0으로 두면  
+
+$$\boldsymbol{\mu}_2-\boldsymbol{\mu}_1=2\lambda \mathbf{w}.$$
+
+- 따라서  
+
+$$\mathbf{w}\propto \boldsymbol{\mu}_2-\boldsymbol{\mu}_1.$$
+- $\mu_1, \mu_2$의 평균값을 그래프에서 이으면 w의 최적 방향이 나온다고 볼 수있음
+
+- 이 결과는 직관적으로도 타당하다: 두 클래스의 평균 벡터를 잇는 방향으로 투영하면 클래스 간 거리가 최대화되므로, 이 방향이 좋은 분리 방향이 될 수 있다.    
+- 그러나 여전히 문제가 남아 있다: 원래 공간에서는 잘 분리된 클래스라도, 평균을 잇는 직선으로 투영하면 크게 겹칠 수 있으며, 특히 클래스 분포의 공분산이 큰 경우 더욱 그렇다.    
+- 이에 따라 Ronald A. Fisher는 평균 간 분리와 클래스 내부 분산을 동시에 고려하는 기준을 도입하였다.
+- 데이터는 같은데 오른쪽 그림이 더 좋은 분류임 -> 피셔의 주장
+	- 단순히 투영되었을때 값이 큰것이 답이 아님.
+	- 투영되었을 때 내부 분산을 작게 만들어 줘야 더 좋은 분류 모델이 나온다.
+	- 이걸 within-class variance라고 함.
+- 평균의 차는 크고 within-class variance는 작게 만드는게 Fisher’s Linear 목적
+
+- 클래스 $C_k$에 속한 변환된 데이터의 클래스 내 분산은 다음과 같이 정의된다:  
+
+$$s_k^2=\sum_{n\in C_k}(y^{(n)}-m_k)^2.$$
+
+- 전체 데이터에 대한 클래스 내 분산은 단순히 $s_1^2+s_2^2$로 정의할 수 있다.
+- Fisher 기준은 (두 클래스의 경우) 클래스 간 분산과 클래스 내 분산의 비율로 정의되며 다음과 같다:
+
+$$J(\mathbf{w})=\frac{(m_2-m_1)^2}{s_1^2+s_2^2}.$$
+
+- m2-m1에서 목적함수가 바뀜
+	- 분모에 $s^2_1+s^2_2$들어감.
+
+- 위의 식을 벡터에 적용하면 이렇게 식을 쓸 수 있음.
+- 이 기준은 between-class scatter 행렬 $\mathbf{S}_B$와 within-class scatter 행렬 $\mathbf{S}_W$를 사용하여 다음과 같이 행렬 형태로 쓸 수 있다:  
+
+$$J(\mathbf{w})=\frac{\mathbf{w}^T\mathbf{S}_B\mathbf{w}}{\mathbf{w}^T\mathbf{S}_W\mathbf{w}}.$$
+
+- 여기서  
+
+$$\mathbf{S}_B=(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^T,$$  
+$$\mathbf{S}_W=\sum_{n\in C_1}(\mathbf{x}^{(n)}-\boldsymbol{\mu}_1)(\mathbf{x}^{(n)}-\boldsymbol{\mu}_1)^T+\sum_{n\in C_2}(\mathbf{x}^{(n)}-\boldsymbol{\mu}_2)(\mathbf{x}^{(n)}-\boldsymbol{\mu}_2)^T.$$
+
+- 이번에도 미분하고 값이 0이 되는 값을 찾을 것임.
+- $J(\mathbf{w})$를 $\mathbf{w}$에 대해 미분하고 0으로 두면 다음을 얻는다:  
+
+$$\frac{\partial J(\mathbf{w})}{\partial \mathbf{w}}=\frac{2\mathbf{S}_B\mathbf{w}(\mathbf{w}^T\mathbf{S}_W\mathbf{w})-2\mathbf{w}^T\mathbf{S}_B\mathbf{w},\mathbf{S}_W\mathbf{w}}{(\mathbf{w}^T\mathbf{S}_W\mathbf{w})^2}=0,$$  
+
+$$\mathbf{w}^T\mathbf{S}_B\mathbf{w},\mathbf{S}_W\mathbf{w}=\mathbf{w}^T\mathbf{S}_W\mathbf{w},\mathbf{S}_B\mathbf{w}.$$
+
+- 따라서 다음을 얻는다:  
+
+$$\frac{\mathbf{w}^T\mathbf{S}_B\mathbf{w}}{\mathbf{w}^T\mathbf{S}_W\mathbf{w}}\mathbf{w}=\mathbf{S}_W^{-1}\mathbf{S}_B\mathbf{w}.$$
+
+
+- 위에서 얻은 스칼라 값을 대입하면 다음을 얻는다:  
+    $$\lambda \mathbf{w}=\mathbf{S}_W^{-1}\mathbf{S}_B\mathbf{w}.$$
+    
+- 이는 일반화된 고유값 문제(generalized eigenvalue problem)의 형태이다.    
+- 따라서 $J(\mathbf{w})$를 최대화하려면, $\mathbf{w}$는 $\mathbf{S}_W^{-1}\mathbf{S}_B$의 가장 큰 고유값 $\lambda$에 대응하는 고유벡터가 되어야 한다.
+- eigenvalue problem은 선형대수 마지막챕터에 보통 나오는데 그방법으로 풀면 됨.
+
+
+- 이진 분류의 경우, 위의 고유값 문제는 크게 단순화된다:  
+
+$$\lambda \mathbf{w}=\mathbf{S}_W^{-1}\mathbf{S}_B\mathbf{w}=\mathbf{S}_W^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^T\mathbf{w}.$$
+
+- 이로부터 다음을 얻는다:  
+
+$$\mathbf{w}\propto \mathbf{S}_W^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1).$$
+
+- 따라서 이진 분류에서 Fisher의 선형 판별은 닫힌 형태 해를 가지며, 최적의 투영 방향은 클래스 평균 차이에 클래스 내 산포 행렬의 역행렬을 적용하여 얻어진다.
+
+
+- 이 결과는 생성적 LDA 해석과도 연결된다.    
+- 공분산 행렬 $\Sigma$를 공유하는 가우시안 모델에서, 공통 공분산의 최대우도추정치는 클래스 내 산포 행렬에 비례한다: 
+
+$$\Sigma=\frac{1}{N_1+N_2}\mathbf{S}_W.$$
+
+- 따라서 투영 방향은 다음과 같이 된다:  
+
+$$\mathbf{w}\propto \Sigma^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1).$$
+
+- 이는 생성적 접근법에서 얻은 결과와 정확히 동일한 방향이다.
+- 클래스가 두 개보다 많은 경우에도 Fisher 판별의 기본 아이디어는 동일하다.    
+- 즉, 클래스 간 분리는 크게 하고 각 클래스 내부 데이터는 최대한 밀집되도록 하는 방향을 찾고자 한다.    
+- 그러나 다중 클래스 문제에서는 데이터가 고차원 공간에서 여러 방향으로 퍼져 있을 수 있다.   
+- 따라서 하나의 투영 벡터만으로는 모든 클래스를 효과적으로 분리하기에 충분한 정보를 담지 못할 수 있다.
+
+
+- 이러한 이유로 Fisher의 방법은 하나의 방향이 아니라 여러 개의 투영 방향을 찾는 방식으로 확장된다. 이러한 방향들을 판별 벡터(discriminant vectors)라고 한다.    
+- 이제 데이터는 하나의 직선이 아니라, 이 벡터들로 이루어진 저차원 부분공간으로 투영된다.    
+- 클래스가 $K$개일 때, 찾을 수 있는 유효한 판별 방향의 최대 개수는 다음과 같다:  
+$$K-1.$$
+
+- between-class scatter 행렬 $\mathbf{S}_B$는 각 클래스 평균이 전체 평균으로부터 얼마나 떨어져 있는지를 측정한다.
+- 다중 클래스의 경우 다음과 같이 정의된다:  
+
+$$\mathbf{S}_B=\sum_{k=1}^{K} N_k(\boldsymbol{\mu}_k-\boldsymbol{\mu})(\boldsymbol{\mu}_k-\boldsymbol{\mu})^T.$$
+- 여기서 $N_k$는 클래스 $C_k$의 샘플 수, $\boldsymbol{\mu}_k$는 클래스 $C_k$의 평균 벡터, $\boldsymbol{\mu}$는 전체 데이터의 평균 벡터이다.
+
+
+- within-class scatter 행렬 $\mathbf{S}_W$는 각 클래스 내부에서 데이터가 클래스 평균 주변에 얼마나 퍼져 있는지를 측정한다.
+- 다음과 같이 정의된다:  
+
+$$\mathbf{S}_W=\sum_{k=1}^{K}\sum_{n\in C_k}(\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)(\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)^T.$$
+- 여기서 $n\in C_k$는 클래스 $C_k$에 속한 샘플들을 의미한다.
+- 목표는 데이터를 저차원 공간으로 사상하는 투영 행렬 $\mathbf{W}$를 찾아, 클래스 간 산포는 최대화하고 클래스 내 산포는 최소화하는 것이다.
+- 이는 다음과 같은 일반화된 고유값 문제로 이어진다:  
+
+$$\mathbf{S}_W^{-1}\mathbf{S}_B\mathbf{w}=\lambda \mathbf{w}.$$
+
+- 여기서 $\lambda$는 고유값, $\mathbf{w}$는 해당 고유값에 대응하는 고유벡터이다.
+- 다중 클래스의 경우, 가장 큰 $K-1$개의 고유값에 대응하는 고유벡터들이 클래스 분리를 최대화하는 방향이 되며, 이 벡터들이 $\mathbf{W}$의 열을 이룬다.
+
+- 투영 행렬 $\mathbf{W}$를 구한 후, 데이터를 다음과 같이 새로운 공간으로 투영할 수 있다:  
+
+$$\mathbf{Z}=\mathbf{W}^T\mathbf{X}.$$
+
+- $\mathbf{Z}$의 각 열은 각각의 샘플에 대한 저차원 표현을 의미한다.
+- 2차원 문제에선 w가 숫자로 나왔는데, 고차원에서는 W가 매트릭스임. 
+	- 그래서 원하는 차원으로 축소 가능
+- 이후 이 축소된 공간에서 임계값 기반 분류나 최근접 이웃, Support Vector Machine과 같은 다양한 분류 알고리즘을 적용할 수 있다.
+
+### Linear Discriminant Analysis versus Principal Component Analysis
+- LDA(Linear Discriminant Analysis)는 지도학습 기반 차원 축소 기법으로, 클래스 레이블을 활용하여 서로 다른 클래스 평균 간 거리는 크게 하고, 각 클래스 내부의 분산은 작게 만드는 방향을 찾는다.    
+- Principal Component Analysis와 같은 방법과 달리, LDA는 데이터의 전체 분산 보존이 아니라 클래스 간 분리도를 향상시키는 데 목적이 있다.
+- PCA는 주로 비지도학습에서 많이 사용
+	- 차원 축소라는 강력한 기능이 있음
+	- maxmizes variance 방법으로 차원을 축소
+- LDA는 분류를 잘하기 위한 방법으로 차원을 축소함.
+	- maxmizes class separation
+	- 그래서 아웃풋이 있어야 함.
+	- 그 아웃풋을 토대로 2그룹에 평균도 구하고 분산도 구해서 계산을 할 수 있음.
