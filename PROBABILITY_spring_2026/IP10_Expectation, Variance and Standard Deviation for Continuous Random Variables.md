@@ -27,7 +27,7 @@
 - 이때 $X$의 기댓값은 다음과 같이 정의된다:  
 
 $$  
-E[X]=\int_a^b x f(x),dx  
+E[X]=\int_a^b x f(x)dx  
 $$
 
 #### Remark
@@ -42,13 +42,13 @@ $$
 - 다음 두 식은 서로 대응된다:  
 
 $$  
-E[X]=\int_a^b x f(x),dx \quad \Longleftrightarrow \quad E[X]=\sum_{i=1}^n x_i p(x_i)  
+E[X]=\int_a^b x f(x)dx \quad \Longleftrightarrow \quad E[X]=\sum_{i=1}^n x_i p(x_i)  
 $$
 - 이산형 공식은 $X$의 값 $x_i$들을 확률 $p(x_i)$를 가중치로 하여 가중합(weighted sum)을 취하는 것이다.
 - $f(x)$는 확률밀도(probability density)임을 기억하자.
 	- 그 단위는 $\text{prob}/(\text{X의 단위})$ 이다.
-	- 따라서 $f(x),dx$ 는 $x$ 주변의 아주 작은 구간(폭 $dx$)에서 $X$가 가질 확률을 의미한다.
-- 그러므로 $E[X]$ 공식은 $X$의 값 $x$들을 확률 $f(x),dx$를 가중치로 하는 가중적분(weighted integral)으로 해석할 수 있다.
+	- 따라서 $f(x)dx$ 는 $x$ 주변의 아주 작은 구간(폭 $dx$)에서 $X$가 가질 확률을 의미한다.
+- 그러므로 $E[X]$ 공식은 $X$의 값 $x$들을 확률 $f(x)dx$를 가중치로 하는 가중적분(weighted integral)으로 해석할 수 있다.
 - 이전과 마찬가지로 기댓값은 평균(mean) 또는 average라고도 불린다.
 
 - sum에 dx가 없는건 적분하면 생기는 dx를 없애기 위함.
@@ -63,7 +63,7 @@ $$
 - 따라서  
 
 $$  
-E[X]=\int_0^1 x,dx=\left[\frac{x^2}{2}\right]_0^1=\frac{1}{2}  
+E[X]=\int_0^1 xdx=\left[\frac{x^2}{2}\right]_0^1=\frac{1}{2}  
 $$
 
 - 예상대로 평균은 구간의 중간값에 위치한다.
@@ -74,7 +74,7 @@ $$
 - 기댓값은 다음과 같이 계산한다:  
 
 $$  
-E[X]=\int_0^2 x f(x),dx=\int_0^2 \frac{3}{8} x^3 ,dx=\left[\frac{3x^4}{32}\right]_0^2=\frac{3}{2}  
+E[X]=\int_0^2 x f(x)dx=\int_0^2 \frac{3}{8} x^3 dx=\left[\frac{3x^4}{32}\right]_0^2=\frac{3}{2}  
 $$
 
 #### Integration by parts
@@ -82,7 +82,7 @@ $$
 - 정리 (부분적분 공식)
 
 $$  
-\int_a^b u(x)v'(x),dx=[u(x)v(x)]_a^b-\int_a^b u'(x)v(x),dx  
+\int_a^b u(x)v'(x)dx=[u(x)v(x)]_a^b-\int_a^b u'(x)v(x)dx  
 $$
 ##### Proof
 - 곱의 미분법은 다음과 같다:  
@@ -93,13 +93,13 @@ $$
 - 양변을 $x$에 대해 적분하면  
 
 $$  
-\int (u(x)v(x))',dx=\int u'(x)v(x),dx+\int u(x)v'(x),dx  
+\int (u(x)v(x))'dx=\int u'(x)v(x)dx+\int u(x)v'(x)dx  
 $$
 
 - 부정적분은 원시함수이므로  
 
 $$  
-u(x)v(x)=\int u'(x)v(x),dx+\int u(x)v'(x),dx  
+u(x)v(x)=\int u'(x)v(x)dx+\int u(x)v'(x)dx  
 $$
 
 #### Example
@@ -109,12 +109,12 @@ $$
 - 따라서  
 
 $$  
-E[X]=\int_0^\infty x f(x),dx=\int_0^\infty \lambda x e^{-\lambda x},dx  
+E[X]=\int_0^\infty x f(x)dx=\int_0^\infty \lambda x e^{-\lambda x}dx  
 $$
 - 부분적분을 사용한다: $u=x$, $v'=\lambda e^{-\lambda x} \Rightarrow u'=1$, $v=-e^{-\lambda x}$  
 
 $$  
-=\left[-x e^{-\lambda x}\right]_0^\infty+\int_0^\infty e^{-\lambda x},dx  
+=\left[-x e^{-\lambda x}\right]_0^\infty+\int_0^\infty e^{-\lambda x}dx  
 $$
 - 이제 각 항을 계산하면  
 
@@ -154,17 +154,17 @@ $$
 - 먼저 $0$부터 $\infty$까지의 적분을 계산한다:  
 
 $$  
-\int_0^\infty z\phi(z),dz=\frac{1}{\sqrt{2\pi}}\int_0^\infty z e^{-z^2/2},dz  
+\int_0^\infty z\phi(z)dz=\frac{1}{\sqrt{2\pi}}\int_0^\infty z e^{-z^2/2}dz  
 $$
-- 치환 $u=\frac{z^2}{2}$ 를 사용하면 $du=z,dz$ 이다.  
+- 치환 $u=\frac{z^2}{2}$ 를 사용하면 $du=zdz$ 이다.  
 
 $$  
-=\frac{1}{\sqrt{2\pi}}\int_0^\infty e^{-u},du=\frac{1}{\sqrt{2\pi}}\left[-e^{-u}\right]_0^\infty=\frac{1}{\sqrt{2\pi}}  
+=\frac{1}{\sqrt{2\pi}}\int_0^\infty e^{-u}du=\frac{1}{\sqrt{2\pi}}\left[-e^{-u}\right]_0^\infty=\frac{1}{\sqrt{2\pi}}  
 $$
 - 마찬가지로  
 
 $$  
-\int_{-\infty}^0 z\phi(z),dz=-\frac{1}{\sqrt{2\pi}}  
+\int_{-\infty}^0 z\phi(z)dz=-\frac{1}{\sqrt{2\pi}}  
 $$
 - 두 값을 더하면  
 
@@ -225,7 +225,7 @@ $$
 - 이때 기댓값은 다음과 같이 주어진다:  
 
 $$  
-E[Y]=E[h(X)]=\int_{-\infty}^{\infty} h(x) f_X(x),dx  
+E[Y]=E[h(X)]=\int_{-\infty}^{\infty} h(x) f_X(x)dx  
 $$
 
 #### Example
@@ -234,27 +234,27 @@ $$
 - 기댓값은 다음과 같다:  
 
 $$  
-E[X^2]=\int_0^\infty x^2 f(x),dx=\int_0^\infty \lambda x^2 e^{-\lambda x},dx  
+E[X^2]=\int_0^\infty x^2 f(x)dx=\int_0^\infty \lambda x^2 e^{-\lambda x}dx  
 $$
 - 부분적분을 사용한다: $u=x^2$, $v'=\lambda e^{-\lambda x} \Rightarrow u'=2x$, $v=-e^{-\lambda x}$  
 
 $$  
-=\left[-x^2 e^{-\lambda x}\right]_0^\infty+\int_0^\infty 2x e^{-\lambda x},dx  
+=\left[-x^2 e^{-\lambda x}\right]_0^\infty+\int_0^\infty 2x e^{-\lambda x}dx  
 $$
 - 앞 단계에서  
 
 $$  
-E[X^2]=\left[-x^2 e^{-\lambda x}\right]_0^\infty+\int_0^\infty 2x e^{-\lambda x},dx  
+E[X^2]=\left[-x^2 e^{-\lambda x}\right]_0^\infty+\int_0^\infty 2x e^{-\lambda x}dx  
 $$
 - 첫 번째 항은 $0$이 된다.
 - 두 번째 적분에 대해 다시 부분적분을 사용한다: $u=2x$, $v'=e^{-\lambda x} \Rightarrow u'=2$, $v=-\dfrac{e^{-\lambda x}}{\lambda}$  
 
 $$  
-\int_0^\infty 2x e^{-\lambda x},dx=\left[-\frac{2x e^{-\lambda x}}{\lambda}\right]_0^\infty+\int_0^\infty \frac{2}{\lambda} e^{-\lambda x},dx  
+\int_0^\infty 2x e^{-\lambda x}dx=\left[-\frac{2x e^{-\lambda x}}{\lambda}\right]_0^\infty+\int_0^\infty \frac{2}{\lambda} e^{-\lambda x}dx  
 $$  
 
 $$  
-=0+\frac{2}{\lambda}\int_0^\infty e^{-\lambda x},dx=\frac{2}{\lambda}\left[\frac{-e^{-\lambda x}}{\lambda}\right]_0^\infty=\frac{2}{\lambda^2}  
+=0+\frac{2}{\lambda}\int_0^\infty e^{-\lambda x}dx=\frac{2}{\lambda}\left[\frac{-e^{-\lambda x}}{\lambda}\right]_0^\infty=\frac{2}{\lambda^2}  
 $$
 - 따라서  
 

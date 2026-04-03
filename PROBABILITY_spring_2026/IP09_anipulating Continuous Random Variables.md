@@ -71,7 +71,7 @@ $$
 #### Solution
 - 적분의 각 부분을 $x$에서 $u$로 변환해야 한다.
 - $u=x^2+1$ 이므로 $(x^2+1)^7 = u^7$
-- 미분하면 $du=2x,dx$ 이다.
+- 미분하면 $du=2xdx$ 이다.
 - 따라서 $dx=\dfrac{du}{2x}=\dfrac{du}{2\sqrt{u-1}}$
 - 이제 적분의 각 항을 치환하면 다음을 얻는다:  
 
@@ -84,9 +84,9 @@ $$
 #### Example
 - $X$의 범위가 $[0,2]$, cdf가 $F_X(x)=\dfrac{x^2}{4}$ 일 때, $Y=X^2$의 pdf를 ‘u-치환’ 방법으로 직접 구하라. (이 경우 $u$는 실제로 $y$가 된다.)    
 #### Solution
-- 확률은 적분 $\int f_X(x),dx$ 로 주어진다는 것을 기억하자.
+- 확률은 적분 $\int f_X(x)dx$ 로 주어진다는 것을 기억하자.
 - 변수변환 $y=x^2$ 가 주어졌으므로, 적분을 $x$에서 $y$로 바꾼다.
-- $y=x^2 \Rightarrow dy=2x,dx$ 이므로 $dx=\dfrac{dy}{2\sqrt{y}}$
+- $y=x^2 \Rightarrow dy=2xdx$ 이므로 $dx=\dfrac{dy}{2\sqrt{y}}$
 - $F_X(x)=\dfrac{x^2}{4}$ 이므로 이를 미분하면 pdf는 다음과 같다:  
 
 $$  
@@ -103,7 +103,7 @@ $$
 - 두 식을 결합하면 다음과 같다:  
 
 $$  
-f_X(x),dx=\frac{\sqrt{y}}{2}\cdot \frac{dy}{2\sqrt{y}}=\frac{1}{4},dy  
+f_X(x)dx=\frac{\sqrt{y}}{2}\cdot \frac{dy}{2\sqrt{y}}=\frac{1}{4}dy  
 $$
 - 이는 확률을 나타내는 적분의 형태이므로, $dy$ 앞의 계수가 pdf가 된다.
 - 따라서  
@@ -118,12 +118,12 @@ $$
 - $X \sim \mathrm{exp}(\lambda)$, 즉 $f_X(x)=\lambda e^{-\lambda x}$ (구간 $[0,\infty]$)일 때, $Y=X^2$의 pdf를 구하라.    
 #### Solution
 - pdf의 변수변환 방법을 사용한다.
-- $y=x^2 \Rightarrow dy=2x,dx$ 이므로 $dx=\dfrac{dy}{2\sqrt{y}}$
+- $y=x^2 \Rightarrow dy=2xdx$ 이므로 $dx=\dfrac{dy}{2\sqrt{y}}$
 - $f_X(x)=\lambda e^{-\lambda x}$ 이고, $x=\sqrt{y}$ 를 대입하면 $f_X(x)=\lambda e^{-\lambda \sqrt{y}}$
 - 이를 결합하면 다음을 얻는다:  
 
 $$  
-f_X(x),dx=\lambda e^{-\lambda \sqrt{y}} \cdot \frac{dy}{2\sqrt{y}}=f_Y(y),dy  
+f_X(x)dx=\lambda e^{-\lambda \sqrt{y}} \cdot \frac{dy}{2\sqrt{y}}=f_Y(y)dy  
 $$
 - 따라서 pdf는  
 
@@ -158,15 +158,15 @@ $$
 #### Solution
 - 변수변환과 $f_X(x)$의 공식을 사용한다.
 
-$$z=\dfrac{x-5}{3} \Rightarrow dz=\dfrac{dx}{3}$ 이므로 $dx=3,dz$$
+$$z=\dfrac{x-5}{3} \Rightarrow dz=\dfrac{dx}{3}$ 이므로 $dx=3dz$$
 
-- 이 예제에서는 $f_X(x),dx$ 를 한 줄로 변환한다:  
+- 이 예제에서는 $f_X(x)dx$ 를 한 줄로 변환한다:  
 
 $$  
-f_X(x),dx=\frac{1}{3\sqrt{2\pi}} e^{-\frac{(x-5)^2}{2\cdot 3^2}} dx  
-=\frac{1}{3\sqrt{2\pi}} e^{-\frac{z^2}{2}} \cdot 3,dz  
+f_X(x)dx=\frac{1}{3\sqrt{2\pi}} e^{-\frac{(x-5)^2}{2\cdot 3^2}} dx  
+=\frac{1}{3\sqrt{2\pi}} e^{-\frac{z^2}{2}} \cdot 3dz  
 =\frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} dz  
-= f_Z(z),dz  
+= f_Z(z)dz  
 $$
 - 따라서  
 
@@ -196,14 +196,14 @@ $$
 #### Proof    
 - 이는 이전 예제와 동일한 계산이며, $5$를 $\mu$로, $3$을 $\sigma$로 바꾼 것과 같다.
 
-$$z=\dfrac{x-\mu}{\sigma} \Rightarrow dz=\dfrac{dx}{\sigma} \Rightarrow dx=\sigma,dz$$
-- 이를 이용하여 $f_X(x),dx$ 를 변환하면 다음과 같다:  
+$$z=\dfrac{x-\mu}{\sigma} \Rightarrow dz=\dfrac{dx}{\sigma} \Rightarrow dx=\sigmadz$$
+- 이를 이용하여 $f_X(x)dx$ 를 변환하면 다음과 같다:  
 
 $$  
-f_X(x),dx=\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx  
-=\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{z^2}{2}} \cdot \sigma,dz  
+f_X(x)dx=\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx  
+=\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{z^2}{2}} \cdot \sigmadz  
 =\frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} dz  
-= f_Z(z),dz  
+= f_Z(z)dz  
 $$
 - 따라서  
 
