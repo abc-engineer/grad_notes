@@ -94,10 +94,6 @@ f_X(x)=F'_X(x)=\frac{x}{2}
 $$
 
 
-
-#### Example
-- $X$의 범위가 $[0,2]$, cdf가 $F_X(x)=\dfrac{x^2}{4}$ 일 때, $Y=X^2$의 pdf를 ‘u-치환’으로 구하라.
-#### Solution
 - $y=x^2$ 이므로 $x=\sqrt{y}$ 이고, 따라서 $f_X(x)=\dfrac{x}{2}=\dfrac{\sqrt{y}}{2}$
 - 앞에서 구한 $dx=\dfrac{dy}{2\sqrt{y}}$ 를 이용한다.
 - 두 식을 결합하면 다음과 같다:  
