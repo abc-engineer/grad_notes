@@ -344,7 +344,7 @@ $$
 
 $$  
 F(x)=\begin{cases}
-1-\frac{m^{\alpha}}{x^\alpha} & x \ge m \\
+1-\frac{m^{\alpha}}{x^{\alpha}} & x \ge m \\
 0 & x<m \end{cases}  
 $$
 - 꼬리확률(tail distribution):  
