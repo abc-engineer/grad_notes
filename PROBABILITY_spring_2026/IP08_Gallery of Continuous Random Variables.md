@@ -332,6 +332,14 @@ $$
 - 표기: $\mathrm{Pareto}(m,\alpha)$
 - 확률밀도함수(pdf):  
 
+$$
+f(x)=
+\begin{cases}
+\frac{\alpha m^{\alpha}}{x^{\alpha+1}} & x \ge m \\
+0 & x < m
+\end{cases}
+$$
+
 $$  
 f(x)=\begin{cases}\frac{\alpha m^\alpha}{x^{\alpha+1}} & x \ge m \\
 0 & x<m\end{cases}  
