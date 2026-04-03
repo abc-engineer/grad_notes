@@ -70,7 +70,7 @@ $$
 - 바이노미알은 n,p의 2개의 파라미터가 있음
 - 이번 강의에서 파라미터 추론은 안함.
 
-
+### Uniform distribution
 - Parameters: $a, b$
 - 범위: $[a,b]$
 - 표기: $\mathrm{Uniform}(a,b)$ 또는 $U(a,b)$
