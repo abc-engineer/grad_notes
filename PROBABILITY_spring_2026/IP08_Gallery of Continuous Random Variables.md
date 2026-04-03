@@ -342,12 +342,12 @@ $$
 
 - 누적분포함수(cdf):  
 
-$$  
-F(x)=
+$$
+F(x) =
 \begin{cases}
-1-\frac{m^{\alpha}}{x^{\alpha}} & x \ge m \\
-0 & x<m 
-\end{cases}  
+1 - \frac{m^{\alpha}}{x^{\alpha}} & \text{if } x \ge m \\
+0 & \text{if } x < m
+\end{cases}
 $$
 - 꼬리확률(tail distribution):  
 
