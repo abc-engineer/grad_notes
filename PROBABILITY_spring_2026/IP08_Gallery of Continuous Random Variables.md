@@ -20,14 +20,16 @@
 - 균등분포 $X \sim \mathrm{Uniform}(a,b)$  
 
 $$  
-f(x)=\begin{cases}\frac{1}{b-a} & a \le x \le b \\ 0 & \text{otherwise}\end{cases}  
+f(x)=\begin{cases}\frac{1}{b-a} & a \le x \le b \\
+0 & \text{otherwise}\end{cases}  
 $$
 - 범위: $a \le x \le b$
 
 - 지수분포 $X \sim \mathrm{Exponential}(\lambda)$  
 
 $$  
-f(x)=\begin{cases}\lambda e^{-\lambda x} & x \ge 0 \\ 0 & x<0\end{cases}  
+f(x)=\begin{cases}\lambda e^{-\lambda x} & x \ge 0 \\
+0 & x<0\end{cases}  
 $$
 - 범위: $x \ge 0$
 - 정규분포 $X \sim \mathcal{N}(\mu,\sigma^2)$  
@@ -75,13 +77,15 @@ $$
 - 확률밀도함수(pdf):  
 
 $$  
-f(x)=\begin{cases}\frac{1}{b-a} & a \le x \le b \\ 0 & \text{otherwise}\end{cases}  
+f(x)=\begin{cases}\frac{1}{b-a} & a \le x \le b \\ 
+0 & \text{otherwise}\end{cases}  
 $$
 
 - 누적분포함수(cdf):  
 
 $$  
-F(x)=\begin{cases}\frac{x-a}{b-a} & a \le x \le b \\ 0 & x<a \ 1 & x>b\end{cases}  
+F(x)=\begin{cases}\frac{x-a}{b-a} & a \le x \le b \\
+0 & x<a \ 1 & x>b\end{cases}  
 $$
 
 - 모델링: 구간 내 모든 결과가 동일한 확률을 가지는 경우 (정확히는 동일한 확률밀도를 가지는 경우)
@@ -120,12 +124,14 @@ $$
 - 확률밀도함수(pdf):  
 
 $$  
-f(x)=\begin{cases}\lambda e^{-\lambda x} & x \ge 0 \\ 0 & x<0\end{cases}  
+f(x)=\begin{cases}\lambda e^{-\lambda x} & x \ge 0 \\
+0 & x<0\end{cases}  
 $$
 - 누적분포함수(cdf):  
 
 $$  
-F(x)=\begin{cases}1-e^{-\lambda x} & x \ge 0 \\ 0 & x<0\end{cases}  
+F(x)=\begin{cases}1-e^{-\lambda x} & x \ge 0 \\
+0 & x<0\end{cases}  
 $$
 - 오른쪽 꼬리 확률(right tail distribution):  
 
