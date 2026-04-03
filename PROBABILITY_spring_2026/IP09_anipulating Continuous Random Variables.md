@@ -21,7 +21,7 @@ f_X(x) = F'_X(x)
 $$
 
 - random variable은 수식을 쓸 수 있음
-	- $Y = aX + b \, or \, Y = X^2$
+	- $Y = aX + b  \text{or}  Y = X^2$
 	- 이럴때 Y의 pdf, cdf등은 어떻게 되는지 계산하는 것이 Manipulating
 - discrete random variable일때는 테이블 그려서 값을 구하면 되었음 (지난 수업들)
 - 연속일 경우 대수적 계산이 필요함.
