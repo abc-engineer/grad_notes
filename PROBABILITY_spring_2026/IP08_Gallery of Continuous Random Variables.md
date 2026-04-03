@@ -343,9 +343,11 @@ $$
 - 누적분포함수(cdf):  
 
 $$  
-F(x)=\begin{cases}
+F(x)=
+\begin{cases}
 1-\frac{m^{\alpha}}{x^{\alpha}} & x \ge m \\
-0 & x<m \end{cases}  
+0 & x<m 
+\end{cases}  
 $$
 - 꼬리확률(tail distribution):  
 
