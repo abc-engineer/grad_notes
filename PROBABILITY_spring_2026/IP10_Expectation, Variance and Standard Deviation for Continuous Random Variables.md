@@ -1,6 +1,5 @@
 2026-04-02 08:20
 ## 10강 Expectation, Variance and Standard Deviation for Continuous Random Variables
-
 - Continuous Random Variables의 기대값 분산, 표준편차를 구하는 방법 
 
 ### Learning Goals
