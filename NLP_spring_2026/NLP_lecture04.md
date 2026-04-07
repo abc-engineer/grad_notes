@@ -128,6 +128,8 @@ $$
 ### Word2Vec 
 - 단어를 벡터화 한다는 뜻.
 
+
+## Word2Vec details 
 ### Word embeddings: general idea
 
 - 목표: 분포 가설(distributional hypothesis)에 기반하여 단어의 밀집 벡터 표현을 학습하는 것이다    
@@ -402,3 +404,291 @@ $$
 $$
 
 - $N$: 무작위로 샘플링된 부정 샘플 집합 ($|N|\ll |V|$, 보통 $5\sim10$)
+
+## 다시 embeddings
+
+### Word2Vec Overview
+- 가장 초기이자 널리 알려진 단어 임베딩 학습 방법(2013년에 발표됨)    
+- 두 가지 변형이 있다: Skip-gram과 CBOW(Continuous Bag-of-Words)    
+- CBOW:맥락을 보고 중심에 나오는 단어가 어떤 의미인지 예측
+- Skip-gram: 중심 단어를 보고 맥락을 예측
+	- 보다 세밀한 맥락을 다룰 수 있음
+	- 씨바우는 여러 인풋을 통해 단어를 예측 반대로 스킵그램은 단어를 중심으로 여러 아웃풋이 나와서 좀더 세밀함.
+	- 결과론적으로는 스킵그램이 좋지만 사실 엄청 큰 차이가 있진 않음.
+- 이 강의에서는 주로 Skip-gram을 다룬다
+
+
+### Word2Vec Setting
+- 입력(input): corpus $D$ (클수록 좋다)    
+- 학습 데이터(training data): 단어-맥락 쌍 $(w, c)$, 여기서 $w$는 중심 단어(center word), $c$는 맥락 단어(context word)이다    
+	- 중심단어, context word 2가지 벡터를 만들어서 사용
+	- 말뭉치의 각 단어는 중심 단어로 사용될 수 있다    
+	- 맥락 단어는 중심 단어 주변의 이웃 단어들로, 지역 윈도우($\pm l$ 단어) 내에서 정의된다    
+- 학습해야 할 파라미터: $\theta={v_w, v_c}$, 각 단어는 두 개의 벡터(중심 단어 표현과 맥락 단어 표현)를 가진다    
+- 중심 단어 벡터 $v_w$는 일반적으로 최종 단어 임베딩으로 사용된다    
+- 저장해야 할 파라미터 수: $d\times |V|$    
+	- $d$는 임베딩 차원으로 보통 $100\sim300$이다    
+	- $|V|$는 어휘 크기로 보통 $>10{,}000$이다
+- 
+
+### Word2Vec Training Data Example
+- 입력 문장: “there is a cat on the mat”    
+-  context window sizㅈ: $2$라고 가정한다    
+- 학습 데이터(단어-맥락 쌍):    
+	- $(\text{there}, \text{is}), (\text{there}, \text{a})$    
+	- $(\text{is}, \text{there}), (\text{is}, \text{a}), (\text{is}, \text{cat})$    
+	- $(\text{a}, \text{there}), (\text{a}, \text{is}), (\text{a}, \text{cat}), (\text{a}, \text{on})$    
+	- $(\text{cat}, \text{is}), (\text{cat}, \text{a}), (\text{cat}, \text{on}), (\text{cat}, \text{the})$    
+	- $(\text{on}, \text{a}), (\text{on}, \text{cat}), (\text{on}, \text{the}), (\text{on}, \text{mat})$    
+	- $(\text{the}, \text{cat}), (\text{the}, \text{on}), (\text{the}, \text{mat})$    
+	- $(\text{mat}, \text{on}), (\text{mat}, \text{the})$
+- Skip-gram: 일부 맥락 단어를 건너뛰면서 나머지 맥락 단어를 예측하는 방식이다    
+- 학습 데이터는 원시 말뭉치로부터 완전히 생성되며, 사람의 라벨이 필요 없다
+
+### Word2Vec Objective (Skip-gram)
+- 직관(intuition): 중심 단어를 사용하여 주변 맥락 단어들을 예측한다 (의미적으로 유사한 중심 단어는 유사한 맥락 단어를 예측한다)    
+- 목적(objective): 파라미터 $\theta={v_w, v_c}$를 사용하여 중심 단어 $w$가 주어졌을 때 맥락 단어 $c$를 예측할 확률을 최대화한다  
+
+$$  
+\max_{\theta}\ \prod_{(w,c)\in D} p_{\theta}(c\mid w)  
+$$
+    
+- 확률은 모델 파라미터의 함수로 표현된다    
+- 이 확률을 어떻게 파라미터화할 것인가?
+- center word를 이용해서 contexts word를 예측측
+
+
+### Word2Vec Probability Parametrization
+- Word2Vec의 목적 함수(objective)
+
+$$  
+\max_{\theta}\ \prod_{(w,c)\in D} p_{\theta}(c\mid w)  
+$$
+- 로그 확률(log probability, 즉 logit)이 벡터 내적(dot product)에 비례한다고 가정한다   
+
+$$  
+\log p_{\theta}(c \mid w) \propto v_c \cdot v_w  
+$$
+- 근거: 벡터 내적 값이 클수록 두 벡터의 유사도가 높다고 볼 수 있다   
+	- 내적이 크면 방향등이 비슷함. 
+	- 그래서 내적이 크면 유사하다고 볼 수 있음.
+- 왜 코사인 유사도를 사용하지 않는가?    
+	- 코사인 유사도는 비선형 함수이므로 내적보다 최적화가 더 복잡하다    
+	- 그러나 고급 최적화 기법을 사용하면 코사인 유사도를 최적화하는 것이 더 유리할 수 있다
+
+
+
+### Word2Vec Parameterized Objective
+- Word2Vec의 목적 함수:  
+
+$$  
+\max_{\theta}\ \prod_{(w,c)\in D} p_{\theta}(c \mid w)  
+$$
+
+- 로그 확률(logit)이 벡터 내적에 비례한다고 가정:
+
+$$  
+\log p_{\theta}(c \mid w) \propto v_c \cdot v_w  
+$$
+
+- 최종 확률 분포는 소프트맥스 함수로 정의된다:  
+
+$$  
+p_{\theta}(c \mid w)=\frac{\exp(v_c \cdot v_w)}{\sum_{c' \in |V|} \exp(v_{c'} \cdot v_w)}  
+$$  
+
+$$  
+\sum_{c' \in |V|} p_{\theta}(c' \mid w)=1  
+$$
+
+- Word2Vec 목적 함수(로그 스케일):  
+
+$$  
+\max_{\theta}\ \sum_{(w,c)\in D} \log p_{\theta}(c \mid w)  
+=\sum_{(w,c)\in D} \left( v_c \cdot v_w - \log \sum_{c' \in |V|} \exp(v_{c'} \cdot v_w) \right)  
+$$
+- 학습을 위해서는 분포를구해야 함.
+	- 소프트 맥스 함수를 이용해서 분포를 정의 함.
+	- 앞의 $v_c \cdot v_w$항은 크고 로그 값은 작게 해야 확률(예측) 값이 커짐.
+
+
+### Word2Vec Negative Sampling
+- 기존 목적 함수의 문제점: 전체 어휘에 대한 합 계산이 필요하여 비용이 크다  
+
+$$  
+\max_{\theta}\ \sum_{(w,c)\in D} \log p_{\theta}(c \mid w)  
+=\sum_{(w,c)\in D} \left( v_c \cdot v_w - \log \sum_{c' \in V} \exp(v_{c'} \cdot v_w) \right)  
+$$
+
+- 해결 방법: 어휘 집합에서 일부 부정 샘플(negative samples)을 무작위로 선택하여 부정 집합 $N$을 구성한다
+
+- 부정 샘플링 방법: (파워 스무딩된) unigram 분포를 기반으로 샘플링한다  
+
+$$  
+p_{\text{neg}}(w)\propto \left(\frac{\#(w)}{\sum_{w' \in V}(w')}\right)^{0.75}  
+$$
+
+- 희귀 단어는 샘플링 확률에서 약간 보정되어 증가한다
+
+
+
+
+- 이진 분류 문제로 정식화한다: $(w,c)$가 실제 맥락 쌍인지 예측한다  
+
+$$  
+p_{\theta}(\text{True}\mid c,w)=\sigma(v_c \cdot v_w)=\frac{1}{1+\exp(-,v_c \cdot v_w)}  
+$$
+
+- 실제 맥락 쌍에 대해서는 확률을 최대화하고, 부정(무작위) 쌍에 대해서는 확률을 최소화한다  
+
+$$  
+\max_{\theta}\ \log \sigma(v_c \cdot v_w)\;-\;\sum_{c' \in N}\log \sigma(v_{c'} \cdot v_w)  
+$$
+- 네거티브 샘플링을 이용해서 이진 문제로 바꿈
+- 두 벡터는 내적을 하지만 시그모이드로 치환하면 목적함수가 변화 함.
+
+### Word2Vec Optimization
+
+- 다음 목적 함수를 어떻게 최적화할 것인가?  
+
+$$  
+\max_{\theta}\ \log \sigma(v_c \cdot v_w);-;\sum_{c' \in N}\log \sigma(v_{c'} \cdot v_w)  
+$$
+
+- 확률적 경사 하강법(Stochastic Gradient Descent, SGD)을 사용한다    
+- 먼저 파라미터 $\theta={v_w, v_c}$를 $d$차원의 무작위 벡터로 초기화한다    
+- 각 단계에서 목적 함수의 그래디언트 방향으로 파라미터를 업데이트한다 (학습률로 가중됨)  
+
+$$  
+\theta^{(t+1)}=\theta^{(t)}-\eta \nabla_{\theta}\mathcal{L}\big|_{\theta=\theta^{(t)}}  
+$$
+
+- $\eta$는 학습률(learning rate), $\mathcal{L}$은 손실 함수(loss function)이다
+
+- 학습은 gradient decent 사용용
+
+
+### Word2Vec Hyperparameters
+- 아래 기준은 일종의 관습임. 절대 치는 아님.
+- 단어 임베딩 차원 $d$ (보통 $100\sim300$)    
+	- $d$가 클수록 더 풍부한 의미 정보를 표현할 수 있다    
+	- 그러나 $d$가 지나치게 크면 비효율성과 차원의 저주 문제가 발생한다    
+- 지역 맥락 윈도우 크기 $l$ (보통 $5\sim10$)    
+	- $l$이 작으면 가까운 단어들로부터 학습하여 더 많은 구문적(syntactic) 정보를 반영한다    
+	- $l$이 크면 더 넓은 맥락을 반영하여 의미적/주제적 정보를 더 잘 학습한다    
+- 부정 샘플 개수 $k$ (보통 $5\sim10$)    
+	- $k$가 클수록 학습이 더 안정적이지만 계산 비용이 증가한다    
+- 학습률 $\eta$ (보통 $0.02\sim0.05$)
+
+
+### Word Similarity
+- 임베딩 간 코사인 유사도 $\cos(v_{w_1}, v_{w_2})$를 사용하여 단어 유사도를 측정한다    
+- 코사인 유사도가 높을수록 의미적으로 더 가깝다
+
+
+
+
+### Word Similarity Evaluation
+- 내재적 단어 임베딩 평가(intrinsic evaluation): 단어 임베딩 자체의 품질을 평가하는 방법    
+- 단어 벡터 유사도가 인간의 유사도 판단과 얼마나 잘 상관되는지를 측정한다    
+- 예시 데이터셋: WordSim353 (353개의 단어 쌍과 인간이 평가한 유사도 점수로 구성됨)  
+
+| Word 1    | Word 2   | Human (mean) |
+| --------- | -------- | ------------ |
+| tiger     | cat      | 7.35         |
+| book      | paper    | 7.46         |
+| computer  | internet | 7.58         |
+| plane     | car      | 5.77         |
+| professor | doctor   | 6.62         |
+| stock     | phone    | 1.62         |
+| stock     | CD       | 1.31         |
+| stock     | jaguar   | 0.92         |
+
+- 진짜 두 단어가 유사한지 어떻게 평가? -> 우선 내재적 평가를 진행
+	- 고유한 단어의 특성을 평가
+	- 일반적으로는 사람이 평가하고 연관성이 얼마나 높은지를 평가 함.
+	- -> 인간의 유사도와 단어벡터간의 상관을 측정
+
+
+
+
+- 스피어만 순위 상관계수(Spearman rank correlation): 두 순위 변수 간의 상관관계를 측정한다    
+- 사람의 랭크, 코사인 유사도를 이용한 랭크를 서로 비교 하면 됨. -> 스피어만 순위 상관계수(Spearman rank correlation)
+
+| Word 1    | Word 2   | Human (mean) |
+| --------- | -------- | ------------ |
+| tiger     | cat      | 7.35         |
+| book      | paper    | 7.46         |
+| computer  | internet | 7.58         |
+| plane     | car      | 5.77         |
+| professor | doctor   | 6.62         |
+| stock     | phone    | 1.62         |
+| stock     | CD       | 1.31         |
+| stock     | jaguar   | 0.92         |
+
+$$  
+\begin{bmatrix}  
+6 \\  
+7 \\ 
+8 \\  
+4 \\  
+5 \\  
+3 \\  
+2 \\  
+1  
+\end{bmatrix}  
+$$
+- 각 변수 값을 순위(rank)로 변환한 뒤 상관관계를 계산한다  
+
+$$  
+r=\frac{\mathrm{Cov}(R[X],R[Y])}{\sigma_{R[X]}\sigma_{R[Y]}}  
+$$
+
+- $\mathrm{Cov}$는 공분산(covariance), $\sigma$는 표준편차(standard deviation), $R[X],R[Y]$는 각각 $X,Y$의 순위를 의미한다
+
+
+### Word Analogy
+- 단어 임베딩은 직관적인 의미적·구문적 유추 관계를 반영한다
+- 예시: $\text{man}:\text{woman}::\text{king}:?$  
+
+$$  
+v_{\text{queen}} \approx v_{\text{woman}} - v_{\text{man}} + v_{\text{king}}  
+$$
+
+- 일반화: $a:b::c:?$ 형태에서 단어를 찾는다
+- 코사인 유사도를 최대화하는 단어를 선택한다  
+
+$$  
+w=\arg\max_{w' \in V} \cos\left(v_b - v_a + v_c,; v_{w'}\right)  
+$$  
+
+$$  
+=\arg\max_{w' \in V} \frac{(v_b - v_a + v_c)\cdot v_{w'}}{|v_b - v_a + v_c|,|v_{w'}|}  
+$$
+- 맨과 우먼의 관계를 이용해서 킹에 해당하는 단어를 찾는 방법
+
+
+### Word Analogy Evaluation
+- 단어 유추(word analogy)는 또 다른 내재적 단어 임베딩 평가 방법이다    
+- 하나나의 예시임.
+- 다양한 유형의 단어 관계를 포함한다    
+- 일반적으로 정확도(accuracy)를 평가 지표로 사용한다
+
+### Extrinsic Evaluation of Word Embeddings
+- 구체적인 테스크에 적용해서 평가를 하는 외재적 평가
+- 단어 임베딩은 과제별 자연어 처리 모델의 입력 특징(feature)으로 사용할 수 있다    
+- 예시 1: 텍스트 분류(text classification; 주제 분류/감성 분류)    
+	- 문장/문서 임베딩은 단어 임베딩 위에 시퀀스 모델링 아키텍처를 적용하여 얻는다    
+	- 외재적 평가 지표(extrinsic metric)로는 분류 정확도(classification accuracy)를 사용한다    
+- 예시 2: 개체명 인식(named entity recognition, NER)    
+	- 텍스트에서 개체명(예: 사람, 조직, 장소)을 찾아 분류하는 작업이다    
+	- 연결된(concatenated) 단어 임베딩을 사용하여 단어 구간(span, 개체)을 표현할 수 있다 
+	- 외재적 평가 지표로는 정밀도(precision), 재현율(recall), F1을 사용한다    
+- 단어 임베딩 데모
+
+### Q&A
+- 인간의 랭킹과 워드투벡의 랭크가 다르다고 가정한다면? 재학습해서 휴먼 결과에 가깝게 하나요?
+	- 맞음
+	- 차이가 크면 워드 임베딩이 잘 되지 않음
+- 워드2벡이 커서 소프트맥스를 안쓰고 네거티브샘플링을 통해 바이너리로 바꾸는데 인풋이 작으면 소프 맥스?
+	- 맞음.
