@@ -95,7 +95,11 @@ $$
 
 $$  
 W =  
-\begin{bmatrix}- w_1^T \\- w_2^T \\- \vdots \\- w_n^T  
+\begin{bmatrix}
+\- w_1^T \\
+\- w_2^T \\
+\vdots \\
+\- w_n^T  
 \end{bmatrix}  
 $$
 
