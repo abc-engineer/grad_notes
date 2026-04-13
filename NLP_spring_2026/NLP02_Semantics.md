@@ -78,7 +78,7 @@
 	- Sparsity: 희소성
 	- Poor generalization: 일반화 성능이 낮음
 
-- ~2018: Neural 랭귀지 모델델
+- ~2018: Neural 랭귀지 모델
 	- 전통적 딥러닝모델
 	- word2vec, RNN, CNN등
 	- 각각 목적에 맞게 랭귀지 모델을 만들었음
@@ -131,12 +131,12 @@
 	- 그래서 바이그램 등장
 - 단순히 개수만 세면 되지만 효과적인 방법 임.
 - 수식
-- $p(x_i)=\displaystyle\frac{\#(x_i)}{\#(all\ counts\ in\ the\ corpus)}$
+- $p(x_i)=\displaystyle\frac{\text{count}(x_i)}{\text{count}(all\ counts\ in\ the\ corpus)}$
 
 ### Practice: Learning Bigrams
 
 - 수식
-	- $p(x_i \mid x_{x-1})=\displaystyle\frac{\#(x_{i-1}, x_i)}{\#(x_{i-1})}$
+	- $p(x_i \mid x_{x-1})=\displaystyle\frac{\text{count}(x_{i-1}, x_i)}{\text{count}(x_{i-1})}$
 
 - 제목 오타임 바이그램 예시
 - 예시 코퍼스에 a cat 말고 the cat이 나왔는데 이렇게 학습데이터에 a cat이 나오지 않으면 문법상 맞는 문장이지만 확률이 0이되는 문제가 생김
@@ -148,7 +148,7 @@
 ### Practice: Learning Trigrams
 - 확률 계산은 쉬움
 -  - 수식
-	 - $p(x_{x-2} \mid x_{x-1}, x_i)=\displaystyle\frac{\#(x_{i-1}, x_i)}{\#(x_{x-2}, x_{i-1})}$
+	 - $p(x_{x-2} \mid x_{x-1}, x_i)=\displaystyle\frac{\text{count}(x_{i-1}, x_i)}{\text{count}(x_{x-2}, x_{i-1})}$
 - 이전 단어 2개를 가지고 지금 단어가 나올 확률 게산.
 - the cat 다음에는 is나 eos 2중 1개가 나온다는 것을 알 수 있음
 	- 하지만 실제 언어에서는 the cat 다음에는 무수히 많은 단어가 올 수 있음
