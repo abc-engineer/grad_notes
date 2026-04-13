@@ -1,5 +1,5 @@
 2026-03-16 08:20
-## 2강
+## 2강 Semantics
 
 ### Agenda
 - Introduction to Language Models 
