@@ -1,5 +1,5 @@
 2026-03-16 08:20
-## 2강 Semantics
+## 2강 LM modeling and N gram model
 
 ### Agenda
 - Introduction to Language Models 
