@@ -148,7 +148,7 @@
 ### Practice: Learning Trigrams
 - 확률 계산은 쉬움
 -  - 수식
-	 - $p(x_{x-2} \mid x_{x-1}, x_i)=\displaystyle\frac{\text{count}(x_{i-1}, x_i)}{\text{count}(x_{x-2}, x_{i-1})}$
+	 - $p(x_{x-2} \mid x_{x-1}, x_i)=\displaystyle\frac{\text{count}(x_{i-2}, x_{i-1}, x_i)}{\text{count}(x_{x-2}, x_{i-1})}$
 - 이전 단어 2개를 가지고 지금 단어가 나올 확률 게산.
 - the cat 다음에는 is나 eos 2중 1개가 나온다는 것을 알 수 있음
 	- 하지만 실제 언어에서는 the cat 다음에는 무수히 많은 단어가 올 수 있음
