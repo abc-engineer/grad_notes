@@ -267,25 +267,27 @@ $$
 
 - $X$가 평균 $\mu$를 갖는 연속 확률변수라고 하자.
 - 이때 분산은 다음과 같이 정의된다:  
+
 $$  
 \mathrm{Var}(X)=E[(X-\mu)^2]  
 $$
 
-
-![[IP_Lecture_10_page-0020.jpg]]
 ### Properties of Variance
 - 이는 이산 경우와 정확히 동일하다.
 - 1. $X$와 $Y$가 독립이면  
+
 $$  
 \mathrm{Var}(X+Y)=\mathrm{Var}(X)+\mathrm{Var}(Y)  
 $$
 
 - 2. 상수 $a,b$에 대해  
+
 $$  
 \mathrm{Var}(aX+b)=a^2 \mathrm{Var}(X)  
 $$
 
 - 3. Theorem(정리):  
+
 $$  
 \mathrm{Var}(X)=E[X^2]-E[X]^2=E[X^2]-\mu^2  
 $$
@@ -295,46 +297,50 @@ $$
 - 성질 3은 손계산에서 분산을 구할 때 더 쉽게 사용할 수 있는 공식이다.
 - 성질 2와 3의 증명은 이산 경우와 본질적으로 동일하므로 여기서는 생략한다.
 
----
-지난주 여기까지지
 
-![[IP_Lecture_10_page-0021.jpg]]
+
 #### Example
 - $X \sim \mathrm{uniform}(0,1)$ 일 때 $\mathrm{Var}(X)$ 와 $\sigma_X$ 를 구하라.
 #### Solution
 - 이전 예제에서 $\mu=\dfrac{1}{2}$ 임을 구했다.
 - 이제 분산을 계산하면  
+
 $$  
 \mathrm{Var}(X)=E[(X-\mu)^2]=\int_0^1 \left(x-\frac{1}{2}\right)^2 \, dx=\frac{1}{12}  
 $$
 - 따라서 표준편차는  
+
 $$  
 \sigma_X=\sqrt{\mathrm{Var}(X)}=\sqrt{\frac{1}{12}}=\frac{1}{\sqrt{12}}  
 $$
 
-![[IP_Lecture_10_page-0022.jpg]]
+
 #### Example
 - $X \sim \mathrm{exp}(\lambda)$ 일 때 $\mathrm{Var}(X)$ 와 $\sigma_X$ 를 구하라.
 #### Solution
 - 이전 계산에서  
+
 $$  
 E[X]=\frac{1}{\lambda}, \quad E[X^2]=\frac{2}{\lambda^2}  
 $$
 - 성질 3을 사용하면  
+
 $$  
 \mathrm{Var}(X)=E[X^2]-E[X]^2=\frac{2}{\lambda^2}-\frac{1}{\lambda^2}=\frac{1}{\lambda^2}  
 $$
 - 따라서 표준편차는  
+
 $$  
 \sigma_X=\frac{1}{\lambda}  
 $$
 - 또는 다음 정의를 직접 사용하여 계산할 수도 있다:  
+
 $$  
 \mathrm{Var}(X)=\int_0^\infty \left(x-\frac{1}{\lambda}\right)^2 \lambda e^{-\lambda x}\, dx  
 $$
 
 
-![[IP_Lecture_10_page-0023.jpg]]
+
 #### Example
 - $Z \sim N(0,1)$ 일 때 $\mathrm{Var}(Z)=1$ 임을 보여라.
 #### Note
@@ -345,30 +351,34 @@ $$
 - 다음 예제에서는 일반적인 경우 $\mathrm{Var}(X)=\sigma^2$ 임을 증명할 것이다.
 
 
-![[IP_Lecture_10_page-0024.jpg]]
+
 #### Example
 - $Z \sim N(0,1)$ 일 때 $\mathrm{Var}(Z)=1$ 임을 보여라.
 #### Solution
 - $E[Z]=0$ 이므로  
+
 $$  
 \mathrm{Var}(Z)=E[Z^2]=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} z^2 e^{-z^2/2}\, dz  
 $$
 - 부분적분을 사용한다: $u=z$, $v'=z e^{-z^2/2} \Rightarrow u'=1$, $v=-e^{-z^2/2}$  
+
 $$  
 \mathrm{Var}(Z)=\frac{1}{\sqrt{2\pi}}\left(\left[-z e^{-z^2/2}\right]_{-\infty}^{\infty}+\int_{-\infty}^{\infty} e^{-z^2/2}\, dz\right)  
 $$
 - 첫 번째 항은 지수함수 $e^{-z^2/2}$ 가 $z$의 증가보다 훨씬 빠르게 $0$으로 가므로 $0$이다.
 - 두 번째 항은 $N(0,1)$의 pdf $\phi(z)$의 전체 적분과 정확히 같으므로 $1$이다.
 - 따라서  
+
 $$  
 \mathrm{Var}(Z)=1  
 $$
 
-![[IP_Lecture_10_page-0025.jpg]]
+
 - #### Example
 - $X \sim N(\mu,\sigma^2)$ 일 때 $\mathrm{Var}(X)=\sigma^2$ 임을 보여라.
 #### Solution
 - 변수변환을 사용한다. $z=\dfrac{x-\mu}{\sigma}$ 로 두면  
+
 $$\begin{align}  
 \mathrm{Var}(X)=E[(X-\mu)^2]&=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{\infty} (x-\mu)^2 e^{-\frac{(x-\mu)^2}{2\sigma^2}} \, dx \\  
 &=\frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{\infty} z^2 e^{-z^2/2}\, dz=\sigma^2 
@@ -376,14 +386,13 @@ $$\begin{align}
 $$
 - 마지막 적분은 이전에 $\mathrm{Var}(Z)$ 를 구할 때 계산한 것과 동일하다.
 
-
-![[IP_Lecture_10_page-0026.jpg]]
 ### Quantiles
 #### Definition
 - $X$의 중앙값(median)은 $P(X \le x)=0.5$ 를 만족하는 값 $x$이다.    
 	- 즉 $P(X \le x)=P(X \ge x)=\dfrac{1}{2}$ 가 되는 값이다.    
 - 다시 말해, 중앙값을 기준으로 위와 아래에 있을 확률이 각각 $\dfrac{1}{2}$ 이다.    
 - cdf $F(x)=P(X \le x)$ 를 이용하면 중앙값은 다음을 만족하는 값이다:   
+
 $$  
 F(x)=0.5  
 $$
@@ -391,26 +400,26 @@ $$
 - 해답: 대칭성에 의해 중앙값은 $0$이다.
 
 
-
-
-![[IP_Lecture_10_page-0027.jpg]]
-
 #### Example
 - $X \sim \mathrm{exp}(\lambda)$ 의 중앙값을 구하라.
 ### Solution
 - $X$의 cdf는  
+
 $$  
 F(x)=1-e^{-\lambda x}  
 $$
 - 중앙값은 $F(x)=0.5$ 를 만족하는 $x$ 이므로  
+
 $$  
 1-e^{-\lambda x}=0.5  
 $$
 - 이를 풀면  
+
 $$  
 e^{-\lambda x}=0.5 \Rightarrow -\lambda x=\ln(0.5)=-\ln 2 \Rightarrow x=\frac{\ln 2}{\lambda}  
 $$
 - 따라서 중앙값은  
+
 $$  
 \frac{\ln 2}{\lambda}  
 $$
@@ -421,12 +430,13 @@ $$
 
 - 좌우 대칭일때만 평균과 중앙값이 같음.
 - 중앙값은 평균이 0.5면 됨.
-![[IP_Lecture_10_page-0028.jpg]]
+
 #### Definition
 - $X$의 $p$ 분위수(quantile)는 $P(X \le q_p)=p$ 를 만족하는 값 $q_p$ 이다.
 #### Note
 - 1. 이 표기에서 중앙값은 $q_{0.5}$ 이다.
 - 2. 보통 cdf를 이용하여 다음과 같이 쓴다:  
+
 $$  
 F(q_p)=p  
 $$
@@ -436,31 +446,33 @@ $$
 - median은 0.5 quantile임. = q0.5
 - $q_p$ 는 왼쪽 면적이 $p$, 오른쪽 면적이 $1-p$ 가 되도록 하는 값
 
-![[IP_Lecture_10_page-0029.jpg]]
+
 - 아래 예제들에서는 분위수를 pdf의 면적 또는 cdf의 높이로 그래프적으로 표현할 수 있음을 확인하자.
 #### Example
 - $X \sim U(0,1)$ 의 $0.6$ 분위수를 구하라.
 #### Solution
 - $X$의 cdf는 $[0,1]$ 구간에서 $F(x)=x$ 이다.
 - 따라서 $F(q_{0.6})=0.6$ 이므로  
+
 $$  
 q_{0.6}=0.6  
 $$
 
 
-![[IP_Lecture_10_page-0030.jpg]]
+
 #### Example
 - 표준정규분포 $Z \sim N(0,1)$ 의 $0.6$ 분위수를 구하라.
 #### Solution
 - 표준정규분포의 cdf는 닫힌 형태의 식이 없으므로 표 또는 계산 도구를 사용해야 한다.
 - 따라서  
+
 $$  
 q_{0.6} \approx 0.25335  
 $$
 - 분위수(quantile)는 확률변수의 위치(location)를 나타내는 유용한 척도이다.    
 - 이후 강의에서 이를 더 많이 활용하게 될 것이다.
 
-![[IP_Lecture_10_page-0031.jpg]]
+
 ### Percentiles, deciles, quartiles
 - 편의를 위해 분위수는 종종 백분위수(percentiles), 십분위수(deciles), 사분위수(quartiles)로 표현된다.    
 - 60번째 백분위수는 $0.6$ 분위수와 같다.    
