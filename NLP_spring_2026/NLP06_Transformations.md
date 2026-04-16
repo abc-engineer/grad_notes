@@ -305,7 +305,7 @@ $$
 - 예: 언어 모델링 목적(다음 토큰 예측)  
 
 $$  
-\mathcal{L}(\theta) = - \sum_{t} \log P(x_t \mid x_{\<t})  
+\mathcal{L}(\theta) = - \sum_t \log P(x_t \mid x_{\lt t})  
 $$
 
 - 또는 마스크드 언어 모델링(MLM) 등 다양한 자기지도 학습 목표 사용
