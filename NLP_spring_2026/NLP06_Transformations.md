@@ -146,7 +146,7 @@ $$q_i = x_i W^Q \quad k_i = x_i W^K \quad v_i = x_i W^V$$
 - 2. Query와 Key로 어텐션 점수 계산  
 
 $$  
-\alpha_{ij} = \mathrm{Softmax}(q_i \cdot k_j) = \frac{\exp(q_i \cdot k_j)}{\sum_{k} \exp(q_i \cdot k_{j'})}  
+\alpha_{ij} = \mathrm{Softmax}(q_i \cdot k_j) = \frac{\exp(q_i \cdot k_j)}{\sum_{k} \exp(q_i \cdot k_{k})}  
 $$
 - 3. 어텐션 가중치를 사용하여 Value 벡터를 가중합  
 
@@ -168,7 +168,7 @@ $$
 - 3. softmax를 통해 어텐션 점수 획득  
 
 $$  
-\alpha_{ij} = \mathrm{Softmax}(q_i \cdot k_j) = \frac{\exp(q_i \cdot k_j)}{\sum_{k} \exp(q_i \cdot k_{j'})}  
+\alpha_{ij} = \mathrm{Softmax}(q_i \cdot k_j) = \frac{\exp(q_i \cdot k_j)}{\sum_{k} \exp(q_i \cdot k_{k})}  
 $$
 
 
