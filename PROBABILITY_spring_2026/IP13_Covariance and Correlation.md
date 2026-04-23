@@ -29,30 +29,13 @@ $$
 - 성질  
 - Properties 1. $\operatorname{Cov}(aX+b,;cY+d)=ac,\operatorname{Cov}(X,Y)$ 여기서 $a,b,c,d$는 상수이다.
 - Properties 2. $\operatorname{Cov}(X_1+X_2,\;Y)=\operatorname{Cov}(X_1,Y)+\operatorname{Cov}(X_2,Y)$
-- Properties 3.
-- Properties 4.
-- Properties 5.
+- Properties 3. $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$
+- Properties 4. $\operatorname{Cov}(X,Y)=E[XY]-\mu_X\mu_Y$
+- Properties 5. $\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)$
 - Properties 6.
-
-
-
-$$  
-\operatorname{Cov}(X,X)=\operatorname{Var}(X)  
-$$
-
-$$  
-\operatorname{Cov}(X,Y)=E[XY]-\mu_X\mu_Y  
-$$
-
-$$  
-\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)  
-$$
-
-- 위 식은 임의의 $X,Y$에 대해 성립한다.
-- $X$와 $Y$가 독립이면  
-$$  
-\operatorname{Cov}(X,Y)=0  
-$$
+	- 위 식은 임의의 $X,Y$에 대해 성립한다.
+	- $X$와 $Y$가 독립이면  
+$\operatorname{Cov}(X,Y)=0$
 
 #### Warning
 - 역은 일반적으로 성립하지 않는다.
