@@ -17,6 +17,7 @@
 #### Definition
 - $X$와 $Y$가 평균 $\mu_X$, $\mu_Y$를 가지는 확률변수라고 하자.
 - $X$와 $Y$의 공분산은 다음과 같이 정의된다.  
+
 $$  
 \operatorname{Cov}(X,Y)=E\left[(X-\mu_X)(Y-\mu_Y)\right]  
 $$
@@ -43,10 +44,12 @@ $\operatorname{Cov}(X,Y)=0$
 #### Note
 - 성질 4는 분산의 공식과 유사하다.
 - 실제로 $X=Y$이면 다음 식이 된다.  
+
 $$  
 \operatorname{Var}(X)=E[X^2]-\mu_X^2  
 $$
 - 또한 성질 5에서, $X$와 $Y$가 독립이면 $\operatorname{Cov}(X,Y)=0$이므로  
+
 $$  
 \operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)  
 $$  
@@ -56,6 +59,7 @@ $$
 
 ### Proofs of properties of covariance
 #### Property of covariance 1 
+
 $$  
 \operatorname{Cov}(aX+b,;cY+d)=ac,\operatorname{Cov}(X,Y)  
 $$
@@ -63,6 +67,7 @@ $$
 - 여기서 $a,b,c,d$는 상수이다.
 
 ##### Proof.
+
 $$  
 \operatorname{Cov}(aX+b,;cY+d)  
 =E\left[\bigl((aX+b)-E[aX+b]\bigr)\bigl((cY+d)-E[cY+d]\bigr)\right]  
@@ -91,11 +96,13 @@ $$
 
 
 #### Property of covariance  2 
+
 $$  
 \operatorname{Cov}(X_1+X_2,;Y)=\operatorname{Cov}(X_1,Y)+\operatorname{Cov}(X_2,Y)  
 $$
 
 ##### Proof.
+
 $$  
 \operatorname{Cov}(X_1+X_2,\;Y)  
 =E\left[\bigl((X_1+X_2)-(\mu_{X_1}+\mu_{X_2})\bigr)(Y-\mu_Y)\right]  
@@ -115,6 +122,7 @@ $$
 $$
 
 #### Property of covariance  3  
+
 $$  
 \operatorname{Cov}(X,X)=\operatorname{Var}(X)  
 $$
@@ -122,6 +130,7 @@ $$
 ##### Proof.
 
 - 이는 분산의 정의에서 바로 나온다.  
+
 $$  
 \operatorname{Cov}(X,X)=E[(X-\mu_X)(X-\mu_X)]  
 $$
@@ -138,6 +147,7 @@ $$
 
 
 #### Property of covariance   4
+
 $$  
 \operatorname{Cov}(X,Y)=E[XY]-\mu_X\mu_Y  
 $$
@@ -145,6 +155,7 @@ $$
 ##### Proof.
 
 - 먼저  
+
 $$  
 E[X-\mu_X]=0  
 $$  
@@ -172,6 +183,7 @@ $$
 $$
 
 #### Property of covariance   5
+
 $$  
 \operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)  
 $$
@@ -181,21 +193,23 @@ $$
 ##### Proof.
 
 - 성질 3과 성질 2를 이용하면,  
+
 $$  
 \operatorname{Var}(X+Y)=\operatorname{Cov}(X+Y,;X+Y)  
 $$
-
 
 $$  
 =\operatorname{Cov}(X,X)+\operatorname{Cov}(X,Y)+\operatorname{Cov}(Y,X)+\operatorname{Cov}(Y,Y)  
 $$
 
 - 공분산은 대칭이므로  
+
 $$  
 \operatorname{Cov}(X,Y)=\operatorname{Cov}(Y,X)  
 $$
 
 - 따라서  
+
 $$  
 =\operatorname{Cov}(X,X)+2\operatorname{Cov}(X,Y)+\operatorname{Cov}(Y,Y)  
 $$
@@ -212,24 +226,28 @@ $$
 #### Property of covariance   6
 
 - $X$와 $Y$가 독립이면  
+
 $$  
 \operatorname{Cov}(X,Y)=0  
 $$
 
 ##### Proof.
 
-- $X$와 $Y$가 독립이면 결합 pdf는  
+- $X$와 $Y$가 독립이면 결합 pdf는
+
 $$  
 f(x,y)=f_X(x)f_Y(y)  
 $$  
 로 분해된다.
 
 - 따라서  
+
 $$  
 \operatorname{Cov}(X,Y)=\iint (x-\mu_X)(y-\mu_Y)f_X(x)f_Y(y),dx,dy  
 $$
 
 - 적분을 분리하면  
+
 $$  
 =\left(\int (x-\mu_X)f_X(x),dx\right)\left(\int (y-\mu_Y)f_Y(y),dy\right)  
 $$
@@ -240,11 +258,13 @@ $$
 $$
 
 - 그런데  
+
 $$  
 E[X-\mu_X]=0,\qquad E[Y-\mu_Y]=0  
 $$
 
 - 그러므로  
+
 $$  
 \operatorname{Cov}(X,Y)=0  
 $$
@@ -255,12 +275,14 @@ $$
 
 #### Discrete case
 
-- $X$와 $Y$가 결합 pmf $p(x_i,y_j)$를 가지면,  
+- $X$와 $Y$가 결합 pmf $p(x_i,y_j)$를 가지면, 
+
 $$  
 \operatorname{Cov}(X,Y)=\sum_{i=1}^{n}\sum_{j=1}^{m} p(x_i,y_j)(x_i-\mu_X)(y_j-\mu_Y)  
 $$
 
 - 또한 성질 $\operatorname{Cov}(X,Y)=E[XY]-\mu_X\mu_Y$를 이용하면  
+
 $$  
 \operatorname{Cov}(X,Y)=\left(\sum_{i=1}^{n}\sum_{j=1}^{m} p(x_i,y_j)x_i y_j\right)-\mu_X\mu_Y  
 $$
@@ -269,11 +291,13 @@ $$
 - 공분산은 기댓값으로 정의되므로, 연속형의 경우에는 적분으로 계산한다.
 #### Continuous case
 - $X$와 $Y$가 구간 $[a,b]\times[c,d]$에서 결합 pdf $f(x,y)$를 가지면,  
+
 $$  
 \operatorname{Cov}(X,Y)=\int_c^d\int_a^b (x-\mu_X)(y-\mu_Y)f(x,y),dx,dy  
 $$
 
 - 또한 성질 $\operatorname{Cov}(X,Y)=E[XY]-\mu_X\mu_Y$를 이용하면  
+
 $$  
 \operatorname{Cov}(X,Y)=\left(\int_c^d\int_a^b xy,f(x,y),dx,dy\right)-\mu_X\mu_Y  
 $$
@@ -291,6 +315,7 @@ $$
 - 결합확률표와 정의를 이용하는 방법
 - 공분산의 성질을 이용하는 방법
 - 3번 던지면 가능한 결과는 총 $8$개이다.  
+
 $$  
 {HHH,HHT,HTH,HTT,THH,THT,TTH,TTT}  
 $$
@@ -309,16 +334,19 @@ $$
 |$TTT$|$0$|$0$|
 
 - 각 결과의 확률은 모두 $\frac{1}{8}$이다. 따라서  
+
 $$  
 E[X]=1,\qquad E[Y]=1  
 $$
 
 - 이제  
+
 $$  
 E[XY]=\frac{1}{8}(4+2+1+0+2+1+0+0)=\frac{10}{8}=\frac{5}{4}  
 $$
 
 - 그러므로  
+
 $$  
 \operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]  
 $$
@@ -329,6 +357,7 @@ $$
 $$
 
 - 따라서  
+
 $$  
 \operatorname{Cov}(X,Y)=\frac{1}{4}  
 $$
@@ -341,12 +370,14 @@ $$
 
 
 - 주변분포로부터  
+
 $$  
 E[X]=1,\qquad E[Y]=1  
 $$  
 임을 계산할 수 있다.
 
 - 이제 공분산의 정의를 사용하면  
+
 $$  
 \operatorname{Cov}(X,Y)=E[(X-\mu_X)(Y-\mu_Y)]  
 $$
@@ -367,6 +398,7 @@ $$
 - 또는 해당 확률이 $0$
 
 - 따라서 0이 아닌 항만 남기면  
+
 $$  
 \operatorname{Cov}(X,Y)  
 =\frac{1}{8}(0-1)(0-1)+\frac{1}{8}(2-1)(2-1)  
@@ -380,17 +412,20 @@ $$
 $$
 
 - 따라서  
+
 $$  
 \operatorname{Cov}(X,Y)=\frac{1}{4}  
 $$
 
 #### Solution
 - 공분산의 성질 4를 이용해서도 계산할 수 있다.  
+
 $$  
 \operatorname{Cov}(X,Y)=E[XY]-\mu_X\mu_Y  
 $$
 
 - 전체 표에서 $XY$의 기댓값을 계산하면  
+
 $$  
 E[XY]  
 =1\cdot\frac{2}{8}+2\cdot\frac{1}{8}+2\cdot\frac{1}{8}+4\cdot\frac{1}{8}  
@@ -399,16 +434,19 @@ E[XY]
 $$
 
 - 그리고  
+
 $$  
 \mu_X=E[X]=1,\qquad \mu_Y=E[Y]=1  
 $$
 
 - 따라서  
+
 $$  
 \operatorname{Cov}(X,Y)=\frac{5}{4}-1\cdot1=\frac{1}{4}  
 $$
 
 - 즉,  
+
 $$  
 \operatorname{Cov}(X,Y)=\frac{1}{4}  
 $$
@@ -419,35 +457,42 @@ $$
 - 앞에서와 같이 $X_i$를 $i$번째 동전 던지기에서 앞면이 나오면 $1$, 뒷면이 나오면 $0$인 변수라고 하자. 그러면 $X_i\sim\operatorname{Bernoulli}(0.5)$이다.
 
 - 이때  
+
 $$  
 X=X_1+X_2,\qquad Y=X_2+X_3  
 $$
 
 - 또한  
+
 $$  
 E[X_i]=\frac{1}{2},\qquad \operatorname{Var}(X_i)=\frac{1}{4}  
 $$  
 이다.
 
 - 따라서 공분산의 성질 2를 이용하면  
+
 $$  
 \operatorname{Cov}(X,Y)=\operatorname{Cov}(X_1+X_2,;X_2+X_3)  
 $$  
+
 $$  
 =\operatorname{Cov}(X_1,X_2)+\operatorname{Cov}(X_1,X_3)+\operatorname{Cov}(X_2,X_2)+\operatorname{Cov}(X_2,X_3)  
 $$
 
 #### Solution
 - 서로 다른 동전 던지기들은 독립이므로  
+
 $$  
 \operatorname{Cov}(X_1,X_2)=\operatorname{Cov}(X_1,X_3)=\operatorname{Cov}(X_2,X_3)=0  
 $$  
-- 따라서 $\operatorname{Cov}(X,Y)$의 식에서 0이 아닌 항은 하나뿐이다.  
+- 따라서 $\operatorname{Cov}(X,Y)$의 식에서 0이 아닌 항은 하나뿐이다. 
+
 $$  
 \operatorname{Cov}(X,Y)=\operatorname{Cov}(X_2,X_2)  
 $$
 
 - 공분산의 성질 3에 의해  
+
 $$  
 \operatorname{Cov}(X_2,X_2)=\operatorname{Var}(X_2)  
 $$  
@@ -458,11 +503,13 @@ $$
 
 #### Example (공분산이 0이라고 해서 독립은 아니다.)
 - $X$가 다음 값을 각각 확률 $\frac{1}{5}$로 가진다고 하자.  
+
 $$  
 -2,-1,0,1,2  
 $$
 
 - 그리고  
+
 $$  
 Y=X^2  
 $$  
@@ -484,6 +531,7 @@ $$
 |$2$|$0$|$0$|$\frac{1}{5}$|
 
 - 주변분포로부터 평균은  
+
 $$  
 E[X]=0,\qquad E[Y]=2  
 $$  
@@ -494,16 +542,19 @@ $$
 #### Solution
 - 다음으로 $X$와 $Y$가 독립이 아님을 보이자.
 - 이를 위해서는 곱셈법칙이 성립하지 않는 경우를 하나만 찾으면 된다. 즉,  
+
 $$  
 p(x_i,y_j)\ne p_X(x_i)p_Y(y_j)  
 $$  
 인 경우를 찾으면 된다.
 
 - 예를 들어  
+
 $$  
 P(X=-2,;Y=0)=0  
 $$  
 이지만  
+
 $$  
 P(X=-2)\cdot P(Y=0)=\frac{1}{5}\cdot\frac{1}{5}=\frac{1}{25}  
 $$  
@@ -511,20 +562,24 @@ $$
 
 - 이 둘은 같지 않으므로 $X$와 $Y$는 독립이 아니다.
 - 마지막으로 성질 4를 이용하여 공분산을 계산하면  
+
 $$  
 \operatorname{Cov}(X,Y)=E[XY]-\mu_X\mu_Y  
 $$
 
 - 여기서 $\mu_X=0$, $\mu_Y=2$이고,  
+
 $$  
 E[XY]=\frac{1}{5}(-8-1+0+1+8)=0  
 $$  
 이므로  
+
 $$  
 \operatorname{Cov}(X,Y)=0-0\cdot 2=0  
 $$
 
 - 따라서  
+
 $$  
 \operatorname{Cov}(X,Y)=0  
 $$  
@@ -535,7 +590,8 @@ $$
 	- 실제로 $X$와 $X^2$는 매우 강하게 의존한다.
 	- 왜냐하면 $X$의 값을 알면 $X^2$의 값도 100% 확실하게 알 수 있기 때문이다.
 - 핵심은 공분산 $\operatorname{Cov}(X,Y)$가 $X$와 $Y$ 사이의 선형 관계(linear relationship)를 측정한다는 점이다.
-- 위 예제에서 $X$와 $X^2$는 이차 관계(quadratic relationship)를 가진다.  
+- 위 예제에서 $X$와 $X^2$는 이차 관계(quadratic relationship)를 가진다. 
+
 $$  
 Y=X^2  
 $$
@@ -550,6 +606,7 @@ $$
 #### Examples (연속형 공분산)
 
 - $X$와 $Y$가 단위정사각형 $[0,1]\times[0,1]$에서 정의된 결합확률변수이고, 결합 pdf가  
+
 $$  
 f(x,y)=2x^3+2y^3  
 $$  
@@ -560,6 +617,7 @@ $$
 - $\mu_X$와 $\mu_Y$를 계산하여라.
 
 - 공분산  
+
 $$  
 \operatorname{Cov}(X,Y)  
 $$  
@@ -576,21 +634,25 @@ $$
 - 전체 영역에서의 이중적분값이 $1$
 
 - 음이 아닌 조건은 자명하다.  
+
 $$  
 f(x,y)=2x^3+2y^3\ge 0  
 $$
 
 - 이제 전체 적분을 계산하면  
+
 $$  
 \int_0^1\int_0^1 f(x,y),dx,dy=\int_0^1\int_0^1 (2x^3+2y^3),dx,dy  
 $$
 
 - 안쪽 적분:  
+
 $$  
 \int_0^1 (2x^3+2y^3),dx=\left[\frac{x^4}{2}+2xy^3\right]_0^1=\frac{1}{2}+2y^3  
 $$
 
 - 바깥 적분:  
+
 $$  
 \int_0^1 \left(\frac{1}{2}+2y^3\right),dy=\left[\frac{y}{2}+\frac{y^4}{2}\right]_0^1=1  
 $$
@@ -624,15 +686,18 @@ $$
 
 
 #### Solution 3
-- 3. 공분산은 다음과 같이 정의된다.  
+- 3. 공분산은 다음과 같이 정의된다. 
+
 $$  
 \operatorname{Cov}(X,Y)=E[(X-\mu_X)(Y-\mu_Y)]  
 $$
 
-- 따라서 이는 적분으로 계산된다. 여기서도 적분식만 쓰고, 계산 과정의 자세한 전개는 생략한다.  
+- 따라서 이는 적분으로 계산된다. 여기서도 적분식만 쓰고, 계산 과정의 자세한 전개는 생략한다. 
+
 $$  
 \operatorname{Cov}(X,Y)=\int_0^1\int_0^1 \left(x-\frac{13}{20}\right)\left(y-\frac{13}{20}\right)f(x,y)\,dx\,dy  
 $$  
+
 $$  
 =\int_0^1\int_0^1 \left(x-\frac{13}{20}\right)\left(y-\frac{13}{20}\right)(2x^3+2y^3)\,dx\,dy  
 =-\frac{9}{400}  
@@ -651,7 +716,8 @@ $$
 - 예를 들어 측정 단위를 바꾸면 공분산 값도 함께 변한다.
 - 상관계수(correlation)는 공분산에서 이러한 척도(scale)의 영향을 제거한 값이다.
 #### Definition
-- $X$와 $Y$ 사이의 상관계수(correlation coefficient)는 다음과 같이 정의된다.  
+- $X$와 $Y$ 사이의 상관계수(correlation coefficient)는 다음과 같이 정의된다. 
+
 $$  
 \operatorname{Cor}(X,Y)=\rho=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}  
 $$
@@ -677,44 +743,53 @@ $$
 
 #### Proof. (Property 3 of correlation)
 - 먼저 분산은 항상 $0$ 이상이므로  
+
 $$  
 0\le \operatorname{Var}\left(\frac{X}{\sigma_X}-\frac{Y}{\sigma_Y}\right)  
 $$
 - 분산 공식을 적용하면  
+
 $$  
 =\operatorname{Var}\left(\frac{X}{\sigma_X}\right)+\operatorname{Var}\left(\frac{Y}{\sigma_Y}\right)-2\operatorname{Cov}\left(\frac{X}{\sigma_X},\frac{Y}{\sigma_Y}\right)  
 $$
 
 - 표준화된 변수의 분산은 $1$이므로  
+
 $$  
 =1+1-2\rho  
 =2-2\rho  
 $$
 
 - 따라서  
+
 $$  
 0\le 2-2\rho  
 $$  
 이므로  
+
 $$  
 \rho\le 1  
 $$
 
 - 마찬가지로  
+
 $$  
 0\le \operatorname{Var}\left(\frac{X}{\sigma_X}+\frac{Y}{\sigma_Y}\right)  
 $$  
 를 이용하면  
+
 $$  
 -1\le \rho  
 $$
 
 - 결국  
+
 $$  
 -1\le \rho\le 1  
 $$
 
 - 이제 $\rho=1$이라면  
+
 $$  
 0=\operatorname{Var}\left(\frac{X}{\sigma_X}-\frac{Y}{\sigma_Y}\right)  
 $$
