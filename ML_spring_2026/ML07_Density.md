@@ -28,6 +28,7 @@
 - 형식적으로, 데이터가 알 수 없는 확률밀도함수 $p(\mathbf{x})$로부터 생성되며, $\mathbf{x}$는 $D$차원 공간에 놓여 있다고 하자. 우리의 목표는 임의의 점 $\mathbf{x}$에서 이 밀도를 추정하는 것이다.
 - 직관을 위해, $\mathbf{x}$ 주변의 작은 영역 $R$을 생각하자.
 - 무작위로 추출된 데이터 점이 이 영역 내부에 포함될 확률은 다음과 같다.  
+
 $$P=\int_R p(\mathbf{x}),d\mathbf{x}$$
 
 
@@ -43,16 +44,19 @@ $$P=\int_R p(\mathbf{x}),d\mathbf{x}$$
 
 - 따라서 영역 $R$ 내부에 있는 점의 개수 $K$는 이항분포를 따른다.
 - 이항분포는 서로 독립인 $N$번의 시행에서 각 시행의 성공확률이 동일하게 $P$일 때, 정확히 $K$번 성공할 확률을 나타낸다.  
+
 $$\operatorname{Bin}(K\mid N,P)=\binom{N}{K}P^K(1-P)^{N-K}=\frac{N!}{K!(N-K)!}P^K(1-P)^{N-K}$$
 
 - 이항분포의 확률 계산 방법
 
 - 핵심 아이디어는 실제 확률 $P$를 알 수 없더라도 경험적으로 추정할 수 있다는 점이다.
 - 영역 $R$ 내부에 들어가는 데이터 점의 비율은 다음의 기댓값과 분산을 가진다.  
+
 $$\mathbb{E}\left[\frac{K}{N}\right]=P,\quad \operatorname{var}\left(\frac{K}{N}\right)=\frac{P(1-P)}{N}$$
 
 - 관측 개수 $N$이 커질수록 이 비율은 $P$에 매우 가까워진다.
 - 즉, $N$이 충분히 크면 다음과 같이 근사할 수 있다.  
+
 $$P\approx \frac{K}{N}$$
 
 
@@ -60,6 +64,7 @@ $$P\approx \frac{K}{N}$$
 - $K$: 영역 $R$ 내부에 있는 점의 개수 
 
 - 이제 $P$는 영역 $R$ 내부의 확률질량으로도 정의된다는 것을 떠올리자.  
+
 $$P=\int_R p(\mathbf{x})\,d\mathbf{x}$$
 - 만약 영역 $R$이 매우 작다면, 그 내부에서 밀도 $p(\mathbf{x})$는 거의 상수로 간주할 수 있으므로, $R$에 대한 적분값은 밀도값과 영역의 크기의 곱으로 근사된다.
 
@@ -68,14 +73,17 @@ $$P=\int_R p(\mathbf{x})\,d\mathbf{x}$$
 
 - $D$차원 공간에서 영역의 “크기”는 그 영역의 부피(volume)라 하며, 이를 $V$로 나타낸다.
 - 따라서 다음이 성립한다.  
+
 $$P\approx p(\mathbf{x})V$$
 
 - 이를 $P\approx \frac{K}{N}$와 결합하면 다음을 얻는다.  
+
 $$p(\mathbf{x})\approx \frac{P}{V}=\frac{K}{NV}$$
 - 이는 간단한 밀도 추정기를 제공한다. 즉, 한 점에서의 추정 밀도는 그 점 주변의 작은 이웃 안에 포함되는 데이터 점의 비율을 그 이웃의 부피로 나눈 값이다.
 
 - **밀도함수는 다음과 같이 추정**할 수 있다.  
 	- 이 식이 매우 중요
+
 $$p(\mathbf{x})\approx \frac{K}{NV}$$
 
 - 이 밀도를 추정하는 방법에는 두 가지 접근이 있다.
@@ -114,6 +122,7 @@ $$p(\mathbf{x})\approx \frac{K}{NV}$$
 - 이 박스를 순회 하면서 데이터 개수를 파악함.
 
 - 데이터 점 $\mathbf{x}^{(n)}$가 이 초입방체 내부에 있으려면, 모든 차원에서 그 좌표가 $\mathbf{x}$의 좌표와 최대 $\frac{h}{2}$만큼만 차이나야 한다. 즉,  
+
 $$  
 k!\left(\frac{\mathbf{x}-\mathbf{x}^{(n)}}{h}\right)=  
 \begin{cases}  
@@ -125,14 +134,17 @@ $$
 - 이 커널은 점이 초입방체 내부에 있으면 $1$, 그렇지 않으면 $0$을 반환한다.
 
 - 그러면 이 초입방체 내부에 포함되는 점의 개수는 다음과 같다.  
+
 $$K=\sum_{n=1}^{N}k!\left(\frac{\mathbf{x}-\mathbf{x}^{(n)}}{h}\right)$$
 - 따라서 추정 밀도는 다음과 같다.  
+
 $$p(\mathbf{x})=\frac{K}{NV}=\frac{1}{N}\sum_{n=1}^{N}\frac{1}{h^D}k!\left(\frac{\mathbf{x}-\mathbf{x}^{(n)}}{h}\right)$$
 - 여기서 $V=h^D$는 $D$차원 공간에서 초입방체의 부피이다.
 
 - 날카로운 경계를 가진 초입방체 대신, 가우시안(종 모양 곡선)과 같은 더 매끄러운 함수를 사용할 수도 있으며, 이는 보다 완만한 밀도 추정을 제공한다.
 
 - 가우시안 커널 밀도 추정은 다음과 같다.  
+
 $$  
 p(\mathbf{x})=\frac{1}{N}\sum_{n=1}^{N}\frac{1}{(2\pi h^2)^{1/2}}\exp!\left(-\frac{|\mathbf{x}-\mathbf{x}^{(n)}|^2}{2h^2}\right)  
 $$
@@ -160,6 +172,7 @@ $$
 - 커널 밀도 추정처럼 부피 $V$를 고정하고 그 안의 데이터 점 개수 $K$를 세는 대신, 여기서는 $K$(가장 가까운 데이터 점의 수)를 고정하고 데이터에 따라 부피 $V$가 변하도록 둔다.
 - 그래서 이 방법을 $K$-최근접 이웃 밀도 추정기라고 부른다.
 - 주어진 점 $\mathbf{x}$에 대해, 정확히 $K$개의 데이터 점을 포함할 때까지 그 주변의 영역(예: 구 형태)을 확장한다.  
+
 $$p(\mathbf{x})\approx \frac{K}{NV}$$
 
 - 이번에는 K값을 픽스하고 V 값을 측정해서 p(x)를 추정정
@@ -174,26 +187,33 @@ $$p(\mathbf{x})\approx \frac{K}{NV}$$
 
 - $k$-최근접 이웃 방법은 분류에도 사용할 수 있다(예: $K=5$).
 - 서로 다른 클래스 $C_c$($C_1$, $C_2$)를 가지는 데이터셋이 있다고 하자. 전체 데이터 수는 $N$개이며, 클래스 $C_c$에 속한 점의 수는 $N_c$개($N_1=6$, $N_2=5$)라고 하자.  
+
 $$\sum_c N_c = N$$
 - 새로운 점 $\mathbf{x}$를 분류하기 위해, $\mathbf{x}$ 주변에 영역(예: 초구)을 만들고 학습 데이터 중 정확히 $K$개의 최근접 이웃을 포함할 때까지 그 영역을 확장한다.
 
 - 이 영역의 부피를 $V$라고 하자.
 - 이 $K$개의 이웃 중에서 $K_c$개가 클래스 $C_c$에 속한다고 하자($K_1=3$, $K_2=2$).
 - 밀도 추정과 동일한 논리를 사용하면, $\mathbf{x}$에서의 클래스 조건부 밀도는 다음과 같이 근사할 수 있다.  
+
 $$p(\mathbf{x}\mid C_c)\approx \frac{K_c}{N_cV}$$
 - 이는 클래스 $C_c$에 속한 점들 중 영역 내부에 들어가는 비율이 대략 $\frac{K_c}{N_c}$이고, 이를 부피 $V$로 나누면 확률질량이 밀도로 변환되기 때문이다.
 
 - 여기서 클래스와 무관한 $\mathbf{x}$에서의 전체 밀도는 다음과 같다.  
+
 $$p(\mathbf{x})=\frac{K}{NV}$$
 - 클래스 $C_c$의 사전확률은 다음과 같다.  
+
 $$p(C_c)=\frac{N_c}{N}$$
 - 이제 베이즈 정리를 이용하여 $\mathbf{x}$가 클래스 $C_c$에 속할 사후확률을 계산할 수 있다.  
+
 $$p(C_c\mid \mathbf{x})=\frac{p(\mathbf{x}\mid C_c)p(C_c)}{p(\mathbf{x})}$$
-- 위 식에 각 근사식을 대입하면 다음을 얻는다.  
+- 위 식에 각 근사식을 대입하면 다음을 얻는다.
+
 $$p(C_c\mid \mathbf{x})=\frac{\left(\frac{K_c}{N_cV}\right)\left(\frac{N_c}{N}\right)}{\frac{K}{NV}}=\frac{K_c}{K}$$
 - 즉, 사후확률은 $K$개의 최근접 이웃 중 클래스 $C_c$에 속한 점의 비율과 같다.
 
-- 베이즈 정리는 우도(likelihood), 사전확률(prior), 그리고 전체 밀도를 결합하여 다음을 준다.  
+- 베이즈 정리는 우도(likelihood), 사전확률(prior), 그리고 전체 밀도를 결합하여 다음을 준다.
+
 $$p(C_c\mid \mathbf{x})=\frac{p(\mathbf{x}\mid C_c)p(C_c)}{p(\mathbf{x})}=\frac{K_c}{K}$$
 
 - 이는 클래스 $C_c$의 사후확률이 $K$개의 최근접 점들 중 클래스 $C_c$에 속한 점의 비율과 같다는 뜻이다.
@@ -216,6 +236,7 @@ $$p(C_c\mid \mathbf{x})=\frac{p(\mathbf{x}\mid C_c)p(C_c)}{p(\mathbf{x})}=\frac{
 
 
 - 수학적으로 이 모형은 밀도를 가우시안 성분들의 가중합으로 표현한다.  
+
 $$p(\mathbf{x})=\sum_{k=1}^{K}\pi_k\,\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)$$
 - 여기서 $K$는 가우시안 성분의 개수이고, $\pi_k$는 $k$번째 가우시안 성분의 가중치(또는 사전확률)이며 $0\leq \pi_k\leq 1$을 만족한다.
 - $\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)$는 평균 $\boldsymbol{\mu}_k$와 공분산 $\boldsymbol{\Sigma}_k$를 갖는 가우시안의 확률밀도함수이다.
@@ -236,6 +257,7 @@ $$p(\mathbf{x})=\sum_{k=1}^{K}\pi_k\,\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}
 - 그러나 실제로 우리는 이 결합분포를 직접 관측하지 않고, 대신 $p(\mathbf{x})$로부터 추출된 표본들을 얻는다.
 - 각 관측값은 서로 다른 잠재 상태들로부터 생성될 수 있다고 가정하므로, $\mathbf{x}$의 확률은 그러한 모든 가능성을 고려하여 얻어진다.
 - 이는 주변화(marginalization)를 통해 이루어진다.  
+
 $$p(\mathbf{x})=\sum_{\mathbf{z}}p(\mathbf{x},\mathbf{z})$$
 - 이 원리는 더 단순한 조건부 구조들로부터 복잡한 밀도를 구성할 수 있게 해준다.
 
@@ -244,8 +266,10 @@ $$p(\mathbf{x})=\sum_{\mathbf{z}}p(\mathbf{x},\mathbf{z})$$
 
 - 형식적으로 잠재변수 $\mathbf{z}$는 길이가 $K$인 원-핫(one-hot) 벡터로 표현할 수 있으며, $z_k=1$은 $k$번째 성분이 선택되었음을 의미하고, $j\ne k$인 모든 $j$에 대해 $z_j=0$이다.
 - $\mathbf{z}$에 대한 사전분포는 다음과 같이 주어진다.  
+
 $$p(z_k=1)=\pi_k,\quad 0\leq \pi_k\leq 1,\quad \sum_{k=1}^{K}\pi_k=1$$
-- 한 번 $\mathbf{x}$를 생성한 성분이 정해지면(즉, $z_k=1$), 조건부확률은 가우시안 분포가 된다.  
+- 한 번 $\mathbf{x}$를 생성한 성분이 정해지면(즉, $z_k=1$), 조건부확률은 가우시안 분포가 된다. 
+
 $$p(\mathbf{x}\mid z_k=1)=\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)$$
 
 
@@ -254,6 +278,7 @@ $$p(\mathbf{x}\mid z_k=1)=\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k,\boldsym
 
 - $\pi_1 \approx 0.6,\ \pi_2 \approx 0.3,\ \pi_3 \approx 0.1$  이면 component가 3개이므로 $z$는 길이 3짜리 원핫벡터입니다.  
 - 가능한 $z$는 딱 3개입니다.  
+
 $$  
 z =  
 \begin{bmatrix}  
@@ -277,6 +302,7 @@ z =
 \end{bmatrix}  
 $$  
 - 각각의 확률은 다음과 같습니다.  
+
 $$  
 P\left(  
 z =  
@@ -312,6 +338,7 @@ z =
 $$
 
 - 예를 들어 component가 3개라면,  $\pi_1,\pi_2,\pi_3$에 가중치를 둬야 함.
+
 $$  
 \pi =  
 \begin{bmatrix}  
@@ -321,6 +348,7 @@ $$
 \end{bmatrix}  
 $$  
 - 그러면 가능한 원핫벡터와 확률은 다음과 같습니다.  
+
 $$  
 P\left(  
 \begin{bmatrix}  
@@ -352,6 +380,7 @@ P\left(
 = 0.1  
 $$  
 - 조건은 전체 합이 1이어야 합니다.  
+
 $$  
 \pi_1 + \pi_2 + \pi_3 = 1  
 $$    
@@ -364,6 +393,7 @@ $$
 
 
 - $\mathbf{z}$에 대해 주변화하면 다시 혼합 밀도를 얻는다.  
+
 $$  
 p(\mathbf{x})=\sum_{\mathbf{z}}p(\mathbf{x},\mathbf{z})  
 =\sum_{\mathbf{z}}p(\mathbf{z})p(\mathbf{x}\mid \mathbf{z})  
@@ -371,42 +401,53 @@ p(\mathbf{x})=\sum_{\mathbf{z}}p(\mathbf{x},\mathbf{z})
 $$
 - $z$의 분포
 	- 각 성분이 선택될 확률은 mixing coefficient:  
+
 $$  
 p(z_k = 1) = \pi_k,\quad \sum_{k=1}^K \pi_k = 1  
-$$$$  
+$$
+
+$$  
 p(z)=\prod_{k=1}^K \pi_k^{z_k}  
 $$
 - 조건부 분포 $p(x\mid z)$
 	- 만약 $k$번 성분이 선택되었다면 one-hot이라 하나만 살아남습니다.
+
 $$  
 p(x\mid z_k=1)=\mathcal N(x\mid \mu_k,\Sigma_k)  
-$$ $$  
+$$ 
+
+$$  
 p(x\mid z)=\prod_{k=1}^K \mathcal N(x\mid \mu_k,\Sigma_k)^{z_k}  
 $$  
 - 결합분포
 	- 확률 곱셈법칙:  
+
 $$  
 p(x,z)=p(z)p(x\mid z)  
 $$
 
 - 주변화 $z$ 제거
 	- 관측된 것은 $x$만이므로 $z$를 합쳐 없앱니다:  
+
 $$  
 p(x)=\sum_z p(x,z)  
-$$  - 그리고 결합분포를 대입하면:  
+$$  
+- 그리고 결합분포를 대입하면:  
+
 $$  
 p(x)=\sum_z p(z)p(x\mid z)  
 $$
 - 왜 $\sum_{k=1}^K$가 되나?
 -  가능한 $z$ 상태는 one-hot 경우의 수 $K$개뿐입니다.  
 - 즉:  
+
 $$  
 (1,0,\dots,0),\ (0,1,\dots,0),\ \dots,\ (0,0,\dots,1)  
 $$  
 - 따라서  
+
 $$  
 \sum_z p(z)p(x\mid z)
-
 \sum_{k=1}^K p(z_k=1)p(x\mid z_k=1)  
 $$
 
@@ -414,15 +455,19 @@ $$
 
 $$  
 p(z_k=1)=\pi_k  
-$$$$  
+$$
+
+$$  
 p(x\mid z_k=1)=\mathcal N(x\mid \mu_k,\Sigma_k)  
 $$  
 따라서  
+
 $$  
 p(x)=\sum_{k=1}^K \pi_k \mathcal N(x\mid \mu_k,\Sigma_k)  
 $$
 
 - 이는 원래의 가우시안 혼합 모형 식으로 단순화된다.  
+
 $$  
 p(\mathbf{x})=\sum_{k=1}^{K}\pi_k,\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
 $$
@@ -432,6 +477,7 @@ $$
 
 ### Maximum Likelihood Estimation for Gaussian Mixture Models
 - 가우시안 혼합 밀도는 다음과 같이 정의된다.  
+
 $$p(\mathbf{x})=\sum_{k=1}^{K}\pi_k\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)$$
 
 - 이제 우리는 매개변수 추정 문제를 다룬다.
@@ -442,6 +488,7 @@ $$p(\mathbf{x})=\sum_{k=1}^{K}\pi_k\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k
 
 
 - 다음과 같은 관측 데이터 집합이 있다고 하자.  
+
 $$\mathbf{x}^{(1)},\dots,\mathbf{x}^{(N)}$$
 - 각 데이터 점 $\mathbf{x}^{(n)}$은 $D$차원 벡터이다.
 - 이를 하나의 데이터 행렬로 쌓으면, 각 행이 하나의 데이터 점이 되는 $\mathbf{X}\in\mathbb{R}^{N\times D}$를 얻는다.
@@ -453,11 +500,13 @@ $$\mathbf{x}^{(1)},\dots,\mathbf{x}^{(N)}$$
 관측 데이터와 잠재변수를 **행렬 형태로 정리하는 과정**
 #### 1. 관측 데이터
  데이터가 $N$개 있다고 하겠습니다.  
+
 $$  
 \mathbf{x}^{(1)},\ \mathbf{x}^{(2)},\ \dots,\ \mathbf{x}^{(N)}  
 $$  
 여기서 각 데이터 점은 $D$차원 벡터입니다.  
 예를 들어 $D=2$라면 하나의 데이터는  
+
 $$  
 \mathbf{x}^{(n)} =  
 \begin{bmatrix}  
@@ -467,6 +516,7 @@ x_2^{(n)}
 $$  
 처럼 생겼습니다.  
 예를 들어 키와 몸무게 데이터를 쓴다면  
+
 $$  
 \mathbf{x}^{(n)} =  
 \begin{bmatrix}  
@@ -476,7 +526,8 @@ $$
 $$ 입니다.
 
 ##### 2. 데이터 행렬 $\mathbf{X}$
-데이터 $N$개를 행 방향으로 쌓으면 하나의 행렬이 됩니다.  
+데이터 $N$개를 행 방향으로 쌓으면 하나의 행렬이 됩니다. 
+
 $$  
 \mathbf{X} =  
 \begin{bmatrix}  
@@ -487,11 +538,13 @@ $$
 \end{bmatrix}  
 $$  
 따라서  
+
 $$  
 \mathbf{X}\in\mathbb{R}^{N\times D}  
 $$  
 입니다.  
 즉,  
+
 $$  
 \mathbf{X} =  
 \begin{bmatrix}  
@@ -527,6 +580,7 @@ $$
 $$  
 \text{행 개수 } N = \text{데이터 개수}  
 $$
+
 $$  
 \text{열 개수 } D = \text{변수 또는 특징 개수}  
 $$  
@@ -536,22 +590,26 @@ $$
 
 GMM에서는 각 데이터 $\mathbf{x}^{(n)}$이 $K$개의 가우시안 성분 중 하나에서 생성되었다고 봅니다.  
 예를 들어 $K=3$이면 성분은 다음과 같습니다.  
+
 $$  
 \text{Gaussian 1},\quad \text{Gaussian 2},\quad \text{Gaussian 3}  
 $$  
 각 데이터가 어느 성분에서 왔는지를 나타내는 변수가 잠재변수입니다.  
+
 $$  
 \mathbf{z}^{(n)}  
 $$  
 이 잠재변수는 원-핫 벡터로 표현합니다.  
 예를 들어 $K=3$이면  
+
 $$  
 \mathbf{z}^{(n)} =  
 \begin{bmatrix}  
 1 & 0 & 0  
 \end{bmatrix}  
 $$
-이면 1번 가우시안 성분에서 생성되었다는 뜻입니다.  
+이면 1번 가우시안 성분에서 생성되었다는 뜻입니다. 
+
 $$  
 \mathbf{z}^{(n)} =  
 \begin{bmatrix}  
@@ -559,6 +617,7 @@ $$
 \end{bmatrix}  
 $$
 이면 2번 가우시안 성분에서 생성되었다는 뜻입니다.  
+
 $$  
 \mathbf{z}^{(n)} =  
 \begin{bmatrix}  
@@ -569,16 +628,19 @@ $$
 
 ##### 4. 잠재변수 행렬 $\mathbf{Z}$
 데이터가 $N$개 있으므로 잠재변수도 $N$개 있습니다.  
+
 $$  
 \mathbf{z}^{(1)},\ \mathbf{z}^{(2)},\ \dots,\ \mathbf{z}^{(N)}  
 $$  
 각 $\mathbf{z}^{(n)}$은 $K$차원 원-핫 벡터입니다.  
 이것들을 행 방향으로 쌓으면  
+
 $$  
 \mathbf{Z}\in\mathbb{R}^{N\times K}  
 $$  
 가 됩니다.  
 즉,  
+
 $$  
 \mathbf{Z} =  
 \begin{bmatrix}  
@@ -590,6 +652,7 @@ z_1^{(N)} & z_2^{(N)} & \cdots & z_K^{(N)}
 $$  
 입니다.  
 여기서  
+
 $$  
 z_k^{(n)} =  
 \begin{cases}  
@@ -601,10 +664,12 @@ $$
 
 ##### 5. 예시
 데이터가 $N=5$개 있고, 각 데이터가 $D=2$차원이라고 하겠습니다.  
+
 $$  
 \mathbf{X}\in\mathbb{R}^{5\times 2}  
 $$  
 예를 들어  
+
 $$  
 \mathbf{X} =  
 \begin{bmatrix}  
@@ -618,7 +683,8 @@ $$
 이라고 하겠습니다.  
 또한 가우시안 성분이 $K=3$개라고 하겠습니다.  
 그러면 각 데이터는 세 성분 중 하나에서 생성됩니다.  
-예를 들어 실제 성분 배정이 다음과 같다고 해보겠습니다.  
+예를 들어 실제 성분 배정이 다음과 같다고 해보겠습니다. 
+
 $$  
 \begin{align}  
 \mathbf{x}^{(1)} &\rightarrow \text{1번 가우시안분포 성분}\\  
@@ -629,6 +695,7 @@ $$
 \end{align}  
 $$  
 그러면 $\mathbf{Z}$는 다음과 같습니다.  
+
 $$  
 \mathbf{Z} =  
 \begin{bmatrix}  
@@ -640,6 +707,7 @@ $$
 \end{bmatrix}  
 $$  
 따라서  
+
 $$  
 \mathbf{Z}\in\mathbb{R}^{5\times 3}  
 $$  
@@ -647,15 +715,18 @@ $$
 
 ##### 6. $\mathbf{X}$와 $\mathbf{Z}$의 관계
 중요한 점은 $\mathbf{X}$와 $\mathbf{Z}$의 행 번호가 서로 대응된다는 것입니다.  
+
 $$  
 \mathbf{x}^{(n)}  
 $$  
 은 $n$번째 관측 데이터입니다.  
+
 $$  
 \mathbf{z}^{(n)}  
 $$  
 은 그 데이터가 어느 가우시안 성분에서 생성되었는지를 나타냅니다.  
 예를 들어  
+
 $$  
 \mathbf{x}^{(3)} =  
 \begin{bmatrix}  
@@ -663,6 +734,7 @@ $$
 \end{bmatrix}  
 $$  
 이고  
+
 $$  
 \mathbf{z}^{(3)} =  
 \begin{bmatrix}  
@@ -674,16 +746,19 @@ $$
 ##### 7. 하지만 실제로 $\mathbf{Z}$는 보통 관측되지 않습니다
 GMM에서 $\mathbf{X}$는 우리가 실제로 관측한 데이터입니다.  
 반면 $\mathbf{Z}$는 보통 모릅니다.  
-즉, 우리는 데이터 점들은 알고 있습니다.  
+즉, 우리는 데이터 점들은 알고 있습니다. 
+
 $$  
 \mathbf{X}  
 $$  
 하지만 각 데이터가 어느 가우시안 성분에서 왔는지는 모릅니다.  
+
 $$  
 \mathbf{Z}  
 $$  
 그래서 $\mathbf{Z}$를 **잠재변수**라고 부릅니다.  
 즉,  
+
 $$  
 \text{관측됨: } \mathbf{X}  
 $$
@@ -694,6 +769,7 @@ $$
 입니다.  
 EM 알고리즘에서는 이 보이지 않는 $\mathbf{Z}$를 직접 아는 대신, 각 데이터가 각 성분에 속할 확률을 계산합니다.  
 예를 들어  
+
 $$  
 \gamma(z_{nk}) = p(z_k^{(n)} = 1 \mid \mathbf{x}^{(n)})  
 $$  
@@ -707,20 +783,24 @@ $$
 $$  
 는 관측 데이터 행렬입니다.  
 각 행은 하나의 데이터 점입니다.  
+
 $$  
 \mathbf{Z}\in\mathbb{R}^{N\times K}  
 $$  
 는 잠재변수 행렬입니다.  
 각 행은 하나의 원-핫 벡터입니다.  
+
 $$  
 z_k^{(n)} = 1  
 $$  
 이면 $n$번째 데이터가 $k$번째 가우시안 성분에서 생성되었다는 뜻입니다.  
 따라서 한 줄로 정리하면 다음과 같습니다.  
+
 $$  
 \mathbf{X} =  
 \text{실제로 관측한 데이터들의 모음}  
 $$  
+
 $$  
 \mathbf{Z} =  
 \text{각 데이터가 어느 가우시안 성분에서 왔는지를 나타내는 숨겨진 정보}  
@@ -730,6 +810,7 @@ $$
 
 - 데이터가 서로 독립이고 동일한 분포를 따른다(i.i.d.)고 가정하면, 전체 데이터셋 $\mathbf{X}$의 우도는 각 데이터 점의 밀도의 곱으로 주어진다.
 - 로그를 취하면 로그우도는 다음과 같다.  
+
 $$  
 \ln p(\mathbf{X}\mid \boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma})  
 =\sum_{n=1}^{N}\ln\left(\sum_{k=1}^{K}\pi_k\mathcal{N}(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)\right)  
@@ -740,13 +821,15 @@ $$
 
 - 그러나 가우시안 혼합 모형의 로그우도를 최대화하려고 하면 중요한 어려움이 발생한다. 우도 함수가 위로 제한되지 않을 수 있다는 점이다.
 - 이는 모형이 특이점(singularity)을 허용하기 때문이며, 특정 매개변수 값에서 우도가 무한대로 발산하는 상황이 생길 수 있다.
-- 이를 보기 위해, 각 가우시안 성분의 공분산 행렬이 다음과 같은 등방성 형태라고 가정하자.  
+- 이를 보기 위해, 각 가우시안 성분의 공분산 행렬이 다음과 같은 등방성 형태라고 가정하자.
+
 $$\boldsymbol{\Sigma}_k=\sigma_k^2\mathbf{I}$$
 - 여기서 $\mathbf{I}$는 항등행렬이고, $\sigma_k$는 $k$번째 성분의 표준편차이다.
 
 - 이는 모형이 특이점(singularity)을 허용 → likelihood가 발산 할 수 있음.
 
 - 그러면 데이터 점 $\mathbf{x}^{(n)}$에 대한 $k$번째 성분의 가우시안 밀도는 다음과 같다.  
+
 $$  
 \mathcal{N}\!\left(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\sigma_k^2\mathbf{I}\right)  
 =  
@@ -757,8 +840,10 @@ $$
 $$
 
 - 이제 어떤 가우시안 성분 하나의 평균이 특정 데이터 점과 정확히 일치한다고 가정하자.  
+
 $$\boldsymbol{\mu}_k=\mathbf{x}^{(n)}$$
 - 이 경우 해당 데이터 점이 우도 함수에 기여하는 값은 다음과 같다.  
+
 $$  
 \mathcal{N}!\left(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\sigma_k^2\mathbf{I}\right)  
 =  
@@ -776,6 +861,7 @@ $$
 - 특이점 문제 외에도, 가우시안 혼합 모형의 로그우도를 최대화하는 일은 단일 가우시안의 경우보다 수학적으로 더 어렵다.
 - 단일 가우시안에서는 로그가 하나의 가우시안 밀도에 직접 적용되므로 로그우도가 단순한 형태를 가진다.
 - 반면 가우시안 혼합 모형의 로그우도는 다음과 같은 형태이다.  
+
 $$  
 \sum_{n=1}^{N}\ln\left(\sum_{k=1}^{K}\pi_k\mathcal{N}(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)\right)  
 $$
