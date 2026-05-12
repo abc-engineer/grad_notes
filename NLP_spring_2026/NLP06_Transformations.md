@@ -367,6 +367,151 @@ $$
 
 - 이 과정은 트랜스 포머와 동일함함
 
-
 - 마지막 레이어의 출력은 문맥 임베딩(contextual embeddings)이 됨    
 - 주변 문맥 정보를 반영하여 각 단어의 의미를 표현함
+
+### BERT: Optimization
+- 원칙적으로 최적화 문제를 정의하면, 경사하강법(gradient descent)으로 이를 해결할 수 있음
+	- 따라서 핵심 질문은 문맥을 잘 반영하는 최적화 문제를 어떻게 정의할 것인가임
+- BERT는 강력한 언어 이해를 위해 두 가지 학습 목표를 사용함
+	- 1. 마스크드 언어 모델링(MLM)
+		- 주변 문맥을 기반으로 무작위로 가려진 단어를 예측
+		- 다음 단어가 나오게 할 것인데 랜덤하게 마스킹을 한 뒤 확률을 맞추게 함.
+	- 2. 다음 문장 예측(NSP)
+		- 한 문장이 다른 문장 다음에 자연스럽게 이어지는지 여부를 예측
+		- 두 문장을 주고 두 문장이 논리적으로 이어지는지 아닌지를 맞춤.
+
+
+- 
+![[5.1 Transformers details_page-0024.jpg]]
+### 1. Masked language modeling (MLM)
+- BERT에 들어가는 데이터는 라지 랭귀지임.
+- MLM에서는 마스크라는 스페셜 토큰으로 치환 됨.
+- 그 다음 가려진 단어가 무엇인지 BERT가 맞춰야 함.
+![[5.1 Transformers details_page-0025.jpg]]
+
+- 셀프 어텐션의 특징은 어떤 단어가 중요한지 찾는 것임.
+	- 뱅크를 맞추려면 피크닉과 리버를 알아야 하고 유의미하게 연결 되었다는 것을 찾아야 함.
+	- 모델에게 어떤 단어가 중요한지를 가르쳐 주는 모델이라고 볼 수 있음.
+![[5.1 Transformers details_page-0026.jpg]]
+
+- 마스크드 언어 모델링(MLM): 가려진 단어를 예측하는 학습 목표  
+$$  
+\mathcal{L}_{\mathrm{MLM}} = - \frac{1}{|M|} \sum_{i \in M} \log P(x_i \mid h_i^L)  
+$$
+
+- $M$: 마스킹된 위치들의 집합
+- 전체 토큰의 약 $15$%를 무작위로 선택하여 특수 토큰 $\text{[MASK]}$로 대체
+- 입력 문장: 원래 문장
+- 마스킹된 문장: 일부 단어가 $\text{[MASK]}$로 대체된 문장
+- 목표: 문맥을 기반으로 원래 단어를 정확히 복원하도록 학습
+
+- 가려진 단어를 맞출 확률이 높아지도록 오브젝트 펑션을 만들고 학습을 진행
+![[5.1 Transformers details_page-0027.jpg]]
+
+- 확률 계산 방법: 선형 레이어와 softmax를 사용
+- 먼저, 마지막 레이어의 은닉 표현 $h_i^L$에 선형 변환 적용  
+$$  
+u = h_i^L W  
+$$
+
+- 이후 softmax를 적용하여 확률 분포 계산  
+$$  
+y = \mathrm{softmax}(u)  
+$$
+
+- 각 로짓(logit)은 문맥 임베딩 $h_i^L$와 어휘 임베딩(가중치 행렬 $W$의 각 열) 간의 내적(inner product)으로 해석됨
+
+
+$$  
+\text{softmax}(x_i)= \frac{\exp(x_i)}{\sum_j \exp(x_j)}, \quad \sum_i p_i = 1  
+$$
+
+![[5.1 Transformers details_page-0028.jpg]]
+- weight tying은 모델 크기를 줄이고 중복을 방지함
+	- 입력 임베딩 행렬 $E$와 출력 가중치 $W$를 공유하여 별도의 파라미터를 두지 않음  
+$$  
+W = E^{\top}  
+$$
+- 임베딩 E의 트랜스포즈 한것을 웨이트 벡터로 사용??
+- 동일한 단어 표현을 입력과 출력에서 함께 사용하여 파라미터 효율성과 일반화 성능을 향상시킴
+![[5.1 Transformers details_page-0029.jpg]]
+- 이진 문제를 풀도록 만듦.
+![[5.1 Transformers details_page-0030.jpg]]
+### 2. Next sentence prediction (NSP)
+- 아이디어    
+	- 두 문장을 동시에 모델에 입력하며, 특수 토큰 $\text{[SEP]}$→ 세퍼레이션 토큰으로 구분    
+	- 입력의 맨 앞에 $\text{[CLS]}$ 토큰을 추가하여 전체 문장 정보를 요약   
+		- CLS는 BERT의 모든 문장 앞에 추가되도록 함.
+	- 모델은 두 번째 문장이 첫 번째 문장 뒤에 실제로 이어지는지 여부를 예측    
+- 문맥 학습에 도움이 되는 이유    
+	- 문장 간 일관성(coherence)을 학습하도록 유도 (토큰 수준을 넘어선 이해)    
+	- 이후 연구에서는 NSP의 필요성에 대한 논쟁이 있었지만, 이 설계는 많은 후속 연구에 영감을 줌
+![[Pasted image 20260504204114.png]]
+
+- MLM보다 긴 호흡에서 문맥을 이해하도록 함.
+
+- **현대 검색이나 추천에 기반이 된 개념이기 때문에 모델 디자인은 알아두는 것이 좋음.**
+![[5.1 Transformers details_page-0031.jpg]]
+
+- $y$: 두 문장이 연속적인지 여부(이진 분류)
+- $\text{[CLS]}$ 토큰은 전체 입력 문장의 정보를 집약한 표현
+- 따라서 $\text{[CLS]}$의 최종 표현 $h_{\mathrm{[CLS]}}^{L}$을 사용하여 두 문장이 이어지는지 예측
+- 입력 구성
+- 두 문장을 함께 입력으로 사용
+- 두 문장 사이에 $\text{[SEP]}$ 토큰을 삽입하여 구분
+
+- \[CLS] token aggregates information from the whole input, not just a single word. So, we use it to predict whether two sentences are consecutive or not
+- 문장의 종결을 알려주기 위해 SEP 토큰을 마지막도 추가 하기도 함.
+- hCLS가 나오면 이진 분류를 수행해서 O,X 답변
+![[5.1 Transformers details_page-0032.jpg]]
+- 다음 문장 예측(NSP, Next Sentence Prediction) 손실 함수  
+$$  
+\mathcal{L}_{\mathrm{NSP}} = - \log P(y \mid h_{\mathrm{[CLS]}}^{L})  
+$$
+
+- linear layer + softmax를 이용함.
+$$  
+\mathbf{y}=\operatorname{softmax}\left(\mathbf{h}_{\mathrm{CLS}}^{L}\mathbf{W}_{\mathrm{NSP}}\right)  
+$$
+![[5.1 Transformers details_page-0033.jpg]]
+### BERT optimization = MLM + NSP
+- BERT는 두 가지 학습 목표로 사전학습됨  
+$$  
+\mathcal{L}_{\mathrm{BERT}} = \mathcal{L}_{\mathrm{MLM}} + \mathcal{L}_{\mathrm{NSP}}  
+$$
+
+- 마스크드 언어 모델링(MLM)  
+$$  
+\mathcal{L}_{\mathrm{MLM}} = - \frac{1}{|M|} \sum_{i \in M} \log P(x_i \mid h_i^L)  
+$$
+
+- 주변 문맥을 기반으로 마스킹된 단어를 예측
+- 다음 문장 예측(NSP)  
+$$  
+\mathcal{L}_{\mathrm{NSP}} = - \log P(y \mid h_{\mathrm{[CLS]}}^{L})  
+$$
+
+- 두 문장이 연속적인지 여부를 예측
+- 두 목적 함수는 함께 최적화되며, 문맥 이해 능력을 효과적으로 학습함
+
+- 마스크도 하고 두 문장이 이어지는지 복합적으로 평가를 함.
+![[5.1 Transformers details_page-0034.jpg]]
+
+- BERT는 두 가지 학습 목표로 사전학습됨  
+$$  
+\mathcal{L}_{\mathrm{BERT}} = \mathcal{L}_{\mathrm{MLM}} + \mathcal{L}_{\mathrm{NSP}}  
+$$
+- 최적화 방법: 경사하강법(gradient descent)
+- 그래디언트 $\nabla_{\theta} \mathcal{L}(\theta)$는 손실을 가장 크게 증가시키는 방향을 나타냄
+- 알고리즘
+- 파라미터 $\theta$를 무작위로 초기화
+- 수렴할 때까지 반복  
+$$  
+\theta \leftarrow \theta - \eta \nabla_{\theta} \mathcal{L}(\theta)  
+$$
+
+- $\theta$: 학습할 파라미터
+- $\eta$: 학습률(learning rate, 하이퍼파라미터)
+
+## Transformation 본문
