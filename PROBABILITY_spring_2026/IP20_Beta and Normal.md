@@ -19,6 +19,7 @@
 
 ### Beta distribution
 - 베타 분포 $\mathrm{Beta}(a,b)$는 구간 $[0,1]$을 범위로 가지는 2-모수 분포이며, 확률밀도함수는 다음과 같다.  
+
 $$  
 f(\theta)=\frac{(a+b-1)!}{(a-1)!(b-1)!}\;\theta^{a-1}(1-\theta)^{b-1}  
 $$
@@ -34,9 +35,6 @@ $$
 - a가 b보다 크면 1 쪽으로
 - b가 a보다 크면 0 쪽으로 치우치고,  
 - a,b가 모두 커지면 평균 $\frac{a}{a+b}$ 주변으로 더 좁게 몰린다.
-
-
-
 - a,b 가 둘다 0이면 세타에 관한 값이 다 사라짐.
 
 
@@ -50,6 +48,7 @@ $$
 
 ### A simple but important observation!
 - 구간 $[0,1]$에서 정의된 확률밀도함수 $f(\theta)$가 $c\theta^{a-1}(1-\theta)^{b-1}$ 형태라면, $f(\theta)$는 $\mathrm{Beta}(a,b)$ 분포이고 정규화 상수는 다음과 같아야 한다.  
+
 $$  
 c=\frac{(a+b-1)!}{(a-1)!(b-1)!}  
 $$
@@ -73,6 +72,7 @@ $$
 
 
 - 데이터는 앞면 $8$번과 뒷면 $4$번이다. 이것은 이항분포 $\mathrm{Binomial}(12,\theta)$에서 나오므로 가능도는 다음과 같다.  
+
 $$  
 p(x_1\mid \theta)=\binom{12}{8}\theta^8(1-\theta)^4  
 $$
@@ -86,10 +86,12 @@ $$
 
 - 사후 확률밀도함수에 대해 우리의 단순한 관찰은 $a=9$, $b=5$일 때 성립한다.
 - 따라서 사후 확률밀도함수는 $\mathrm{Beta}(9,5)$ 분포를 따르며 다음을 얻는다.  
+
 $$  
 f(\theta\mid x_1)=c_2\theta^8(1-\theta)^4  
 $$  
 여기서  
+
 $$  
 c_2=\frac{13!}{8!4!}  
 $$
@@ -101,9 +103,6 @@ $$
 #### Example
 - 이제 같은 동전을 다시 던져서 앞면 $n$번과 뒷면 $m$번을 얻었다고 하자.
 - 이전 예제의 사후 확률밀도함수를 새로운 사전 확률밀도함수로 사용하여, 새로운 사후 확률밀도함수가 $\mathrm{Beta}(9+n,5+m)$ 분포임을 보여라.
-
-
-
 - 이 추가된 $n+m$번의 동전 던지기 데이터를 $x_2$라고 부르자.
 - 이번에는 이항계수를 명시적으로 쓰지 않을 것이다.
 - 대신 단순히 $c_3$라고 부르겠다.
@@ -113,10 +112,9 @@ $$
 | -------- | --------------------------------- | ------------------------- | ------------------------------------------------------- | ----------------------------------------- | --- |
 | $\theta$ | $c_2\theta^8(1-\theta)^4,d\theta$ | $c_3\theta^n(1-\theta)^m$ | $c_2c_3\theta^{n+8}(1-\theta)^{m+4},d\theta$            | $c_4\theta^{n+8}(1-\theta)^{m+4},d\theta$ |     |
 | total    | $1$                               |                           | $T=\int_0^1 c_2c_3\theta^{n+8}(1-\theta)^{m+4},d\theta$ | $1$                                       |     |
-$$  
-  
-$$ 
+
 - 다시 우리의 단순한 관찰이 성립하므로 사후 확률밀도함수  
+
 $$  
 f(\theta\mid x_1,x_2)=c_4\theta^{n+8}(1-\theta)^{m+4}  
 $$ 
@@ -182,12 +180,15 @@ $$
 
 - 이 표는 정규화 계수를 각각 $c_1$, $c_2$, $c_3$로 표기하여 단순화한 것이다.
 - 필요하다면 베타분포와 이항분포의 정규화를 기억하거나 찾아봄으로써 $c_1$과 $c_2$의 값을 복원할 수 있다.  
+
 $$  
 c_1=\frac{(a+b-1)!}{(a-1)!(b-1)!}  
 $$  
+
 $$  
 c_2=\binom{N}{x}=\frac{N!}{x!(N-x)!}  
 $$  
+
 $$  
 c_3=\frac{(a+b+N-1)!}{(a+x-1)!(b+N-x-1)!}  
 $$
@@ -211,6 +212,7 @@ $$
 
 - 기하분포 $\mathrm{Geometric}(\theta)$는 각 독립 시행에서 성공 확률이 $\theta$일 때 첫 번째 실패 전 성공 횟수 $x$의 확률을 나타낸다는 것을 떠올리자.
 - 대응하는 확률질량함수는 다음과 같다.  
+
 $$  
 p(x)=\theta^x(1-\theta)  
 $$
@@ -289,11 +291,13 @@ $$
 
 
 - 정규 사전 확률밀도함수 $f(\theta) \sim N(\mu_{\text{prior}}, \sigma_{\text{prior}}^2)$를 선택하면 사후 확률밀도함수도 정규분포를 따른다: $f(\theta \mid x) \sim N(\mu_{\text{post}}, \sigma_{\text{post}}^2)$, 여기서  
+
 $$  
 \frac{\mu_{\text{post}}}{\sigma_{\text{post}}^2}=\frac{\mu_{\text{prior}}}{\sigma_{\text{prior}}^2}+\frac{x}{\sigma^2}, \quad \frac{1}{\sigma_{\text{post}}^2}=\frac{1}{\sigma_{\text{prior}}^2}+\frac{1}{\sigma^2}  
 $$
 
 - 다음 형태의 공식은 더 읽기 쉽고, $\mu_{\text{post}}$가 $\mu_{\text{prior}}$와 데이터 $x$ 사이의 가중평균임을 보여준다.  
+
 $$  
 a=\frac{1}{\sigma_{\text{prior}}^2}, \quad b=\frac{1}{\sigma^2}, \quad \mu_{\text{post}}=\frac{a\mu_{\text{prior}}+bx}{a+b}, \quad \sigma_{\text{post}}^2=\frac{1}{a+b}.  
 $$
@@ -316,22 +320,26 @@ $$
 #### Solution
 - 완전제곱을 포함하는 대수 계산을 직접 수행하여 이를 보일 것이다.
 - 사전분포:  
+
 $$  
 f(\theta)=c_1e^{-\frac{(\theta-4)^2}{16}}  
 $$
 
 - 우도:  
+
 $$  
 \phi(x_1\mid\theta)=c_2e^{-\frac{(x_1-\theta)^2}{10}}=c_2e^{-\frac{(3-\theta)^2}{10}}  
 $$
 
 #### Solution
 - 사전분포와 우도를 곱하여 사후분포를 얻는다:  
+
 $$  
 f(\theta\mid x_1)=c_3e^{-\frac{(\theta-4)^2}{16}}e^{-\frac{(3-\theta)^2}{10}}=c_3\exp\left(-\frac{(\theta-4)^2}{16}-\frac{(3-\theta)^2}{10}\right)  
 $$
 
 - 지수에서 완전제곱을 한다:  
+
 $$
 \begin{align}
 &-\frac{(\theta-4)^2}{16}-\frac{(3-\theta)^2}{10}\\  
@@ -343,6 +351,7 @@ $$
 $$
 
 - 따라서 사후분포는  
+
 $$  
 f(\theta\mid x_1)=c_3e^{-\frac{\left(\theta-\frac{44}{13}\right)^2+\frac{152}{13}-\left(\frac{44}{13}\right)^2}{80/13}}=c_4e^{-\frac{\left(\theta-\frac{44}{13}\right)^2}{80/13}}  
 $$
@@ -350,11 +359,13 @@ $$
 - 이는 $N\left(\frac{44}{13},\frac{40}{13}\right)$의 확률밀도함수 형태이다. 증명 완료.
 
 - 연습으로 이를 두 번째 공식들과 비교해 확인한다.  
+
 $$  
 \mu_{\text{prior}}=4,\quad \sigma_{\text{prior}}^2=8,\quad \sigma^2=5 \Rightarrow a=\frac{1}{8},\quad b=\frac{1}{5}  
 $$
 
 - 따라서  
+
 $$  
 \mu_{\text{post}}=\frac{a\mu_{\text{prior}}+bx}{a+b}=\frac{44}{13}=3.38,\quad \sigma_{\text{post}}^2=\frac{1}{a+b}=\frac{40}{13}=3.08  
 $$
@@ -373,10 +384,12 @@ $$
 - 하나의 데이터 값 $x=6.5$를 얻었다.
 - 사전분포에서 사후분포로 업데이트할 때 $\theta$의 확률밀도함수가 어떻게 변하는지 설명하라.
 #### Solution
+
 $$  
 \mu_{\text{prior}}=0,\quad \sigma_{\text{prior}}^2=1,\quad \sigma^2=\frac{4}{9}  
 $$
 - 따라서 두 번째 업데이트 공식을 사용하면  
+
 $$  
 a=1,\quad b=\frac{1}{4/9}=\frac{9}{4},\quad \mu_{\text{post}}=\frac{a\mu_{\text{prior}}+bx}{a+b}=4.5,\quad \sigma_{\text{post}}^2=\frac{1}{a+b}=\frac{4}{13}  
 $$
@@ -396,12 +409,14 @@ $$
 #### Solution
 - 두 번째 업데이트 공식을 사용하면, 사후평균은 사전평균과 데이터의 가중평균이므로 반드시 사전평균과 데이터 사이에 있다.
 - 또한 사후분산은  
+
 $$  
 \sigma_{\text{post}}^2=\frac{1}{a+b}<\frac{1}{a}=\sigma_{\text{prior}}^2  
 $$
 
 - 즉, 사후분포는 사전분포보다 더 작은 분산을 가진다. 다시 말해 데이터는 $\theta$가 그 범위 안에서 어디에 있는지에 대해 우리를 더 확신하게 만든다.
 - 마찬가지로  
+
 $$  
 \sigma_{\text{post}}^2=\frac{1}{a+b}<\frac{1}{b}=\sigma^2  
 $$
@@ -415,23 +430,28 @@ $$
 - 사전평균과 사전분산을 각각 $\mu_0,\sigma_0^2$라고 하자.
 - 업데이트된 평균과 분산은 각각 $\mu_i,\sigma_i^2$로 표기한다.
 - 순서대로 계산하면 다음과 같다.  
+
 $$  
 \frac{1}{\sigma_1^2}=\frac{1}{\sigma_0^2}+\frac{1}{\sigma^2},\quad \frac{\mu_1}{\sigma_1^2}=\frac{\mu_0}{\sigma_0^2}+\frac{x_1}{\sigma^2}  
 $$  
+
 $$  
 \frac{1}{\sigma_2^2}=\frac{1}{\sigma_1^2}+\frac{1}{\sigma^2}=\frac{1}{\sigma_0^2}+\frac{2}{\sigma^2},\quad \frac{\mu_2}{\sigma_2^2}=\frac{\mu_1}{\sigma_1^2}+\frac{x_2}{\sigma^2}=\frac{\mu_0}{\sigma_0^2}+\frac{x_1+x_2}{\sigma^2}  
 $$  
+
 $$  
 \frac{1}{\sigma_3^2}=\frac{1}{\sigma_2^2}+\frac{1}{\sigma^2}=\frac{1}{\sigma_0^2}+\frac{3}{\sigma^2},\quad \frac{\mu_3}{\sigma_3^2}=\frac{\mu_2}{\sigma_2^2}+\frac{x_3}{\sigma^2}=\frac{\mu_0}{\sigma_0^2}+\frac{x_1+x_2+x_3}{\sigma^2}  
 $$
 
 - 위 예제는 $n$개의 데이터 값 $x_1,\ldots,x_n$으로 일반화된다.
 - $n$개의 데이터 점에 대한 정규-정규 업데이트 공식:  
+
 $$  
 \frac{\mu_{\text{post}}}{\sigma_{\text{post}}^2}=\frac{\mu_{\text{prior}}}{\sigma_{\text{prior}}^2}+\frac{n\bar{x}}{\sigma^2},\quad \frac{1}{\sigma_{\text{post}}^2}=\frac{1}{\sigma_{\text{prior}}^2}+\frac{n}{\sigma^2},\quad \bar{x}=\frac{x_1+\cdots+x_n}{n}  
 $$
 
 - 다시 말해, $\mu_{\text{post}}$가 $\mu_{\text{prior}}$와 표본평균 $\bar{x}$의 가중평균임을 보여주는 더 읽기 쉬운 형태는 다음과 같다:  
+
 $$  
 a=\frac{1}{\sigma_{\text{prior}}^2},\quad b=\frac{n}{\sigma^2},\quad \mu_{\text{post}}=\frac{a\mu_{\text{prior}}+b\bar{x}}{a+b},\quad \sigma_{\text{post}}^2=\frac{1}{a+b}  
 $$
