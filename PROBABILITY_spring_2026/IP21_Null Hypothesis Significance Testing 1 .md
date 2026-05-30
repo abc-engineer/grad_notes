@@ -51,7 +51,7 @@
 
 ### Significance testing: Ingredients
 - NHST의 구성 요소들을 나열하는 것부터 시작하자.
-- $H_0$: the null hypothesis 귀무가설. 이는 데이터를 생성하는 모형에 대한 기본 가정이다.    
+- $H_0$ : the null hypothesis 귀무가설. 이는 데이터를 생성하는 모형에 대한 기본 가정이다.    
 - $H_A$: the alternative hypothesis 대립가설. 귀무가설을 기각하면, 우리는 이 대립가설을 데이터에 대한 최선의 설명으로 받아들인다.    
 - $X$: the test statistic 검정통계량. 데이터로부터 이를 계산한다. 이는 무작위 데이터로부터 계산되므로 확률변수이다.    
 - null distribution 귀무분포: $H_0$를 가정했을 때 $X$의 확률분포.  → 베이지안의 likeihood와 비교 가능
