@@ -59,7 +59,8 @@
 - p-value의 역할은 단지 하나의 계산으로 검정통계량이 기각역 안에 있는지 여부를 알려주는 것뿐이다.
 
 #### Errors
-- 이 두 가지 오류와 그 확률은 다음과 같이 요약할 수 있다.  
+- 이 두 가지 오류와 그 확률은 다음과 같이 요약할 수 있다. 
+
 $$
 \begin{align}
 \text{Type I error}&=\text{$H_0$가 참일 때 $H_0$를 기각하는 것}\\ 
@@ -85,10 +86,12 @@ $$
 - 물론 일반적으로 이는 불가능하다.
 - 따라서 우리는 검정력은 높고 유의수준은 낮은 어떤 절충(compromise)을 찾고자 한다.
 - 기호로 쓰면 다음과 같다.  
+
 $$  
 \text{power}=P(\text{데이터가 기각역에 있음}\mid H_A)  
 $$
 - 이를 다음과 비교하라.  
+
 $$  
 \text{significance}=P(\text{데이터가 기각역에 있음}\mid H_0)  
 $$
@@ -106,7 +109,8 @@ $$
 
 - 5. p-value는 어떻게 계산되는가?
 	- 유의성 검정(significance test)은 검정통계량(test statistic)과 귀무분포(null distribution)를 함께 가진다.
-	- 대부분의 검정에서 p-value는 다음과 같다.  
+	- 대부분의 검정에서 p-value는 다음과 같다. 
+
 $$  
 p=P(\text{우리가 얻은 것만큼 극단적인 데이터}\mid H_0)  
 $$
@@ -131,6 +135,7 @@ $$
 - 귀무가설(null hypothesis): 어떤 특정 값 $\mu_0$에 대해 $\mu=\mu_0$
 	- IQ 테스트에서 $\mu_0$는 100 이었음.
 - 검정통계량(test statistic):  
+
 $$  
 z=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}  
 $$
@@ -138,16 +143,19 @@ $$
 - 이는 표준화된 평균(standardized mean)이다.
 - 귀무분포(null distribution): $$\phi(z \mid H_0)$$는 $Z\sim N(0,1)$의 확률밀도함수(pdf)이다.
 - 단측 p-value(오른쪽):  
+
 $$  
 p=P(Z\geq z\mid H_0)  
 $$
 
 - 단측 p-value(왼쪽):  
+
 $$  
 p=P(Z\leq z\mid H_0)  
 $$
 
 - 양측 p-value:  
+
 $$  
 p=  
 \begin{cases}  
@@ -156,6 +164,7 @@ p=
 \end{cases}  
 $$
 - 분포가 $0$을 중심으로 대칭이므로 이를 다음과 같이 쓸 수도 있다.  
+
 $$  
 p=P(|Z|\geq |z|)  
 $$
@@ -166,6 +175,7 @@ $$
 - 귀무가설 $H_0$는 $\mu=2$이다.
 - 대립가설 $H_A$는 $\mu>2$이다.
 - 다음 데이터를 수집했다고 하자.  
+
 $$  
 3,2,5,7,1  
 $$
@@ -174,6 +184,7 @@ $$
 - 데이터는 $5$개이며 평균은  $\bar{x}=3.6$ 이다.
 - 데이터가 정규분포(normal distribution)를 따르고 분산이 알려져 있으므로 z-test를 사용해야 한다.
 - z-통계량(z statistic)은 다음과 같다.  
+
 $$  
 z=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}  
 =\frac{3.6-2}{2/\sqrt{5}}  
@@ -182,6 +193,7 @@ $$
 
 - 대립가설(alternative hypothesis)이 단측(one-sided)이므로 검정 역시 단측 검정이다.
 - 따라서 (Python을 사용하면) p-value는 다음과 같다.  
+
 $$  
 \begin{align}
 p&=P(Z>z)=P(Z>1.79) \\  
@@ -257,6 +269,7 @@ $$
 - 데이터: $x_1,x_2,\ldots,x_n \sim N(\mu,\sigma^2)$라고 가정하며, 여기서 $\mu$와 $\sigma$는 모두 미지이다.
 - 귀무가설(null hypothesis): 어떤 특정 값 $\mu_0$에 대해  $\mu=\mu_0$
 - 검정통계량(test statistic):  
+
 $$  
 t=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}  
 $$  
@@ -282,6 +295,7 @@ $$
 - 단측 p-value(오른쪽): $p=P(T\geq t\mid H_0)$
 - 단측 p-value(왼쪽):  $p=P(T\leq t\mid H_0)$
 - 양측 p-value:  
+
 $$
 p=  
 \begin{cases}  
@@ -291,6 +305,7 @@ p=
 $$
 
 - 분포가 $0$을 중심으로 대칭이므로 이를 다음과 같이 쓸 수도 있다.  
+
 $$  
 p=P(|T|\geq |t|)  
 $$
@@ -304,6 +319,7 @@ $$
 - 이제 예제 1에서 분산이 미지라고 가정하자.
 - 즉, 평균 $\mu$와 분산 $\sigma^2$가 모두 미지인 정규분포를 따르는 데이터가 있다.
 - 이전과 같은 데이터를 수집했다고 하자.  
+
 $$  
 1,2,3,6,-1  
 $$
@@ -315,6 +331,7 @@ $$
 - 데이터는 $5$개이며 평균은  $\bar{x}=2.2$이다.
 - 데이터가 평균과 분산이 모두 미지인 정규분포(normal distribution)를 따른다고 가정하므로, 일표본 t-test(one-sample t-test)를 사용해야 한다.
 - 표본분산(sample variance)을 계산하면 다음과 같다.  
+
 $$  
 \begin{align}
 s^2&=\frac{1}{4}\left((1-2.2)^2+(2-2.2)^2+(3-2.2)^2+(6-2.2)^2+(-1-2.2)^2\right)\\
@@ -322,6 +339,7 @@ s^2&=\frac{1}{4}\left((1-2.2)^2+(2-2.2)^2+(3-2.2)^2+(6-2.2)^2+(-1-2.2)^2\right)\
 \end{align}
 $$ 
 - t-통계량(t-statistic)은 Studentized mean이다.  
+
 $$  
 t=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}   
 =\frac{2.2-0}{\sqrt{6.7}/\sqrt{5}}   
@@ -330,6 +348,7 @@ $$
 
 - 검정은 대립가설(alternative hypothesis)이 단측(one-sided)이므로 단측 검정이다.
 - 따라서 (Python을 사용하면) p-value는 다음과 같다.  
+
 $$
 \begin{align}
 p&=P(T>t)=P(T>1.901)  \\  
@@ -348,10 +367,13 @@ $$
 
 - 다음으로 두 표본의 평균을 비교하는 경우를 고려한다.
 	- 예를 들어, 두 가지 의학적 치료의 평균 효과(mean efficacy)를 비교하는 데 관심이 있을 수 있다.
-- 데이터: 정규분포에서 추출된 두 데이터 집합이 있다고 가정한다.  
+- 데이터: 정규분포에서 추출된 두 데이터 집합이 있다고 가정한다. 
+
 $$  
 x_1,x_2,\ldots,x_n\sim N(\mu_1,\sigma^2)  
-$$ $$  
+$$ 
+
+$$  
 y_1,y_2,\ldots,y_m\sim N(\mu_2,\sigma^2)  
 $$
 
@@ -360,6 +382,7 @@ $$
 - 두 분포가 동일한 분산을 가진다고 가정한다는 점에 주의하라.
 - 또한 첫 번째 집단에는 $n$개의 표본이 있고 두 번째 집단에는 $m$개의 표본이 있다는 점에도 주의하라.
 - 귀무가설(null hypothesis):  
+
 $$  
 \mu_1=\mu_2  
 $$
@@ -368,11 +391,13 @@ $$
 
 - 검정통계량(test statistic):  
 	- 두 표본평균의 차이가, 귀무가설에서 기대하는 차이 0으로부터 표준오차 몇 개만큼 떨어져 있는가
+
 $$  
 t=\frac{\bar{x}-\bar{y}}{s_p}  
 $$
 - $\bar x$ 에서 평균을 빼는게 아니라 y 값이랑 비교해야 하기 때문에 분모에서 $\bar y$를 빼줌
 - 여기서 $s_p^2$는 합동분산(pooled variance)이며 다음과 같다.  
+
 $$  
 s_p^2=\frac{(n-1)s_x^2+(m-1)s_y^2}{n+m-2}\left(\frac{1}{n}+\frac{1}{m}\right)  
 $$
@@ -398,6 +423,7 @@ $$
 
 - 그리고 우리가 합동분산이라고 부른 것은 $\bar{x}-\bar{y}$의 추정분산(estimated variance)이라고 지적한다.
 - 즉,  
+
 $$  
 s_p^2=s_{p-\text{other authors}}^2\left(\frac{1}{n}+\frac{1}{m}\right)\approx s_{\bar{x}-\bar{y}}^2  
 $$
@@ -416,10 +442,12 @@ $$
 - 임신 기간(duration of pregnancy)은 마지막 월경 시작일부터 완료된 주(complete weeks) 단위로 측정된다.
 - 데이터는 다음과 같이 요약할 수 있다.
 - Medical:  
+
 $$  
 775\text{ observations with }\overline{x_M}=39.08\text{ and }s_M^2=7.77  
 $$
 - Emergency:  
+
 $$  
 633\text{ observations with }\overline{x_E}=39.60\text{ and }s_E^2=4.95  
 $$
@@ -429,17 +457,20 @@ $$
 
 #### Solution 7
 - 이 데이터에 대한 합동분산(pooled variance)은 다음과 같다.  
+
 $$  
 s_p^2=\frac{774(7.77)+632(4.95)}{1406}\left(\frac{1}{775}+\frac{1}{633}\right)=0.0187  
 $$
 
 - 귀무분포(null distribution)에 대한 t-통계량은 다음과 같다.  
+
 $$  
 \frac{\bar{x}_M-\bar{y}_E}{s_p}=-3.8064  
 $$
 
 - 자유도(degrees of freedom)는 $1406$이다.
 - Python을 사용하여 양측 p-value를 계산하면 다음과 같다.  
+
 $$  
 \begin{align}
 p&=P(|T|>|t|)=2\cdot\texttt{scipy.stats.t.cdf}(-3.8064,1406)\\  
@@ -452,6 +483,7 @@ $$
 - 따라서 평균 임신 기간에 차이가 있다는 대립가설(alternative hypothesis)을 지지하며 귀무가설(null hypothesis)을 기각한다.
 - 양측 p-value를 t-분포를 사용하여 정확히 계산하는 대신, 자유도가 $1406$이면 t-분포가 사실상 표준정규분포(standard normal distribution)와 거의 같다는 점을 이용할 수도 있다.
 - 또한 $3.8064$는 거의 $4$ 표준편차에 해당한다.  
+
 $$  
 P(|t|\geq3.8064)\approx P(|z|\geq3.8064)<0.001  
 $$
