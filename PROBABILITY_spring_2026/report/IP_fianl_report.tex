@@ -1,0 +1,756 @@
+\documentclass{article}
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{kotex}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{changepage}
+
+
+\setmainfont{Times New Roman}
+\setmainhangulfont{KoPub Batang_Pro Light.otf}
+
+
+\onehalfspacing
+
+\newenvironment{solution}
+{
+    \par\medskip
+    \noindent\textbf{Solution:}
+    \begin{adjustwidth}{1em}{0em}
+}
+{
+    \end{adjustwidth}
+    \medskip
+}
+
+
+\title{Korea University BDC107
+Introduction to Probability for Data Analytics (2026 Spring)
+Final Exam}
+\author{
+Submitted by: 김도훈 \\
+Student ID: 2026511006 \\
+Submitted to: Professor Byung-Jun Lee}
+\date{June 11, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*]
+
+\item (a) STATISTICS라는 단어의 글자를 몇 가지 방법으로 배열할 수 있나요? 예를 들어, SSSTTTIIAC는 하나의 배열로셉니다.\\
+(b) 모든 배열의 가능성이 동일하다면 두'i'가 서로 옆에 있을 확률은 얼마인가요?
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=1em]
+        
+            \item  STATISTICS는 총 10글자 이고,  각각의 글자는 S: 3개, T: 3개, I: 2개, A: 1개, C:1개 입니다.\\
+            같은 글자가 반복되므로, 먼저 10개의 글자가 모두 서로 다르다고 생각해 10!로 배열한 뒤, S 3개, T 3개, I 2개 사이의 중복 배열을 각각 3!, 3!, 2!로 나누어 제거합니다.
+            $$
+            \frac{10!}{3!\,3!\,2!}
+            $$
+            
+            위의 식을 계산하면
+            $$
+            \frac{3{,}628{,}800}{6\cdot 6\cdot 2}
+            =\frac{3{,}628{,}800}{72}
+            =50{,}400
+            $$
+            따라서 $\mathrm{STATISTICS}$의 글자를 배열하는 방법은 50,400가지입니다.
+    
+            \item 두 'ii'가 서로 옆에 있는 경우는 'ii'를 하나로 묶어 S,S,S,T,T,T,A,C,II 9글자를 배열하는 경우의 수를 구한 다음 (a)문항에서 구한 STATISTICS 전체 배열 경우의 수로 나누어 해당 확률을 구합니다.\\
+            두 $I$가 붙어 있는 배열 수는  
+            $$  
+            N_{\mathrm{adjacent}}=\frac{9!}{3!3!}  
+            $$  
+            이고, 전체 배열 수는  
+            $$  
+            N_{\mathrm{total}}=\frac{10!}{3!3!2!}  
+            $$  
+            입니다.\\
+            이를 계산하면  
+            $$  
+            P(\text{two } I\text{'s are adjacent})=\frac{N_{\mathrm{adjacent}}}{N_{\mathrm{total}}}=\frac{\frac{9!}{3!3!}}{\frac{10!}{3!3!2!}}=\frac{1}{5}  
+            $$  
+            따라서 두 $I$가 서로 옆에 있을 확률은  $\frac{1}{5}$ 입니다.
+    
+        \end{enumerate}
+    \end{solution}
+
+\newpage
+
+\item 심사위원들이 뇌물을 받는 가상의 인기서바이벌 게임쇼를생각해봅시다.각 참가자는 각 에피소드마다
+잔류하거나 탈락할수있고,총 두개의 에피소드가 있다고 생각해봅시다.참가자가 심사위원에게 뇌물을
+제공한 경우 1의 확률로 잔류하게 됩니다. 참가자가 뇌물을 제공하지 않은 경우 1/3의 확률로 잔류에 성
+공하게됩니다.참가자중1/4이 심사위원에게 뇌물을 주었다고 가정합시다.뇌물을 제공하는 참가자는 두
+에피소드 모두에서 뇌물을 제공하게 되고, 그렇지 않은 참가자는 두 에피소드 모두에서 뇌물을 제공하지
+않습니다.\\
+(a) 첫 번째 에피소드에서 잔류에 성공한 참가자를 무작위로 선택한다면 그들이 심사위원에게 뇌물을 주었을 확률은 얼마나 되나요?\\
+(b) 무작위 참가자를 선택하는 경우 처음 두 에피소드 모두 잔류할 수 있는 확률은 얼마인가요?\\
+(c) 첫번째 에피소드에서 잔류에 성공한 참가자를 무작위로 선택하면 두번째 에피소드에서 탈락 할 확률은 
+얼마인가요?
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=1em]
+        
+        \item베이지안 정리를 이용해서 확률을 계산 합니다.
+            \begin{itemize}[itemsep=0em]
+                \item Hypothesis $H+$:  무작위로 참가자를 골랐을 때 참가자가 뇌물을 줬다는 가설
+                \item Hypothesis $H-$:  무작위로 참가자를 골랐을 때 참가자가 뇌물을 안 줬다는 가설
+                \item Data $S_1$: 첫 번째 에피소드에서 생존한 참가자
+                    \begin{itemize}
+                	  \item 뇌물을 준 경우 1의 확률로 잔류
+                	  \item 뇌물을 안 준 경우 1/3의 확률로 잔류
+                    \end{itemize}
+            \end{itemize}
+            
+        이 event들의 확률은 아래와 같습니다.
+        \begin{itemize}[itemsep=0em]
+            \item  $P(H+)$ = 1/4
+            \item $P(H-)$ = 3/4
+            \item $P(S_1 | H+)$ = 1
+            \item $P(S_1 | H-)$ = 1/3
+        \end{itemize}
+        
+        첫번째 에피소드에서 잔류한 참가자를 무작위로 선택했을때 그 참가자가 뇌물을 주었을 확률은 $P(H+\mid S_1)$ 입니다.
+        
+        베이즈 정리로 쓰면:  
+        $$  
+        P(H+\mid S_1)=\frac{P(S_1\mid H+)P(H+)}{P(S_1)}  
+        $$  
+        그리고 전체 잔류 확률은:  
+        $$  
+        P(S_1)=P(S_1\mid H+)P(H+)+P(S_1\mid H-)P(H-)  
+        $$  
+        계산하면:  
+        $$  
+        P(H+\mid S_1)=\frac{1\times\frac14}{1\times\frac14+\frac13\times\frac34}=\frac12  
+        $$
+        따라서 첫번째 에피소드에서 잔류한 참가자를 무작위로 선택했을때 그 참가자가 뇌물을 주었을 확률은 $\frac{1}{2}$ 입니다.
+
+\newpage
+        \item 무작위 참가자를 선택하는 경우, 처음 두 에피소드 모두 잔류할 확률은  $P(S_1\cap S_2)$입니다.  
+        
+        전체확률법칙을 쓰면 아래와 같이 식을 정리할 수 있습니다.  
+        $$  
+        P(S_1\cap S_2)=P(S_1\cap S_2\mid H+)P(H+)+P(S_1\cap S_2\mid H-)P(H-)  
+        $$ 
+        이때 뇌물을 준 참가자는 항상 잔류하므로 
+        $$P(S_1\cap S_2\mid H+)=1\cdot1=1$$
+        
+        뇌물을 주지 않은 참가자는 각 에피소드에서 잔류할 확률이 $\frac13$이므로, 두 에피소드 모두 잔류할 확률은  
+        $$  
+        P(S_1\cap S_2\mid H-)=\frac13\cdot\frac13=\frac19  
+        $$
+        계산하면:         
+        \begin{align*}
+            P(S_1\cap S_2)
+            &=P(S_1\cap S_2\mid H+)P(H+)+P(S_1\cap S_2\mid H-)P(H-)\\
+            &=1\cdot\frac14+\frac19\cdot\frac34\\
+            &=\frac14+\frac1{12}\\
+            &=\frac13 
+        \end{align*}
+          
+        따라서 무작위 참가자가 처음 두 에피소드 모두 잔류할 확률은 $\frac13$ 입니다.  
+        
+
+        \item 두번째 에피소드에서 탈락한 event를 $F_2$라고 했을때, 첫 번째 에피소드에서 잔류에 성공한 참가자를 무작위로 선택했을 때, 두 번째 에피소드에서 탈락할 확률은$P(F_2\mid S_1)$입니다.
+
+        조건부확률 정의를 쓰면:  
+        $$  
+        P(F_2\mid S_1)=\frac{P(S_1\cap F_2)}{P(S_1)}  
+        $$  
+        이때 분모 $P(S_1)$은 (a) 문항에서 에 구한 1/2입니다.  
+          
+        분자 $P(S_1\cap F_2)$는 전체확률법칙을 이용해서 구합니다.  
+        $$  
+        P(S_1\cap F_2)=P(S_1\cap F_2\mid H+)P(H+)+P(S_1\cap F_2\mid H-)P(H-)  
+        $$  
+        $H+$ 참가자는 항상 잔류하므로 두 번째 에피소드에서 탈락할 확률이 $0$이고, $H-$ 참가자는 첫 번째 에피소드에서 잔류할 확률이 1/3, 두 번째 에피소드에서 탈락할 확률이 2/3이기 때문에 값을 넣어 계산하면:  
+        \begin{align*}
+            P(S_1\cap F_2)
+            &=0\cdot\frac14+\left(\frac13\cdot\frac23\right)\cdot\frac34\\
+            &=\frac13\cdot\frac23\cdot\frac34=\frac16  
+        \end{align*}
+        따라서  
+        $$  
+        P(F_2\mid S_1)=\frac{\frac16}{\frac12}=\frac13  
+        $$  
+        따라서 첫 번째 에피소드에서 잔류에 성공한 참가자가 두 번째 에피소드에서 탈락할 확률은 $\frac13$ 입니다.
+        
+        \end{enumerate}
+    
+    \end{solution}
+\newpage
+
+\item 20면체 주사위를 굴릴때,아래사건쌍들이독립인가요?해당응답을뒷받침하는근거를같이적어주세요.\\
+(a) $X$ =′ 짝수를 굴립니다′ , $Y$ =′10보다작거나같은숫자를굴립니다′\\
+(b) $X$ =′ 짝수를 굴립니다′ , $Y$ =′소수를굴립니다′
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=1em]
+            
+            \item20면체 주사위의 sample space $S=\{1,2,3,\dots,20\}$이고, 각 결과가 나올 확률은 모두 같습니다.  \\
+            $X=$ “짝수를 굴립니다”, $Y=$ “$10$보다 작거나 같은 숫자를 굴립니다” 의 outcome을 정리 하면 아래와 같고 두 사건 $X,Y$가 독립이면$P(X\cap Y)=P(X)P(Y)$를 만족해야 합니다.
+            \begin{align*}
+                X&=\{2,4,6,8,10,12,14,16,18,20\}\\  
+                Y&=\{1,2,3,4,5,6,7,8,9,10\} \\
+                X\cap Y&=\{2,4,6,8,10\} 
+            \end{align*}
+            
+            각 확률은  
+            \begin{align*}
+                P(X)=\frac{10}{20}=\frac12\\  
+                P(Y)=\frac{10}{20}=\frac12\\  
+                P(X\cap Y)=\frac{5}{20}=\frac14  
+            \end{align*} 
+            그리고  
+            $$  
+            P(X)P(Y)=\frac{10}{20}\cdot\frac{10}{20}=\frac14  
+            $$  
+            $P(X\cap Y)=P(X)P(Y)$ 이므로 두 사건은 독립입니다. 
+            
+            \item$X=$ “짝수를 굴립니다”, $Y=$ “소수를 굴립니다”  의 outcome을 정리 하면 아래와 같습니다.
+            \begin{align*}
+                X&=\{2,4,6,8,10,12,14,16,18,20\}\\
+                Y&=\{2,3,5,7,11,13,17,19\} \\
+                X\cap Y&=\{2\}
+            \end{align*}
+                          
+            각 확률은  
+            \begin{align*}
+                P(X)=\frac{10}{20}=\frac12\\  
+                P(Y)=\frac{8}{20}=\frac25  \\  
+                P(X\cap Y)=\frac{1}{20}  
+            \end{align*}
+            그리고  
+            $$  
+            P(X)P(Y)=\frac{10}{20}\cdot\frac{8}{20}=\frac15  
+            $$  
+            하지만  
+            $$  
+            \frac1{20}\ne\frac15 
+            $$
+            $P(X\cap Y)\ne P(X)P(Y)$ 이므로 두 사건은 독립이 아닙니다.
+            
+        \end{enumerate}
+    \end{solution}
+\newpage
+
+\item Random variable X는 −1,0,1의 값을 1/8,2/8,5/8의 확률로 갖습니다.\\
+(a) $E[X]$를 계산하세요.\\
+(b) $Y =X^2$의 pmf를 적고 이를 통해$E[Y]$를계산하세요.\\
+(c) $Var(X)$를 계산하세요.
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=1em]
+            
+            \item Random variable $X$의 PMF는 다음과 같습니다.  
+            $$  
+            P(X=-1)=\frac18,\quad P(X=0)=\frac28,\quad P(X=1)=\frac58  
+            $$  
+            $E[X]$를 계산하면  
+            \begin{align*}
+                E[X]&=(-1)\cdot\frac18+0\cdot\frac28+1\cdot\frac58\\  
+                &=-\frac18+0+\frac58=\frac48\\
+                &=\frac12  
+            \end{align*}
+              
+            따라서  
+            $$  
+            E[X]=\frac12  
+            $$
+
+            \item$Y=X^2$이므로 가능한 값은 $0,1$입니다.  
+            \begin{align*}
+                X=-1\Rightarrow Y=1  \\  
+                X=0\Rightarrow Y=0  \\  
+                X=1\Rightarrow Y=1  
+            \end{align*}
+            따라서 $Y=X^2$의 pmf는  아래와 같습니다.
+            \begin{align*}
+                P(Y=0)&=P(X=0)=\frac28=\frac14  \\  
+                P(Y=1)&=P(X=-1)+P(X=1)=\frac18+\frac58=\frac68=\frac34  
+            \end{align*}
+            정리하면 
+            $$  
+            P(Y=y)=  
+            \begin{cases}  
+                \frac14, & y=0\\  
+                \frac34, & y=1\\  
+                0, & \text{otherwise}  
+            \end{cases}  
+            $$
+            이를 통해 $E[Y]$를 계산하면  
+            $$  
+            E[Y]=0\cdot\frac14+1\cdot\frac34=\frac34  
+            $$  
+            따라서  
+            $$  
+            E[Y]=\frac34  
+            $$  
+
+\newpage
+            \item 분산은  
+            $$  
+            \operatorname{Var}(X)=E[X^2]-(E[X])^2  
+            $$  
+            이고, $Y=X^2$이므로  
+            $$  
+            E[X^2]=E[Y]=\frac34  
+            $$  
+            따라서  
+            \begin{align*}
+                \operatorname{Var}(X)&=\frac34-\left(\frac12\right)^2\\  
+                &=\frac34-\frac14\\
+                &=\frac12  
+            \end{align*}
+            $$  
+            \operatorname{Var}(X)=\frac12  
+            $$
+            
+        \end{enumerate}
+    \end{solution}
+
+\item 100명의 사람들이모두상자에모자를던진다음무작위로모자를고르는과정을진행합니다.자신의모자를
+돌려받는것으로예상되는사람의수는몇명인가요?
+
+    \begin{solution}
+    각 사람에 대해 random variable을 정의하면 다음과 같습니다.  
+    $$  
+    I_i=  
+    \begin{cases}  
+        1, & i\text{번째 사람이 자기 모자를 돌려받으면}\\  
+        0, & \text{otherwise}  
+    \end{cases}  
+    $$  
+    자기 모자를 돌려받는 전체 사람 수를 $X$라고 하면  
+    $$  
+    X=I_1+I_2+\cdots+I_{100}  
+    $$  
+    입니다.  
+    각 사람이 자기 모자를 받을 확률은  
+    $$  
+    P(I_i=1)=\frac1{100}  
+    $$  
+    이므로  
+    $$  
+    E[I_i]=\frac1{100}  
+    $$  
+    입니다.  
+    따라서 기대값의 선형성에 의해  
+    \begin{align*}  
+        E[X]&=E[I_1+\cdots+I_{100}]  \\
+        &=E[I_1]+\cdots+E[I_{100}]  \\
+        &=100\cdot\frac1{100}\\
+        &=1  
+    \end{align*} 
+    따라서 자신의 모자를 돌려받는 것으로 예상되는 사람의 수는 1명입니다.
+    \end{solution}
+
+\newpage
+
+\item X와Y가continuous joint random variable이고 joint density $f(x,y) = c(x+2y)$를 직사각형 [0,1]×[0,2]에서가진다고합시다.\\
+(a) $c$의 값은 얼마인가요?\\
+(b) $F(x,y)$를 joint CDF라고 합시다. $F(x,y)$를 계산하세요.\\
+(c) $X$와 $Y$의 marginal density를 계산하세요.\\
+(d) $X$와 $Y$가 independent한가요? 근거를 같이 적어주세요.\\
+(e) $E[X]$, $E[y]$, $E[X^2 +Y^2]$, $Cov(X,Y)$, $Cor(X,Y)$를 구하세요.
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=1em]
+            
+            \item주어진 joint density는  $f(x,y)=c(x+2y),\quad 0\le x\le 1,\ 0\le y\le 2$입니다.\\  
+            전체 확률은 $1$이어야 하므로  
+            $$  
+            \int_0^1\int_0^2 c(x+2y)\,dy\,dx=1  
+            $$  
+            계산하면  
+            \begin{align*}
+                c\int_0^1\left[xy+y^2\right]_0^2dx &=c\int_0^1(2x+4)\,dx \\ 
+                c\left[x^2+4x\right]_0^1&=5c=1  
+            \end{align*}  
+            따라서  
+            $$  
+            c=\frac15  
+            $$  
+
+            \item joint CDF는  
+            $$  
+            F(x,y)=P(X\le x,Y\le y)  
+            $$  
+            입니다.  \\
+            $0\le x\le 1,\ 0\le y\le 2$에서  
+            \begin{align*}
+                F(x,y)&=\int_0^x\int_0^y \frac15(u+2v)\,dv\,du  \\
+                &=\frac15\int_0^x(uy+y^2)\,du  \\
+                &=\frac15\left(\frac{x^2y}{2}+xy^2\right)  
+            \end{align*} 
+            따라서  
+            $$  
+            F(x,y)=\frac{x^2y}{10}+\frac{xy^2}{5},\quad 0\le x\le 1,\ 0\le y\le 2  
+            $$  
+
+            \item $X$의 marginal density는  
+            \begin{align*}
+                f_X(x)&=\int_0^2 \frac15(x+2y)\,dy\\
+                &=\frac15(2x+4),\quad 0\le x\le 1 \\
+                &=\frac{2x+4}{5},\quad 0\le x\le 1
+            \end{align*} 
+          
+            $Y$의 marginal density는  
+            \begin{align*}
+                f_Y(y)&=\int_0^1 \frac15(x+2y)\,dx  \\
+                &=\frac15\left(\frac12+2y\right),\quad 0\le y\le 2  
+            \end{align*} 
+            따라서  
+            $$  
+            f_Y(y)=\frac{1+4y}{10},\quad 0\le y\le 2  
+            $$
+
+            \item $X$와 $Y$가 independent하려면 $f(x,y)=f_X(x)f_Y(y)$가 모든 $x,y$에 대해 성립해야 합니다.  \\
+            하지만 예를 들어 $(x,y)=(0,0)$에서  
+            $$  
+            f(0,0)=\frac15(0+0)=0  
+            $$  
+            이고,  
+            $$  
+            f_X(0)f_Y(0)=\frac45\cdot\frac1{10}=\frac{2}{25}  
+            $$  
+            입니다.  \\
+            하지만, $f(0,0)\ne f_X(0)f_Y(0)$ 이므로 $X$와 $Y$는 independent하지 않습니다.  
+
+            \item  $E[X]$  
+            \begin{align*}
+                E[X]&=\int_0^1 x f_X(x)\,dx \\
+                &=\int_0^1 x\frac{2x+4}{5}\,dx=\frac15\int_0^1(2x^2+4x)\,dx\\
+                &=\frac15\left(\frac23+2\right)\\
+                &=\frac{8}{15}
+            \end{align*}
+  
+            $E[y]$  
+            \begin{align*}
+                E[Y]&=\int_0^2 y f_Y(y)\,dy\\
+                &=\int_0^2 y\frac{1+4y}{10}\,dy=\frac1{10}\int_0^2(y+4y^2)\,dy\\
+                &=\frac1{10}\left(2+\frac{32}{3}\right)\\
+                &=\frac{19}{15}  
+            \end{align*}
+            
+            $E[X^2+Y^2]$ 
+            \begin{align*}
+                E[X^2]&=\int_0^1 x^2 f_X(x)\,dx=\int_0^1 x^2\frac{2x+4}{5}\,dx \\
+                &=\frac15\left(\frac12+\frac43\right)\\
+                &=\frac{11}{30}                
+            \end{align*}  
+
+            \begin{align*}
+                E[Y^2]&=\int_0^2 y^2 f_Y(y)\,dy=\int_0^2 y^2\frac{1+4y}{10}\,dy\\
+                &=\frac1{10}\left(\frac83+16\right)\\
+                &=\frac{28}{15}
+            \end{align*}  
+
+            $$  
+            E[X^2+Y^2]=E[X^2]+E[Y^2]=\frac{11}{30}+\frac{28}{15}=\frac{67}{30}  
+            $$  
+
+            $\operatorname{Cov}(X,Y)$
+            \begin{align*}
+                \operatorname{Cov}(X,Y)&=E[XY]-E[X]E[Y] \\
+                \\
+                E[XY]&=\int_0^1\int_0^2 xy\frac15(x+2y)\,dy\,dx\\
+                &=\frac15\int_0^1\int_0^2(x^2y+2xy^2)\,dy\,dx=\frac23 \\
+                \\
+                \text{따라서} \;\operatorname{Cov}(X,Y)&=\frac23-\frac{8}{15}\cdot\frac{19}{15}\\
+                &=-\frac{2}{225} 
+            \end{align*}  
+            
+            $\operatorname{Cor}(X,Y)$\\
+            상관계수를 위해 분산을 구하면
+            \begin{align*}
+                \operatorname{Var}(X)&=E[X^2]-(E[X])^2=\frac{11}{30}-\left(\frac{8}{15}\right)^2=\frac{37}{450}\\
+                \operatorname{Var}(Y)&=E[Y^2]-(E[Y])^2=\frac{28}{15}-\left(\frac{19}{15}\right)^2=\frac{59}{225} \\
+                \\
+                \operatorname{Cor}(X,Y)&=\frac{\operatorname{Cov}(X,Y)}{\sqrt{\operatorname{Var}(X)\operatorname{Var}(Y)}}\\
+                \operatorname{Cor}(X,Y)&=\frac{-\frac{2}{225}}{\sqrt{\frac{37}{450}\cdot\frac{59}{225}}}=-\frac{2\sqrt2}{\sqrt{2183}}
+            \end{align*}       
+            
+        \end{enumerate}
+    \end{solution}
+
+\item 집단의 평균 IQ는 100이고 표준 편차는 15입니다. 정의에 따라 IQ는 정규 분포를 따릅니다. 무작위로 선택된100명의 그룹의평균IQ가115이상일확률은얼마인가요?Central Limit Theorem을 이용하여 답을 서숧하세요.
+
+    \begin{solution}
+        모집단의 IQ를 $X$라고 하면 $X\sim N(100,15^2)$입니다.  \\
+        무작위로 선택된 $100$명의 평균 IQ를 $\bar X$라고 하면, Central Limit Theorem에 의해  
+        $$  
+        \bar X\sim N\left(100,\frac{15^2}{100}\right)  
+        $$  
+        즉,  
+        $$  
+        E[\bar X]=100,\quad \operatorname{SD}(\bar X)=\frac{15}{\sqrt{100}}=\frac32  
+        $$  
+         
+        구하려는 확률은 $P(\bar X\ge 115)$ 입니다.  \\
+        표준화하면  
+        \begin{align*}
+            P(\bar X\ge 115)&=P\left(Z\ge \frac{115-100}{15/\sqrt{100}}\right)\\  
+            &=P(Z\ge 10)
+        \end{align*}
+    
+        따라서$P(\bar X\ge 115)=1-\Phi(10)$ 입니다.\\  
+        $Z=10$은 평균에서 표준오차 $10$개만큼 떨어진 매우 극단적인 값입니다. 
+        $$  
+        1-\Phi(10)\approx 7.6\times 10^{−24}\approx 0  
+        $$  
+        따라서 무작위로 선택된 100명의 평균 IQ가 115 이상일 확률은 거의 0입니다.  
+    \end{solution}
+
+\item 랜덤하게샘플된데이터\{1,1,2,4,5,5,6,7,7,8,9,9,19,21,35\}가 있습니다.첫번째,두번째,세번째quartile들을계산하세요.
+
+    \begin{solution}
+        주어진 데이터는 이미 오름차순으로 정렬되어 있고, 데이터 개수는 $n=15$ 입니다.  \\
+        첫 번째 quartile $Q_1$은 median보다 작은 아래쪽 $7$개 데이터의 median입니다.  
+        $$  
+        \{1,1,2,4,5,5,6\}  
+        $$  
+        이 데이터의 가운데 값은 $4$번째 값이므로 $ Q_1=4$ \\
+        두 번째 quartile $Q_2$는 median입니다.가운데 값은 $8$번째 값이므로 $Q_2=7$\\ 
+        세 번째 quartile $Q_3$은 median보다 큰 위쪽 $7$개 데이터의 median입니다.  
+        $$  
+        \{7,8,9,9,19,21,35\}  
+        $$  
+        이 데이터의 가운데 값은 $4$번째 값이므로 $Q_3=9$  \\
+        따라서  
+        $$  
+        Q_1=4,\quad Q_2=7,\quad Q_3=9  
+        $$
+    \end{solution}
+
+\item 철수에게는 1개의4면체, 2개의 6면체, 2개의 8면체, 2개의 12면체, 1개의 20면체 주사위가 있습니다. 그는 하나를 랜덤하게 골라서 굴리고 7이 나왔습니다.\\
+(a) 각 주사위에 대해 철수가 해당 주사위를 고르는 posteriorprobability를 계산하세요.\\
+(b) 철수가 20면체를 고르는 posterior odd를 계산하세요.\\
+(c) 첫 번째 굴림에서7이 나오는 prior predictive probability를 계산하세요.\\
+(d) 두 번째 굴림에서8이 나오는 posterior predictive probability를 계산하세요
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=1em]
+            
+            \item Bayes 정리를 사용하면 주사위 하나를 랜덤하게 골라서 굴리고 7이 나왔을때 posteriorprobability는 아래처럼 쓸수 있습니다.
+            $$  
+            P(D_k\mid 7)=\frac{P(7\mid D_k)P(D_k)}{P(7)}  
+            $$  
+            용어를 정의하고 Likelihood, Evidence, Prior를 구합니다.\\
+            \begin{itemize}[itemsep=0em]
+                \item Hypothesis $D_k$: k면체 주사위를 선택한다는 가설
+                \item Prior $P(D_k)$: k면체 주사위를 랜덤하게 하나 골라서 굴릴 확률
+                $$  
+                P(D_4)=\frac18,\quad P(D_6)=\frac28,\quad P(D_8)=\frac28,\quad P(D_{12})=\frac28,\quad P(D_{20})=\frac18  
+                $$
+                \item likelihood: 주사위 별로 첫 번째 굴림에서 $7$이 나올 확률  
+                $$  
+                P(7\mid D_4)=0,\quad P(7\mid D_6)=0,\quad P(7\mid D_8)=\frac18,\quad P(7\mid D_{12})=\frac1{12},\quad P(7\mid D_{20})=\frac1{20}  
+                $$  
+                \item Evidence: 관찰된 data가 7이 나올 확률 (전체확률법칙으로 계산)
+                    \begin{align*}
+                        P(7)&=P(7\mid D_4)P(D_4)+P(7\mid D_6)P(D_6)+P(7\mid D_8)P(D_8)+P(7\mid D_{12})P(D_{12})+P(7\mid D_{20})P(D_{20})\\  
+                        &=0\cdot\frac18+0\cdot\frac28+\frac18\cdot\frac28+\frac1{12}\cdot\frac28+\frac1{20}\cdot\frac18 \\ 
+                        &=\frac1{32}+\frac1{48}+\frac1{160}=\frac7{120}
+                    \end{align*}
+            따라서  
+                \begin{align*}
+                    P(D_4\mid 7)&=0\\
+                    P(D_6\mid 7)&=0\\
+                    P(D_8\mid 7)&=\frac{\frac18\cdot\frac28}{\frac7{120}}=\frac{15}{28}\\
+                    P(D_{12}\mid 7)&=\frac{\frac1{12}\cdot\frac28}{\frac7{120}}=\frac{10}{28}=\frac5{14}\\
+                    P(D_{20}\mid 7)&=\frac{\frac1{20}\cdot\frac18}{\frac7{120}}=\frac3{28}
+                \end{align*}
+
+            \end{itemize}
+
+\newpage
+
+            \item $20$면체 주사위를 골랐을 posterior odds:
+            $$  
+            \frac{P(D_{20}\mid 7)}{P(D_{20}^c\mid 7)}  
+            $$  
+            
+            $$  
+            P(D_{20}\mid 7)=\frac3{28},\quad P(D_{20}^c\mid 7)=1-\frac3{28}=\frac{25}{28}  
+            $$  
+            따라서 
+            $$  
+            \frac{P(D_{20}\mid 7)}{P(D_{20}^c\mid 7)}=\frac{\frac3{28}}{\frac{25}{28}}=\frac3{25}  
+            $$  
+            즉, posterior odds는 3:25입니다.  
+
+            \item 첫 번째 굴림에서7이 나오는 prior predictive probability는 주사위가 무엇인지 관찰하기 전의 prior 상태에서 7이 나올 전체 확률이며, 전체 확률법칙을 이용해서 구합니다.
+            \begin{align*}
+                P(7)&
+                =P(7\mid D_4)P(D_4)+P(7\mid D_6)P(D_6)+P(7\mid D_8)P(D_8)+P(7\mid D_{12})P(D_{12})+P(7\mid D_{20})P(D_{20})  \\
+                &=0\cdot\frac18+0\cdot\frac28+\frac18\cdot\frac28+\frac1{12}\cdot\frac28+\frac1{20}\cdot\frac18\\  
+                &=\frac1{32}+\frac1{48}+\frac1{160}=\frac7{120} 
+            \end{align*}  
+ 
+
+            \item 첫 번째 굴림에서 $7$이 나온 뒤, 같은 주사위를 다시 굴려서 $8$이 나올 posterior predictive probability:  
+            $$  
+            P(8\mid 7)=\sum_k P(8\mid D_k)P(D_k\mid 7)  
+            $$  
+            이때 $P(8\mid D_k)$과 $P(D_k\mid 7)$은 아래와 같습니다.\\ 
+            \begin{itemize}[itemsep=0em]
+                \item $P(8\mid D_k)$
+                    $$  
+                    P(8\mid D_4)=0,\quad P(8\mid D_6)=0,\quad P(8\mid D_8)=\frac18,\quad P(8\mid D_{12})=\frac1{12},\quad P(8\mid D_{20})=\frac1{20}  
+                    $$ 
+                 \item $P(D_k\mid 7)$
+                    $$
+                    P(D_4\mid 7)=0,\quad
+                    P(D_6\mid 7)=0,\quad
+                    P(D_8\mid 7)=\frac{15}{28},\quad
+                    P(D_{12}\mid 7)=\frac5{14},\quad
+                    P(D_{20}\mid 7)=\frac3{28}
+                    $$
+            \end{itemize}
+
+            $P(8\mid 7)$를 계산하면:
+            \begin{align*}
+            P(8\mid 7)&=\frac18\cdot\frac{15}{28}+\frac1{12}\cdot\frac{10}{28}+\frac1{20}\cdot\frac3{28}   \\
+            &=\frac{15}{224}+\frac{10}{336}+\frac3{560}\\
+            &=\frac{49}{480}                 
+            \end{align*}  
+ 
+              
+            따라서 두 번째 굴림에서 $8$이 나올 posterior predictive probability는 49/480      입니다.
+            
+        \end{enumerate}
+    \end{solution}
+
+\newpage
+
+\item  $x \sim geometric(\theta)$를 따르고, x = 6의 샘플을 얻었습니다. 우리의 prior가 $f(\theta) \sim Beta(4,2)$일 때 $\theta$의posterior를 구하세요.
+
+    \begin{solution}
+        geometric distribution: $P(X=x\mid \theta)=\theta(1-\theta)^{x-1},\quad x=1,2,3,\dots$\\  
+        관측값이 $x=6$일때, likelihood: $P(X=6\mid \theta)=\theta(1-\theta)^5$\\  
+        prior: $\theta\sim \operatorname{Beta}(4,2)$이므로 $f(\theta)\propto \theta^{4-1}(1-\theta)^{2-1}$\\  
+        posterior:  
+        \begin{align*}
+            f(\theta\mid x=6)&\propto P(X=6\mid \theta)f(\theta)  \\
+            &\propto \theta(1-\theta)^5\cdot \theta^3(1-\theta)^1  \\ 
+            &\propto \theta^4(1-\theta)^6 
+        \end{align*}
+    
+        Beta 분포의 형태 $\theta^{\alpha-1}(1-\theta)^{\beta-1}$ 와 비교하면  
+        $$  
+        \alpha-1=4,\quad \beta-1=6  
+        $$  
+        $$  
+        \alpha=5,\quad \beta=7  
+        $$  
+        따라서 posterior는 $\theta\mid x=6\sim \operatorname{Beta}(5,7)$ 입니다.                                               
+    \end{solution}
+\newpage
+\item 집단의 평균IQ는100이고 표준편차는15입니다.정의에 따라IQ는 정규분포를 따릅니다.IQ테스트는 사
+람의”true” IQ + random error를 얻는데, 이 random error는 $N(0,10^2)$를 따릅니다. 어떤 사람이 테스트를 통해결과120이 나왔습니다.해당 사람의IQ의posterior pdf를 계산하세요.
+
+    \begin{solution}
+        $\theta$: 사람의 “true” IQ\\  
+        모집단에서 true IQ의 prior: $\theta\sim N(100,15^2)$\\
+        $X$: IQ 테스트 결과\\
+        테스트는 true IQ에 random error를 더한 값이므로  
+        $$  
+        X\mid \theta\sim N(\theta,10^2)  
+        $$  
+        관측값: $X=120$  \\
+        정규분포 prior와 정규분포 likelihood를 결합하면 posterior도 정규분포기 때문에 posterior variance:
+        \begin{align*}
+        \sigma_{\text{post}}^2&=\left(\frac1{15^2}+\frac1{10^2}\right)^{-1}\\  
+        &=\left(\frac1{225}+\frac1{100}\right)^{-1}    \\
+        &=\left(\frac{325}{22500}\right)^{-1}\\
+        &=\frac{900}{13}             
+        \end{align*}
+ 
+        posterior mean:
+        \begin{align*}
+        \mu_{\text{post}}&=\sigma_{\text{post}}^2\left(\frac{100}{15^2}+\frac{120}{10^2}\right)  \\
+        &=\frac{900}{13}\left(\frac{100}{225}+\frac{120}{100}\right)  \\
+        &=\frac{900}{13}\left(\frac49+\frac65\right)=\frac{900}{13}\cdot\frac{74}{45}\\
+        &=\frac{1480}{13}             
+        \end{align*}
+
+        따라서 posterior 분포:
+        $$  
+        \theta\mid X=120\sim N\left(\frac{1480}{13},\frac{900}{13}\right)  
+        $$  
+        즉 posterior pdf는  
+        $$  
+        f(\theta\mid X=120)=\frac{1}{\sqrt{2\pi\cdot\frac{900}{13}}}\exp\left(-\frac{\left(\theta-\frac{1480}{13}\right)^2}{2\cdot\frac{900}{13}}\right)  
+        $$  
+        입니다.  
+        
+    \end{solution}
+    
+\newpage
+\item 데이터 2,4,4,10이 서로 독립적으로 $N(\mu,\sigma2)$ 분포에서 뽑혔습니다. $H_0: µ = 0$이고, $H_A: µ \neq 0$ 입니다.\\
+Significance level α = 0.05를 사용하세요.\\
+(a) σ2 = 16이 주어졌을 때 $H_A$ 에 대해 $H_0$를 테스트하세요.\\
+(b) σ2가 알려져있지 않을때$H_A$ 에 대해 $H_0$를 테스트하세요.
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=1em]
+            
+            \item
+                주어진 데이터는 {2,4,4,10} 이고,  $n=4$, $\bar X=(2+4+4+10)/4=5$\\  
+                가설: $H_0:\mu=0,\quad H_A:\mu\ne 0$, 양측검정  \\
+                $\sigma^2=16$이 주어졌기 때문에 $\sigma=4$ \\
+                모분산을 알고 있으므로 $z$-test를 사용합니다. \\ 
+                검정통계량:
+                $$  
+                Z=\frac{\bar X-\mu_0}{\sigma/\sqrt n}  
+                $$  
+                계산하면  
+                $$  
+                Z=\frac{5-0}{4/\sqrt4}=\frac{5}{2}=2.5  
+                $$  
+                유의수준 $\alpha=0.05$인 양측검정에서 임계값은 $\pm z_{0.025}=\pm 1.96$ 입니다. \\
+                검정통계량이 $2.5>1.96$ 이므로 $H_0$를 기각합니다.  \\
+                따라서 $\sigma^2=16$이 주어진 경우, 유의수준 $0.05$에서 $\mu\ne0$이라고 볼 수 있는 충분한 근거가 있습니다.  
+
+
+            \item
+                $\sigma^2$가 알려져 있지 않은 경우 t-test를 사용하기 위해 표본분산과 표본 표준편차를 계산합니다.
+                \begin{align*}
+                    s^2&=\frac{(2-5)^2+(4-5)^2+(4-5)^2+(10-5)^2}{4-1}  \\
+                    &=\frac{9+1+1+25}{3}=12 \\
+                    \\
+                    s&=\sqrt{12}=2\sqrt3
+                \end{align*}
+
+                검정통계량:   
+                \begin{align*}
+                    T&=\frac{\bar X-\mu_0}{s/\sqrt n}  \\
+                    &=\frac{5-0}{2\sqrt3/\sqrt4}=\frac{5}{\sqrt3}    \\
+                    &\approx 2.887  
+                \end{align*}
+
+                자유도: n-1=3  \\
+                유의수준 $\alpha=0.05$인 양측검정에서 임계값은 $\pm t_{0.025,3}=\pm 3.182$ 입니다.\\  
+                검정통계량이 2.887<3.182이므로 $H_0$를 기각하지 않습니다.  \\
+                따라서 $\sigma^2$가 알려져 있지 않은 경우, 유의수준 $0.05$에서 $\mu\ne0$이라고 볼 수 있는 충분한 근거가 없습니다.
+        \end{enumerate}
+    \end{solution}
+    
+
+
+
+
+\end{enumerate}
+
+
+
+\end{document}
