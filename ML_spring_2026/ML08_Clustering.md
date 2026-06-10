@@ -25,11 +25,13 @@
 
 - 우리는 $N$개의 관측값(observations)으로 이루어진 데이터셋에서 시작한다.
 - 각 관측값은 $D$차원 벡터
+  
 $$  
 \mathbf{x}^{(n)} \in \mathbb{R}^D,\quad n=1,\ldots,N  
 $$
 - 우리의 목표는 이 데이터 포인트들을 $K$개의 클러스터로 구성하는 것이다.
 - 클러스터를 정의하기 위해, 다음과 같은 프로토타입(prototype) 또는 센트로이드(centroid) 집합을 도입한다.  
+
 $$  
 \boldsymbol{\mu}_k \in \mathbb{R}^D,\quad k=1,\ldots,K  
 $$
@@ -38,6 +40,7 @@ $$
 
 - K-means 알고리즘은 각 데이터 포인트를 가장 가까운 프로토타입(prototype) 또는 센트로이드(centroid)를 가지는 클러스터에 할당한다.
 - 이 아이디어를 수식적으로 표현하기 위해, 전체 클러스터 내부 분산(within-cluster variance)을 측정하는 **목적 함수(objective function) $J$를 정의**한다.  
+
 $$  
 J=\sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk}\left|\mathbf{x}^{(n)}-\boldsymbol{\mu}_k\right|^2  
 $$
@@ -46,6 +49,7 @@ $$
 - 목적함수를 최소화 해야 하니까 센터$\mathbf{x}^{(n)}$와 중심 $\boldsymbol{\mu}_k$ 의 거리를 최소화 해야 함. →**내부 분산(within-cluster variance) 최소화**
 
 - $r_{nk}$는 다음과 같이 정의되는 지시 변수(indicator variable)이다.  
+
 $$  
 r_{nk}=  
 \begin{cases}  
@@ -64,11 +68,13 @@ $$
 
 - 첫 번째 단계에서는 클러스터 중심 $\boldsymbol{\mu}_k$가 고정되어 있다고 가정하고, 지시 변수 $r_{nk}$를 갱신하여 목적 함수 $J$를 최적화한다.
 - 각 데이터 포인트 $\mathbf{x}^{(n)}$에 대해,  
+
 $$  
 \left|\mathbf{x}^{(n)}-\boldsymbol{\mu}_k\right|^2  
 $$  
 를 최소화하는 $k$번째 클러스터를 선택하여 가장 가까운 클러스터에 할당한다.
 - 이를 수식으로 표현하면 다음과 같다.  
+
 $$  
 r_{nk}=  
 \begin{cases}  
@@ -82,17 +88,17 @@ $$
 - 두 번째 단계에서는 할당 변수 $r_{nk}$가 고정되어 있다고 가정하고, **목적 함수 $J$를 최소화하도록 클러스터 중심 $\boldsymbol{\mu}_k$를 갱신**한다.
 - 목적 함수 $J$는 $\boldsymbol{\mu}_k$에 대해 이차식(quadratic form)이므로, $J$를 $\boldsymbol{\mu}_k$에 대해 미분함으로써 최적의 클러스터 중심을 구할 수 있다.
 - 도함수를 0으로 두면 다음을 얻는다.  
+
 $$  
-\frac{\partial J}{\partial \boldsymbol{\mu}_k}  
-=  
+\frac{\partial J}{\partial \boldsymbol{\mu}_k} =  
 2\sum_{n=1}^{N} r_{nk}\left(\mathbf{x}^{(n)}-\boldsymbol{\mu}_k\right)  
 =0  
 $$
 
 - 이 식을 $\boldsymbol{\mu}_k$에 대해 풀면 다음을 얻는다.  
+
 $$  
-\boldsymbol{\mu}_k  
-=  
+\boldsymbol{\mu}_k =  
 \frac{\sum_n r_{nk}\mathbf{x}^{(n)}}{\sum_n r_{nk}}  
 $$
 
@@ -112,9 +118,9 @@ $$
 - K-means 클러스터링에서 $K$는 클러스터의 개수를 나타내는 하이퍼파라미터(hyperparameter)이다.
 - 클러스터링은 일반적으로 비지도 학습이므로, 보편적으로 항상 올바른 단일 $K$ 값은 존재하지 않는다. 하지만 실제로는 **elbow method나 silhouette score와 같은 방법을 사용**하여 $K$를 선택하는 경우가 많다.
 - Elbow method에서는 여러 값의 $K$에 대해 K-means를 수행하고, 클러스터 내부 제곱합(within-cluster sum of squares)을 계산한다.  
+
 $$  
-W_K  
-=  
+W_K  =  
 \sum_{k=1}^{K}  
 \sum_{\mathbf{x}_i \in C_k}  
 \left|\mathbf{x}_i-\boldsymbol{\mu}_k\right|^2  
@@ -128,15 +134,16 @@ $$
 
 - Silhouette score에서는 각 데이터 포인트 $\mathbf{x}_i$에 대해, $a_i$를 같은 클러스터 내 다른 포인트들과의 평균 거리로 정의하고, $b_i$를 가장 가까운 이웃 클러스터에 속한 포인트들과의 평균 거리로 정의한다.
 - 그러면 $\mathbf{x}_i$의 silhouette score는 다음과 같다.  
+
 $$  
 s_i  
 =  
 \frac{b_i-a_i}{\max(a_i,b_i)}  
 $$
 - 최종적으로 전체 silhouette score는 다음과 같이 정의된다.  
+
 $$  
-S_K  
-=  
+S_K =  
 \frac{1}{N}  
 \sum_{i=1}^{N} s_i  
 $$
@@ -184,9 +191,9 @@ $$
 ### The Expectation-Maximization Algorithm for Gaussian Mixture Models
 - Gaussian mixture model(GMM)에서는 데이터 포인트 $\mathbf{x}$의 확률 분포를 $K$개의 가우시안 성분(Gaussian component)의 가중합(weighted sum)으로 모델링하며, 각 가우시안은 하나의 클러스터에 대응된다.
 - 혼합 분포(mixture distribution)는 다음과 같이 주어진다.  
+
 $$  
-p(\mathbf{x})  
-=  
+p(\mathbf{x}) =  
 \sum_{k=1}^{K}  
 \pi_k \mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
 $$
@@ -195,9 +202,9 @@ $$
 - 또한  **$\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)$ 는 평균(mean) $\boldsymbol{\mu}_k$와 공분산(covariance) $\boldsymbol{\Sigma}_k$** 를 가지는 가우시안 분포이다.
 
 - 앞서 논의했듯이, 로그우도(log-likelihood)를 직접 최대화하는 것은  
+
 $$  
-\ln p(\mathbf{X}\mid \boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma})  
-=  
+\ln p(\mathbf{X}\mid \boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma}) =  
 \sum_{n=1}^{N}  
 \ln(  
 \sum_{k=1}^{K}  
@@ -213,22 +220,12 @@ $$
 - E-step에서는 현재 **모델 파라미터를 고정된 것으로 간주**하고, 각 데이터 포인트 $\mathbf{x}$가 특정 가우시안 성분 $k$에서 생성되었을 확률을 추정한다.
 - 이 확률을 responsibility라고 하며, $\gamma(z_k)$로 나타낸다.
 - 형식적으로, $\gamma(z_k)$는 데이터 포인트 $\mathbf{x}$가 $k$번째 성분에서 생성되었을 조건부확률이다.  
+
 $$  
-\gamma(z_k)  
-=  
-p(z_k=1\mid \mathbf{x})  
-=  
-\frac{  
-p(z_k=1)p(\mathbf{x}\mid z_k=1)  
-}{  
-\sum_{j=1}^{K}p(z_j=1)p(\mathbf{x}\mid z_j=1)  
-}  
-=  
-\frac{  
-\pi_k\mathcal{N}(\mathbf{x}\mid\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
-}{  
-\sum_{j=1}^{K}\pi_j\mathcal{N}(\mathbf{x}\mid\boldsymbol{\mu}_j,\boldsymbol{\Sigma}_j)  
-}  
+\gamma(z_k) =  
+p(z_k=1\mid \mathbf{x}) =  
+\frac{p(z_k=1)p(\mathbf{x}\mid z_k=1)}{\sum_{j=1}^{K}p(z_j=1)p(\mathbf{x}\mid z_j=1)} =  
+\frac{\pi_k\mathcal{N}(\mathbf{x}\mid\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)}{\sum_{j=1}^{K}\pi_j\mathcal{N}(\mathbf{x}\mid\boldsymbol{\mu}_j,\boldsymbol{\Sigma}_j)}  
 $$
 
 - 따라서 여기서 $\gamma(z_k)$는 성분 $k$가 데이터 포인트 $\mathbf{x}$를 설명하는 데 책임을 가지는 정도를 나타낸다.
