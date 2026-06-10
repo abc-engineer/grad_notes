@@ -127,8 +127,7 @@ $$
 
 $$  
 \frac{\partial \mathcal{L}}{\partial \mathbf{u}_1}  =  
-2 \mathbf{S} \mathbf{u}_1
-- 2 \lambda_1 \mathbf{u}_1
+2 \mathbf{S} \mathbf{u}_1- 2 \lambda_1 \mathbf{u}_1
 = 0  
 $$  
 
@@ -206,8 +205,7 @@ $$
 - 이 basis는 complete하므로, 각 데이터 점은 basis vector들의 선형 결합으로 표현될 수 있으며, 계수 $\alpha_i^{(n)}$는 데이터 점마다 달라진다.  
 
 $$  
-\mathbf{x}^{(n)}  
-=  \sum_{i=1}^{D} \alpha_i^{(n)} \mathbf{u}_i  
+\mathbf{x}^{(n)}  =  \sum_{i=1}^{D} \alpha_i^{(n)} \mathbf{u}_i  
 $$
 - 개념적으로 이는 단순한 좌표계의 회전에 해당한다. 즉, 데이터 점을 기존 축 대신 $\mathbf{u}_i$가 정의하는 새로운 축들에 대해 표현하는 것이다.
 
@@ -218,11 +216,9 @@ $$
 - $\mathbf{x}^{(n)}$의 전개식을 대입하면 다음을 얻는다.  
 
 $$  
-\mathbf{u}_i^T \mathbf{x}^{(n)}  
-=  \mathbf{u}_i^T  
+\mathbf{u}_i^T \mathbf{x}^{(n)}  =  \mathbf{u}_i^T  
 \sum_{j=1}^{D}  
-\alpha_j^{(n)} \mathbf{u}_j  
-=  \sum_{j=1}^{D}  
+\alpha_j^{(n)} \mathbf{u}_j  =  \sum_{j=1}^{D}  
 \alpha_j^{(n)}  
 \mathbf{u}_i^T \mathbf{u}_j  
 $$
@@ -240,8 +236,7 @@ $$
 - 이를 위해 각 데이터 점 $\mathbf{x}^{(n)}$를 처음 $M$개의 basis vector에 대한 projection만 유지하여 다음과 같이 근사한다.  
 
 $$  
-\tilde{\mathbf{x}}^{(n)}  
-=  \sum_{i=1}^{M}  
+\tilde{\mathbf{x}}^{(n)}  =  \sum_{i=1}^{M}  
 z_i^{(n)} \mathbf{u}_i+\sum_{i=M+1}^{D}  
 b_i \mathbf{u}_i  
 $$
@@ -262,8 +257,7 @@ $$
 J  =  \frac{1}{N}  
 \sum_{n=1}^{N}  
 \left|  
-\mathbf{x}^{(n)}
--\tilde{\mathbf{x}}^{(n)}  
+\mathbf{x}^{(n)}-\tilde{\mathbf{x}}^{(n)}  
 \right|^2  
 $$
 - 여기에는 $z_i^{(n)}$, $b_i$, 그리고 $\mathbf{u}_i$라는 세 종류의 parameter가 존재하지만, distortion measure $J$를 좌표 $z_i^{(n)}$, $b_i$, 그리고 basis vector $\mathbf{u}_i$에 대해 동시에 최소화하는 것은 문제를 직접 풀기 훨씬 어렵게 만든다.
@@ -301,8 +295,7 @@ $$
 $$  
 \tilde{\mathbf{x}}^{(n)} =  
 \sum_{i=1}^{M}  
-((\mathbf{x}^{(n)})^T\mathbf{u}_i )\mathbf{u}_i
-+\sum_{i=M+1}^{D}  
+((\mathbf{x}^{(n)})^T\mathbf{u}_i )\mathbf{u}_i+\sum_{i=M+1}^{D}  
 (\bar{\mathbf{x}}^T \mathbf{u}_i) \mathbf{u}_i  
 $$
 
@@ -318,16 +311,11 @@ $$
 \left(  
 \bar{\mathbf{x}}^T\mathbf{u}_i
 \right)\mathbf{u}_i  
-\right)
-= \left(  
-\mathbf{x}^{(n)}
-- \sum_{i=1}^{M}  
+\right)= \left(\mathbf{x}^{(n)} - \sum_{i=1}^{M}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
-\right)
--
-\sum_{i=M+1}^{D}  
+\right)-\sum_{i=M+1}^{D}  
 \left(  
 \bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
@@ -336,8 +324,7 @@ $$
 - $\mathbf{x}^{(n)}$ 자체는 complete orthonormal basis를 사용하여 정확하게 다음과 같이 전개될 수 있음을 기억하자.  
 
 $$  
-\mathbf{x}^{(n)}  =  
-\sum_{i=1}^{D}  
+\mathbf{x}^{(n)}  =  \sum_{i=1}^{D}  
 \mathbf{x}^{(n)T}\mathbf{u}_i \mathbf{u}_i  
 $$
 
@@ -349,34 +336,26 @@ $$
 \sum_{i=1}^{D}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
-\right)\mathbf{u}_i
-- \sum_{i=1}^{M}  
+\right)\mathbf{u}_i- \sum_{i=1}^{M}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
-\right)
--
-\sum_{i=M+1}^{D}  
+\right)-\sum_{i=M+1}^{D}  
 \left(  
 \bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
 $$
 
 $$
-=
-\left(  
+=\left(  
 \sum_{i=1}^{D}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
-\right)\mathbf{u}_i
-
-- \sum_{i=1}^{M}  
+\right)\mathbf{u}_i- \sum_{i=1}^{M}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
-\right)
--
-\sum_{i=M+1}^{D}  
+\right)-\sum_{i=M+1}^{D}  
 \left(  
 \bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)\mathbf{u}_i 
@@ -386,20 +365,14 @@ $$
 = \sum_{i=M+1}^{D}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
-\right)\mathbf{u}_i
-
-- \sum_{i=M+1}^{D}  
-\left(  
-\bar{\mathbf{x}}^T\mathbf{u}_i  
+\right)\mathbf{u}_i- \sum_{i=M+1}^{D}  
+\left(  \bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
 $$  
 
 $$
 = \sum_{i=M+1}^{D}  
-\left(  
-(\mathbf{x}^{(n)})^T\mathbf{u}_i
--
-\bar{\mathbf{x}}^T\mathbf{u}_i  
+\left(  (\mathbf{x}^{(n)})^T\mathbf{u}_i-\bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
 $$
 
@@ -409,8 +382,7 @@ $$
 J  =  \frac{1}{N}  
 \sum_{n=1}^{N}  
 \left|  
-\mathbf{x}^{(n)}
-- \tilde{\mathbf{x}}^{(n)}  
+\mathbf{x}^{(n)}- \tilde{\mathbf{x}}^{(n)}  
 \right|^2  
 $$  
 
@@ -419,9 +391,7 @@ $$
 \sum_{n=1}^{N}  
 \left|  
 \sum_{i=M+1}^{D}  
-\left(  
-(\mathbf{x}^{(n)})^T\mathbf{u}_i
-- \bar{\mathbf{x}}^T\mathbf{u}_i  
+\left(  (\mathbf{x}^{(n)})^T\mathbf{u}_i- \bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
 \right|^2  
 $$  
@@ -430,10 +400,7 @@ $$
 = \frac{1}{N}  
 \sum_{n=1}^{N}  
 \sum_{i=M+1}^{D}  
-\left(  
-(\mathbf{x}^{(n)})^T\mathbf{u}_i
--
-\bar{\mathbf{x}}^T\mathbf{u}_i  
+\left(  (\mathbf{x}^{(n)})^T\mathbf{u}_i-\bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)^2  
 $$
 
