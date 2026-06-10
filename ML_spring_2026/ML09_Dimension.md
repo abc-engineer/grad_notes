@@ -119,23 +119,21 @@ $$
 - 분산을 최대화 하는게 목표
 - → 분산을 최대화 하는 u1을 찾아야 함.
 - $\mathbf{u}_1^T \mathbf{u}_1 = 1$ 같이 이런 제한 조건이 있을때 최적화는 라그랑주를 자주 사용하게 됨.
-- 별건 아니고 원래의 목적함수를 계산하기 쉽게 라그랑주 멀티플라이어$\lambda_1$을 도입해서 새로운 목적함수를 만들어서 계산하는 행동임.
+- 별건 아니고 원래의 목적함수를 계산하기 쉽게 라그랑주 멀티플라이어 $\lambda_1 $을 도입해서 새로운 목적함수를 만들어서 계산하는 행동임.
 
 
 
 - $\mathbf{u}_1$에 대한 미분을 0으로 두면, 다음 조건에서 stationary point가 존재함을 알 수 있다.  
 
 $$  
-\frac{\partial \mathcal{L}}{\partial \mathbf{u}_1}  
-=  
+\frac{\partial \mathcal{L}}{\partial \mathbf{u}_1}  =  
 2 \mathbf{S} \mathbf{u}_1
 - 2 \lambda_1 \mathbf{u}_1
 = 0  
 $$  
 
 $$  
-\mathbf{S} \mathbf{u}_1
-=
+\mathbf{S} \mathbf{u}_1=
 \lambda_1 \mathbf{u}_1  
 $$
 
@@ -143,8 +141,7 @@ $$
 - 이제 양변의 왼쪽에 $\mathbf{u}_1^T$를 곱하고 $\mathbf{u}_1^T \mathbf{u}_1 = 1$을 이용하면, projected variance는 다음과 같이 주어진다.  
 
 $$  
-\mathbf{u}_1^T \mathbf{S} \mathbf{u}_1  
-= \lambda_1  
+\mathbf{u}_1^T \mathbf{S} \mathbf{u}_1  = \lambda_1  
 $$
 
 
@@ -195,8 +192,7 @@ $$
 $$ 
 
 $$  
-\delta_{ij} =  
-\begin{cases}  
+\delta_{ij} =  \begin{cases}  
 1 & \text{if } i=j \\  
 0 & \text{otherwise}  
 \end{cases}  
