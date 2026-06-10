@@ -79,12 +79,14 @@
 - 수식을 풀때 투영 벡터는 크기가 1인 유닛 벡터로 제한함.(condition)
 - 그러기 위해 $u$를 찾아야 함.
 
-- projected data의 평균은 $\mathbf{u}_1^T \bar{\mathbf{x}}$이며, 여기서 $\bar{\mathbf{x}}$는 다음과 같이 정의되는 sample set mean이다.  
+- projected data의 평균은 $\mathbf{u}_1^T \bar{\mathbf{x}}$이며, 여기서 $\bar{\mathbf{x}}$는 다음과 같이 정의되는 sample set mean이다.
+  
 $$  
 \bar{\mathbf{x}} = \frac{1}{N} \sum_{n=1}^{N} \mathbf{x}^{(n)}  
 $$
 
 - projected data의 분산은 다음과 같이 주어지며, 여기서 $\mathbf{S}$는 데이터의 covariance matrix이다.  
+
 $$  
 \begin{align}
 \frac{1}{N} \sum_{n=1}^{N} \left( \mathbf{u}_1^T \mathbf{x}^{(n)} - \mathbf{u}_1^T \bar{\mathbf{x}} \right)^2  
@@ -95,6 +97,7 @@ $$
 $$
 
 - covariance matrix $\mathbf{S}$는 다음과 같이 정의된다.  
+
 $$  
 \mathbf{S} = \frac{1}{N} \sum_{n=1}^{N} \left( \mathbf{x}^{(n)} - \bar{\mathbf{x}} \right)\left( \mathbf{x}^{(n)} - \bar{\mathbf{x}} \right)^T  
 $$
@@ -103,11 +106,11 @@ $$
 - 투영된 데이터의 분산을 계산해야 함. S는 오리지널 데이터의 분산임.
 
 
-
 - 이제 projected variance $\mathbf{u}_1^T \mathbf{S} \mathbf{u}_1$을 $\mathbf{u}_1$에 대해 최대화한다.
 - 그러나 이 최대화는 제약 조건이 필요하다. 그렇지 않으면 단순히 $\mathbf{u}_1$을 스케일링하여 분산을 임의로 크게 만들 수 있기 때문이다.
 - 앞서 간단히 언급했듯이, trivial solution을 피하기 위해 normalization constraint $\mathbf{u}_1^T \mathbf{u}_1 = 1$을 부과하며, 이는 $\mathbf{u}_1$을 unit vector로 제한한다.
 - 이 제약 조건을 적용하기 위해 Lagrange multiplier $\lambda_1$을 도입하고, 다음의 $\mathcal{L}$에 대해 unconstrained maximization을 수행한다.  
+
 $$  
 \mathcal{L} = \mathbf{u}_1^T \mathbf{S} \mathbf{u}_1 + \lambda_1 \left(1 - \mathbf{u}_1^T \mathbf{u}_1\right)  
 $$
@@ -121,6 +124,7 @@ $$
 
 
 - $\mathbf{u}_1$에 대한 미분을 0으로 두면, 다음 조건에서 stationary point가 존재함을 알 수 있다.  
+
 $$  
 \frac{\partial \mathcal{L}}{\partial \mathbf{u}_1}  
 =  
@@ -128,6 +132,7 @@ $$
 - 2 \lambda_1 \mathbf{u}_1
 = 0  
 $$  
+
 $$  
 \mathbf{S} \mathbf{u}_1
 =
@@ -136,10 +141,10 @@ $$
 
 - 이는 $\mathbf{u}_1$이 $\mathbf{S}$의 eigenvector여야 함을 의미한다.
 - 이제 양변의 왼쪽에 $\mathbf{u}_1^T$를 곱하고 $\mathbf{u}_1^T \mathbf{u}_1 = 1$을 이용하면, projected variance는 다음과 같이 주어진다.  
+
 $$  
 \mathbf{u}_1^T \mathbf{S} \mathbf{u}_1  
-=  
-\lambda_1  
+= \lambda_1  
 $$
 
 
@@ -149,8 +154,6 @@ $$
 
 
 - S의 아이겐 벡터가 무엇을 의미하는지 공부할 것 !!!
-
-
 
 
 - 이는 $\mathbf{u}_1$을 가장 큰 eigenvalue $\lambda_1$에 대응하는 eigenvector로 설정할 때 variance가 최대가 됨을 의미한다.    
@@ -186,9 +189,12 @@ $$
 - 철학은 다르지만 결과는 첫번째와 같음.
 
 - 이를 위해, 다음 조건을 만족하는 $D$차원 basis vector들의 complete orthonormal set $\mathbf{u}_i$를 도입한다. 여기서 $i = 1, \dots, D$이다.  
+
 $$  
 \mathbf{u}_i^T \mathbf{u}_j = \delta_{ij}  
-$$ $$  
+$$ 
+
+$$  
 \delta_{ij} =  
 \begin{cases}  
 1 & \text{if } i=j \\  
@@ -202,10 +208,10 @@ $$
 - mutually orthogonal: 서로 수직이고 벡터의 길이는 1
 
 - 이 basis는 complete하므로, 각 데이터 점은 basis vector들의 선형 결합으로 표현될 수 있으며, 계수 $\alpha_i^{(n)}$는 데이터 점마다 달라진다.  
+
 $$  
 \mathbf{x}^{(n)}  
-=  
-\sum_{i=1}^{D} \alpha_i^{(n)} \mathbf{u}_i  
+=  \sum_{i=1}^{D} \alpha_i^{(n)} \mathbf{u}_i  
 $$
 - 개념적으로 이는 단순한 좌표계의 회전에 해당한다. 즉, 데이터 점을 기존 축 대신 $\mathbf{u}_i$가 정의하는 새로운 축들에 대해 표현하는 것이다.
 
@@ -214,22 +220,21 @@ $$
 
 - 계수 $\alpha_i^{(n)}$를 구하기 위해, 데이터 점 $\mathbf{x}^{(n)}$를 각 basis vector $\mathbf{u}_i$에 dot product를 사용하여 projection한다.
 - $\mathbf{x}^{(n)}$의 전개식을 대입하면 다음을 얻는다.  
+
 $$  
 \mathbf{u}_i^T \mathbf{x}^{(n)}  
-=  
-\mathbf{u}_i^T  
+=  \mathbf{u}_i^T  
 \sum_{j=1}^{D}  
 \alpha_j^{(n)} \mathbf{u}_j  
-=  
-\sum_{j=1}^{D}  
+=  \sum_{j=1}^{D}  
 \alpha_j^{(n)}  
 \mathbf{u}_i^T \mathbf{u}_j  
 $$
+
 - $\mathbf{u}_i^T \mathbf{u}_j = 0$ when $i \neq j$이고, $1$ when $i=j$이므로, 다음만 남게 된다.  
+
 $$  
-\alpha_i^{(n)}  
-=  
-\mathbf{u}_i^T \mathbf{x}^{(n)}  
+\alpha_i^{(n)} = \mathbf{u}_i^T \mathbf{x}^{(n)}  
 $$
 
 - 알파는 뮤와 엑스의 곲으로 표현 할 수 있음.
@@ -237,14 +242,11 @@ $$
 - 그러나 **우리의 목표는 데이터를 정확히 표현하는 것만이 아니라, 더 적은 차원을 사용하여 데이터를 근사하는 것**이다.
 - 구체적으로, 데이터의 중요한 구조를 포착하는 차원 $M < D$의 저차원 공간을 찾고자 한다.
 - 이를 위해 각 데이터 점 $\mathbf{x}^{(n)}$를 처음 $M$개의 basis vector에 대한 projection만 유지하여 다음과 같이 근사한다.  
+
 $$  
 \tilde{\mathbf{x}}^{(n)}  
-=  
-\sum_{i=1}^{M}  
-z_i^{(n)} \mathbf{u}_i
-
-+
-\sum_{i=M+1}^{D}  
+=  \sum_{i=1}^{M}  
+z_i^{(n)} \mathbf{u}_i+\sum_{i=M+1}^{D}  
 b_i \mathbf{u}_i  
 $$
 - 여기서 $z_i^{(n)}$는 저차원 subspace에서의 새로운 좌표이며, $b_i$는 나머지 차원들에 대해 모든 데이터 점에서 동일하게 유지되는 상수이다.
@@ -259,10 +261,9 @@ $$
 
 - 최적의 근사를 찾기 위해, 원래 데이터 점 $\mathbf{x}^{(n)}$와 그 근사값 $\tilde{\mathbf{x}}^{(n)}$ 사이의 평균 제곱 거리(mean squared distance)인 “distortion”을 최소화하고자 한다.
 - 이 distortion은 $J$라는 양으로 표현되며, 우리의 목표는 $J$를 최소화하는 것이다.  
+
 $$  
-J  
-=  
-\frac{1}{N}  
+J  =  \frac{1}{N}  
 \sum_{n=1}^{N}  
 \left|  
 \mathbf{x}^{(n)}
@@ -275,6 +276,7 @@ $$
 - 먼저 basis vector $\mathbf{u}_i$를 고정한 뒤, $J$를 최소화하는 최적의 좌표 $z_i^{(n)}$와 $b_i$를 구한다.
 - 좌표들이 결정된 이후에는, basis vector들이 orthonormal 상태를 유지한다는 제약 아래에서 $\mathbf{u}_i$의 선택을 최적화한다.
 - 즉, 먼저 좌표 $z_i^{(n)}$에 대해 $J$를 최소화한다.  
+
 $$  
 \frac{\partial J}{\partial z_i^{(n)}} = 0  
 $$
@@ -284,25 +286,24 @@ $$
 - 이런 다변수의 값을 찾을때는 2개값을 고정해서 각각 값을 구하는 방법을 사용 (지난 강의 참고)
 
 - $J$를 $z_i^{(n)}$에 대해 미분한 뒤 0으로 두고, orthonormality 조건을 이용하면 다음과 같은 간단한 해를 얻는다(증명은 생략).  
+
 $$  
-z_i^{(n)}  
-=  
-(\mathbf{x}^{(n)})^T \mathbf{u}_i,  
+z_i^{(n)} = (\mathbf{x}^{(n)})^T \mathbf{u}_i,  
 \quad i = 1, \dots, M  
 $$
 - 마찬가지로, $J$를 $b_i$에 대해 미분하여 0으로 두면 다음을 얻는다.  
+
 $$  
-b_i  
-=  
+b_i =  
 \bar{\mathbf{x}}^T \mathbf{u}_i,  
 \quad i = M+1, \dots, D  
 $$
 - 여기서 $\bar{\mathbf{x}}$는 모든 데이터 점의 평균이다.
 
 - 이 결과들을 다시 $\tilde{\mathbf{x}}^{(n)}$에 대입하면 다음을 얻는다.  
+
 $$  
-\tilde{\mathbf{x}}^{(n)}  
-=  
+\tilde{\mathbf{x}}^{(n)} =  
 \sum_{i=1}^{M}  
 ((\mathbf{x}^{(n)})^T\mathbf{u}_i )\mathbf{u}_i
 +\sum_{i=M+1}^{D}  
@@ -310,24 +311,20 @@ $$
 $$
 
 - 이제 reconstruction error $\mathbf{x}^{(n)} - \tilde{\mathbf{x}}^{(n)}$를 다시 살펴보면 다음과 같다.  
- $$  
-\mathbf{x}^{(n)}
 
-- \left(  
+$$  
+\mathbf{x}^{(n)}- \left(  
 \sum_{i=1}^{M}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
-\right)\mathbf{u}_i  
-+  
+\right)\mathbf{u}_i  +  
 \sum_{i=M+1}^{D}  
 \left(  
 \bar{\mathbf{x}}^T\mathbf{u}_i
 \right)\mathbf{u}_i  
 \right)
-
 = \left(  
 \mathbf{x}^{(n)}
-
 - \sum_{i=1}^{M}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
@@ -341,14 +338,15 @@ $$
 $$
 
 - $\mathbf{x}^{(n)}$ 자체는 complete orthonormal basis를 사용하여 정확하게 다음과 같이 전개될 수 있음을 기억하자.  
+
 $$  
-\mathbf{x}^{(n)}  
-=  
+\mathbf{x}^{(n)}  =  
 \sum_{i=1}^{D}  
 \mathbf{x}^{(n)T}\mathbf{u}_i \mathbf{u}_i  
 $$
 
 - 따라서 첫 번째 항의 $\mathbf{x}^{(n)}$를 다음과 같이 치환할 수 있다.  
+
 $$  
 \mathbf{x}^{(n)} - \tilde{\mathbf{x}}^{(n)}
 = \left(  
@@ -356,7 +354,6 @@ $$
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
 \right)\mathbf{u}_i
-
 - \sum_{i=1}^{M}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i  
@@ -400,8 +397,8 @@ $$
 \bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
 $$  
-$$
 
+$$
 = \sum_{i=M+1}^{D}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i
@@ -411,18 +408,16 @@ $$
 $$
 
 - 이제 전체 distortion을 정량화해보자.  
+
 $$  
-J  
-=  
-\frac{1}{N}  
+J  =  \frac{1}{N}  
 \sum_{n=1}^{N}  
 \left|  
 \mathbf{x}^{(n)}
-
-
 - \tilde{\mathbf{x}}^{(n)}  
 \right|^2  
 $$  
+
 $$
 = \frac{1}{N}  
 \sum_{n=1}^{N}  
@@ -430,13 +425,12 @@ $$
 \sum_{i=M+1}^{D}  
 \left(  
 (\mathbf{x}^{(n)})^T\mathbf{u}_i
-
 - \bar{\mathbf{x}}^T\mathbf{u}_i  
 \right)\mathbf{u}_i  
 \right|^2  
 $$  
-$$
 
+$$
 = \frac{1}{N}  
 \sum_{n=1}^{N}  
 \sum_{i=M+1}^{D}  
@@ -449,23 +443,28 @@ $$
 
 - basis vector $\mathbf{u}_i$들이 orthonormal이므로, 전체 합의 squared length는 각 coefficient 제곱의 합과 같아진다.
 
-- 이 식은 다음과 같이 더 단순화된다:  
+- 이 식은 다음과 같이 더 단순화된다:
+  
 $$  
 J=\frac{1}{N}\sum_{n=1}^{N}\sum_{i=M+1}^{D}\left(u_i^T(x^{(n)}-\bar{x})\right)^2  
-$$  
+$$ 
+
 $$  
 =\frac{1}{N}\sum_{n=1}^{N}\sum_{i=M+1}^{D}\left(u_i^T(x^{(n)}-\bar{x})\right)\left(u_i^T(x^{(n)}-\bar{x})\right)  
 $$  
+
 $$  
 =\frac{1}{N}\sum_{n=1}^{N}\sum_{i=M+1}^{D}u_i^T(x^{(n)}-\bar{x})(x^{(n)}-\bar{x})^Tu_i  
 $$
 
-- 이 식은 다음과 같이 쓸 수 있다:  
+- 이 식은 다음과 같이 쓸 수 있다:
+- 
 $$  
 J=\frac{1}{N}\sum_{n=1}^{N}\sum_{i=M+1}^{D}u_i^T(x^{(n)}-\bar{x})(x^{(n)}-\bar{x})^Tu_i=\sum_{i=M+1}^{D}u_i^TSu_i,  
 $$
 
-- 여기서 $S$는 데이터의 공분산 행렬이다:  
+- 여기서 $S$는 데이터의 공분산 행렬이다:
+- 
 $$  
 S=\frac{1}{N}\sum_{n=1}^{N}(x^{(n)}-\bar{x})(x^{(n)}-\bar{x})^T.  
 $$
@@ -473,11 +472,13 @@ $$
 - 이 결과가 PCA의 최대 분산(maximum variance) 공식과 유사함을 확인할 수 있다.
 
 - 따라서 최적의 좌표가 결정되면, 다음 단계는 왜곡 척도 $J$를 최소화하는 최적의 기저 벡터 집합 ${u_i}$를 찾는 것이다.
-- 이는 기저 벡터들이 직교정규 조건을 유지해야 하는 제약 최소화 문제로 이어진다. 
+- 이는 기저 벡터들이 직교정규 조건을 유지해야 하는 제약 최소화 문제로 이어진다.
+- 
 $$  
 u_i^Tu_j=\delta_{ij}  
 $$  
-- 해는 다시 공분산 행렬의 고유값 문제를 풂으로써 얻어진다:  
+- 해는 다시 공분산 행렬의 고유값 문제를 풂으로써 얻어진다:
+- 
 $$  
 Su_i=\lambda_i u_i  
 $$
@@ -500,17 +501,20 @@ $$
 - PCA를 얼굴 이미지에 적용한 또 다른 예시는 eigenfaces(고유 얼굴)라고 알려진 결과를 만들어낸다.
 
 - 구체적으로, 각 $D$차원 데이터 포인트 $x^{(n)}$는 $M$개의 주성분(principal component)에 투영(projection)함으로써 압축된다. 여기서 $M<D$이다.
-- $i$번째 주성분 $u_i\in\mathbb{R}^D$에 대한 스칼라 투투영 계수는 다음과 같다:  
+- $i$번째 주성분 $u_i\in\mathbb{R}^D$에 대한 스칼라 투투영 계수는 다음과 같다:
+- 
 $$  
 z_i^{(n)}=(x^{(n)}-\bar{x})^Tu_i  
 $$
 - 여기서 $\bar{x}\in\mathbb{R}^D$는 데이터셋의 평균(mean)이다. 즉, $z_i^{(n)}$는 단순히 $x^{(n)}$를 $i$번째 주성분 방향으로 표현한 좌표값이다.
-- 전체 $M$차원 압축 표현은 다음과 같다:  
+- 전체 $M$차원 압축 표현은 다음과 같다:
+- 
 $$  
 z^{(n)}=\left(z_1^{(n)},z_2^{(n)},\ldots,z_M^{(n)}\right)^T\in\mathbb{R}^M  
 $$
 
-- 원래 데이터 포인트의 근사값을 복원하기 위해서는 투영 과정을 반대로 수행한다:  
+- 원래 데이터 포인트의 근사값을 복원하기 위해서는 투영 과정을 반대로 수행한다:
+- 
 $$  
 \hat{x}^{(n)}=\bar{x}+\sum_{i=1}^{M}z_i^{(n)}u_i  
 $$
@@ -588,6 +592,7 @@ $f_{X,Y}(x,y)=f_X(x)f_Y(y)$
 - 2개의 마이크에 2명의 사람 소리가 녹음 되어도 ICA로 분리 해 낼 수 있음.
 
 - 형식적으로, $d$차원 데이터 $x\in\mathbb{R}^d$가 $d$개의 서로 독립인 원천 신호 $s\in\mathbb{R}^d$의 선형 혼합(linear mixture)이라고 가정하자. 이 관계는 다음과 같이 표현된다:  
+
 $$  
 x=As  
 $$
@@ -597,6 +602,7 @@ $$
 - 보다 구체적으로, $N$개의 관측값 ${x^{(n)}}_{n=1}^{N}$이 주어졌을 때, 다음을 만족하는 행렬 $W=A^{-1}$  
 를 찾고자 한다. 여기서 $W$는 unmixing matrix라고 불린다.
 - 그러면 원천 신호 $s$는 다음과 같이 복원할 수 있다:  
+
 $$  
 s=Wx  
 $$
@@ -604,6 +610,7 @@ $$
 - ICA에서 핵심 가정은 원래의 원천 신호들이 반드시 비가우시안(non-Gaussian)이어야 한다는 것이다.
 - 다시 말해, 원천 신호들이 가우시안이라면 서로 다른 원천 신호들의 혼합이 매우 유사하게 보일 수 있으므로, 이를 유일하게 분리하는 것이 불가능해진다. 반면 비가우시안 분포, 예를 들어 뾰족한 피크를 갖는 신호들은 혼합된 후에도 구별되는 특성을 유지하므로 ICA가 이를 분리할 수 있다.
 - 수학적으로 원천 신호 $s$의 확률은 각 독립 원천 신호의 개별 확률들의 곱으로 모델링된다:  
+
 $$  
 p(s)=p(s_1,s_2,\ldots,s_d)=\prod_{i=1}^{d}p(s_i)  
 $$
@@ -613,11 +620,13 @@ $$
 
 - ICA에서 우리의 목표는 독립 원천 신호를 복원할 수 있게 하는 unmixing matrix $W$를 추정하는 것이다.
 - $W$를 추정하면 원천 신호는 다음과 같이 계산할 수 있다:  
+
 $$  
 s^{(n)}=Wx^{(n)}  
 $$
 - 여기서 $s^{(n)}$은 $n$번째 관측값에 대해 복원된 원천 신호를 나타낸다.
 - $w_i^T$를 $W$의 $i$번째 행이라고 하면, 각 원천 신호 $s_i^{(n)}$은 다음과 같이 표현된다:  
+
 $$  
 s_i^{(n)}=w_i^Tx^{(n)}  
 $$
@@ -635,6 +644,7 @@ $$
 - $|\det(W)|=1$이면 공간의 부피가 그대로 유지된다.
 
 - 따라서 확률들이 여전히 올바른 값을 가지도록(즉, 전체 확률의 합이 1이 되도록) 하기 위해, 일반적으로 다음과 같이 $\det(W)$를 곱하여 보정한다:  
+
 $$  
 p(x)=p(s)\cdot |\det(W)|  
 $$
@@ -645,6 +655,7 @@ $$
 
 - ICA는 원천 신호 $s_1,s_2,\ldots,s_d$가 통계적으로 서로 독립이라고 가정한다는 점을 다시 상기하자.
 - 따라서 $x$의 확률밀도함수(pdf)는 다음과 같이 표현된다:  
+
 $$
 \begin{align}
 p(x)&=p(s)\det(W)\\  
@@ -656,10 +667,12 @@ $$
 - 여기서 $w_i^Tx$는 $x$를 $W$의 $i$번째 행 방향으로 선형 사영(linear projection)한 값이며, 이는 $i$번째 원천 성분 $s_i$의 추정값을 의미한다.
 
 - $N$개의 관측 데이터 ${x^{(n)}}_{n=1}^{N}$가 주어졌을 때, 데이터의 로그 우도(log-likelihood)는 다음과 같다:  
+
 $$  
 L(W)=\log\left(\prod_{n=1}^{N}p(x^{(n)})\right)=\sum_{n=1}^{N}\log p(x^{(n)})  
 $$
 - 위에서 구한 $p(x)$의 식을 대입하면 다음을 얻는다:  
+
 $$  
 L(W)=\sum_{n=1}^{N}\left(\sum_{i=1}^{d}\log p_s\left(w_i^Tx^{(n)}\right)+\log |\det(W)|\right)  
 $$
@@ -667,15 +680,18 @@ $$
 - $p_s$, 즉 독립 원천 신호의 확률을 계산하기 위해서는 각 원천값이 얼마나 가능성이 높은지를 설명하는 함수를 선택해야 한다.
 - 원천 신호들은 비가우시안(non-Gaussian)이라고 가정되므로, pdf를 근사하기 위해 비이차 함수(non-quadratic function)를 자주 사용한다.
 - 원천 밀도(source density)에 대한 일반적인 선택은 누적분포함수(CDF)에 sigmoid 함수를 사용하는 것이다:  
+
 $$  
 p_s(s_i)\approx g'(s_i)  
 $$
 
 - 여기서  
+
 $$  
 g(s_i)=\frac{1}{1+e^{-s_i}}  
 $$  
 이고, 그 도함수는 다음과 같다:  
+
 $$  
 g'(s_i)=g(s_i)(1-g(s_i))  
 $$
@@ -686,6 +702,7 @@ $$
 - 시그모이드를 사용하면 도함수 계산이 쉽고 가우시안 분포와 유사하지만 가우시안 분포가 아니게 사용 할 수 있음.
 
 - 이를 로그 우도(log-likelihood)에 대입하면 다음을 얻는다:  
+
 $$  
 L(W)=\sum_{n=1}^{N}(\sum_{i=1}^{d}\log g'\left(w_i^Tx^{(n)}\right)+\log |\det(W)|)  
 $$
@@ -694,6 +711,7 @@ $$
 
 - 우리의 목표는 $W$에 대해 로그 우도 함수를 최대화하는 것이다.
 - 첫 번째 항에 대해:  
+
 $$
 \begin{align}
 \nabla_{w_i}\log g'\left(w_i^Tx^{(n)}\right)  
@@ -703,11 +721,13 @@ $$
 $$
 
 - 이는 sigmoid 함수 $g(s)$의 성질,  
+
 $$  
 \frac{g''(s)}{g'(s)}=1-2g(s)  
 $$  
 을 이용한 결과이다.
 - 두 번째 항에 대해:  
+
 $$
 \begin{align}
 \nabla_W\log \det(W)  
@@ -718,6 +738,7 @@ $$
 $$
 
 - 이제 gradient ascent를 적용하면 unmixing matrix를 갱신하는 다음과 같은 학습 규칙(learning rule)을 얻는다:  
+
 $$  
 W\leftarrow W+\alpha\left[\frac{1}{N}\sum_{n=1}^{N}x^{(n)}\left(1-2g(Wx^{(n)})\right)^T+(W^T)^{-1}\right]  
 $$
