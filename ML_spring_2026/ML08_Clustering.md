@@ -57,6 +57,7 @@ r_{nk}=
 0, & \text{그 외의 경우}  
 \end{cases}  
 $$
+
 	- $r_{nk}$는 빨간색으로 분류된다면 빨간색에서만 1 파랑 초록에서는 0
 - 따라서 클러스터링 문제는 최소화(minimization) 문제로 볼 수 있으며, 우리는 목적 함수 $J$를 최소화하는 $r_{nk}$와 $\boldsymbol{\mu}_k$의 값을 찾고자 한다.
 - K-means는 일반적으로 **좌표 하강법(coordinate descent)** 이라 불리는 반복적인(iterative) 2단계 절차를 사용하여 이 최소화 문제를 해결한다.
@@ -136,15 +137,12 @@ $$
 - 그러면 $\mathbf{x}_i$의 silhouette score는 다음과 같다.  
 
 $$  
-s_i  
-=  
-\frac{b_i-a_i}{\max(a_i,b_i)}  
+s_i  = \frac{b_i-a_i}{\max(a_i,b_i)}  
 $$
 - 최종적으로 전체 silhouette score는 다음과 같이 정의된다.  
 
 $$  
-S_K =  
-\frac{1}{N}  
+S_K =  \frac{1}{N}  
 \sum_{i=1}^{N} s_i  
 $$
 - 실루엣 스코어도 변곡점에서 K를 결정한다고 생각 하면 됨.
