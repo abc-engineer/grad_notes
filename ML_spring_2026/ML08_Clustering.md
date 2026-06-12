@@ -229,10 +229,10 @@ $$
 - 따라서 여기서 $\gamma(z_k)$는 성분 $k$가 데이터 포인트 $\mathbf{x}$를 설명하는 데 책임을 가지는 정도를 나타낸다.
 
 - M-step에서는 **E-step에서 계산된 responsibility를 고정된 것으로 간주**하고, 이에 따라 Gaussian mixture model의 파라미터, 즉 평균(mean), 공분산(covariance), mixing coefficient를 갱신한다.
-- 다음을 다시 떠올려 보자.  
+- 다음을 다시 떠올려 보자.
+
 $$  
-\ln p(\mathbf{X}\mid \boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma})  
-=  
+\ln p(\mathbf{X}\mid \boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma})=  
 \sum_{n=1}^{N}  
 \ln  
 \sum_{k=1}^{K}  
@@ -243,18 +243,18 @@ $$
 - 앞서 논의했듯이, 로그 내부의 합 때문에 이 로그우도를 직접 최대화하는 것은 어렵다.
 - EM은 E-step에서 얻은 고정된 responsibility를 사용하여 이러한 문제를 피한다.
 
-- 다음 미분 규칙을 떠올려 보자.  
+- 다음 미분 규칙을 떠올려 보자.
+
 $$  
-\frac{d}{dx}\ln f(x)  
-=  
+\frac{d}{dx}\ln f(x)  =  
 \frac{1}{f(x)}\frac{d}{dx}f(x)  
 $$
 
-- 따라서 로그우도를 $\boldsymbol{\mu}_k$에 대해 미분하면 다음과 같다.  
+- 따라서 로그우도를 $\boldsymbol{\mu}_k$에 대해 미분하면 다음과 같다.
+ 
 $$  
 \frac{\partial}{\partial \boldsymbol{\mu}_k}  
-\ln p(\mathbf{X}\mid\boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma})  
-=  
+\ln p(\mathbf{X}\mid\boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma}) =  
 \sum_{n=1}^{N}  
 \frac{1}{  
 \sum_{j=1}^{K}\pi_j\mathcal{N}(\mathbf{x}^{(n)}\mid\boldsymbol{\mu}_j,\boldsymbol{\Sigma}_j)  
