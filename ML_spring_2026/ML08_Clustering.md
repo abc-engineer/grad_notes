@@ -264,10 +264,10 @@ $$
 $$
 
 
-- 가우시안 확률밀도함수(Gaussian probability density function)는 다음과 같다.  
+- 가우시안 확률밀도함수(Gaussian probability density function)는 다음과 같다.
+
 $$  
-\mathcal{N}(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
-=  
+\mathcal{N}(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k) =  
 \frac{1}{  
 (2\pi)^{D/2}|\boldsymbol{\Sigma}_k|^{1/2}  
 }  
@@ -279,10 +279,10 @@ $$
 \right)  
 $$
 
-- 또한 다음 미분 공식을 기억하자.  
+- 또한 다음 미분 공식을 기억하자.
+  
 $$  
-\frac{d}{dx}e^{f(x)}  
-=  
+\frac{d}{dx}e^{f(x)}  =  
 e^{f(x)}f'(x)  
 $$
 
