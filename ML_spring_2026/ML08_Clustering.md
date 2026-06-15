@@ -257,8 +257,7 @@ $$
 \ln p(\mathbf{X}\mid\boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma}) =  
 \sum_{n=1}^{N}  
 \frac{1}{  
-\sum_{j=1}^{K}\pi_j\mathcal{N}(\mathbf{x}^{(n)}\mid\boldsymbol{\mu}_j,\boldsymbol{\Sigma}_j)  
-}  
+\sum_{j=1}^{K}\pi_j\mathcal{N}(\mathbf{x}^{(n)}\mid\boldsymbol{\mu}_j,\boldsymbol{\Sigma}_j)}  
 \frac{\partial}{\partial \boldsymbol{\mu}_k}  
 \pi_k\mathcal{N}(\mathbf{x}^{(n)}\mid\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
 $$
@@ -268,11 +267,8 @@ $$
 
 $$  
 \mathcal{N}(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k) =  
-\frac{1}{  
-(2\pi)^{D/2}|\boldsymbol{\Sigma}_k|^{1/2}  
-}  
-\exp\left(  
--\frac{1}{2}  
+\frac{1}{(2\pi)^{D/2}|\boldsymbol{\Sigma}_k|^{1/2}}  
+\exp\left(-\frac{1}{2}  
 (\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)^T  
 \boldsymbol{\Sigma}_k^{-1}  
 (\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)  
@@ -286,14 +282,13 @@ $$
 e^{f(x)}f'(x)  
 $$
 
-- 따라서,  
+- 따라서,
+
 $$  
 \frac{\partial}{\partial \boldsymbol{\mu}_k}  
-\left(  
-\pi_k  
+\left(\pi_k  
 \mathcal{N}(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
-\right)  
-=  
+\right) =  
 \pi_k  
 \left(  
 \mathcal{N}(\mathbf{x}^{(n)}\mid \boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
@@ -304,10 +299,10 @@ $$
 $$
 
 - 모두 종합하면 다음과 같다.  
+
 $$  
 \frac{\partial}{\partial \boldsymbol{\mu}_k}  
-\ln p(\mathbf{X}\mid\boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma})  
-=  
+\ln p(\mathbf{X}\mid\boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma})=  
 \sum_{n=1}^{N}  
 \frac{  
 \pi_k\mathcal{N}(\mathbf{x}^{(n)}\mid\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
@@ -321,9 +316,9 @@ $$
 $$
 
 - 데이터 포인트 $\mathbf{x}^{(n)}$를 성분 $k$가 얼마나 설명하는지를 나타내는 responsibility의 정의를 다시 떠올리면,  
+
 $$  
-\gamma(z_{nk})  
-=  
+\gamma(z_{nk})  =  
 \frac{  
 \pi_k\mathcal{N}(\mathbf{x}^{(n)}\mid\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)  
 }{  
