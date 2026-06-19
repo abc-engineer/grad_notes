@@ -4,14 +4,8 @@
 - 다음주 기말고사
 
 
-
-
 - GPT1은 온리 디코더 모델
 - 이후 프리트레이닝부터 얼라인먼트 까지 배웠음.
-
-
-
-
 
 - 인스트럭션 튜닝에서는 사람이 직접 답안을 작성 후 랭귀지 모델 파인 튜닝
 	- 넥스트 토큰 프리딕션
@@ -23,24 +17,6 @@
 - 3단계는 PPO 모델
 	- out을 만드는데 리워드를 높이도록 학습
 	- 리워드 모델이 출력한 내용을 기반으로 리워드 올리게 됨.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -139,11 +115,13 @@ $$r_{\phi}(y\mid x)$$
 
 ### Reward Model Training
 - Bradley-Terry 쌍별 비교 목적함수:  
+
 $$\mathcal{L}_{\mathrm{RM}}(r_\phi)=-\mathbb{E}_{(x,y_w,y_l)\sim\mathcal{D}}\left[\log\sigma\left(r_\phi(x,y_w)-r_\phi(x,y_l)\right)\right]$$
 - $r_\phi(x,y_w)$: 선호 응답의 보상
 - $r_\phi(x,y_l)$: 비선호 응답의 보상
 - 선호 응답의 보상이 비선호 응답의 보상보다 커지도록 보상 모델을 학습한다.
 - 시그모이드 함수:  
+
 $$y=\sigma(x)$$
 
 - 이진 분류 형태로 목적합수를 학습하는 방식이 가장 많이 사용 되고 있음.
@@ -153,7 +131,9 @@ $$y=\sigma(x)$$
 ### Optimizing LLMs with the Reward Model
 - 학습된 보상 모델은 인간 판단의 대리자 역할을 한다. 보상이 높을수록 인간이 더 선호하는 응답이다.
 - LLM 정책 모델이 생성한 응답의 기대 보상을 최대화한다.  
+
 $$\max_{\theta}\mathbb{E}_{y\sim p_{\theta}(\cdot\mid x)}\left[r_{\phi}(x,y)\right]$$
+
 - $p_{\theta}(y\mid x)$: LLM 출력 확률
 - $r_{\phi}(x,y)$: LLM이 생성한 응답의 보상
 - 보상 모델이 불완전하다면 어떻게 될까?
@@ -172,7 +152,8 @@ $$\max_{\theta}\mathbb{E}_{y\sim p_{\theta}(\cdot\mid x)}\left[r_{\phi}(x,y)\rig
 
 
 ### Regularized Reward Optimization
-- 초기 SFT 체크포인트에서 지나치게 멀어지는 것을 방지하기 위해 페널티를 추가한다.  
+- 초기 SFT 체크포인트에서 지나치게 멀어지는 것을 방지하기 위해 페널티를 추가한다.
+
 $$\max_{\theta}\mathbb{E}_{y\sim p_{\theta}(\cdot\mid x)}\left[r_{\phi}(x,y)-\beta\log\left(\frac{p_{\theta}(y\mid x)}{p_{\mathrm{SFT}}(y\mid x)}\right)\right]$$
 
 - $r_{\phi}(x,y)$: Maximize reward 보상 최대화 항
@@ -180,6 +161,7 @@ $$\max_{\theta}\mathbb{E}_{y\sim p_{\theta}(\cdot\mid x)}\left[r_{\phi}(x,y)-\be
 - $\log\left(\frac{p_{\theta}(y\mid x)}{p_{\mathrm{SFT}}(y\mid x)}\right)$로그 비율 항은 정책 모델이 초기 SFT 모델에서 지나치게 벗어나는 것을 방지한다.
 - $p_{\theta}(y\mid x)>p_{\mathrm{SFT}}(y\mid x)$인 경우에 페널티를 부여한다.
 - 기댓값 관점에서 이 페널티는 쿨백-라이블러 발산으로 표현된다.  
+
 $$D_{\mathrm{KL}}\left(p_{\theta}(y\mid x),\Vert,p_{\mathrm{SFT}}(y\mid x)\right)$$
 
 
@@ -190,6 +172,7 @@ $$D_{\mathrm{KL}}\left(p_{\theta}(y\mid x),\Vert,p_{\mathrm{SFT}}(y\mid x)\right
 - 최적화: 정책 경사법
 	- 기대 보상이 증가하는 방향으로 매개변수를 조정하여 정책 모델인 LLM을 최적화한다.
 - REINFORCE: 가장 단순한 정책 경사법  
+
 $$\theta\leftarrow\theta+\alpha\nabla_{\theta}\log\pi_{\theta}(a\mid s)R$$
 
 - $\alpha$: 스텝 크기
@@ -214,12 +197,6 @@ $$\theta\leftarrow\theta+\alpha\nabla_{\theta}\log\pi_{\theta}(a\mid s)R$$
     - 가상 비서: 사용자 명령을 이해하고 알림 설정, 음악 재생, 스마트 홈 기기 제어 등의 작업을 수행한다.        
     - 코드 에이전트: 코드 조각 생성, 개선점 제안, 특정 코드의 동작 설명을 통해 개발자를 지원한다.     
     - 비즈니스 운영: “마케팅 캠페인 만들기”와 같은 상위 수준의 목표를 세부 작업으로 분해하고, 정보를 검색·종합하며, 외부 API나 도구와 상호작용하여 각 단계를 자율적으로 수행한다.
-
-
-
-
-
-
 
 
 ### Overview: Multimodal LLMs
@@ -318,12 +295,14 @@ $$\theta\leftarrow\theta+\alpha\nabla_{\theta}\log\pi_{\theta}(a\mid s)R$$
 - API 호출 샘플링: $c_i^1=$ “Pittsburgh는 어떤 다른 이름으로 알려져 있는가?”
 - API 호출 실행: $r_i^1=$ “Steel City”
 - API 호출 필터링:  
+
 $$L_i(c_i^1\rightarrow\text{Steel City})<\min\left(L_i(c_i^1\rightarrow\varepsilon),L_i(\varepsilon)\right)$$
 
 - API 호출 결과를 사용했을 때의 손실이 API 호출을 수행하지 않았을 때보다 작으므로 해당 호출을 유지한다.
 - 손실을 감소시키지 않는 API 호출은 제거한다.
 - API 호출 샘플링: $c_i^2=$ “Pittsburgh는 어느 나라에 있는가?”
 - API 호출 실행: $r_i^2=$ “United States”  
+
 $$L_i(c_i^2\rightarrow\text{United States})>\min\left(L_i(c_i^2\rightarrow\varepsilon),L_i(\varepsilon)\right)$$
 
 - 이 API 호출은 손실 감소에 도움이 되지 않으므로 제거한다.
@@ -336,10 +315,6 @@ $$L_i(c_i^2\rightarrow\text{United States})>\min\left(L_i(c_i^2\rightarrow\varep
 
 ### Tool Usage Ability vs. Model Scale
 - 더 큰 모델일수록 도구를 적절하게 사용하는 방법을 더 효과적으로 학습한다.
-
-
-
-
 
 
 ### Code Infilling
