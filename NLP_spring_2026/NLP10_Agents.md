@@ -41,12 +41,15 @@
 	- 리워드 모델만 중점을 두면 기존 LM의 성능을 잃을 수도 있음. 
 	- 그래서 참조 모델과 비교 
 - 강화학습 업데이트(예: PPO)  
+
 $$\theta \leftarrow \theta+\nabla_{\theta}J(\theta)$$
 
 - 참조 모델과 정책 모델의 차이를 제한하는 KL 페널티 (레퍼런스에서 너무 벗어나면 패널티 부과)  
+
 $$-\lambda_{\mathrm{KL}}D_{\mathrm{KL}}\left(\pi_{\theta}(y\mid x),\Vert,\pi_{\mathrm{ref}}(y\mid x)\right)$$
 
 - 보상 모델이 출력하는 응답 점수  
+
 $$r_{\phi}(y\mid x)$$
 
 - 보상 점수와 KL 페널티를 결합하여 정책 모델의 학습 목적함수를 구성한다.
@@ -117,6 +120,7 @@ $$r_{\phi}(y\mid x)$$
 - Bradley-Terry 쌍별 비교 목적함수:  
 
 $$\mathcal{L}_{\mathrm{RM}}(r_\phi)=-\mathbb{E}_{(x,y_w,y_l)\sim\mathcal{D}}\left[\log\sigma\left(r_\phi(x,y_w)-r_\phi(x,y_l)\right)\right]$$
+
 - $r_\phi(x,y_w)$: 선호 응답의 보상
 - $r_\phi(x,y_l)$: 비선호 응답의 보상
 - 선호 응답의 보상이 비선호 응답의 보상보다 커지도록 보상 모델을 학습한다.
@@ -306,7 +310,6 @@ $$L_i(c_i^1\rightarrow\text{Steel City})<\min\left(L_i(c_i^1\rightarrow\varepsil
 $$L_i(c_i^2\rightarrow\text{United States})>\min\left(L_i(c_i^2\rightarrow\varepsilon),L_i(\varepsilon)\right)$$
 
 - 이 API 호출은 손실 감소에 도움이 되지 않으므로 제거한다.
-
 - 아무때나 툴을 사용하는것이 아니고 도움이 될때만 사용되게 필터 기능을 추가.
 - $\epsilon$: 빈 값임.
 - $\min\left(L_i(c_i^1\rightarrow\varepsilon),L_i(\varepsilon)\right)$ 이부분이 포인트임.
