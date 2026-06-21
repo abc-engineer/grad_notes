@@ -195,6 +195,7 @@
 - LLM(정책 모델)을 사용해 응답을 생성한다
 - 생성된 응답에 보상을 할당한다
 - 기대 보상을 최대화한다  
+
 $$  
 \max_{\theta}\mathbb{E}_{y \sim p_{\theta}(\cdot \mid x)}\left[r_{\mathrm{RLVR}}(x,y)\right]  
 $$
@@ -216,6 +217,7 @@ $$
 	- 가장 기본적인 방법
 		- 리워드를 최대화 하자
 - REINFORCE(가장 단순한 정책 그래디언트 방법):  
+
 $$  
 \theta \leftarrow \theta + \alpha \nabla_{\theta}\log \pi_{\theta}(a \mid s)R  
 $$
@@ -268,9 +270,6 @@ $$
 
 
 ### Further Reading on RLVR
-
-
-
 
 
 ### The Evolution of GPT Models: ChatGPT
@@ -374,6 +373,7 @@ $$
 - 출력: 과제에 대한 기대 응답 또는 해결책    
 - 프롬프트가 주어졌을 때 응답 토큰을 생성하도록 LLM을 훈련한다
 	- 인간이 정한 정답과 유사하게 답변하도록 오토리그레션 
+
 $$  
 \min_{\theta} -\log p_{\theta}(y \mid x)  
 $$
