@@ -47,7 +47,8 @@
 ### Prompting LMs: Parametric Knowledge
 - 언어모델(Language Models, LMs)은 **사전학습(pretraining) 데이터로부터 많은 사실(facts)을 학습**한다.
 - 언어모델은 사실 기반 질문(factoid questions)에 대해 직접 프롬프트(prompt)를 받아 답변을 생성할 수 있다. 이는 폐쇄형 QA(closed-book QA) 설정이다.
-- 예:  
+- 예:
+
 $$  
 P(w \mid Q:\text{“Who wrote the book ‘The Origin of Species’?”},A:)  
 $$
@@ -57,7 +58,7 @@ $$
 ### Language Model as Knowledge Bases
 - 획득(acquisition): 언어모델(LM)의 지식은 방대한 양의 사전학습(pretraining) 데이터로부터 얻어진다.
 - 접근(access): 정보는 자연어 프롬프트(natural language prompts)를 통해 접근된다.
-- **업데이트/유지관리(update/maintenance): 새로운 데이터로 모델을 재학습(re-training)하거나 미세조정(fine-tuning)**한다.
+- **업데이트/유지관리(update/maintenance): 새로운 데이터로 모델을 재학습(re-training)하거나 미세조정(fine-tuning)** 한다.
 - 장점(pros):
 	- 문맥 이해(contextual understanding)를 바탕으로 다양한 자연어 질의(natural language queries)를 처리할 수 있다.
 	- 학습 중 보지 못한 새로운 질의(unseen queries)에 일반화할 수 있다.
@@ -83,7 +84,8 @@ $$
 
 
 ### Feedforward Parameters in Transformer
-- Transformer의 FFN(Feed-Forward Network)은 2층 신경망(one hidden layer, two weight matrices)이다.  
+- Transformer의 FFN(Feed-Forward Network)은 2층 신경망(one hidden layer, two weight matrices)이다.
+
 $$  
 \text{FFN}(x_i)=\text{ReLU}(x_iW^1)W^2  
 $$
@@ -98,16 +100,20 @@ $$
 
 ### Feedforward Parameters Are Neural Memories
 - **FFN을 key-value 메모리(key-value memories)로 볼 수 있다.**  
+
 $$  
 \text{FFN}(x_i)=\text{ReLU}(x_iW_1)W_2  
 $$
+
 $$  
 x_i\in\mathbb{R}^{d_1}  
 $$
 - 이를 다음과 같이 쓸 수 있다.  
+
 $$  
 \text{FFN}(x_i)=\text{ReLU}(x_iK)V  
 $$  
+
 $$
 \begin{align}
 K\in\mathbb{R}^{d_1\times d_2}\\  
@@ -118,6 +124,7 @@ $$
 	- 행렬 연산때 열 백터와 유사도를 파악하게 됨.
 - $V$의 행벡터(row vectors)는 value vectors이며, **출력 어휘(output vocabulary)에 대한 분포(distributions)를 표현**한다.
 - 따라서 FFN은 다음과 같이 해석할 수 있다.  
+
 $$  
 \text{FFN}(x_i)=\sum_{j=1}^{d_2}\text{ReLU}(x_i\cdot k_j),v_j  
 $$
@@ -160,30 +167,36 @@ $K^6_{2546}$ 이면 6번째 레이어의 2546 row로 보면 됨.
 ### Hallucination Examples
 #### (제한된 지식, limited knowledge)
 - 질문:  
+
 $$  
 \text{“What were the main features of the iPhone 15 Pro Max?”}  
 $$
 - 2023년 이전에 학습된 LLM의 답변:  
+
 $$  
 \text{“The iPhone 15 Pro Max features a revolutionary holographic display, quantum computing chip, and telepathic user interface.”}  
 $$
 - 이는 존재하지 않는 기능들을 만들어낸 환각(hallucination)의 예이다.
 #### (과잉 일반화, overgeneralization)
 - 질문:  
+
 $$  
 \text{“How do you form the past tense in Japanese?”}  
 $$
 - LLM의 답변:  
+
 $$  
 \text{“In Japanese, you typically add '-ed' to the end of verbs to form the past tense, just like in English.”}  
 $$
 - 이는 영어의 규칙을 일본어에 잘못 일반화한 사례이며, 사실과 다르다.
 #### (상식 부족, lack of common sense)
 - 질문:  
+
 $$  
 \text{“How many tennis balls can fit in a typical smartphone?”}  
 $$
 - LLM의 답변:  
+
 $$  
 \text{“Approximately 15-20 tennis balls can fit in a typical smartphone, depending on the model and screen size.”}  
 $$
@@ -268,6 +281,7 @@ $$
 $$  
 \cos(v_{d_2},v_{d_3})=0.10  
 $$
+
 $$  
 \cos(v_{d_3},v_{d_4})=0.99  
 $$
@@ -283,13 +297,16 @@ $$
 
 $$  
 \cos(v_{d_2},v_{d_3})=0.81  
-$$ $$  
+$$ 
+
+$$  
 \cos(v_{d_3},v_{d_4})=0.99  
 $$
 
 ### Term Frequency (TF)
 - 어떤 단어가 문서에 $100$번 등장한다고 해서 그 단어가 문서 의미와 $100$배 더 관련 있다는 뜻은 아니다.
 - 따라서 원시 빈도(raw counts)를 그대로 사용하는 대신, 로그 스케일(log scale)을 사용하여 빈도를 압축(squash)한다.  
+
 $$  
 \text{TF}(w,d)=  
 \begin{cases}  
@@ -302,6 +319,7 @@ $$
 ### Inverse Document Frequency (IDF)
 - 우리는 판별력이 높은 단어(discriminative words), 즉 DF(document frequency)가 낮은 단어를 강조하고자 한다.
 - 역문서빈도(Inverse Document Frequency, IDF)는 전체 문서 수 $N$을 DF로 나눈 뒤 로그 스케일을 적용한 값이다.  
+
 $$  
 \text{IDF}(w)=\log_{10}\left(\frac{N}{\text{DF}(w)}\right)  
 $$
@@ -322,6 +340,7 @@ $$
 
 ### TF-IDF for Sparse Retrieval
 - 문서-질의 의미적 유사도(document-query semantic similarity)는 코사인 유사도(cosine similarity)로 점수화한다.  
+
 $$  
 \cos(q,d)=\frac{q\cdot d}{|q||d|}  
 $$
@@ -331,6 +350,7 @@ $$
 
 ### Example: TF-IDF for Sparse Retrieval
 - 예시 질의(example query)와 미니 말뭉치(mini-corpus):  
+
 $$  
 \text{Query: sweet love}  
 $$
@@ -361,6 +381,7 @@ $$
 |how|0|0|0|0|
 |sorrow|0|0|0|0|
 |is|0|0|0|0|
+
 $$  
 \cos(q,d_1)=0.747  
 $$
@@ -375,6 +396,7 @@ $$
 |how|0|0|0|0|
 |sorrow|1|1.000|0.602|0.979|
 |is|0|0|0|0|
+
 $$  
 \cos(q,d_2)=0.078  
 $$
@@ -397,6 +419,7 @@ $$
 - 질의(query)와 문서(document)를 두 개의 분리된(separate) 인코더 모델을 사용하여 독립적으로(independently) 인코딩한다.
 - 다만 실제로는 두 인코더가 동일한(identical) 경우가 많다.
 - 질의 벡터(query vector)와 문서 벡터(document vector) 사이의 코사인 유사도(cosine similarity)를 관련성 점수(relevance score)로 사용한다.  
+
 $$  
 \cos(q,d)=\frac{q\cdot d}{|q||d|}  
 $$
@@ -440,10 +463,12 @@ $$
 	- 이 중 부분집합  $R$은 관련 문서이며, 나머지 $N=T-R$은 관련 없는 문서이다.
 	- 전체 검색 컬렉션(retrieval collection)에는 이 질의와 관련된 문서가 총  $U$ 개 존재한다고 가정한다.
 - 정밀도(Precision): 반환된 문서 중 관련 문서의 비율  
+
 $$  
 \text{Precision}=\frac{|R|}{|T|}  
 $$
 - 재현율(Recall): 전체 관련 문서 중 반환된 문서의 비율  
+
 $$  
 \text{Recall}=\frac{|R|}{|U|}  
 $$
@@ -478,6 +503,7 @@ $$
 
 ### Average Precision
 - 평균 정밀도(Average Precision, AP): 관련 문서(relevant document)가 검색된 순위 지점들에서의 정밀도(precision) 값들의 평균  
+
 $$  
 \text{AP}=\frac{1}{|R|}\sum_{k=1}^{|T|}\left(\text{Precision@k}\times \mathbf{1}_{(d_k\ \text{is relevant})}\right)  
 $$
@@ -485,6 +511,7 @@ $$
 - 여기서  $\mathbf{1}_{(d_k\ \text{is relevant})}$는 문서 $d_k$가 관련 문서인지 여부를 나타내는 지시 함수(indicator function)이다.
 - 위 표에서 관련 문서(R)가 등장하는 순위는 $1,3,5,6,8$이다.
 - 따라서 사용되는 precision 값들은 다음과 같다.  
+
 $$  
 1.0,\ 0.66,\ 0.60,\ 0.66,\ 0.63  
 $$
@@ -505,6 +532,7 @@ $$
 
 ### RAG vs. Direct Prompting
 - 프롬프팅(prompting)은 언어모델(LM)의 매개변수적 지식(parametric knowledge)에 의존하여 질문에 직접 답한다.  
+
 $$  
 P(w\mid Q:\text{“Who wrote the book ‘The Origin of Species’?”},A:)  
 $$
@@ -512,20 +540,25 @@ $$
 - 반면 RAG(Retrieval-Augmented Generation)는 검색된 구절들(retrieved passages)을 질문 앞에 추가(prepend)한다.
 - 즉, 검색기(retriever)가 관련 문서나 구절을 먼저 가져오고, LLM은 이를 참고하여 답변을 생성한다.
 - RAG 프롬프트의 개략적 구조(schematic)는 다음과 같다.  
+
 $$  
 \text{retrieved passage 1}  
 $$  
+
 $$  
 \text{retrieved passage 2}  
 $$  
+
 $$  
 \cdots  
 $$  
+
 $$  
 \text{retrieved passage n}  
 $$
 
 - 이후 다음과 같은 형태로 질문을 수행한다.  
+
 $$  
 \text{“Based on these texts, answer this question: Q: Who wrote the book ‘The Origin of Species’? A:”}  
 $$
@@ -550,6 +583,7 @@ $$
 - 검색기(retriever)와 생성기(generator)를 모두 함께 학습한다.
 - 검색기는 인코더 전용 언어모델(encoder-only LM)이고, 생성기는 LLM이다.
 - 논문 제목:  
+
 $$  
 \text{Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks}  
 $$
@@ -559,6 +593,7 @@ $$
 
 ### A Latent Variable Model
 - 검색된 문서(retrieved documents)는 생성(generation)을 위한 잠재변수(latent variables)  $z$  로 취급된다.  
+
 $$  
 p(y\mid x)=\sum_{z\in\mathcal{D}}p(z\mid x)\,p(y\mid x,z)  
 $$
@@ -579,6 +614,7 @@ $$
 - 동일한 검색 문서(retrieved document)를 사용하여 전체 시퀀스(sequence)를 생성한다.
 - 검색된 문서를 하나의 잠재변수(latent variable)로 취급한다.
 - 생성 확률  $p(y\mid x)$를 계산하기 위해 top-$K$ 근사(top-$K$ approximation)를 사용하여 주변화(marginalize)한다.  
+
 $$
 \begin{align}
 p_{\text{RAG-sequence}}(y\mid x)  
@@ -603,10 +639,11 @@ $$
 ### RAG-Token Model
 - 시퀀스(sequence) 안의 서로 다른 토큰을 생성하기 위해 서로 다른 검색 문서(retrieved documents)를 사용할 수 있다.
 - 주변화(marginalization)는 시퀀스 수준(sequence level)이 아니라 각 생성 토큰(generated token)마다 수행된다.  
+
 $$
 \begin{align}
 p_{\text{RAG-token}}(y\mid x)&=\prod_{i=1}^{N}p_\theta(y_i\mid x,y_{<i})  \\  
-&\approx \prod_{i=1}^{N}\sum_{z\in\text{top-}K(p(\cdot\mid x,y_{<i}))}p_\eta(z\mid x,y_{<i})\,p_\theta(y_i\mid x,z,y_{<i})  
+&\approx \prod_{i=1}^{N}\sum_{z\in\text{top-}K(p(\cdot\mid x,y_{<i}))}p_\eta(z\mid x,y_{<i})\,p_\theta(y_i\mid x,z,y_{<i}) 
 \end{align}
 $$
 
