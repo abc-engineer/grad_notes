@@ -23,6 +23,7 @@
 
 - 개념을 설명하기 위한 간단한 예시는 다음과 같다.
 - 콘서트에 참석할지 여부를 결정한다고 가정하자. 이 결정을 내리기 위해 간단한 모델을 사용할 수 있다. 자신의 기준과 관찰값을 바탕으로, 예를 들어 아티스트가 좋으면 $x_1 = 1$로 두고, 각 입력에 해당 가중치를 곱하여 가중 입력을 계산할 수 있다.  
+
 $$  
 x_1 \cdot w_1 = 0.7,\quad x_2 \cdot w_2 = 0,\quad x_3 \cdot w_3 = 0.5,\quad x_4 \cdot w_4 = 0,\quad x_5 \cdot w_5 = 0.4  
 $$  
@@ -66,9 +67,11 @@ $$
 - 각 훈련 샘플 $x^{(i)}$에 대해 모델은 출력 $\hat{y}^{(i)}$를 계산하고, 실제 클래스 레이블 $y^{(i)}$와 예측 클래스 레이블 $\hat{y}^{(i)}$ 사이의 오차를 바탕으로 가중치와 편향을 업데이트한다.
 
 - 업데이트 규칙은 다음과 같다.  
+
 $$  
 w_j \leftarrow w_j + \Delta w_j,\quad b \leftarrow b + \Delta b  
 $$  
+
 $$  
 \Delta w_j = \eta\left(y^{(i)} - \hat{y}^{(i)}\right)x_j^{(i)},\quad \Delta b = \eta\left(y^{(i)} - \hat{y}^{(i)}\right)  
 $$
@@ -77,9 +80,11 @@ $$
 - 따라서 $y^{(i)} - \hat{y}^{(i)}$는 분류 오차 항으로, 예측 클래스 레이블이 실제 클래스 레이블에서 얼마나 벗어났는지를 나타내며 모델이 매개변수를 어떻게 업데이트할지 안내한다.
 
 - 이 오차 항은 매개변수 업데이트의 방향과 크기를 모두 결정한다.  
+
 $$  
 w_j \leftarrow w_j + \Delta w_j,\quad b \leftarrow b + \Delta b  
-$$  
+$$ 
+
 $$  
 \Delta w_j = \eta\left(y^{(i)} - \hat{y}^{(i)}\right)x_j^{(i)},\quad \Delta b = \eta\left(y^{(i)} - \hat{y}^{(i)}\right)  
 $$
@@ -92,6 +97,7 @@ $$
 
 - 퍼셉트론은 무작위 값으로 초기화될 수 있으며, 예를 들어 가중치 벡터는 $\mathbf{w} = [0, 1, 0.5]$이고 $\eta = 0.2$라고 하자.
 - 판별 함수는 다음과 같이 계산할 수 있다.  
+
 $$  
 0 = w_0x_0 + w_1x_1 + w_2x_2 = 0 + x_1 + 0.5x_2 \Rightarrow x_2 = -2x_1  
 $$
@@ -101,24 +107,29 @@ $$
 - 일반적으로 가중치 벡터는 $\mathbf{w}$는 랜덤 값을 넣은 벡터로 초기화 되어 만들어 진 다음 업데이트 됨.
 ##### 계산식
 가중치 벡터가  
+
 $$  
 w=\begin{bmatrix}0\\1\\0.5\end{bmatrix}  
 $$  
 이면 discriminant function은 보통 다음처럼 정의합니다.  
+
 $$  
 g(x)=w^T x  
 $$  
 입력 벡터를 bias 항까지 포함해서  
+
 $$  
 x=\begin{bmatrix}1\\x_1\\x_2\end{bmatrix}  
 $$  
 라고 두면,  
+
 $$  
 g(x)=  
 \begin{bmatrix}0&1&0.5\end{bmatrix}  
 \begin{bmatrix}1\\x_1\\x_2\end{bmatrix}  
 $$  
 따라서  
+
 $$  
 \begin{align}
 g(x)&=0\cdot 1+1\cdot x_1+0.5\cdot x_2\\  
@@ -126,6 +137,7 @@ g(x)&=x_1+0.5x_2
 \end{align}
 $$  
 $g(x)=0$이 되는 경우는 **결정경계(decision boundary)** 를 구할 때
+
 $$  
 \begin{align}
 g(x)>0 \Rightarrow C_1 \\  
@@ -134,6 +146,7 @@ g(x)<0 \Rightarrow C_2
 $$
 $(x_1,x_2)=(1,1)$이면 bias 항을 포함한 입력 벡터와 가중치 백터는  
 $x=\begin{bmatrix}1,\,1,\,1\end{bmatrix}$, $w=\begin{bmatrix}0,\,1,\,0.5\end{bmatrix}$  이므로 discriminant function 값은  
+
 $$
 \begin{align}
 g(x)&=w^T x  \\  
@@ -145,6 +158,7 @@ g(x)&=w^T x  \\
 \end{align}
 $$  
 따라서 현재 모델은  
+
 $$  
 g(x)>0  
 $$  
@@ -154,11 +168,13 @@ $$
 $$(x_1,x_2)=(2,-2),\quad y=-1$$  
 입니다.  
 bias 항을 포함하면  
+
 $$  
 x=\begin{bmatrix}1\\2\\-2\end{bmatrix}  
 $$  
 입니다.  
 discriminant function은  
+
 $$
 \begin{align}
 g(x)&=w^T x  \\  
@@ -169,56 +185,67 @@ g(x)&=w^T x  \\
 &=+1
 \end{align}
 $$
- 현재  
+현재 
+
 $$  
 g(x)=1>0  
 $$  
 이므로 모델은  $\hat{y}=+1$로 분류합니다.  
 하지만 실제 정답은  $y=-1$이므로 오분류입니다.  
 음성 샘플 $y=+1$을 양성으로 잘못 분류했으므로 perceptron update는  
+
 $$  
 w_{\text{new}}=w-\eta x  
-$$ (참고)양성 샘플 $y=+1$을 음성으로 잘못 분류했으므로 perceptron update는
+$$ 
+
+(참고)양성 샘플 $y=+1$을 음성으로 잘못 분류했으므로 perceptron update는
+
 $$  
 w_{\text{new}}=w+\eta x  
 $$
-  이 방식은 보통 라벨을 $y \in \{-1,+1\}$로 두고, 오분류일 때만 업데이트하는 형태
+이 방식은 보통 라벨을 $y \in \{-1,+1\}$로 두고, 오분류일 때만 업데이트하는 형태
 여기서  
+
 $$  
 \eta=0.2,\quad x=\begin{bmatrix}1\\2\\-2\end{bmatrix}  
 $$  
 이므로  
+
 $$  
 w_{\text{new}}=  
-\begin{bmatrix}0\\1\\0.5\end{bmatrix}  
--0.2  
-\begin{bmatrix}1\\2\\-2\end{bmatrix}  
-=  
+\begin{bmatrix}0\\1\\0.5\end{bmatrix}  -0.2  
+\begin{bmatrix}1\\2\\-2\end{bmatrix}  =  
 \begin{bmatrix}-0.2\\0.6\\0.9\end{bmatrix} 
 $$  
 업데이트 후 가중치는  
+
 $$  
 w_{\text{new}}=  
 \begin{bmatrix}-0.2,\,0.6,\,0.9\end{bmatrix}  
 $$
 가중치 식을 슬라이드 방식의 것으로 적용하면
+
 $$  
 \Delta w_j = \eta\left(y^{(i)} - \hat{y}^{(i)}\right)x_j^{(i)},\quad \Delta b = \eta\left(y^{(i)} - \hat{y}^{(i)}\right)  
 $$
 
 보면,  
+
 $$  
 w=\begin{bmatrix}0\\1\\0.5\end{bmatrix}  
 $$  
+
 $$  
 (x_1,x_2)=(2,-2),\quad y=-1  
 $$  
 bias를 따로 두면  
+
 $$  
 b=0,\quad w_1=1,\quad w_2=0.5  
 $$  
 입니다.  
 discriminant function은  
+
 $$  
 \begin{align}
 g(x)&=b+w_1x_1+w_2x_2\\  
@@ -227,45 +254,56 @@ g(x)&=b+w_1x_1+w_2x_2\\
 \end{align}
 $$  
 따라서  
+
 $$  
 g(x)>0  
 $$  
 예측값은  $\hat{y}=+1$ ,실제 정답은  $y=-1$이므로 오분류입니다.  
 이제 이미지의 식을 적용하면,  
+
 $$  
 y-\hat{y}=-1-(+1)=-2  
 $$  
+
 $$  
 \eta=0.2  
 $$ 
 따라서  
+
 $$  
 \Delta w_j=0.2(-2)x_j  
 $$  $$  
 \Delta w_j=-0.4x_j  
 $$  
 각 가중치에 대해 계산하면,  
+
 $$  
 \Delta w_1=-0.4(2)=-0.8  
 $$  
+
 $$  
 \Delta w_2=-0.4(-2)=0.8  
 $$  
 bias는  
+
 $$  
 \Delta b=0.2(-2)=-0.4  
 $$  
 따라서 업데이트 후 값은  
+
 $$  
 b_{\text{new}}=0-0.4=-0.4  
 $$  
+
 $$  
 w_{1,\text{new}}=1-0.8=0.2  
 $$  
+
 $$  
 w_{2,\text{new}}=0.5+0.8=1.3  
 $$  
 즉,  
+
 $$  
 w_{\text{new}}=  
 \begin{bmatrix}-0.4\\0.2\\1.3\end{bmatrix}  
