@@ -314,6 +314,7 @@ $$
 
 - 이제 두 번째 샘플 $B$를 얻었으며, 그 값은 $x_1 = 2$, $x_2 = -2$이고 목표값은 $y = -1$이다.
 - 네트워크 출력은 다음과 같다.  
+
 $$  
 \mathbf{w}^T\mathbf{x} = w_0x_0 + w_1x_1 + w_2x_2 = 0 + 1 \cdot 2 + 0.5 \cdot (-2) = +1 = \hat{y}  
 $$
@@ -322,6 +323,7 @@ $$
 - 따라서 $B$의 분류는 올바르지 않으며, $\mathbf{w}$를 업데이트해야 한다.
 
 - 가중치는 다음과 같이 업데이트된다.  
+
 $$  
 w_0 = 0 - 0.2 \cdot 1 = -0.2,\quad w_1 = 1 - 0.2 \cdot 2 = 0.6,\quad w_2 = 0.5 - 0.2 \cdot (-2) = 0.9  
 $$
@@ -375,9 +377,11 @@ $$
 
 - 이러한 차이는 Adaline을 특히 흥미롭게 만든다. Adaline은 연속적인 손실 함수를 정의하고 이를 경사 하강법으로 최소화하는 아이디어를 도입하기 때문이다(추후 논의).    
 - 퍼셉트론처럼 샘플이 잘못 분류되었는지 여부만을 바탕으로 가중치를 업데이트하는 대신, Adaline은 손실을 줄이는 방향으로 매개변수를 조정한다.  
+
 $$  
 \mathbf{w} \leftarrow \mathbf{w} + \Delta \mathbf{w},\quad b \leftarrow b + \Delta b  
-$$  
+$$
+
 $$  
 \Delta \mathbf{w} = -\eta \nabla_{\mathbf{w}} L(\mathbf{w}, b),\quad \Delta b = -\eta \nabla_b L(\mathbf{w}, b)  
 $$
@@ -416,17 +420,21 @@ $$
 - 또한 $L(\mathbf{w}, b)$는 모델의 예측 출력과 실제 목표값 사이의 차이를 정량화하는 손실 함수를 나타낸다고 하자.
 - 우리의 목적은 $L(\mathbf{w}, b)$를 최소화하는 $\mathbf{w}$와 $b$의 값을 찾음으로써 모델의 성능을 최적화하는 것이다.
 - 손실 함수를 가중치와 편향 매개변수에 대해 편미분하면, 경사 하강법(Cauchy, 1847)의 업데이트 규칙은 다음과 같다.  
+
 $$  
 \mathbf{w} \leftarrow \mathbf{w} + \Delta \mathbf{w},\quad b \leftarrow b + \Delta b  
 $$  
+
 $$  
 \Delta \mathbf{w} = -\eta \nabla_{\mathbf{w}} L(\mathbf{w}, b),\quad \Delta b = -\eta \nabla_b L(\mathbf{w}, b)  
 $$
 
 - 평균제곱오차(MSE)는 흔히 사용되는 손실 함수로, 음수가 아니며 값이 낮을수록 더 나은 예측을 의미하고, 완벽한 모델은 손실 $0$을 달성한다.  
+
 $$  
 L(\mathbf{w}, b) = \frac{1}{n}\sum_{i=1}^{n}\left(y^{(i)} - \sigma\left(z^{(i)}\right)\right)^2  
 $$  
+
 $$  
 \frac{\partial L}{\partial w_j} = -\frac{2}{n}\sum_i \left(y^{(i)} - \sigma\left(z^{(i)}\right)\right)x_j^{(i)},\quad \frac{\partial L}{\partial b} = -\frac{2}{n}\sum_i \left(y^{(i)} - \sigma\left(z^{(i)}\right)\right)  
 $$
@@ -490,6 +498,7 @@ $$
 - 그러나 분류 과제에서는 평균제곱오차가 학습을 효과적으로 안내할 만큼 충분히 강한 경사를 항상 제공하지는 않는다.
 
 - 대신 더 적합한 선택은 이진 교차 엔트로피(BCE) 손실이다.  
+
 $$  
 L_{\mathrm{BCE}} = -\frac{1}{N}\sum_{i=1}^{N}\left[y^{(i)}\log \hat{y}^{(i)} + \left(1 - y^{(i)}\right)\log\left(1 - \hat{y}^{(i)}\right)\right]  
 $$
@@ -508,6 +517,7 @@ $$
 
 - 실제로 이진 교차 엔트로피 손실은 확률적 관점에서 자연스럽게 도출된다.
 - 각 예제가 Bernoulli 분포를 따른다고 가정하면, 데이터셋의 가능도는 다음과 같다.  
+
 $$  
 p(\mathbf{Y}\mid \mathbf{X}) = \prod_{i=1}^{N} p\left(y^{(i)} \mid \mathbf{x}^{(i)}\right) = \prod_{i=1}^{N} \left(\hat{y}^{(i)}\right)^{y^{(i)}}\left(1 - \hat{y}^{(i)}\right)^{1 - y^{(i)}}  
 $$
@@ -518,9 +528,11 @@ $$
 - 모델을 적합시키기 위해 우리는 일반적으로 최대가능도추정(MLE)을 사용하며, 이는 이 확률을 최대화하는 매개변수를 선택한다.
 - 가능도를 직접 최대화하는 것은 종종 불편하므로, 대신 음의 로그를 취한다.
 - 또한 각 레이블이 해당 분포에서 독립적으로 추출된다고 가정하므로, 이러한 인수분해를 사용할 수 있다는 점에 유의하자.  
+
 $$  
 -\log p(\mathbf{Y}\mid \mathbf{X}) = -\log \prod_{i=1}^{N}\left(\hat{y}^{(i)}\right)^{y^{(i)}}\left(1 - \hat{y}^{(i)}\right)^{1-y^{(i)}}  
 $$  
+
 $$  
 = -\sum_{i=1}^{N}\left[y^{(i)}\log \hat{y}^{(i)} + \left(1 - y^{(i)}\right)\log\left(1 - \hat{y}^{(i)}\right)\right]  
 $$
@@ -538,6 +550,7 @@ $$
 | Windy | $0$   | $0$   | $1$   |
 
 - 이진 분류의 경우 이는 다음과 같다.  
+
 $$  
 \mathbf{y}^{(i)} \in {(1,0),\ (0,1)}  
 $$
@@ -545,6 +558,7 @@ $$
 - 이 공식화는 이진 분류의 경우에는 중복처럼 보일 수 있지만, 다중 클래스로 확장할 때 필수적이 된다.
 - 레이블을 벡터로 표현하면, 모델도 같은 형태의 출력을 생성하는 것이 자연스럽다.
 - 따라서 네트워크는 단일 숫자를 출력하는 대신 벡터를 생성한다.  
+
 $$  
 \mathbf{z}^{(i)} \in \mathbb{R}^{C}  
 $$
@@ -559,6 +573,7 @@ $$
 - 이를 유효한 확률로 변환하기 위해, 우리는 이러한 제약을 강제하는 변환을 적용한다.
 - 자연스러운 선택은 각 점수를 지수화하여 비음수성을 보장한 다음, 모든 클래스에 대한 합으로 정규화하여 출력의 합이 $1$이 되도록 하는 것이다.
 - 이는 소프트맥스 함수를 제공한다.  
+
 $$  
 \hat{\mathbf{y}}^{(i)} = \operatorname{softmax}\left(\mathbf{z}^{(i)}\right),\quad \hat{y}_c^{(i)} = \frac{\exp\left(z_c^{(i)}\right)}{\sum_{c'} \exp\left(z_{c'}^{(i)}\right)}  
 $$
@@ -574,39 +589,47 @@ $$
 - 특히 매개변수 $w_{21}$에 대한 경사를 계산하고, 훈련 중 이것이 어떻게 업데이트되는지 이해하는 데 초점을 맞출 것이다.
 
 - 선형 변환(편의를 위해 이후 슬라이드에서는 편향 항을 무시한다):  
+
 $$  
 z_1 = w_{21}x_2 + b_1  
 $$
 
 - Softmax function 소프트맥스 함수:  
+
 $$  
 \hat{y}_1 = \frac{e^{z_1}}{e^{z_1} + e^{z_2}}  
 $$
 
 - Cross-entropy loss 교차 엔트로피 손실:  
+
 $$  
 L = -\left(y_1\log \hat{y}_1 + y_2\log \hat{y}_2\right)  
 $$
 
 - Weight update rule 가중치 업데이트 규칙:  
+
 $$  
 w_{21} = w_{21} - \eta \cdot \frac{\partial L}{\partial w_{21}}  
 $$
 
 - Chain rule 연쇄 법칙:  
+
 $$  
 \frac{\partial L}{\partial w_{21}} = \frac{\partial L}{\partial \hat{y}_1}\frac{\partial \hat{y}_1}{\partial z_1}\frac{\partial z_1}{\partial w_{21}} + \frac{\partial L}{\partial \hat{y}_2}\frac{\partial \hat{y}_2}{\partial z_1}\frac{\partial z_1}{\partial w_{21}}  
 $$  
+
 $$  
 = \left(\frac{\partial L}{\partial \hat{y}_1}\frac{\partial \hat{y}_1}{\partial z_1} + \frac{\partial L}{\partial \hat{y}_2}\frac{\partial \hat{y}_2}{\partial z_1}\right)\frac{\partial z_1}{\partial w_{21}}  
 $$
 
 - 출력 $z_1$을 가중치 $w_{21}$에 대해 미분한 경사:  
+
 $$  
 \frac{\partial z_1}{\partial w_{21}} = x_2  
 $$
 
 - $\hat{y}_1$을 $z_1$에 대해 미분하면(같은 클래스):  
+
 $$  
 \frac{\partial \hat{y}_1}{\partial z_1}  
 = \frac{\partial}{\partial z_1}\frac{e^{z_1}}{e^{z_1}+e^{z_2}}  
@@ -617,6 +640,7 @@ $$
 $$
 
 - $\hat{y}_2$를 $z_1$에 대해 미분하면(다른 클래스):  
+
 $$  
 \frac{\partial \hat{y}_2}{\partial z_1}  
 = \frac{\partial}{\partial z_1}\frac{e^{z_2}}{e^{z_1}+e^{z_2}}  
@@ -625,17 +649,21 @@ $$
 $$
 
 - 손실을 $\hat{y}_1,\hat{y}_2$에 대해 미분하면:  
+
 $$  
 \frac{\partial L}{\partial \hat{y}_1} = -\frac{y_1}{\hat{y}_1} + 0,\quad \frac{\partial L}{\partial \hat{y}_2} = 0 - \frac{y_2}{\hat{y}_2}  
 $$
 
 - 모든 항을 합치면 다음과 같다.  
+
 $$  
 \frac{\partial L}{\partial w_{21}} = \left(\frac{\partial L}{\partial \hat{y}_1}\frac{\partial \hat{y}_1}{\partial z_1} + \frac{\partial L}{\partial \hat{y}_2}\frac{\partial \hat{y}_2}{\partial z_1}\right)\frac{\partial z_1}{\partial w_{21}}  
 $$  
+
 $$  
 = \left[-\frac{y_1}{\hat{y}_1}\hat{y}_1(1-\hat{y}_1) - \frac{y_2}{\hat{y}_2}\left(-\hat{y}_1\hat{y}_2\right)\right]x_2  
 $$  
+
 $$  
 = \left(y_1\hat{y}_1 - y_1 + y_2\hat{y}_1\right)x_2  
 = \left(\hat{y}_1(y_1+y_2)-y_1\right)x_2  
@@ -643,6 +671,7 @@ $$
 $$
 
 - 최종 업데이트 항:  
+
 $$  
 w_{21} = w_{21} - \eta \cdot (\hat{y}_1-y_1)x_2  
 $$
