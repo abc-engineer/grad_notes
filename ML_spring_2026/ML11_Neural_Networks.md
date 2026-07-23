@@ -136,33 +136,33 @@ $$
 따라서  
 
 $$  
-\begin{align}
+\begin{aligned}
 g(x)&=0\cdot 1+1\cdot x_1+0.5\cdot x_2\\  
 g(x)&=x_1+0.5x_2  
-\end{align}
+\end{aligned}
 $$  
 
 $g(x)=0$이 되는 경우는 **결정경계(decision boundary)** 를 구할 때
 
 $$  
-\begin{align}
+\begin{aligned}
 g(x)>0 \Rightarrow C_1 \\  
 g(x)<0 \Rightarrow C_2  
-\end{align}
+\end{aligned}
 $$
 
 $(x_1,x_2)=(1,1)$이면 bias 항을 포함한 입력 벡터와 가중치 백터는  
 $x=\begin{bmatrix}1,\,1,\,1\end{bmatrix}$, $w=\begin{bmatrix}0,\,1,\,0.5\end{bmatrix}$  이므로 discriminant function 값은  
 
 $$
-\begin{align}
+\begin{aligned}
 g(x)&=w^T x  \\  
 &=\begin{bmatrix}0&1&0.5\end{bmatrix}  
 \begin{bmatrix}1\\1\\1\end{bmatrix}  \\
 &=0\cdot 1+1\cdot 1+0.5\cdot 1  \\
 \\
 &=1.5
-\end{align}
+\end{aligned}
 $$  
 
 따라서 현재 모델은  
@@ -188,14 +188,14 @@ $$
 discriminant function은  
 
 $$
-\begin{align}
+\begin{aligned}
 g(x)&=w^T x  \\  
 &=\begin{bmatrix}0&1&0.5\end{bmatrix}  
 \begin{bmatrix}1\\2\\-2\end{bmatrix}  \\
 &=0\cdot 1+1\cdot 2+0.5\cdot -2  \\
 \\
 &=+1
-\end{align}
+\end{aligned}
 $$
 
 현재 
@@ -267,11 +267,11 @@ $$
 discriminant function은  
 
 $$  
-\begin{align}
+\begin{aligned}
 g(x)&=b+w_1x_1+w_2x_2\\  
 &=0+1(2)+0.5(-2)  \\  
 &=2-1=1  
-\end{align}
+\end{aligned}
 $$  
 
 따라서  
@@ -515,7 +515,7 @@ $$
 ### Single-Layer Neural Networks
 - 이제 이 최적화 방법을 이진 분류 과제를 위한 단층 신경망 훈련에 적용한다.
 - 퍼셉트론과 Adaline 모델은 모두 이러한 단층 네트워크의 특수한 경우라는 점에 유의하자.
-- 각 예제 $i$에 대해 입력은 $\mathbf{x}^{(i)}$, 해당 레이블은 $y^{(i)} \in {0,1}$이고, 모델은 예측값 $\hat{y}^{(i)} \in {0,1}$를 생성한다.
+- 각 예제 $i$에 대해 입력은 $\mathbf{x}^{(i)}$, 해당 레이블은 $y^{(i)} \in \{0,1\}$이고, 모델은 예측값 $\hat{y}^{(i)} \in \{0,1\}$를 생성한다.
 - 우선 네트워크를 훈련하려면 예측값 $\hat{y}^{(i)}$와 레이블 $y^{(i)}$ 사이의 차이를 측정하는 손실 함수를 정의해야 한다.
 
 - 간단한 선택은 평균제곱오차(MSE)이다.  
@@ -569,7 +569,7 @@ $$
 
 - 이 형태는 음의 로그가능도(NLL)라고 불린다. 이진 분류의 맥락에서는 더 일반적으로 이진 교차 엔트로피 손실이라고 알려져 있다.
 
-- 지금까지 이진 분류 설정에서는 각 레이블을 스칼라 $y^{(i)} \in {0,1}$로 표현했다.
+- 지금까지 이진 분류 설정에서는 각 레이블을 스칼라 $y^{(i)} \in \{0,1\}$로 표현했다.
 
 - 단일 스칼라를 사용하는 대신, 우리는 종종 원-핫 인코딩을 사용하여 레이블을 벡터로 인코딩한다.
 
@@ -582,7 +582,7 @@ $$
 - 이진 분류의 경우 이는 다음과 같다.  
 
 $$  
-\mathbf{y}^{(i)} \in {(1,0),\ (0,1)}  
+\mathbf{y}^{(i)} \in \{(1,0),\ (0,1)\}  
 $$
 
 - 이 공식화는 이진 분류의 경우에는 중복처럼 보일 수 있지만, 다중 클래스로 확장할 때 필수적이 된다.
