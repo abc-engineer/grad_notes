@@ -14,6 +14,7 @@
 	- 각 $\lambda$ 값은 그 분포족 안에서 서로 다른 분포를 정의하며, 확률밀도함수(pdf)는 다음과 같다.  
 
 $$f_\lambda(x)=\lambda e^{-\lambda x},\quad x\in[0,\infty)$$
+
 - 마찬가지로 이항분포 $\text{bin}(n,p)$는 두 parameter $n,p$에 의해 결정된다.
 - 정규분포 $N(\mu,\sigma^2)$는 두 parameter $\mu,\sigma^2$에 의해 결정된다.
 - 이처럼 parameter(모수)로 표현되는 분포족을 보통 모수적 분포(parametric distributions) 또는 모수적 모형(parametric models)이라 한다.
@@ -82,6 +83,7 @@ $$P(\text{55 heads}\mid p)=\binom{100}{55}p^{55}(1-p)^{45}$$
 - 우도(Likelihood), 또는 Likelihood함수(likelihood function): 이것은 $P(\text{data}\mid p)$이다.    
 - 이는 데이터와 모수 $p$ 둘 다의 함수라는 점에 유의하라.    
 - 이 경우 Likelihood는 다음과 같다.  
+
 $$P(\text{55 heads}\mid p)=\binom{100}{55}p^{55}(1-p)^{45}$$
 
 #### Note
@@ -114,6 +116,7 @@ $$\frac{d}{dp}P(\text{data}\mid p)=\binom{100}{55}\left(55p^{54}(1-p)^{45}-45p^{
 $$  
 \ell''(p)=-\frac{x}{p^2}-\frac{n-x}{(1-p)^2}  
 $$  
+
 - $0<x<n$이면 strictly negative  
 - $x=0$ 또는 $x=n$이면 내부해가 없고 경계해($p=0$ 또는 $p=1$) 문제가 됨.
 
@@ -128,6 +131,7 @@ $$55(1-p)=45p$$
 $$55=100p$$
 
 - 따라서 최대우도추정량은  
+
 $$\hat{p}=0.55$$
 
 #### Note
@@ -315,6 +319,7 @@ $$
 $$  
 \frac{1}{b-a}  
 $$  
+
 - 따라서
 
 $$  
@@ -420,11 +425,13 @@ $$
 $$  
 (1-\theta)\theta  
 $$  
+
 - 두 경우를 더하면  
 
 $$  
 \theta(1-\theta)+(1-\theta)\theta=2\theta(1-\theta)  
 $$  
+
 - 즉, $Aa$는 순서가 다른 두 경우가 모두 같은 유전자형으로 합쳐지므로 앞에 $2$가 붙습니다.
 
 #### Solution
@@ -451,6 +458,7 @@ $k_1,k_2,k_3$
 $$  
 n=k_1+k_2+k_3  
 $$  
+
 입니다.  
 이제 $n$개의 자리 중에서:
 
@@ -471,11 +479,13 @@ $$
 $$  
 \binom{k_3}{k_3}=1  
 $$  
+
 따라서 전체 경우의 수는  
 
 $$  
 \binom{k_1+k_2+k_3}{k_1}\binom{k_2+k_3}{k_2}\binom{k_3}{k_3}  
 $$  
+
 가 됩니다.  
 이 값이 식 앞의 **조합 상수항**입니다.  
 즉,  
@@ -485,25 +495,31 @@ P(k_1,k_2,k_3\mid \theta)
 =  
 \text{(배치 경우의 수)}\times\text{(한 가지 배열의 확률)}  
 $$  
+
 이며, 한 가지 배열의 확률이  
 
 $$  
 \theta^{2k_1}\bigl(2\theta(1-\theta)\bigr)^{k_2}(1-\theta)^{2k_3}  
 $$  
+
 이므로 전체 식이 완성됩니다.  
 또한 이 조합항은 보통 하나로 정리하여  
 
 $$  
 \frac{(k_1+k_2+k_3)!}{k_1!k_2!k_3!}  
 $$  
+
 로 씁니다.  
 즉, **다항분포(multinomial distribution)의 계수**입니다.
 
 
 
 - 도함수를 $0$으로 두면 다음과 같다.  
+
 $$\frac{2k_1+k_2}{\theta}-\frac{k_2+2k_3}{1-\theta}=0$$
+
 - 이를 $\theta$에 대해 풀면, 최대우도추정량은 다음과 같다.  
+
 $$\hat{\theta}=\frac{2k_1+k_2}{2k_1+2k_2+2k_3}$$
 
 - 이는 표본으로 뽑은 집단의 모든 유전자들 중에서 대립유전자 $A$가 차지하는 비율과 정확히 같다.
@@ -536,6 +552,7 @@ $$\hat{\theta}=\frac{2k_1+k_2}{2k_1+2k_2+2k_3}$$
 - 그러면 $X_1$이 그 구간 안에 있을 확률은 다음과 같이 근사된다.  
 
 $$f_{X_1}(x_1\mid \lambda)\,dx_1$$
+
 - 이는 확률밀도함수 값에 작은 구간의 길이를 곱한 것이다.
 - 데이터 값 $x_2$도 정확히 같은 방식으로 다룬다.
 
@@ -544,6 +561,7 @@ $$f_{X_1}(x_1\mid \lambda)\,dx_1$$
 - 정확히 쓰면 다음과 같다.  
 
 $$P(X_1\text{ in range},X_2\text{ in range}\mid \lambda)\approx f_{X_1}(x_1\mid \lambda),dx_1\cdot f_{X_2}(x_2\mid \lambda),dx_2$$
+
 - 이제 $x_1=2,\;x_2=3$과 지수분포의 확률밀도함수를 대입하면, 
 
 $$P(X_1\text{ in range},X_2\text{ in range}\mid \lambda)\approx \lambda e^{-2\lambda}dx_1\cdot \lambda e^{-3\lambda}dx_2$$  
@@ -575,6 +593,7 @@ $$\hat{\lambda}=\frac{2}{5}$$
 - 기호로 쓰면 다음과 같다.  
 
 $$E[\hat{p}_n]\to p\quad\text{as }n\to\infty$$
+
 - 물론 우리는 단지 평균적으로만이 아니라, 높은 확률로 MLE가 $p$에 가까워지기를 원한다.
 - 따라서 MLE의 분산(variance)은 작을수록 좋다.
 - 점근적으로 최소 분산(asymptotically minimal variance)이란 데이터의 양이 커질수록, MLE가 $p$의 모든 불편추정량(unbiased estimators) 가운데 가장 작은 분산을 가진다는 뜻이다.

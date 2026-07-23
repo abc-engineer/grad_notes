@@ -117,6 +117,7 @@ $$
 $$  
 \mathrm{Specificity}=\frac{TN}{FP+TN}  
 $$
+
 - 특이도는 네가티브 중에 진짜 네가티브
 
 - 거짓 양성률(False Positive Rate, FPR)은 거짓 양성 예측의 수($FP$)를 전체 음성의 수($N$)로 나눈 값이다.

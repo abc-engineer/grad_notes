@@ -31,6 +31,7 @@
 - 정의: 확률변수 $X$의 평균이 $E[X]=\mu$일 때, $X$의 분산은 다음과 같이 정의된다.  
 
 $$\mathrm{Var}(X)=E\big[(X-\mu)^2\big]$$
+
 - $X$의 표준편차 $\sigma$는 다음과 같이 정의된다.  
 
 $$\sigma=\sqrt{\mathrm{Var}(X)}$$
@@ -41,6 +42,7 @@ $$\sigma=\sqrt{\mathrm{Var}(X)}$$
 - 확률변수 $X$가 값 $x_1,x_2,\ldots,x_n$을 확률질량함수 $p(x_i)$로 가질 때, 분산은 다음과 같다.      
 
 $$\mathrm{Var}(X)=E\big[(X-\mu)^2\big]=\sum_{i=1}^{n} p(x_i),(x_i-\mu)^2$$
+
 - 말로 하면, $\mathrm{Var}(X)$의 공식은 평균으로부터의 거리의 제곱에 대한 가중평균을 취하는 것이다.    
 - 제곱을 함으로써 항상 음이 아닌 값을 평균하게 되어, 평균의 왼쪽과 오른쪽으로의 퍼짐이 서로 상쇄되지 않는다.    
 - 기댓값을 사용함으로써 확률이 큰 값은 더 크게, 확률이 작은 값은 더 작게 반영된다.
@@ -64,6 +66,7 @@ $$\mathrm{Var}(X)=E\big[(X-\mu)^2\big]=\sum_{i=1}^{n} p(x_i),(x_i-\mu)^2$$
 - 풀이: 먼저 기댓값을 계산하면  
 
 $$E[X]=\frac{7}{2}$$
+
 - 다음으로 $(X-\frac{7}{2})^2$ 값을 포함하도록 표를 확장한다.    
 	- 값: $1,3,5$    
 	- $p(x)$: $\displaystyle \frac{1}{4},\frac{1}{4},\frac{1}{2}$    
@@ -83,9 +86,11 @@ $$\sigma=\sqrt{\frac{11}{4}}=\frac{\sqrt{11}}{2}$$
 - 풀이: 분산 계산은 기댓값 계산과 유사하게 진행된다.  
 
 $$\mathrm{Var}(X)=\frac{25}{4}\cdot\frac{1}{4}+\frac{1}{4}\cdot\frac{1}{4}+\frac{9}{4}\cdot\frac{1}{2}=\frac{11}{4}$$
+
 - 제곱근을 취하면 표준편차는 다음과 같다.
 
 $$\sigma=\sqrt{\frac{11}{4}}=\frac{\sqrt{11}}{2}$$
+
 - Variance 계산은 기대값 계산과 유사. 
 - 확률에 값을 곱해서 더하면 됨.
 - standard deviation는 분산에 루트 씌움.
@@ -102,6 +107,7 @@ $$\sigma=\sqrt{\frac{11}{4}}=\frac{\sqrt{11}}{2}$$
 - 분산:
 
 $$\mathrm{Var}(X)=E[(X-\mu)^2]=\frac{4}{5}+\frac{1}{5}+0+\frac{1}{5}+\frac{4}{5}=2$$   
+
 - 따라서 $X$의 분산은 $2$이다.
 - $X,Y,Z,W$ 의 평균은 모두 3일때 각각의 random variable의 분산 계산
 - X는 uniform ditribution(모든 확률이 값음)
@@ -132,6 +138,7 @@ $$\mathrm{Var}(Y)=\frac{4}{10}+\frac{2}{10}+0+\frac{2}{10}+\frac{4}{10}=1.2$$
 - 분산: 
 
 $$\mathrm{Var}(Z)=E[(Z-\mu)^2]=\frac{5}{10}\cdot4+\frac{5}{10}\cdot4=\frac{20}{10}+\frac{20}{10}=4$$
+
 - 따라서 $Z$의 분산은 $4$이다.
 
 - W는 평균에 모든 값이 몰려 있음
@@ -147,6 +154,7 @@ $$\mathrm{Var}(Z)=E[(Z-\mu)^2]=\frac{5}{10}\cdot4+\frac{5}{10}\cdot4=\frac{20}{1
 - 분산:  
 
 $$\mathrm{Var}(W)=0$$   
+
 - $W$는 항상 $3$의 값만 가지므로 변하지 않는다.    
 - 따라서 분산이 $0$이다.
 
@@ -157,6 +165,7 @@ $$\mathrm{Var}(W)=0$$
 - 정리: $X\sim \text{Bernoulli}(p)$이면
 
 $$\mathrm{Var}(X)=p(1-p)$$
+
 - 증명:    
 - $E[X]=p$임을 알고 있다.    
 - 표를 이용하여 분산을 계산하면 다음과 같다.    
@@ -166,9 +175,11 @@ $$\mathrm{Var}(X)=p(1-p)$$
 - 따라서 분산은
 
 $$\mathrm{Var}(X)=(1-p)p^2+p(1-p)^2=(1-p)p(1-p+p)=(1-p)p$$  
+
 - 생각해보기:  $p(1-p)$가 최대가 되는 $p$는 무엇인가?
 
 $$p(1-p)=p-p^2$$
+
 - 이는 아래로 볼록한 이차함수이므로 꼭짓점에서 최대값을 가진다.   $$p=\frac{1}{2}$$
 - 따라서 $p=1/2$일 때 분산이 최대가 된다.
 
@@ -191,6 +202,7 @@ $$p(1-p)=p-p^2$$
 - 정의: 이산 확률변수 $X,Y$가 다음을 만족하면 서로 독립이다. 
 
 $$P(X=a,Y=b)=P(X=a)P(Y=b)$$
+
 - 모든 값 $a,b$에 대해 성립해야 한다.    
 - 즉, 결합확률이 각각의 확률의 곱으로 표현된다.
 - X와 Y가 independent인 경우:
@@ -201,9 +213,11 @@ $$P(X=a,Y=b)=P(X=a)P(Y=b)$$
 -  Properties1: $X$와 $Y$가 독립이면 
 
 $$\mathrm{Var}(X+Y)=\mathrm{Var}(X)+\mathrm{Var}(Y)$$
+
 - Properties2:  상수 $a,b$에 대하여
 
 $$\mathrm{Var}(aX+b)=a^2\mathrm{Var}(X)$$
+
 - Properties3:
 
 $$\mathrm{Var}(X)=E[X^2]-E[X]^2$$
@@ -225,6 +239,7 @@ $$\mathrm{Var}(X+Y)=3+5=8$$
 - 풀이: 분산의 Property 1, 2를 사용하면
 
 $$\mathrm{Var}(3X+4)=3^2\mathrm{Var}(X)$$
+
 - 따라서
 
 $$\mathrm{Var}(3X+4)=9\cdot 3=27$$
@@ -235,9 +250,11 @@ $$\mathrm{Var}(3X+4)=9\cdot 3=27$$
 - 대신 Property  2를 사용하면
 
 $$\mathrm{Var}(X+X)=\mathrm{Var}(2X)=4\mathrm{Var}(X)$$
+
 - 따라서
 
 $$\mathrm{Var}(X+X)=4\cdot 3=12$$
+
 - Property 1을 적용하면 안됨. 
 - X는 자기 자신에게 독립이기 때문에 안됨.
 - X, Y가 독립이니까 Properties 1 and 2 사용
@@ -245,9 +262,11 @@ $$\mathrm{Var}(X+X)=4\cdot 3=12$$
 - 풀이: 분산의 성질 1과 2를 함께 사용한다.
 
 $$\mathrm{Var}(X+3Y)=\mathrm{Var}(X)+\mathrm{Var}(3Y)$$
+
 - 성질 2에 의해
 
 $$\mathrm{Var}(3Y)=3^2\mathrm{Var}(Y)=9\cdot 5$$
+
 - 따라서
 
 $$\mathrm{Var}(X+3Y)=3+45=48$$
@@ -261,12 +280,15 @@ $$\mathrm{Var}(X+3Y)=3+45=48$$
 - 따라서
 
 $$E[X^2]=p$$
+
 - 성질 3을 적용하면
 
 $$\mathrm{Var}(X)=E[X^2]-E[X]^2=p-p^2$$
+
 - 정리하면 
 
 $$\mathrm{Var}(X)=p(1-p)$$
+
 - 이는 앞서 구한 결과와 일치한다.
 - 예제: 성질 3을 이용하여 예제 1의 $X$의 분산을 구하라.
 - 풀이:표를 이용하면    
@@ -280,6 +302,7 @@ $$E[X]=\frac{7}{2},\quad E[X^2]=1\cdot\frac{1}{4}+9\cdot\frac{1}{4}+25\cdot\frac
 - 성질 3을 적용하면
 
 $$\mathrm{Var}(X)=E[X^2]-E[X]^2=15-\left(\frac{7}{2}\right)^2=\frac{11}{4}$$
+
 - 이는 예제 1에서 구한 결과와 같다.
 
 
@@ -296,6 +319,7 @@ $$X=X_1+X_2+\cdots+X_n,\quad X_i\sim \text{Bernoulli}(p)$$
 - 각 $X_i$의 분산은  
 
 $$\mathrm{Var}(X_i)=p(1-p)$$
+
 - 독립이므로 분산의 성질을 적용하면
 
 $$\mathrm{Var}(X)=\sum_{i=1}^{n}\mathrm{Var}(X_i)=n p(1-p)$$
@@ -304,20 +328,25 @@ $$\mathrm{Var}(X)=\sum_{i=1}^{n}\mathrm{Var}(X_i)=n p(1-p)$$
 - 상수 $a,b$에 대하여  
 
 $$\mathrm{Var}(aX+b)=a^2\mathrm{Var}(X)$$
+
 - 증명: 이는 기댓값 $E[X]$의 성질과 간단한 대수 계산으로부터 따른다.    
 - $\mu=E[X]$라고 하자.    
 - 그러면  
 
 $$E[aX+b]=a\mu+b$$
+
 - 분산의 정의를 적용하면  
 
 $$\mathrm{Var}(aX+b)=E\big[(aX+b-(a\mu+b))^2\big]$$
+
 - 정리하면
 
 $$=E\big[(aX-a\mu)^2\big]=E\big[a^2(X-\mu)^2\big]$$
+
 - 상수를 밖으로 빼면  
 
 $$=a^2E\big[(X-\mu)^2\big]$$
+
 - 따라서  
 
 $$=a^2\mathrm{Var}(X)$$
@@ -326,25 +355,32 @@ $$=a^2\mathrm{Var}(X)$$
 #### Property  3
 
 $$\mathrm{Var}(X)=E[X^2]-E[X]^2$$
+
 - 증명:기댓값의 성질과 간단한 대수 계산을 이용한다.    
 - $\mu=E[X]$는 상수이다.    
 - 분산의 정의에서 시작하면 
 
 $$\mathrm{Var}(X)=E[(X-\mu)^2]$$
+
 - 전개하면
 
 $$E[(X-\mu)^2]=E[X^2-2\mu X+\mu^2]$$
+
 - 기댓값의 선형성을 이용하면
 
 $$=E[X^2]-2\mu E[X]+\mu^2$$
+
 - $E[X]=\mu$이므로
 
 $$=E[X^2]-2\mu^2+\mu^2$$
+
 - 정리하면
 
 $$=E[X^2]-\mu^2$$
+
 - 따라서 
 git 
+
 $$\mathrm{Var}(X)=E[X^2]-E[X]^2$$
 
 

@@ -124,6 +124,7 @@ $$O(E)\approx P(E)$$
 - 먼저 질병이 있을 사전 오즈는  
 
 $$O(H_+)=\frac{P(H_+)}{P(H_-)}=\frac{0.005}{0.995}\approx 0.005$$
+
 - 사후 오즈는 먼저 트리를 이용해 계산하고, 이후 표를 사용하여 다시 계산할 것이다.
 
 #### Solution
@@ -236,6 +237,7 @@ O(M \mid F)&=\frac{P(M \mid F)}{P(M^c \mid F)}\
 - 가설 $H$와 데이터 $D$에 대하여, 베이즈 팩터는 likelihood들의 ratio비율이다.  
 
 $$\text{Bayes factor}=\frac{P(D \mid H)}{P(D \mid H^c)}$$
+
 - 이것은 가능도비(likelihood ratio)라고도 불린다.
 
 
@@ -249,6 +251,7 @@ O(H \mid D)&=\frac{P(H \mid D)}{P(H^c \mid D)}\\
 \end{aligned}$$
 
 - 따라서  
+
 $$\text{posterior odds}=\text{Bayes factor}\times \text{prior odds}$$
 
 $$\text{posterior odds}=\text{Bayes factor}\times \text{prior odds}$$
@@ -281,6 +284,7 @@ $$\text{posterior odds}=\text{Bayes factor}\times \text{prior odds}$$
 - Oliver의 현장 존재에 대한 베이즈 팩터는  
 
 $$BF_{\text{Oliver}}=\frac{P(D \mid S)}{P(D \mid S^c)}$$
+
 - 이제 분자와 분모를 각각 계산한다.
 
 - 풀이
@@ -364,6 +368,7 @@ BF_{\text{Alberto}}
 - 이러한 방식은 가능도가 곱셈 형태를 가질 때 항상 성립한다.  
 
 $$P(D_1,D_2 \mid H)=P(D_1 \mid H)P(D_2 \mid H)$$
+
 - 가능도는 가설이 주어졌을 때의 확률이므로, 위 식이 모든 가설 $H$에 대해 성립하면 $D_1$과 $D_2$는 가설 조건하에서 조건부 독립(conditionally independent)이라고 한다.
 
 - 예제    
@@ -405,6 +410,7 @@ P(\text{1회차에 }7,\text{ 2회차에 }11 \mid 20\text{면체})&=\left(\frac{1
 - 그러나 두 굴림 결과 자체는 독립이 아니다.  
 
 $$P(\text{1회차에 }7,\text{ 2회차에 }11)\ne P(\text{1회차에 }7)P(\text{2회차에 }11)$$
+
 - 첫 번째에 $7$이 나왔다는 정보는 큰 면수를 가진 주사위가 선택되었을 가능성을 높이며, 이는 두 번째에 $11$이 나올 확률도 변화시키기 때문이다.
 
 - 풀이    
@@ -445,6 +451,7 @@ P(\text{1회차에 }7,\text{ 2회차에 }11)
 - 일반적인 설정으로 돌아가서, $D_1$과 $D_2$가 $H$와 $H^c$에 대해 조건부 독립이면 각 베이즈 팩터를 독립적으로 고려하는 것이 타당하다.  
 
 $$BF_i=\frac{P(D_i \mid H)}{P(D_i \mid H^c)}$$
+
 - $H$의 사전 오즈는 $O(H)$이다.
 - $D_1$ 이후의 사후 오즈는  
 
@@ -463,6 +470,7 @@ O(H \mid D_1,D_2)&=BF_2 \cdot O(H \mid D_1)\\
 - 이전 예제에서, 적어도 하나의 안과적 특징 $F$에 대한 베이즈 팩터는  
 
 $$BF_F=\frac{P(F \mid M)}{P(F \mid M^c)}=\frac{0.7}{0.07}=10$$
+
 - 손목 징후(wrist sign) $W$는 한 손으로 다른 손목을 감싸 쥐었을 때 엄지손가락이 새끼손가락 손톱을 덮을 수 있는 상태를 말한다.
 - 전체 인구의 10%가 손목 징후를 가지며, 마르판 증후군 환자의 90%가 이를 가진다고 가정하자.
 - 따라서 손목 징후에 대한 베이즈 팩터는  

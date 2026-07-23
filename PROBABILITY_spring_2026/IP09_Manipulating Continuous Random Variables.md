@@ -55,6 +55,7 @@ $$
 $$  
 f_Y(y)=\frac{d}{dy}F_Y(y)=\frac{1}{4}  
 $$
+
 - cdf는 그냥 수식 대입으로 계산하면 됨.
 - pdf는 cdf 미분하면됨.
 
@@ -101,12 +102,14 @@ $$
 $$  
 f_X(x)dx=\frac{\sqrt{y}}{2}\cdot \frac{dy}{2\sqrt{y}}=\frac{1}{4}dy  
 $$
+
 - 이는 확률을 나타내는 적분의 형태이므로, $dy$ 앞의 계수가 pdf가 된다.
 - 따라서  
 
 $$  
 f_Y(y)=\frac{1}{4}  
 $$
+
 - 이전에 cdf를 이용해 구한 결과와 정확히 일치한다.
 
 
@@ -121,6 +124,7 @@ $$
 $$  
 f_X(x)dx=\lambda e^{-\lambda \sqrt{y}} \cdot \frac{dy}{2\sqrt{y}}=f_Y(y)dy  
 $$
+
 - 따라서 pdf는  
 
 $$  
@@ -140,6 +144,7 @@ $$
 $$  
 F_Y(y)=1-e^{-\lambda \sqrt{y}}  
 $$
+
 - 만약 pdf를 구하고 싶다면 이를 미분하면 된다.
 - 그러면 이전 예제에서 구한 것과 동일한 결과를 얻는다: 
 
@@ -164,11 +169,13 @@ f_X(x)dx=\frac{1}{3\sqrt{2\pi}} e^{-\frac{(x-5)^2}{2\cdot 3^2}} dx
 =\frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} dz  
 = f_Z(z)dz  
 $$
+
 - 따라서  
 
 $$  
 f_Z(z)=\frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}}  
 $$
+
 - 이는 표준정규분포의 확률밀도함수이다.
 
 ### Standardization of normal random variables
@@ -181,11 +188,13 @@ $$
 $$  
 Z=\frac{X-\mu}{\sigma}  
 $$
+
 - 는 표준정규분포를 따른다. 즉,  
 
 $$  
 Z \sim N(0,1)  
 $$
+
 - Standardization 을 하면 일반 정규분포가 표준화 되어 표준정규 분포가 됨.
 
 
@@ -193,6 +202,7 @@ $$
 - 이는 이전 예제와 동일한 계산이며, $5$를 $\mu$로, $3$을 $\sigma$로 바꾼 것과 같다.
 
 $$z=\dfrac{x-\mu}{\sigma} \Rightarrow dz=\dfrac{dx}{\sigma} \Rightarrow dx=\sigmadz$$
+
 - 이를 이용하여 $f_X(x)dx$ 를 변환하면 다음과 같다:  
 
 $$  
@@ -201,6 +211,7 @@ f_X(x)dx=\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx
 =\frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} dz  
 = f_Z(z)dz  
 $$
+
 - 따라서  
 
 $$  

@@ -58,6 +58,7 @@
 $$  
 p(x, y) = p(x \mid y) p(y)  
 $$
+
 - 첫 번째는 조건부 분포 $p(x \mid y)$: 특정 클래스 $y$가 주어졌을 때, 관측 데이터 $x$가 어떻게 생성되는지를 설명한다.
 - 두 번째는 사전 분포(prior distribution) $p(y)$: 이는 어떤 데이터도 관측하기 전에 각 클래스나 범주가 얼마나 발생할 가능성이 있는지를 나타낸다.
 - 추상적인 개념을 설명할때 베이즈 룰이 나옴.
@@ -67,6 +68,7 @@ $$
 $$
 p(y \mid x) = \frac{p(x \mid y) , p(y)}{p(x)}
 $$
+
 - 이 사후 확률(posterior probability)을 통해 생성 모델도 분류나 추론을 수행할 수 있다.
 - 즉, 생성 모델의 주된 목표는 데이터 생성 과정의 모델링이지만, 그 결과로 분류 문제에도 활용될 수 있다.
 - 생성 모델이지만 판단, 분류 모델에 사용 할 수 있음.
@@ -144,6 +146,7 @@ $$
 \arg\max_y p(y \mid x)  
 = \arg\max_y p(x \mid y), p(y)  
 $$
+
 - 클래스 사전 확률 $p(y)$는 각 클래스가 데이터에서 얼마나 자주 등장하는지를 나타내며, 학습 데이터로부터 쉽게 추정할 수 있다.        
 - 주요 어려움은 클래스 조건부 분포 $p(x \mid y)$를 추정하는 것이다.    
 - 특징 차원 $d$가 클 경우,가능한 특징 벡터의 수가 $d$에 대해 지수적으로 증가하므로 이를 직접 추정하는 것은 사실상 불가능해진다.        
@@ -172,6 +175,7 @@ p(x_d \mid y)\\
 &= \prod_{j=1}^{d} p(x_j \mid y)
 \end{aligned}
 $$
+
 - 이 가정은 특징들이 항상 독립이라는 것을 의미하지 않는다.    
     - 오직 클래스 $y$가 주어졌을 때만 독립이라고 가정한다.        
 - 실제로는 이 가정이 성립하지 않는 경우가 많지만, 그럼에도 불구하고 다양한 문제에서 매우 효과적인 분류 성능을 보인다.
@@ -191,6 +195,7 @@ $$
 $$  
 \arg\max_y \left[ \log p(y) + \sum_{j=1}^{d} \log p(x_j \mid y) \right]  
 $$
+
 - 이메일을 스팸($y = 1$) 또는 정상 메일($y = 0$)로 분류하는 문제를 생각해보자.    
 - 각 특징은 이진값을 가진다고 가정한다.    
     - 즉, $x_j \in {0, 1}$ 이다.        
@@ -210,6 +215,7 @@ $$
 $$  
 p(x, y) = p(y), p(x \mid y) = p(y), \prod_{j=1}^{d} p(x_j \mid y)  
 $$
+
 - 각 특징 $x_j \in {0,1}$는 $y$가 주어졌을 때 베르누이 분포를 따른다.    
 - 따라서 조건부 확률은 다음과 같이 표현된다:  
 
@@ -226,6 +232,7 @@ p(x, y)
 \phi_{j \mid y}^{, x_j},  
 (1 - \phi_{j \mid y})^{, 1 - x_j}  
 $$
+
 - 여기서 $\phi_{j \mid y}$의 의미는 다음과 같다:  
     - $y = 1$이면 $\phi_{j \mid y} = \phi_{j \mid 1}$        
     - $y = 0$이면 $\phi_{j \mid y} = \phi_{j \mid 0}$
@@ -240,11 +247,13 @@ $$
 $$
 \prod_{i=1}^{n} p(x^{(i)}, y^{(i)};, \phi)  
 $$
+
 - 로그 우도(log-likelihood)를 취하면 다음과 같다:  
 
 $$
 L = \sum_{i=1}^{n} \log p(x^{(i)}, y^{(i)})  
 $$
+
 - 핵심 의미
 	- 곱(product) 형태의 우도는 계산이 어렵기 때문에 로그를 취한다.
 	- 로그를 취하면: 곱 → 합으로 변환되어 계산이 쉬워짐        
@@ -273,6 +282,7 @@ x_j^{(i)} \log \phi_{j \mid y^{(i)}} +
 (1 - x_j^{(i)}) \log(1 - \phi_{j \mid y^{(i)}})  
 \right]  
 $$
+
 - 첫 번째 항은 레이블 $y$의 사전 확률에 해당하고,        
 - 두 번째 항은 주어진 레이블 아래에서 각 특징 $x_j$가 나타날 확률을 더한 형태이다.
 - 최종적으로 이 log-likelihood 식이 나옴.
@@ -307,16 +317,19 @@ $$
 \right]  
 = 0  
 $$
+
 - 다음과 같이 정의하자:  
 
 $$  
 n_1 = \sum_{i=1}^{n} y^{(i)}, \quad n_0 = n - n_1  
 $$
+
 - 그러면 식은 다음과 같이 정리된다:  
 
 $$  
 \frac{n_1}{\phi_y} - \frac{n_0}{1 - \phi_y} = 0  
 $$
+
 - 양변을 정리하면:  
 
 $$  
@@ -326,11 +339,13 @@ $$
 $$  
 n_1 = (n_0 + n_1), \phi_y = n \phi_y  
 $$
+
 - 따라서 최종적으로:  
 
 $$  
 \phi_y = \frac{n_1}{n}  
 $$
+
 - 해석
 	- $\phi_y$는 단순히 전체 데이터 중에서 $y=1$인 비율이다.    
 	- 즉, **스팸 클래스의 빈도 = 사전 확률의 MLE**이다.
@@ -341,6 +356,7 @@ $$
 = \frac{n_1}{n}  
 = \frac{1}{n} \sum_{i=1}^{n} \mathbf{1}\big(y^{(i)} = 1\big)  
 $$
+
 - 여기서 $\mathbf{1}(y^{(i)} = 1)$은 지시 함수(indicator function)이다.    
     - $y^{(i)} = 1$이면 1        
     - $y^{(i)} = 0$이면 0
@@ -366,6 +382,7 @@ x_j^{(i)} \log \phi_{j \mid 1}
 (1 - x_j^{(i)}) \log(1 - \phi_{j \mid 1})  
 \right]  
 $$
+
 - 이를 $\phi_{j \mid 1}$에 대해 미분하고 0으로 두면:  
 
 $$  
@@ -377,6 +394,7 @@ $$
 \right]  
 = 0  
 $$
+
 - 핵심 의미
 	- 오직 **$y=1$ 인 데이터만 $\phi_{j \mid 1}$ 추정에 영향을 준다.
 	- 이는 파라미터가 클래스별로 분리되어 학습됨을 보여준다.
@@ -388,6 +406,7 @@ s_{j1} = \sum_{i:, y^{(i)} = 1} x_j^{(i)},
 \quad  
 n_1 = \sum_{i=1}^{n} \mathbf{1}(y^{(i)} = 1)  
 $$
+
 - 그러면 다음 관계가 성립한다:  
 
 $$  
@@ -414,6 +433,7 @@ $$
 \quad \Longrightarrow \quad  
 s_{j1} = n_1 \phi_{j \mid 1}  
 $$
+
 - 따라서 최대우도추정량은 다음과 같다:  
 
 $$  
@@ -421,6 +441,7 @@ $$
 = \frac{s_{j1}}{n_1}  
 = \frac{\sum_{i=1}^{n} \mathbf{1}!\left(y^{(i)} = 1\right) x_j^{(i)}}{\sum_{i=1}^{n} \mathbf{1}!\left(y^{(i)} = 1\right)}  
 $$
+
 - 또한 이를 지시 함수로 다시 쓰면,  
 
 $$  
@@ -433,6 +454,7 @@ $$
 \mathbf{1}!\left(y^{(i)} = 1\right)  
 }  
 $$
+
 - 여기서 $\wedge$ 는 논리곱(and) 을 의미
 - $\hat{\phi}_{j \mid 1}$은$p(x_j = 1 \mid y = 1)$의 추정값
 	- 즉, 클래스가 1인 데이터들 중에서특징 $j$가 1인 비율이다.
@@ -492,6 +514,7 @@ $$
 \mathbf{1}(y^{(i)} = 0)  
 }  
 $$
+
 - 모든 파라미터는 단순한 빈도 비율로 계산된다.    
 - 즉, 나이브 베이즈는 복잡한 최적화 없이 카운팅(counting)만으로 학습이 가능하다.
 
@@ -543,6 +566,7 @@ $$
 $$
 p(\mathbf{x} \mid y = c) = \prod_{j=1}^{d} p(x_j \mid y = c) = \prod_{j=1}^{d} \theta_{j,k,c}
 $$
+
 - 학습 데이터 $(\mathbf{x}^{(i)}, y^{(i)})$가 주어졌을 때, $\theta_{j,k,c}$의 최대우도추정(MLE)은 다음과 같다:  
 
 $$
@@ -555,11 +579,13 @@ $$
 $$
 p(x_j \mid y = c) = \mathcal{N}(x_j; \mu_{j,c}, \sigma_{j,c}^2)
 $$
+
 - 정규분포는 다음과 같이 정의된다:  
 
 $$
 \mathcal{N}(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
 $$
+
 - Naive Bayes 가정하에서 다음이 성립한다:  
 
 $$
@@ -571,6 +597,7 @@ $$
 $$\hat{\mu}_{j,c} = \frac{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c), x_j^{(i)}}{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c)}$$
 
 $$\hat{\sigma}_{j,c}^{2} = \frac{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c), \left(x_j^{(i)} - \hat{\mu}_{j,c}\right)^2}{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c)}$$
+
 - 이산적인 경우와 마찬가지로, 각 특성의 분포는 각 클래스마다 독립적으로 추정된다.
 
 ### Linear Discriminant Analysis(LDA)
@@ -585,6 +612,7 @@ $$\hat{\sigma}_{j,c}^{2} = \frac{\sum_{i=1}^{n} \mathbf{1}(y^{(i)} = c), \left(x
 - 생성적 프레임워크에서 분류는 사후확률을 최대화하는 클래스를 선택하여 수행된다: 
 
 $$\arg\max_{y \in {C_1, C_2}} p(y \mid \mathbf{x}) = \arg\max_{y \in {C_1, C_2}} p(\mathbf{x} \mid y),p(y)$$
+
 - 판별모델은 왼쪽항 생성모델은 오른쪽 항.
 - 따라서 분류는 각 클래스 조건부 분포 $p(\mathbf{x} \mid y)$ 하에서 관측된 데이터 벡터 $\mathbf{x}$의 가능도와 클래스 사전확률 $p(y)$에 의해 결정된다.    
 - 여기서 클래스 사전확률 $p(y)$는 일반적으로 (예: 클래스 빈도나 개수로부터) 쉽게 추정할 수 있으므로, 핵심 문제는 클래스 조건부 분포 $p(\mathbf{x} \mid y)$를 어떻게 설정할 것인가이다.
@@ -594,6 +622,7 @@ $$\arg\max_{y \in {C_1, C_2}} p(y \mid \mathbf{x}) = \arg\max_{y \in {C_1, C_2}}
 - 형식적으로 각 클래스 $C_k$에 대해 데이터는 다음과 같이 생성된다고 가정한다:
 
 $$p(\mathbf{x} \mid y = C_k) = \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)$$
+
 - 여기서 $\boldsymbol{\mu}_k$는 클래스 $C_k$의 평균 벡터이고 $\boldsymbol{\Sigma}_k$는 공분산 행렬이다.
 - 공분산: 퍼져 있는 정도
 - 가우시안은 원이나 타원으로 표현
@@ -653,6 +682,7 @@ $$\mathbf{w}^T\mathbf{x}+b=0,$$  $$\mathbf{w}=\Sigma^{-1}(\boldsymbol{\mu}_1-\bo
 - 학습 집합이 
 
 $${(\mathbf{x}^{(n)},y^{(n)})}_{n=1}^N,\quad y^{(n)}\in{C_1,C_2}$$
+
 - 각 클래스의 평균은 해당 클래스에 속한 표본들의 표본평균으로 추정한다:  
 
 $$\hat{\boldsymbol{\mu}}_k=\frac{1}{N_k}\sum_{n\in C_k}\mathbf{x}^{(n)}.$$
@@ -671,6 +701,7 @@ $$p(C_k)=\frac{N_k}{N}.$$
 - 위에서 구한 추정치를 다음 식에 대입하면  
 
 $$\hat{\mathbf{w}}=\hat{\Sigma}^{-1}(\hat{\boldsymbol{\mu}}_1-\hat{\boldsymbol{\mu}}_2),$$  
+
 $$\hat{b}=-\frac{1}{2}\left(\hat{\boldsymbol{\mu}}_1^T\hat{\Sigma}^{-1}\hat{\boldsymbol{\mu}}_1-\hat{\boldsymbol{\mu}}_2^T\hat{\Sigma}^{-1}\hat{\boldsymbol{\mu}}_2\right)+\log\frac{p(C_1)}{p(C_2)}.$$
 
 - 따라서 추정된 선형 결정 규칙은 다음과 같다:
@@ -715,6 +746,7 @@ $$m_1=\mathbf{w}^T\boldsymbol{\mu}_1,\quad m_2=\mathbf{w}^T\boldsymbol{\mu}_2.$$
 - 투영 이후 클래스 분리를 측정하는 간단한 방법은, 투영된 클래스 평균의 차이를 보는 것이다:
 
 $$m_2-m_1=\mathbf{w}^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1).$$
+
 - 평균값의 차이가 크면 둘을 잘 구분한다고 볼 수 있음
 
 - 그래서 이에 따라 다음 목적함수(loss 함수라고 해도 됨)를 정의할 수 있다:  
@@ -740,6 +772,7 @@ $$\mathcal{L}(c\mathbf{w})=(c\mathbf{w})^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1
 - 이를 해결하기 위해 **$\mathbf{w}$의 길이를 1로 제한**한다:  
 
 $$\mathbf{w}^T\mathbf{w}=1.$$
+
 - 그러면 문제는 다음과 같이 바뀐다:  
 
 $$\max_{\mathbf{w}}\ \mathbf{w}^T(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)\quad \text{subject to}\quad \mathbf{w}^T\mathbf{w}=1.$$
@@ -757,6 +790,7 @@ $$\boldsymbol{\mu}_2-\boldsymbol{\mu}_1=2\lambda \mathbf{w}.$$
 - 따라서  
 
 $$\mathbf{w}\propto \boldsymbol{\mu}_2-\boldsymbol{\mu}_1.$$
+
 - $\mu_1, \mu_2$의 평균값을 그래프에서 이으면 w의 최적 방향이 나온다고 볼 수있음
 
 - 이 결과는 직관적으로도 타당하다: 두 클래스의 평균 벡터를 잇는 방향으로 투영하면 클래스 간 거리가 최대화되므로, 이 방향이 좋은 분리 방향이 될 수 있다.    
@@ -788,6 +822,7 @@ $$J(\mathbf{w})=\frac{\mathbf{w}^T\mathbf{S}_B\mathbf{w}}{\mathbf{w}^T\mathbf{S}
 - 여기서  
 
 $$\mathbf{S}_B=(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^T,$$  
+
 $$\mathbf{S}_W=\sum_{n\in C_1}(\mathbf{x}^{(n)}-\boldsymbol{\mu}_1)(\mathbf{x}^{(n)}-\boldsymbol{\mu}_1)^T+\sum_{n\in C_2}(\mathbf{x}^{(n)}-\boldsymbol{\mu}_2)(\mathbf{x}^{(n)}-\boldsymbol{\mu}_2)^T.$$
 
 - 이번에도 미분하고 값이 0이 되는 값을 찾을 것임.
@@ -803,6 +838,7 @@ $$\frac{\mathbf{w}^T\mathbf{S}_B\mathbf{w}}{\mathbf{w}^T\mathbf{S}_W\mathbf{w}}\
 
 
 - 위에서 얻은 스칼라 값을 대입하면 다음을 얻는다:  
+
     $$\lambda \mathbf{w}=\mathbf{S}_W^{-1}\mathbf{S}_B\mathbf{w}.$$
     
 - 이는 일반화된 고유값 문제(generalized eigenvalue problem)의 형태이다.    
@@ -840,12 +876,14 @@ $$\mathbf{w}\propto \Sigma^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1).$$
 - 이러한 이유로 Fisher의 방법은 하나의 방향이 아니라 여러 개의 투영 방향을 찾는 방식으로 확장된다. 이러한 방향들을 판별 벡터(discriminant vectors)라고 한다.    
 - 이제 데이터는 하나의 직선이 아니라, 이 벡터들로 이루어진 저차원 부분공간으로 투영된다.    
 - 클래스가 $K$개일 때, 찾을 수 있는 유효한 판별 방향의 최대 개수는 다음과 같다:  
+
 $$K-1.$$
 
 - between-class scatter 행렬 $\mathbf{S}_B$는 각 클래스 평균이 전체 평균으로부터 얼마나 떨어져 있는지를 측정한다.
 - 다중 클래스의 경우 다음과 같이 정의된다:  
 
 $$\mathbf{S}_B=\sum_{k=1}^{K} N_k(\boldsymbol{\mu}_k-\boldsymbol{\mu})(\boldsymbol{\mu}_k-\boldsymbol{\mu})^T.$$
+
 - 여기서 $N_k$는 클래스 $C_k$의 샘플 수, $\boldsymbol{\mu}_k$는 클래스 $C_k$의 평균 벡터, $\boldsymbol{\mu}$는 전체 데이터의 평균 벡터이다.
 
 
@@ -853,6 +891,7 @@ $$\mathbf{S}_B=\sum_{k=1}^{K} N_k(\boldsymbol{\mu}_k-\boldsymbol{\mu})(\boldsymb
 - 다음과 같이 정의된다:  
 
 $$\mathbf{S}_W=\sum_{k=1}^{K}\sum_{n\in C_k}(\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)(\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)^T.$$
+
 - 여기서 $n\in C_k$는 클래스 $C_k$에 속한 샘플들을 의미한다.
 - 목표는 데이터를 저차원 공간으로 사상하는 투영 행렬 $\mathbf{W}$를 찾아, 클래스 간 산포는 최대화하고 클래스 내 산포는 최소화하는 것이다.
 - 이는 다음과 같은 일반화된 고유값 문제로 이어진다:  

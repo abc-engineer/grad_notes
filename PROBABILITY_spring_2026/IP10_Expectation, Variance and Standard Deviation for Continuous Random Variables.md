@@ -35,6 +35,7 @@ $$
 $$  
 E[X]=\sum_{i=1}^n x_i p(x_i)  
 $$
+
 - X be a continuous random variable with range \[a, b]이고 pdf f(x)면 적분하면 됨.
 - 그냥 sum을 하는것인데 적분기호로 바뀌었다고 생각해도 됨.
 
@@ -43,6 +44,7 @@ $$
 $$  
 E[X]=\int_a^b x f(x)dx \quad \Longleftrightarrow \quad E[X]=\sum_{i=1}^n x_i p(x_i)  
 $$
+
 - 이산형 공식은 $X$의 값 $x_i$들을 확률 $p(x_i)$를 가중치로 하여 가중합(weighted sum)을 취하는 것이다.
 - $f(x)$는 확률밀도(probability density)임을 기억하자.
 	- 그 단위는 $\text{prob}/(\text{X의 단위})$ 이다.
@@ -83,12 +85,14 @@ $$
 $$  
 \int_a^b u(x)v'(x)dx=[u(x)v(x)]_a^b-\int_a^b u'(x)v(x)dx  
 $$
+
 ##### Proof
 - 곱의 미분법은 다음과 같다:  
 
 $$  
 (u(x)v(x))'=v(x)u'(x)+u(x)v'(x)  
 $$
+
 - 양변을 $x$에 대해 적분하면  
 
 $$  
@@ -110,16 +114,19 @@ $$
 $$  
 E[X]=\int_0^\infty x f(x)dx=\int_0^\infty \lambda x e^{-\lambda x}dx  
 $$
+
 - 부분적분을 사용한다: $u=x$, $v'=\lambda e^{-\lambda x} \Rightarrow u'=1$, $v=-e^{-\lambda x}$  
 
 $$  
 =\left[-x e^{-\lambda x}\right]_0^\infty+\int_0^\infty e^{-\lambda x}dx  
 $$
+
 - 이제 각 항을 계산하면  
 
 $$  
 =0-\left[\frac{-e^{-\lambda x}}{\lambda}\right]_0^\infty=\frac{1}{\lambda}  
 $$
+
 - 여기서 $x e^{-\lambda x}$ 와 $e^{-\lambda x}$ 는 $x \to \infty$ 일 때 $0$으로 수렴함을 사용하였다.
 - exp(λ)구할때 부분 적분 필요
 
@@ -143,6 +150,7 @@ $$
 $$  
 \phi(z)=\frac{1}{\sqrt{2\pi}}e^{-z^2/2}  
 $$
+
 - 대칭성에 의해 평균은 반드시 $0$이다.
 - 수학적으로 까다로운 유일한 부분은 이 적분이 수렴하는지, 즉 평균이 실제로 존재하는지를 확인하는 것이다. 어떤 확률변수는 평균이 존재하지 않지만, 여기서는 그런 경우를 자주 다루지 않는다.
 - random variable 중 일부는 평균이 없는 경우도 있음.
@@ -155,21 +163,25 @@ $$
 $$  
 \int_0^\infty z\phi(z)dz=\frac{1}{\sqrt{2\pi}}\int_0^\infty z e^{-z^2/2}dz  
 $$
+
 - 치환 $u=\frac{z^2}{2}$ 를 사용하면 $du=zdz$ 이다.  
 
 $$  
 =\frac{1}{\sqrt{2\pi}}\int_0^\infty e^{-u}du=\frac{1}{\sqrt{2\pi}}\left[-e^{-u}\right]_0^\infty=\frac{1}{\sqrt{2\pi}}  
 $$
+
 - 마찬가지로  
 
 $$  
 \int_{-\infty}^0 z\phi(z)dz=-\frac{1}{\sqrt{2\pi}}  
 $$
+
 - 두 값을 더하면  
 
 $$  
 E[Z]=0  
 $$
+
 - 표준 정규분포는 0~무한대로 가면 1, 0~-무한대로 가면 -1 그래서 기대값 E\[Z]=0
 
 #### Example
@@ -190,6 +202,7 @@ $$
 $$  
 E[X+Y]=E[X]+E[Y]  
 $$
+
 #### linearity Proerty II
 - 2. $a, b$가 상수이면  
 
@@ -207,16 +220,19 @@ $$
 $$  
 Z=\frac{X-\mu}{\sigma} \sim N(0,1)  
 $$
+
 - 이를 $X$에 대해 정리하면  
 
 $$  
 X=\sigma Z+\mu  
 $$
+
 - 이제 기댓값의 선형성을 적용하면  
 
 $$  
 E[X]=E[\sigma Z+\mu]=\sigma E[Z]+\mu=\mu  
 $$
+
 - 이는 이산 경우와 정확히 동일하게 작동한다.
 
 #### 확률변수의 함수의 기댓값
@@ -235,16 +251,19 @@ $$
 $$  
 E[X^2]=\int_0^\infty x^2 f(x)dx=\int_0^\infty \lambda x^2 e^{-\lambda x}dx  
 $$
+
 - 부분적분을 사용한다: $u=x^2$, $v'=\lambda e^{-\lambda x} \Rightarrow u'=2x$, $v=-e^{-\lambda x}$  
 
 $$  
 =\left[-x^2 e^{-\lambda x}\right]_0^\infty+\int_0^\infty 2x e^{-\lambda x}dx  
 $$
+
 - 앞 단계에서  
 
 $$  
 E[X^2]=\left[-x^2 e^{-\lambda x}\right]_0^\infty+\int_0^\infty 2x e^{-\lambda x}dx  
 $$
+
 - 첫 번째 항은 $0$이 된다.
 - 두 번째 적분에 대해 다시 부분적분을 사용한다: $u=2x$, $v'=e^{-\lambda x} \Rightarrow u'=2$, $v=-\dfrac{e^{-\lambda x}}{\lambda}$  
 
@@ -255,6 +274,7 @@ $$
 $$  
 =0+\frac{2}{\lambda}\int_0^\infty e^{-\lambda x}dx=\frac{2}{\lambda}\left[\frac{-e^{-\lambda x}}{\lambda}\right]_0^\infty=\frac{2}{\lambda^2}  
 $$
+
 - 따라서  
 
 $$  
@@ -308,6 +328,7 @@ $$
 $$  
 \mathrm{Var}(X)=E[(X-\mu)^2]=\int_0^1 \left(x-\frac{1}{2}\right)^2 \, dx=\frac{1}{12}  
 $$
+
 - 따라서 표준편차는  
 
 $$  
@@ -323,16 +344,19 @@ $$
 $$  
 E[X]=\frac{1}{\lambda}, \quad E[X^2]=\frac{2}{\lambda^2}  
 $$
+
 - 성질 3을 사용하면  
 
 $$  
 \mathrm{Var}(X)=E[X^2]-E[X]^2=\frac{2}{\lambda^2}-\frac{1}{\lambda^2}=\frac{1}{\lambda^2}  
 $$
+
 - 따라서 표준편차는  
 
 $$  
 \sigma_X=\frac{1}{\lambda}  
 $$
+
 - 또는 다음 정의를 직접 사용하여 계산할 수도 있다:  
 
 $$  
@@ -360,11 +384,13 @@ $$
 $$  
 \mathrm{Var}(Z)=E[Z^2]=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} z^2 e^{-z^2/2}\, dz  
 $$
+
 - 부분적분을 사용한다: $u=z$, $v'=z e^{-z^2/2} \Rightarrow u'=1$, $v=-e^{-z^2/2}$  
 
 $$  
 \mathrm{Var}(Z)=\frac{1}{\sqrt{2\pi}}\left(\left[-z e^{-z^2/2}\right]_{-\infty}^{\infty}+\int_{-\infty}^{\infty} e^{-z^2/2}\, dz\right)  
 $$
+
 - 첫 번째 항은 지수함수 $e^{-z^2/2}$ 가 $z$의 증가보다 훨씬 빠르게 $0$으로 가므로 $0$이다.
 - 두 번째 항은 $N(0,1)$의 pdf $\phi(z)$의 전체 적분과 정확히 같으므로 $1$이다.
 - 따라서  
@@ -383,6 +409,7 @@ $$\begin{aligned}
 \mathrm{Var}(X)=E[(X-\mu)^2]&=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{\infty} (x-\mu)^2 e^{-\frac{(x-\mu)^2}{2\sigma^2}} \, dx \\  
 &=\frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{\infty} z^2 e^{-z^2/2}\, dz=\sigma^2 
 \end{aligned}
+
 $$
 - 마지막 적분은 이전에 $\mathrm{Var}(Z)$ 를 구할 때 계산한 것과 동일하다.
 
@@ -394,7 +421,9 @@ $$
 - cdf $F(x)=P(X \le x)$ 를 이용하면 중앙값은 다음을 만족하는 값이다:   
 
 $$  
+
 F(x)=0.5  
+
 $$
 - 생각해보기: $Z \sim N(0,1)$ 의 중앙값은 무엇인가? 
 - 해답: 대칭성에 의해 중앙값은 $0$이다.
@@ -406,22 +435,30 @@ $$
 - $X$의 cdf는  
 
 $$  
+
 F(x)=1-e^{-\lambda x}  
+
 $$
 - 중앙값은 $F(x)=0.5$ 를 만족하는 $x$ 이므로  
 
 $$  
+
 1-e^{-\lambda x}=0.5  
+
 $$
 - 이를 풀면  
 
 $$  
+
 e^{-\lambda x}=0.5 \Rightarrow -\lambda x=\ln(0.5)=-\ln 2 \Rightarrow x=\frac{\ln 2}{\lambda}  
+
 $$
 - 따라서 중앙값은  
 
 $$  
+
 \frac{\ln 2}{\lambda}  
+
 $$
 #### Think
 - 이 경우 중앙값은 평균 $\mu=\dfrac{1}{\lambda}$ 와 같지 않다.
@@ -438,7 +475,9 @@ $$
 - 2. 보통 cdf를 이용하여 다음과 같이 쓴다:  
 
 $$  
+
 F(q_p)=p  
+
 $$
 - 3. pdf $f(x)$의 관점에서 보면, $q_p$ 는 왼쪽 면적이 $p$, 오른쪽 면적이 $1-p$ 가 되도록 하는 값이다.
 
@@ -455,7 +494,9 @@ $$
 - 따라서 $F(q_{0.6})=0.6$ 이므로  
 
 $$  
+
 q_{0.6}=0.6  
+
 $$
 
 
@@ -467,7 +508,9 @@ $$
 - 따라서  
 
 $$  
+
 q_{0.6} \approx 0.25335  
+
 $$
 - 분위수(quantile)는 확률변수의 위치(location)를 나타내는 유용한 척도이다.    
 - 이후 강의에서 이를 더 많이 활용하게 될 것이다.

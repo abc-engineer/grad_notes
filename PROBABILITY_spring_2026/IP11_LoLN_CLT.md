@@ -66,7 +66,9 @@
 - 특히 모든 $X_i$는 동일한 평균 $\mu$와 표준편차 $\sigma$를 가진다.    
 #### 정의    
 - $\bar{X}_n$을 $X_1, \dots, X_n$의 평균이라 하자:     
+
 $$\bar{X}_n = \frac{X_1 + X_2 + \cdots + X_n}{n} = \frac{1}{n} \sum_{i=1}^{n} X_i$$
+
 - $\bar{X}_n$ 자체도 하나의 확률변수임에 주의하자.
 - 대수의 법칙과 중심극한정리는 각각 $\bar{X}_n$의 값과 분포에 대해 설명해준다.
 
@@ -141,6 +143,7 @@ $$\bar{X}_n = \frac{X_1 + X_2 + \cdots + X_n}{n} = \frac{1}{n} \sum_{i=1}^{n} X_
 
   
 $$\lim_{n \to \infty} P\left(\lvert \bar{X}_n - \mu \rvert < a\right) = 1$$
+
 - 이는 $n$이 증가할수록 평균에서 $a$ 이내에 있을 확률이 $1$로 수렴함을 정확하게 의미한다.
 - 여기서 $a$는 실제 평균 $\mu$로부터의 작은 오차 허용 범위로 생각할 수 있다.
 
@@ -234,11 +237,13 @@ $$Z = \frac{X - \mu}{\sigma}$$
 $$S_n = X_1 + X_2 + \cdots + X_n = \sum_{i=1}^{n} X_i$$  
 
 $$\bar{X}_n = \frac{X_1 + X_2 + \cdots + X_n}{n} = \frac{S_n}{n}$$
+
 - 평균과 분산의 성질에 의해 다음이 성립한다.  
 
 $$E[S_n] = n\mu,\quad \mathrm{Var}(S_n) = n\sigma^2,\quad \sigma_{S_n} = \sqrt{n}\sigma$$  
 
 $$E[\bar{X}_n] = \mu,\quad \mathrm{Var}(\bar{X}_n) = \frac{\sigma^2}{n},\quad \sigma_{\bar{X}_n} = \frac{\sigma}{\sqrt{n}}$$
+
 - $S_n$과 $\bar{X}_n$은 서로 상수배 관계이므로 동일한 표준화를 가진다.  
 
 $$Z_n = \frac{S_n - n\mu}{\sigma\sqrt{n}} = \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}}$$
@@ -268,6 +273,7 @@ $$Z_n \approx N(0, 1)$$
 - 중심극한정리의 보다 정확한 진술은 $Z_n$의 누적분포함수(cdf)가 $\Phi(z)$로 수렴한다는 것이다:  
 
 $$\lim_{n \to \infty} F_{Z_n}(z) = \Phi(z)$$
+
 - 중심극한정리의 증명은 이 수업에서 다루기에는 지나치게 기술적이다.
 
 - 중심극한정리를 통해 iid의 합이나 평균을 근사 할 수 있게 됨.
@@ -311,11 +317,13 @@ $$\lim_{n \to \infty} F_{Z_n}(z) = \Phi(z)$$
 #### Solution
 - $X_j$를 $j$번째 던지기의 결과라고 하자. 앞면이면 $X_j = 1$, 뒷면이면 $X_j = 0$이다.
 - 전체 앞면의 개수는 다음과 같다:  
+
 $$S = X_1 + X_2 + \cdots + X_{100}$$
 
 - $E[X_j] = 0.5$, $\mathrm{Var}(X_j) = \frac{1}{4}$이므로, $n = 100$에서  
 
 $$E[S] = 50,\quad \mathrm{Var}(S) = 25,\quad \sigma_S = 5$$
+
 - 중심극한정리에 따르면 $S$의 표준화는 근사적으로 표준정규분포를 따른다.  
 
 $$Z = \frac{S - 50}{5} \approx N(0,1)$$
@@ -333,6 +341,7 @@ $$Z = \frac{S - 50}{5} \approx N(0,1)$$
 - 표준화하고 중심극한정리를 사용하면 다음을 얻는다.  
 
 $$P(S>55)=P\left(\frac{S-50}{5}>\frac{55-50}{5}\right)\approx P(Z>1)=0.16$$
+
 - 여기서 $Z$는 표준정규확률변수이고, $P(Z>1)=1-P(Z<1)\approx 0.16$이다.
 
 예시 동전을 400번 던질 때 앞면이 220번보다 많이 나올 확률을 추정하라.  
@@ -342,6 +351,7 @@ $$P(S>55)=P\left(\frac{S-50}{5}>\frac{55-50}{5}\right)\approx P(Z>1)=0.16$$
 - 표준화하고 중심극한정리를 사용하면 다음을 얻는다.  
 
 $$P(S>220)=P\left(\frac{S-\mu_S}{\sigma_S}>\frac{220-200}{10}\right)\approx P(Z>2)=0.025$$
+
 - 여기서 $Z\sim N(0,1)$이며, 경험적 법칙에 의해 $P(Z>2)=0.025$이다.
 
 
@@ -359,6 +369,7 @@ $$P(S>220)=P\left(\frac{S-\mu_S}{\sigma_S}>\frac{220-200}{10}\right)\approx P(Z>
 - 첫 번째 예시와 같이 $E[S]=50$, $\mathrm{Var}(S)=25$, $\sigma_S=5$이다. 따라서  
 
 $$P(40\le S\le 60)=P\left(\frac{40-50}{5}\le \frac{S-50}{5}\le \frac{60-50}{5}\right)\approx P(-2\le Z\le 2)\approx 0.95$$
+
 - 오른쪽 항은 경험적 법칙을 사용하여 계산할 수 있다.
 - 앞서 이항분포를 사용하여 계산한 값은 $0.965\ldots$였다.
 - 따라서 중심극한정리를 사용한 근사값은 약 $1%$ 정도 오차가 있다.
@@ -399,6 +410,7 @@ from scipy.stats import norm
 - 따라서 중심극한정리에 의해  
 
 $$\bar{X}\approx N\left(p_0,\frac{\sigma^2}{n}\right),\quad \sigma=\sqrt{p_0(1-p_0)}$$
+
 - 이때의 가정을 베르루이 실험을 n번 한다는 가정으로 확률을 계산 함.
 
 
@@ -505,6 +517,7 @@ $$P\big((|\bar{B}_1-p_1|<a),(|\bar{B}_2-p_2|<a),\ldots,(|\bar{B}_m-p_m|<a)\big)$
 - 먼저 포함배제원리의 결과로 다음 확률 규칙을 사용한다. 두 사건 $A,B$에 대해 $P(A)=1-\alpha_1$, $P(B)=1-\alpha_2$이면  
 
 $$P(A\cap B)\ge 1-(\alpha_1+\alpha_2)$$
+
 - 명제 1에 따르면 임의의 $\alpha$에 대해 충분히 큰 $n$을 택하면 각 빈에 대해 $P(|\bar{B}_k-p_k|<a)>1-\frac{\alpha}{m}$이 되도록 할 수 있다.
 - 위의 확률 규칙을 적용하면, 이 모든 사건들의 교집합의 확률은 적어도 $1-\alpha$이다.
 - $\alpha$를 $n\to\infty$로 보내면서 임의로 작게 만들 수 있으므로, 극한에서는 확률이 $1$이 된다.
@@ -525,6 +538,7 @@ $$P(A\cap B)\ge 1-(\alpha_1+\alpha_2)$$
 - 확률변수 $Y$가 평균 $\mu$, 분산 $\sigma^2$를 가진다고 하자. 임의의 양수 $a$에 대해  
 
 $$P(|Y-\mu|\ge a)\le \frac{\mathrm{Var}(Y)}{a^2}$$
+
 - 말로 하면, $Y$가 평균에서 $a$ 이상 벗어날 확률은 $\frac{\mathrm{Var}(Y)}{a^2}$로 위에서 제한된다.
 - 직관적으로, $Y$의 분산이 작을수록 $Y$가 평균에서 크게 벗어날 확률도 작아진다.
 
@@ -540,15 +554,19 @@ $$P(|Y-\mu|\ge a)\le \frac{\mathrm{Var}(Y)}{a^2}$$
 - $Y$가 연속형이고 $\mu=0$이라고 가정하자. ( $Y$를 $Y-\mu$로 바꾸어도 분산은 변하지 않는다.) 그러면  
 
 $$P(|Y|\ge a)=\int_{-\infty}^{-a} f(y),dy+\int_{a}^{\infty} f(y),dy$$
+
 - 구간 $(-\infty,-a]\cup[a,\infty)$에서 $\frac{y^2}{a^2}\ge 1$이므로  
 
 $$P(|Y|\ge a)\le \int_{-\infty}^{-a}\frac{y^2}{a^2}f(y),dy+\int_{a}^{\infty}\frac{y^2}{a^2}f(y),dy$$
+
 - 적분함수가 양수이므로 적분 구간을 전체로 확장하면  
 
 $$\le \int_{-\infty}^{\infty}\frac{y^2}{a^2}f(y),dy=\frac{\mathrm{Var}(Y)}{a^2}$$
+
 - 따라서  
 
 $$P(|Y|\ge a)\le \frac{\mathrm{Var}(Y)}{a^2}$$  
+
 가 성립한다.
 
 

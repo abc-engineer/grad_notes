@@ -165,11 +165,13 @@
 $$
 \text{dot product}(\mathbf{v}, \mathbf{w}) = \mathbf{v} \cdot \mathbf{w} = v_1 w_1 + v_2 w_2 + \cdots + v_N w_N = \sum_{i=1}^{N} v_i w_i  
 $$
+
   - Vector length / norm:  
 
 $$
 |\mathbf{v}| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{\sum_{i=1}^{N} v_i^2}  
 $$
+
 - Cosine similarity between vectors:  
 
 $$
@@ -185,6 +187,7 @@ $$
 $$  
 \mathbf{v} \cdot \mathbf{w} = \sum_{i=1}^{N} v_i w_i = 1  
 $$
+
 - Vector length / norm:  
 
 $$  
@@ -192,6 +195,7 @@ $$
 \quad  
 |\mathbf{w}| = \sqrt{\sum_{i=1}^{N} w_i^2} = \sqrt{2}  
 $$
+
 - Cosine similarity between vectors:  
 
 $$  
@@ -243,6 +247,7 @@ $$\mathbf{v}_{d_1} = (1, 114, 36, 20)\quad  \mathbf{v}_{d_2} = (0, 80, 58, 15) \
 - $d_1$ vs $d_2$:
 
 $$\mathbf{v}_{d_1} = (1,114,36,20), \mathbf{v}_{d_2} = (0,80,58,15)$$
+
 - 내적  
 
 $$
@@ -250,6 +255,7 @@ $$
 = 1\cdot0 + 114\cdot80 + 36\cdot58 + 20\cdot15  
 = 0 + 9120 + 2088 + 300 = 11508  
 $$
+
 - 노름  
 
 $$
@@ -259,6 +265,7 @@ $$
 $$  
 |\mathbf{v}_{d_2}| = \sqrt{0^2+80^2+58^2+15^2} = \sqrt{9989}  
 $$
+
 - 코사인 유사도  
 
 $$  
@@ -306,11 +313,13 @@ $$
 - log를 이용하면 특정 구간을 넘어설때 마다 증가폭이 줄어드는 특성이 있어 계산이 가능 함.  
 
 $$
+
 \mathrm{TF}(w, d) =  
 \begin{cases}  
 1 + \log_{10} \text{count}(w, d), & \text{count}(w, d) > 0 \  
 0, & \text{otherwise}  
 \end{cases}  
+
 $$
 
 #### Document Frequency (DF)
@@ -324,7 +333,9 @@ $$
 	- 단어 w가 문서 $d_i$에 등장하면 1, 아니면 0으로 계산  
 
 $$
+
 DF(w) = \sum_{i=1}^{N} \mathbf{1}(w \in d_i)  
+
 $$
 - 주의:  
     DF는 전체 문서에서의 총 등장 횟수(컬렉션 빈도)가 아님
@@ -343,7 +354,9 @@ $$
     - 전체 문서 수 (N)을 문서 빈도 (DF)로 나눈 뒤, 로그를 취한 값  
 
 $$
+
 \mathrm{IDF}(w) = \log_{10}\left( \frac{N}{DF(w)} \right)  
+
 $$
 - 여러 문서에 자주 등장하는 단어 → IDF 낮음 (중요도 낮음) 
 - 소수 문서에만 등장하는 단어 → IDF 높음 (중요도 높음)
@@ -427,7 +440,9 @@ $$\text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}= \log_2 \frac{\mathrm{cou
 	- 너무 낮은 음수값은 의미가 없어서 0으로 치환  
 
 $$  
+
 \text{PPMI} = \max \left( \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)},\ 0 \right)  
+
 $$
 
 
@@ -515,18 +530,24 @@ $$
 - Vector dot product / inner product: 내적
 
 $$
+
 \text{dot product}(\mathbf{v}, \mathbf{w}) = \mathbf{v} \cdot \mathbf{w} = v_1 w_1 + v_2 w_2 + \cdots + v_N w_N = \sum_{i=1}^{N} v_i w_i  
+
 $$
   - Vector length / norm:
 
 $$
+
 |\mathbf{v}| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{\sum_{i=1}^{N} v_i^2}  
+
 $$
 - Cosine similarity between vectors:
 
 $$
+
 \cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}| , |\mathbf{w}|}  
 = \frac{\sum_{i=1}^{N} v_i w_i}{\sqrt{\sum_{i=1}^{N} v_i^2} \sqrt{\sum_{i=1}^{N} w_i^2}}  
+
 $$
 
 
@@ -536,19 +557,25 @@ $$
 - Vector dot product / inner product:
 
 $$  
+
 \mathbf{v} \cdot \mathbf{w} = \sum_{i=1}^{N} v_i w_i = 1  
+
 $$
 - Vector length / norm:
 
 $$  
+
 |\mathbf{v}| = \sqrt{\sum_{i=1}^{N} v_i^2} = \sqrt{2}  
 \quad  
 |\mathbf{w}| = \sqrt{\sum_{i=1}^{N} w_i^2} = \sqrt{2}  
+
 $$
 - Cosine similarity between vectors:
 
 $$  
+
 \cos(\mathbf{v}, \mathbf{w}) = \frac{\mathbf{v} \cdot \mathbf{w}}{|\mathbf{v}| |\mathbf{w}|} = \frac{1}{2}  
+
 $$
 
 #### Vector Similarity
@@ -571,6 +598,7 @@ $$
 - 각 단어는 고유한 차원으로 식별된다  
 
 $$  
+
 \begin{aligned}  
 v_{\text{good}} &= [1,0,0,0,0,0] \\  
 v_{\text{feel}} &= [0,1,0,0,0,0] \\  
@@ -579,6 +607,7 @@ v_{\text{sad}} &= [0,0,0,1,0,0] \\
 v_{\text{cats}} &= [0,0,0,0,1,0] \\  
 v_{\text{have}} &= [0,0,0,0,0,1]  
 \end{aligned}  
+
 $$
 
 #### Represent Sequences by Word Occurrences
@@ -588,19 +617,23 @@ $$
 - 한계는 단어가 있냐 없나 수준만 파악가능
 
 $$  
+
 \begin{aligned}  
 v_{d1} &= [1,1,1,0,0,0] \\  
 v_{d2} &= [0,1,1,1,0,0] \\  
 v_{d3} &= [0,0,1,0,1,1]  
 \end{aligned}  
+
 $$  
 
 $$  
+
 \begin{aligned}  
 \cos(v_{d1}, v_{d2}) &= \frac{2}{3} \\  
 \cos(v_{d1}, v_{d3}) &= \frac{1}{3} \\  
 \cos(v_{d2}, v_{d3}) &= \frac{1}{3}  
 \end{aligned}  
+
 $$
 
 
@@ -633,24 +666,32 @@ $$\mathbf{v}_{d_1} = (1, 114, 36, 20) \quad  \mathbf{v}_{d_2} = (0, 80, 58, 15) 
 - 내적
 
 $$
+
 \mathbf{v}_{d_1} \cdot \mathbf{v}_{d_2}  
 = 1\cdot0 + 114\cdot80 + 36\cdot58 + 20\cdot15  
 = 0 + 9120 + 2088 + 300 = 11508  
+
 $$
 - 노름
 
 $$
+
 |\mathbf{v}_{d_1}| = \sqrt{1^2+114^2+36^2+20^2} = \sqrt{14693}  
+
 $$ 
 
 $$  
+
 |\mathbf{v}_{d_2}| = \sqrt{0^2+80^2+58^2+15^2} = \sqrt{9989}  
+
 $$
 
 - 코사인 유사도
 
 $$  
+
 \cos(d_1,d_2) = \frac{11508}{\sqrt{14693}\sqrt{9989}} \approx \mathbf{0.949} 
+
 $$
 
 
@@ -741,11 +782,13 @@ $$\cos(v_{\text{fool}},v_{\text{battle}})=0$$
 - log를 이용하면 특정 구간을 넘어설때 마다 증가폭이 줄어드는 특성이 있어 계산이 가능 함.
 
 $$
+
 \mathrm{TF}(w, d) =  
 \begin{cases}  
 1 + \log_{10} \text{count}(w, d) & \text{count}(w, d) > 0 \\  
 0 & \text{otherwise}  
 \end{cases}  
+
 $$
 
 
@@ -760,7 +803,9 @@ $$
 	- 단어 w가 문서 $d_i$에 등장하면 1, 아니면 0으로 계산
 	
 $$
+
 DF(w) = \sum_{i=1}^{N} \mathbf{1}(w \in d_i)  
+
 $$
 
 |항목|Collection Frequency|Document Frequency|
@@ -785,7 +830,9 @@ $$
     - 전체 문서 수 (N)을 문서 빈도 (DF)로 나눈 뒤, 로그를 취한 값
 
 $$
+
 \mathrm{IDF}(w) = \log_{10}\left( \frac{N}{DF(w)} \right)  
+
 $$
 - 여러 문서에 자주 등장하는 단어 → IDF 낮음 (중요도 낮음) 
 - 소수 문서에만 등장하는 단어 → IDF 높음 (중요도 높음)
@@ -852,8 +899,10 @@ $$
 - PMI는 두 단어가 함께 등장할 확률과, 각각 독립적으로 등장할 확률을 비교하는 지표이다
 
 $$
+
 \text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
 = \log_2 \frac{\text{count}(w_1, w_2)\cdot N}{\text{count}(w_1)\text{count}(w_2)}  
+
 $$
 - PMI 값 해석
 	- **PMI = 0**  
@@ -875,7 +924,9 @@ $$
 	- 너무 낮은 음수값은 의미가 없어서 0으로 치환
 
 $$  
+
 \text{PPMI} = \max \left( \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)},\ 0 \right)  
+
 $$
 
 - 원시 카운트(raw counts)  
@@ -901,8 +952,10 @@ $$
 	- 자주 안나오는 단어는 분모가 작아져서 PMI값이 확 커짐.
 
 $$
+
 \text{PMI} = \log_2 \frac{p(w_1, w_2)}{p(w_1)p(w_2)}
 = \log_2 \frac{\text{count}(w_1, w_2)\cdot N}{\text{count}(w_1)\text{count}(w_2)}  
+
 $$
 
 
@@ -914,19 +967,25 @@ $$
 - 파워 스무딩(power smoothing): 확률을 거듭제곱 $\alpha$로 변환하여 작은 확률을 보정(증가)하는 방법이다 
 
 $$  
+
 \mathrm{PPMI}=\max\left(\log_2 \frac{p(w_1,w_2)}{p(w_1)p(w_2)},\ 0\right)  
+
 $$
 
 - 원래 확률:  
 
 $$  
+
 p(w)=\frac{\text{count}(w)}{\sum_{w'\in V}\text{count}(w')}  
+
 $$
 
 - 파워 스무딩 적용($\alpha<1$):  
 
 $$  
+
 p_{\alpha}(w)=\frac{\text{count}(w)^{\alpha}}{\sum_{w'\in V}\text{count}(w')^{\alpha}}  
+
 $$
 
 - $\alpha=0.75$와 같이 설정하면, 희귀 단어의 확률이 상대적으로 증가하여 학습에 더 자주 사용된다

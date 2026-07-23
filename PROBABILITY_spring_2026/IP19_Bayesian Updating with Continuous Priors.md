@@ -59,6 +59,7 @@
 $$  
 P(X=x)=p(x)  
 $$  
+
 - 우리는 이러한 표기법을 베이지안 업데이트에 사용되는 확률에도 그대로 적용한다.
 - 대문자: 가설 $H$와 데이터 $D$로부터 여러 관련 확률 을 계산한다.
 	- 데이터와 가설도 대문자로 씀 → 이벤트에 가깝기 때문
@@ -103,6 +104,7 @@ $$
 $$  
 \theta,\lambda,\mu,\sigma,\dots  
 $$  
+
 - 데이터 값은 보통 영어 문자  로 나타낼 것이다.
 
 $$  
@@ -135,6 +137,7 @@ $$
 $$  
 p(x\mid \theta)  
 $$  
+
 로 쓴다.
 
 
@@ -198,6 +201,7 @@ $$
 $$  
 P(D)=\sum_{i=1}^n P(D\mid H_i)P(H_i)  
 $$
+
 - 이것은 prior probability 사전확률 $P(H_i)$를 사용했기 때문에 $D$의 전체 prior probability 사전확률이다.
 - 보통 $P(D$)는 prior를 반영해서 계산한 데이터의 사전예측확률(prior predictive probability) 또는 evidence라고 함.
 - $P(D$): **각 가설이 맞을 확률** $\times$ **그 가설 아래에서 데이터가 나올 확률**을 모두 더한 것
@@ -227,6 +231,7 @@ $$
 $$  
 p(x)=\sum_{i=1}^n p(x\mid \theta_i)p(\theta_i)  
 $$
+
 - 확률 항  $p(x\mid \theta)f(\theta)\,d\theta$는 위 식의 항 $p(x\mid \theta_i)p(\theta_i)$와 완전히 대응된다.
 - 이러한 유추를 계속 따르면, 위 식의 합은 다음 식의 적분으로 바뀐다.
 
@@ -283,11 +288,13 @@ $$f(\theta\mid x)\,d\theta=\frac{p(x\mid \theta)f(\theta)\,d\theta}{p(x)}=\frac{
 $$  
 H=\text{‘}\Theta\text{가 값 }\theta\text{ 주변 폭 }d\theta\text{인 구간 안에 있다’}  
 $$  
+
 와  
 
 $$  
 D=\text{‘데이터의 값이 }x\text{이다’}  
 $$  
+
 를 생각하자.
 
 - 그러면  
@@ -344,6 +351,7 @@ $$
 $$  
 p(x=1,1,0\mid \theta)=\theta^2(1-\theta)  
 $$  
+
 이다.
 
 - 사전 pdf는  
@@ -351,6 +359,7 @@ $$
 $$  
 f(\theta)=2\theta  
 $$  
+
 이므로 베이즈 분자는 
 
 $$  
@@ -358,6 +367,7 @@ p(x=1,1,0\mid \theta)f(\theta)
 =\theta^2(1-\theta)\cdot 2\theta  
 =2\theta^3(1-\theta)  
 $$  
+
 가 된다.
 
 - 전체 확률(정규화 상수)은  
@@ -367,6 +377,7 @@ p(x=1,1,0)
 =\int_0^1 2\theta^3(1-\theta),d\theta  
 =\frac{1}{10}  
 $$  
+
 이다.
 
 - 따라서 사후 pdf는  
@@ -376,6 +387,7 @@ f(\theta\mid x=1,1,0)
 =\frac{2\theta^3(1-\theta)}{1/10}  
 =20\theta^3(1-\theta)  
 $$  
+
 가 된다.
 
 - 즉, HHT를 관측한 후의 사후 pdf는  
@@ -383,6 +395,7 @@ $$
 $$  
 f(\theta\mid x)=20\theta^3(1-\theta)  
 $$  
+
 이다.
 
 
@@ -400,6 +413,7 @@ $$
 $$  
 \text{‘알려지지 않은 매개변수가 }\theta\text{ 주변 폭 }d\theta\text{인 구간 안에 있다’}  
 $$
+
 - 하지만 우리에게도 이것은 쓰기에 너무 길기 때문에, 우리가 가설을 $\theta$ 또는 $H_\theta$라고 쓸 때마다 항상 이러한 의미를 생각해야 한다.
 
 
@@ -436,6 +450,7 @@ $$
 - 즉, 사후 pdf는 사전 pdf와 가능도 함수와 다음 관계를 가진다.  
 
 $$f(\theta\mid x),d\theta=\frac{p(x\mid \theta)f(\theta),d\theta}{\int_a^b p(x\mid \theta)f(\theta),d\theta}=\frac{p(x\mid \theta)f(\theta)}{p(x)},d\theta$$
+
 - 양변 분자의 $d\theta$를 제거하면 밀도에 대한 형태를 얻는다.  
 
 $$  
@@ -473,6 +488,7 @@ $$
 $$  
 f(\theta)=1  
 $$  
+
 은 평평한 사전분포이다.
 
 - 예시(평평한 사전분포)
@@ -518,6 +534,7 @@ $$
 $$  
 f(\theta)=1,\qquad 0\le \theta\le 1  
 $$  
+
 임을 의미한다.
 
 - 동전이 앞면 쪽으로 치우쳐 있다는 것은  
@@ -525,11 +542,13 @@ $$
 $$  
 \theta>\frac{1}{2}  
 $$  
+
 임을 뜻하고, 뒷면 쪽으로 치우쳐 있다는 것은  
 
 $$  
 \theta<\frac{1}{2}  
 $$  
+
 임을 뜻한다.
 
 - 사전분포가 균등하므로  
@@ -539,6 +558,7 @@ P\left(\theta>\frac12\right)
 =\int_{1/2}^1 1\,d\theta  
 =\frac12  
 $$  
+
 이고,  
 
 $$  
@@ -554,6 +574,7 @@ $$
 $$  
 f(\theta\mid x=1)=2\theta  
 $$  
+
 .
 
 - 따라서 동전이 앞면 쪽으로 치우쳐 있을 사후확률:  
@@ -683,6 +704,7 @@ $$
 =2\left(\frac12-\frac13\right)  
 =\frac13  
 $$  
+
 이다.
 
 
@@ -752,6 +774,7 @@ $$
 $$  
 f(\theta)=1  
 $$  
+
 을 가지는 ‘치우친’ 동전이 있다.
 
 - 우리의 데이터는 동전을 한 번 던져 앞면이 나왔다는 것이다.
@@ -787,12 +810,14 @@ $$
 $$  
 \theta_j=\frac{j}{8},\qquad j=1,3,5,7  
 $$  
+
 로 나타내자.
 - 평평한 사전분포는 각 가설에 대해  
 
 $$  
 \frac14=1\cdot \Delta\theta  
 $$  
+
 의 확률을 부여한다.
 
 
@@ -815,6 +840,7 @@ $$
 $$  
 \Delta\theta=\frac18  
 $$  
+
 인 8개의 구간으로 나누고, 각 구간의 중심을 8개의 가설 $\theta_i$로 사용한다.  
 
 $$  
@@ -836,6 +862,7 @@ $$
 $$  
 \frac18=1\cdot\Delta\theta  
 $$  
+
 를 부여한다.
 
 
@@ -913,6 +940,7 @@ $$
 $$  
 x_1,x_2,x_3=1,0,1  
 $$  
+
 - 가설 집합이 이산적일 때는 개별 가설의 확률을 사용할 수 있다. 예를 들어 $p(\theta)$이다.
 - 가설 집합이 연속적일 때는 가설의 무한소 범위에 대한 확률을 사용해야 한다. 예를 들어  
 
@@ -937,5 +965,6 @@ $$
 $$  
 \text{‘매개변수 }\theta\text{가 }\theta\text{ 주변 폭 }d\theta\text{인 구간 안에 있다’}  
 $$  
+
 의 축약 표현이라는 점을 기억하라.
 

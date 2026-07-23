@@ -140,6 +140,7 @@ p_\theta(w_i \mid x_1, x_2, \ldots, x_{i-1})
 \frac{\exp(u_{|V|} \cdot h_{i-1})}{\sum_{j=1}^{|V|} \exp(u_j \cdot h_{i-1})}  
 \right]  
 $$
+
 - 모델 파라미터
 - 언임베딩(unembedding) 행렬
 - 토큰 (i-1)에서의 은닉 상태(hidden states)
@@ -269,6 +270,7 @@ $$
 $$  
 \text{Swap the second and the penultimate letter of the following word: pothyn}  
 $$
+
 - 모델은 “pothyn”의 두 번째 글자와 끝에서 두 번째 글자를 교환해야 하지만, 잘못된 결과를 생성했다
 - 이러한 사례는 LM이 문자 수준(letter-level) 조작 작업에서 오류를 낼 수 있음을 보여준다
 - 그림 출처: [https://lmarena.ai/](https://lmarena.ai/)
@@ -396,6 +398,7 @@ $$
 \quad  
 N_c \approx 8.8 \times 10^{13}  
 $$
+
 - 여기서 (N)은 모델 파라미터 수(non-embedding)이다
 
 ### Scaling Dataset Size
@@ -412,6 +415,7 @@ $$
 \quad  
 D_c \approx 5.4 \times 10^{13}  
 $$
+
 - 여기서 (D)는 데이터셋 크기(토큰 수)이다
 
 ### Scaling Training Compute

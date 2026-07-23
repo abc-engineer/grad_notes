@@ -47,9 +47,11 @@
 $$  
 v_{\text{good}}=[-1.34,,2.58,,0.37,,4.32,,-3.21,,\dots]  
 $$
+
 $$  
 v_{\text{nice}}=[-0.58,,1.97,,0.20,,3.13,,-2.58,,\dots]  
 $$
+
    - (일반적으로 부동소수점 값이므로 소수 둘째 자리까지만 표시한 예시이다)
    - 굿이나 나이스는 유사한 의미를 지니기 때문에 각 디멘젼의 값이 유사함을 알 수 있음
 	   - 그러면 벡터 평면에서 근처에 위치함.
@@ -92,6 +94,7 @@ v_{\text{nice}} &= [0,0,0,0,1,0,\dots] \\
 v_{\text{bad}} &= [0,0,0,0,0,1,\dots]  
 \end{aligned}  
 $$
+
 - dense vector representations of words를 구현 하는 것임.
 - 비슷한 문맥에서 등장하는 단어는 결과적으로 비슷한 벡터값을 갖게 됨.
 - 이를 임베딩이라고 부름.
@@ -107,6 +110,7 @@ $$
 $$  
 v_{\text{ong choy}} \rightarrow {\text{sautéed},\ \text{garlic},\ \text{rice},\ \text{salty},\ \text{leaves},\ \dots}  
 $$  
+
 $$  
 v_{\text{spinach}} \rightarrow {\text{sautéed},\ \text{garlic},\ \text{rice},\ \text{salty},\ \text{leaves},\ \dots}  
 $$
@@ -230,6 +234,7 @@ $$
 $$  
 \log p_{\theta}(c \mid w)\propto v_c \cdot v_w  
 $$
+
 - 유사도 계산은 벡터의 내적을 사용함.
 - 센터벡터와 맥락(context)단어의 벡터를 내적
 - log는 계산의 편의를 위해 사용하고 특별한 의미가 있는 것은 아님.
@@ -247,6 +252,7 @@ $$
 $$  
 \log p_{\theta}(c \mid w)\propto v_c \cdot v_w  
 $$
+
 - 다른 모든 맥락 단어 $(c')$에 대해:  
 
 $$  
@@ -261,12 +267,14 @@ $$
 $$  
 p_{\theta}(c \mid w)=\frac{\exp(v_c \cdot v_w)}{\sum_{c' \in V} \exp(v_{c'} \cdot v_w)}  
 $$
+
 - 모든 단어를 내적해서 분모에 넣고 normalize를 함.
 	- 전체 어휘 집합에 대해 정규화하여 확률 분포를 만든다 
 
 $$  
 \sum_{c' \in V} p_{\theta}(c' \mid w)=1  
 $$
+
 - 계산 하고 나면 소프트 맥스 형식의 함수를 얻게 됨.
 - 소프트맥스 함수:  
 
@@ -326,6 +334,7 @@ $$
 $$  
 \theta \leftarrow \theta - \eta \nabla_{\theta}\mathcal{L}(\theta)  
 $$
+
 - $\theta$는 학습 파라미터, $\eta$는 스텝 크기(학습률, hyperparameter)이다
 - 우리의 문제로 돌아가면, 손실 함수 $\mathcal{L}(\theta)$를 최소화하도록 파라미터 $\theta$를 업데이트한다  
 
@@ -464,11 +473,13 @@ $$
 $$  
 \max_{\theta}\ \prod_{(w,c)\in D} p_{\theta}(c\mid w)  
 $$
+
 - 로그 확률(log probability, 즉 logit)이 벡터 내적(dot product)에 비례한다고 가정한다   
 
 $$  
 \log p_{\theta}(c \mid w) \propto v_c \cdot v_w  
 $$
+
 - 근거: 벡터 내적 값이 클수록 두 벡터의 유사도가 높다고 볼 수 있다   
 	- 내적이 크면 방향등이 비슷함. 
 	- 그래서 내적이 크면 유사하다고 볼 수 있음.
@@ -507,6 +518,7 @@ $$
 \max_{\theta}\ \sum_{(w,c)\in D} \log p_{\theta}(c \mid w)  
 =\sum_{(w,c)\in D} \left( v_c \cdot v_w - \log \sum_{c' \in |V|} \exp(v_{c'} \cdot v_w) \right)  
 $$
+
 - 학습을 위해서는 분포를구해야 함.
 	- 소프트 맥스 함수를 이용해서 분포를 정의 함.
 	- 앞의 $v_c \cdot v_w$항은 크고 로그 값은 작게 해야 확률(예측) 값이 커짐.
@@ -544,6 +556,7 @@ $$
 $$  
 \max_{\theta}\ \log \sigma(v_c \cdot v_w)\;-\;\sum_{c' \in N}\log \sigma(v_{c'} \cdot v_w)  
 $$
+
 - 네거티브 샘플링을 이용해서 이진 문제로 바꿈
 - 두 벡터는 내적을 하지만 시그모이드로 치환하면 목적함수가 변화 함.
 
@@ -638,6 +651,7 @@ $$
 1  
 \end{bmatrix}  
 $$
+
 - 각 변수 값을 순위(rank)로 변환한 뒤 상관관계를 계산한다  
 
 $$  
@@ -665,6 +679,7 @@ $$
 $$  
 =\arg\max_{w' \in V} \frac{(v_b - v_a + v_c)\cdot v_{w'}}{|v_b - v_a + v_c|,|v_{w'}|}  
 $$
+
 - 맨과 우먼의 관계를 이용해서 킹에 해당하는 단어를 찾는 방법
 
 

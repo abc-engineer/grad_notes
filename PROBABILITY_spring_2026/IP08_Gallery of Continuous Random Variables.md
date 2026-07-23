@@ -23,6 +23,7 @@ $$
 f(x)=\begin{cases}\frac{1}{b-a} & a \le x \le b \\
 0 & \text{otherwise}\end{cases}  
 $$
+
 - 범위: $a \le x \le b$
 
 - 지수분포 $X \sim \mathrm{Exponential}(\lambda)$  
@@ -31,12 +32,14 @@ $$
 f(x)=\begin{cases}\lambda e^{-\lambda x} & x \ge 0 \\
 0 & x<0\end{cases}  
 $$
+
 - 범위: $x \ge 0$
 - 정규분포 $X \sim \mathcal{N}(\mu,\sigma^2)$  
 
 $$  
 f(x)=\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}  
 $$
+
 - 범위: $x \in (-\infty,\infty)$
 
 - 여기서는 몇 가지 기본적인 연속 확률분포를 소개한다.    
@@ -127,17 +130,20 @@ $$
 f(x)=\begin{cases}\lambda e^{-\lambda x} & x \ge 0 \\
 0 & x<0\end{cases}  
 $$
+
 - 누적분포함수(cdf):  
 
 $$  
 F(x)=\begin{cases}1-e^{-\lambda x} & x \ge 0 \\
 0 & x<0\end{cases}  
 $$
+
 - 오른쪽 꼬리 확률(right tail distribution):  
 
 $$  
 P(X>x)=1-F(x)=e^{-\lambda x}  
 $$
+
 - 모델링: 연속적인 과정에서 상태가 변화할 때까지의 대기 시간 (예: 사건 발생까지의 시간)
 - 파라미터가 λ
 - geometric distribution과 유사
@@ -194,6 +200,7 @@ $$
 $$  
 P(X>s+t \mid X>s)=P(X>t)  
 $$
+
 -  (discrete) geometric distribution 도 마찮가지임.
 	- 뒷면이 1번 나오기 전까지 앞에 5번을 던졌던 안던졌던 같음.
 - exponential 은 geometric distribution을 continuous하게 한 것이라고 생각 하면 됨.
@@ -209,6 +216,7 @@ $$
 $$  
 P(X>s+t \mid X>s)=\frac{P(X>s+t)}{P(X>s)}=\frac{e^{-\lambda(s+t)}}{e^{-\lambda s}}=e^{-\lambda t}=P(X>t)  
 $$
+
 - 여기서 $P(X>s+t)=e^{-\lambda(s+t)}$ 는 앞서 제시한 오른쪽 꼬리 확률 공식이다.
 - 좌변과 우변은 $=e^{-\lambda(s+t)}$ 로 같음음
 
@@ -296,6 +304,7 @@ $$
 $$  
 P(-1 \le Z \le 1)\approx 0.68,\quad P(-2 \le Z \le 2)\approx 0.95,\quad P(-3 \le Z \le 3)\approx 0.99  
 $$
+
 - 이 값들은 표준정규분포의 확률밀도함수 $\phi(z)$ 그래프 아래 면적으로 해석된다.
 - 제조업에서는 필수
 - $\mu$ 와 $+-\sigma$ 는 68%
@@ -313,6 +322,7 @@ $$
 $$  
 P(Z \le 1)\approx 0.68+0.16=0.84  
 $$
+
 - F(1)=p(Z<=1)을 어떻게 구할까?
 - P(−1 ≤ Z ≤ 1) ≈ 0.68
 - 전체에서 0.68을 뺀 0.32만큼이 나머지
@@ -349,11 +359,13 @@ F(x) =
 0 & \text{if } x < m
 \end{cases}
 $$
+
 - 꼬리확률(tail distribution):  
 
 $$  
 P(X>x)=\frac{m^\alpha}{x^\alpha}, \quad x \ge m  
 $$
+
 - 모델링: 파레토 분포는 거듭제곱 법칙(power law)을 모델링하며, 사건이 발생할 확률이 어떤 속성의 거듭제곱에 따라 변하는 경우를 나타낸다.
 	- 예: 운석의 크기, 소득 분포, 도시 인구 규모 등
 	- Wikipedia에서 다양한 적용 사례를 확인할 수 있다: [https://en.wikipedia.org/wiki/Pareto_distribution#Applications](https://en.wikipedia.org/wiki/Pareto_distribution#Applications)

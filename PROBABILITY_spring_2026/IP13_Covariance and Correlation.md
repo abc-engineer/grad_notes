@@ -48,11 +48,13 @@ $\text{Cov}(X,Y)=0$
 $$  
 \text{Var}(X)=E[X^2]-\mu_X^2  
 $$
+
 - 또한 성질 5에서, $X$와 $Y$가 독립이면 $\text{Cov}(X,Y)=0$이므로  
 
 $$  
 \text{Var}(X+Y)=\text{Var}(X)+\text{Var}(Y)  
 $$  
+
 가 되어 이전에 배운 공식과 일치한다.
 
 
@@ -159,6 +161,7 @@ $$
 $$  
 E[X-\mu_X]=0  
 $$  
+
 임을 기억하자.
 
 
@@ -238,6 +241,7 @@ $$
 $$  
 f(x,y)=f_X(x)f_Y(y)  
 $$  
+
 로 분해된다.
 
 - 따라서  
@@ -319,6 +323,7 @@ $$
 $$  
 {HHH,HHT,HTH,HTT,THH,THT,TTH,TTT}  
 $$
+
 - 각 결과에서 $(X,Y)$를 계산하면 다음과 같다.
 
 
@@ -374,6 +379,7 @@ $$
 $$  
 E[X]=1,\qquad E[Y]=1  
 $$  
+
 임을 계산할 수 있다.
 
 - 이제 공분산의 정의를 사용하면  
@@ -467,6 +473,7 @@ $$
 $$  
 E[X_i]=\frac{1}{2},\qquad \text{Var}(X_i)=\frac{1}{4}  
 $$  
+
 이다.
 
 - 따라서 공분산의 성질 2를 이용하면  
@@ -485,6 +492,7 @@ $$
 $$  
 \text{Cov}(X_1,X_2)=\text{Cov}(X_1,X_3)=\text{Cov}(X_2,X_3)=0  
 $$  
+
 - 따라서 $\text{Cov}(X,Y)$의 식에서 0이 아닌 항은 하나뿐이다. 
 
 $$  
@@ -513,6 +521,7 @@ $$
 $$  
 Y=X^2  
 $$  
+
 라고 하자.
 
 - $\text{Cov}(X,Y)=0$이지만 $X$와 $Y$는 독립이 아님을 보여라.
@@ -535,6 +544,7 @@ $$
 $$  
 E[X]=0,\qquad E[Y]=2  
 $$  
+
 이다.
 
 
@@ -546,6 +556,7 @@ $$
 $$  
 p(x_i,y_j)\ne p_X(x_i)p_Y(y_j)  
 $$  
+
 인 경우를 찾으면 된다.
 
 - 예를 들어  
@@ -553,11 +564,13 @@ $$
 $$  
 P(X=-2,;Y=0)=0  
 $$  
+
 이지만  
 
 $$  
 P(X=-2)\cdot P(Y=0)=\frac{1}{5}\cdot\frac{1}{5}=\frac{1}{25}  
 $$  
+
 이다.
 
 - 이 둘은 같지 않으므로 $X$와 $Y$는 독립이 아니다.
@@ -572,6 +585,7 @@ $$
 $$  
 E[XY]=\frac{1}{5}(-8-1+0+1+8)=0  
 $$  
+
 이므로  
 
 $$  
@@ -583,6 +597,7 @@ $$
 $$  
 \text{Cov}(X,Y)=0  
 $$  
+
 이지만, $X$와 $Y$는 독립이 아니다.
 
 #### Discussion
@@ -610,6 +625,7 @@ $$
 $$  
 f(x,y)=2x^3+2y^3  
 $$  
+
 라고 하자.
 
 - $f(x,y)$가 올바른 확률밀도함수임을 확인하여라.
@@ -621,6 +637,7 @@ $$
 $$  
 \text{Cov}(X,Y)  
 $$  
+
 을 계산하여라.
 
 
@@ -747,6 +764,7 @@ $$
 $$  
 0\le \text{Var}\left(\frac{X}{\sigma_X}-\frac{Y}{\sigma_Y}\right)  
 $$
+
 - 분산 공식을 적용하면  
 
 $$  
@@ -765,6 +783,7 @@ $$
 $$  
 0\le 2-2\rho  
 $$  
+
 이므로  
 
 $$  
@@ -776,6 +795,7 @@ $$
 $$  
 0\le \text{Var}\left(\frac{X}{\sigma_X}+\frac{Y}{\sigma_Y}\right)  
 $$  
+
 를 이용하면  
 
 $$  
@@ -795,9 +815,11 @@ $$
 $$
 
 - 분산이 $0$이면 확률변수는 상수이므로  
+
 $$  
 \frac{X}{\sigma_X}-\frac{Y}{\sigma_Y}=c  
 $$  
+
 인 어떤 상수 $c$가 존재한다.
 
 
@@ -813,32 +835,39 @@ $$
 
 #### Solution
 - 상관계수는 공분산을 표준편차의 곱으로 나눈 값이다.  
+
 $$  
 \text{Cor}(X,Y)=\frac{\text{Cov}(X,Y)}{\sigma_X\sigma_Y}  
 $$
 
 - 앞에서 구한 값은  
+
 $$  
 \text{Cov}(X,Y)=\frac{1}{4}  
 $$  
+
 이다.
 
 - 또한 $X=X_1+X_2$이고 각 $X_i\sim\text{Bernoulli}(0.5)$이므로  
+
 $$  
 \text{Var}(X)=2\text{Var}(X_i)=2\cdot\frac{1}{4}=\frac{1}{2}  
 $$
 
 - 따라서  
+
 $$  
 \sigma_X=\sqrt{\frac{1}{2}}=\frac{1}{\sqrt{2}}  
 $$
 
 - 같은 이유로  
+
 $$  
 \sigma_Y=\frac{1}{\sqrt{2}}  
 $$
 
 - 이제 대입하면  
+
 $$  
 \text{Cor}(X,Y)=\frac{\frac{1}{4}}{\left(\frac{1}{\sqrt{2}}\right)\left(\frac{1}{\sqrt{2}}\right)}  
 $$
@@ -849,6 +878,7 @@ $$
 $$
 
 - 따라서  
+
 $$  
 \text{Cor}(X,Y)=\frac{1}{2}  
 $$
@@ -861,6 +891,7 @@ $$
 - $\text{Cor}(X,Y)$를 구하여라.
 #### Solution
 - 앞에서 계산한 결과  
+
 $$  
 \text{Cor}(X,Y)=\frac{1}{2}  
 $$  
@@ -875,11 +906,13 @@ $$
 
 #### Solution
 - 상관계수는 다음과 같이 정의된다.  
+
 $$  
 \text{Cor}(X,Y)=\frac{\text{Cov}(X,Y)}{\sigma_X\sigma_Y}  
 $$
 
 - 앞에서 구한 값은  
+
 $$  
 \text{Cov}(X,Y)=-\frac{9}{400}  
 $$
@@ -890,11 +923,13 @@ $$
 $$
 
 - 따라서  
+
 $$  
 \sigma_X=\sqrt{\frac{31}{400}}=\frac{\sqrt{31}}{20}\approx 0.28  
 $$
 
 - 대칭성에 의해  
+
 $$  
 \text{Var}(Y)=\frac{31}{400}  
 $$
@@ -905,6 +940,7 @@ $$
 $$
 
 - 이제 대입하면  
+
 $$  
 \text{Cor}(X,Y)=\frac{-\frac{9}{400}}{\left(\frac{\sqrt{31}}{20}\right)\left(\frac{\sqrt{31}}{20}\right)}  
 =\frac{-\frac{9}{400}}{\frac{31}{400}}  
@@ -924,6 +960,7 @@ $$
 - Bivariate: 변수가 2개 있는 것.
 	- uni: 는 변수가 1개
 - 이변량 정규분포(bivariate normal distribution)의 밀도함수는 다음과 같다.  
+
 $$  
 f(x,y)=\frac{\exp\left(-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_X)^2}{\sigma_X^2}+\frac{(y-\mu_Y)^2}{\sigma_Y^2}-\frac{2\rho(x-\mu_X)(y-\mu_Y)}{\sigma_X\sigma_Y}\right]\right)}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}  
 $$

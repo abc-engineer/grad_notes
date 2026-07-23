@@ -266,7 +266,9 @@ $$\theta\leftarrow\theta+\alpha\nabla_{\theta}\log\pi_{\theta}(a\mid s)R$$
     - “The New England Journal of Medicine의 발행 기관은 어디인가?”라는 질문에 질의응답 도구를 사용하여 “Massachusetts Medical Society”라는 정보를 얻는다.      
 - 계산기:    
     - 전체 참가자 $1400$명 중 $400$명이 시험을 통과한 비율을 계산한다.  
+
         $$\text{Calculator}\left(\frac{400}{1400}\right)\rightarrow 0.29$$
+
 - 기계 번역:    
     - 스페인어 단어 “tortuga”를 번역 도구에 입력하여 “거북이”라는 뜻을 얻는다.        
 - 위키백과 검색:    

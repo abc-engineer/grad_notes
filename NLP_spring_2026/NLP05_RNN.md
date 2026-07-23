@@ -72,6 +72,7 @@ $$
 $$  
 z = W_2 (W_1 x + b_1) + b_2 = W x + b  
 $$
+
 - 즉, 깊은 신경망이라도 선형 모델과 다를 바 없게 되어 복잡한 패턴을 학습할 수 없다.
 - 비선형 함수(예: $\sigma, \tanh, \mathrm{ReLU}$)를 도입하면:
 	- 입력 공간을 비선형적으로 변형할 수 있음
@@ -161,11 +162,13 @@ $$
 $$  
 y = [0, \ldots, 1, \ldots, 0]  
 $$
+
 - 이 경우 손실은 다음과 같이 단순화된다:  
 
 $$  
 L_{CE}(\hat{y}, y) = - \log \hat{y}_c = - \log \frac{\exp(z_c)}{\sum_{j=1}^{K} \exp(z_j)}  
 $$
+
 - $c$: 정답 클래스
 	- 이 c 값을 높이도록 학습
 - 이 손실 함수는 음의 로그 가능도(NLL, negative log likelihood)라고도 불린다.
@@ -193,11 +196,13 @@ $$
 $$  
 w^{(t+1)} \leftarrow w^{(t)} - \eta \nabla_w \mathcal{L}(\hat{y}, y)  
 $$
+
 - 기울기는 체인 룰을 통해 계산된다.  
 
 $$  
 \nabla_w \mathcal{L}(\hat{y}, y) = \frac{\partial \mathcal{L}}{\partial w} = \frac{\partial \mathcal{L}}{\partial y} \frac{\partial y}{\partial z} \frac{\partial z}{\partial w}  
 $$
+
 - 이러한 기울기 계산은 PyTorch와 같은 딥러닝 라이브러리가 자동으로 처리한다.
 
 - 백워드: 로스를 구하고 로스의 그라디언트를 구해서 -값을 업데이트
@@ -262,6 +267,7 @@ $$
 $$  
 h^{(t)} = \sigma\left(W_h h^{(t-1)} + W_e x^{(t)}\right)  
 $$
+
 - 과거단어의 wh와 지금의 wx를 더해서 시그모이드를 취해 h를 연산함.
 - 어떤 길이가 와도 연산 가능.
 
@@ -321,12 +327,14 @@ $$
 $$  
 p(x) = p(x^{(1)}), p(x^{(2)} \mid x^{(1)}) \cdots p(x^{(n)} \mid x^{(1)}, \ldots, x^{(n-1)}) = \prod_{t=1}^{n} p(x^{(t)} \mid x^{(1)}, \ldots, x^{(t-1)})  
 $$
+
 - RNN을 사용하여 $p(x^{(t)} \mid x^{(1)}, \ldots, x^{(t-1)})$를 표현하는 방법:
 - 시점 $(t-1)$에서의 출력 확률:  
 
 $$  
 y^{(t-1)} = \text{softmax}(U h^{(t-1)}) = f(x^{(1)}, \ldots, x^{(t-2)}, x^{(t-1)})  
 $$
+
 - 은닉 상태는 이전 은닉 상태와 현재 입력에 의존한다:  
 
 $$  

@@ -96,6 +96,7 @@ $$X(i,j)= \begin{cases} 500 & \text{if } i+j=7\\
 $$ 
 {X = 1000} = {} = \varnothing,\quad P(X = 1000) = 0  
 $$
+
 - 공집합의 확률은 0
 
 ### PMF
@@ -176,6 +177,7 @@ $$
 $$
 F(4) = P(M \le 4) = \frac{1}{36} + \frac{3}{36} + \frac{5}{36} + \frac{7}{36} = \frac{16}{36}  
 $$ 
+
 -  확률질량함수와 마찬가지로 (F(a))는 모든 값 (a)에 대해 정의된다.  
 -  위 예에서 $F(8)=1, F(-2)=0, F(2.5)=4/36, F(\pi)=9/36$이다.
 - F (a) is called the cumulative distribution function
@@ -250,6 +252,7 @@ $$
 $$
 \binom{n}{k} = \frac{n!}{k!(n-k)!}  
 $$
+
 - 이를 이항계수(binomial coefficient)라고도 한다.
 - 베르누이를 n번 반복했을때가 Binomial(n, p)이니까
 	- Binomial(1, p) = Bernoulli(p)
@@ -472,6 +475,7 @@ $$
 $$
 \frac{1}{150}, \frac{4}{150}, \frac{10}{150}, \frac{20}{150}, \frac{30}{150}, \frac{34}{150}, \frac{31}{150}, \frac{20}{150}  
 $$
+
 - 표가 너무 커서 직접 작성하기 어려운 경우에는, 합의 확률을 계산하기 위해 순수한 대수적 방법을 사용해야 한다.
 - 이러한 방법은 이후에 배우게 된다.
 

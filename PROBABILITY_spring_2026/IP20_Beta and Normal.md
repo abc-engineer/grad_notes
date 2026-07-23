@@ -90,6 +90,7 @@ $$
 $$  
 f(\theta\mid x_1)=c_2\theta^8(1-\theta)^4  
 $$  
+
 여기서  
 
 $$  
@@ -118,6 +119,7 @@ $$
 $$  
 f(\theta\mid x_1,x_2)=c_4\theta^{n+8}(1-\theta)^{m+4}  
 $$ 
+
 는 $\mathrm{Beta}(n+9,m+5)$ 분포를 따른다.
 
 
@@ -216,6 +218,7 @@ $$
 $$  
 p(x)=\theta^x(1-\theta)  
 $$
+
 - 이제 데이터 점 $x$가 있고, 우리의 가설 $\theta$는 $x$가 기하분포 $\mathrm{Geometric}(\theta)$에서 추출되었다는 것이라고 하자.
 
 
@@ -388,6 +391,7 @@ $$
 $$  
 \mu_{\text{prior}}=0,\quad \sigma_{\text{prior}}^2=1,\quad \sigma^2=\frac{4}{9}  
 $$
+
 - 따라서 두 번째 업데이트 공식을 사용하면  
 
 $$  
@@ -420,6 +424,7 @@ $$
 $$  
 \sigma_{\text{post}}^2=\frac{1}{a+b}<\frac{1}{b}=\sigma^2  
 $$
+
 - 따라서 사후분산은 $\sigma^2$보다 작다.
 
 ### More than one data point

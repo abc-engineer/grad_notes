@@ -52,6 +52,7 @@
 $$  
 P(w \mid Q:\text{“Who wrote the book ‘The Origin of Species’?”},A:)  
 $$
+
 - 프롬프팅(prompting)을 사용하는 언어모델은 모델의 매개변수(parameters)에 저장된 정보에만 의존하므로, 이러한 종류의 지식을 매개변수적 지식(parametric knowledge)이라고 부른다.
 
 
@@ -89,6 +90,7 @@ $$
 $$  
 \text{FFN}(x_i)=\text{ReLU}(x_iW^1)W^2  
 $$
+
 - **FFN은 Transformer 전체 매개변수(parameters)의 약 $\frac{2}{3}$를 차지**한다.
 	- 굉장히 큰 비중임. 셀프어텐션은 1/3 밖에 안됨.
 
@@ -108,6 +110,7 @@ $$
 $$  
 x_i\in\mathbb{R}^{d_1}  
 $$
+
 - 이를 다음과 같이 쓸 수 있다.  
 
 $$  
@@ -120,6 +123,7 @@ K\in\mathbb{R}^{d_1\times d_2}\\
 V\in\mathbb{R}^{d_2\times d_1}  
 \end{aligned}
 $$  
+
 - $K$의 열벡터(column vectors)는 key vectors이며, 입력 시퀀스(input sequence)에 대한 패턴 탐지기(pattern detectors) 역할을 한다.
 	- 행렬 연산때 열 백터와 유사도를 파악하게 됨.
 - $V$의 행벡터(row vectors)는 value vectors이며, **출력 어휘(output vocabulary)에 대한 분포(distributions)를 표현**한다.
@@ -128,6 +132,7 @@ $$
 $$  
 \text{FFN}(x_i)=\sum_{j=1}^{d_2}\text{ReLU}(x_i\cdot k_j),v_j  
 $$
+
 - 여기서 $\text{ReLU}(x_i\cdot k_j)$는 value vector $v_j$에 대한 가중치(weights) 역할을 한다.
 	- ReLU(Rectified Linear Unit)는 음수 입력을 $0$으로 만들고 양수 입력은 그대로 유지하는 활성화 함수이다.
 - 논문:  [https://arxiv.org/pdf/2012.14913](https://arxiv.org/pdf/2012.14913)
@@ -171,11 +176,13 @@ $K^6_{2546}$ 이면 6번째 레이어의 2546 row로 보면 됨.
 $$  
 \text{“What were the main features of the iPhone 15 Pro Max?”}  
 $$
+
 - 2023년 이전에 학습된 LLM의 답변:  
 
 $$  
 \text{“The iPhone 15 Pro Max features a revolutionary holographic display, quantum computing chip, and telepathic user interface.”}  
 $$
+
 - 이는 존재하지 않는 기능들을 만들어낸 환각(hallucination)의 예이다.
 #### (과잉 일반화, overgeneralization)
 - 질문:  
@@ -183,11 +190,13 @@ $$
 $$  
 \text{“How do you form the past tense in Japanese?”}  
 $$
+
 - LLM의 답변:  
 
 $$  
 \text{“In Japanese, you typically add '-ed' to the end of verbs to form the past tense, just like in English.”}  
 $$
+
 - 이는 영어의 규칙을 일본어에 잘못 일반화한 사례이며, 사실과 다르다.
 #### (상식 부족, lack of common sense)
 - 질문:  
@@ -195,11 +204,13 @@ $$
 $$  
 \text{“How many tennis balls can fit in a typical smartphone?”}  
 $$
+
 - LLM의 답변:  
 
 $$  
 \text{“Approximately 15-20 tennis balls can fit in a typical smartphone, depending on the model and screen size.”}  
 $$
+
 - 이는 물리적 크기에 대한 상식적 추론이 부족하여 발생한 오류이다.
 
 
@@ -264,6 +275,7 @@ $$
 
 
 - TF-IDF는 3주차 강의에서 소개되었다.  
+
 $$  
 \text{TF-IDF}(w,d)=\text{TF}(w,d)\times \text{IDF}(w)  
 $$
@@ -323,6 +335,7 @@ $$
 $$  
 \text{IDF}(w)=\log_{10}\left(\frac{N}{\text{DF}(w)}\right)  
 $$
+
 - 셰익스피어 말뭉치(Shakespeare corpus, 총 $37$개 문서)의 DF 및 IDF 통계
 
 |Word|df|idf|
@@ -344,6 +357,7 @@ $$
 $$  
 \cos(q,d)=\frac{q\cdot d}{|q||d|}  
 $$
+
 - 문서 벡터와 질의 벡터 모두 TF-IDF 가중치(TF-IDF weighting)를 사용한다.
 - 다른 가중치 방식, 예를 들어 BM25도 사용할 수 있다. (수업에서 다룬 내용은 아님 여기서 25는 버전 번호인데 25번이 많이 사용되고 있음.)
 
@@ -354,6 +368,7 @@ $$
 $$  
 \text{Query: sweet love}  
 $$
+
 - Documents:
 	- Doc 1: “Sweet sweet nurse! Love?”
 	- Doc 2: “Sweet sorrow”
@@ -467,6 +482,7 @@ $$
 $$  
 \text{Precision}=\frac{|R|}{|T|}  
 $$
+
 - 재현율(Recall): 전체 관련 문서 중 반환된 문서의 비율  
 
 $$  
@@ -515,6 +531,7 @@ $$
 $$  
 1.0,\ 0.66,\ 0.60,\ 0.66,\ 0.63  
 $$
+
 - 이를 평균내어 AP를 계산한다.
 
 - Precision을 평균낸 것이 평균정밀도 AP
@@ -562,6 +579,7 @@ $$
 $$  
 \text{“Based on these texts, answer this question: Q: Who wrote the book ‘The Origin of Species’? A:”}  
 $$
+
 - 즉, RAG는 외부 지식(external knowledge)을 활용하여 더 정확하고 사실적인 답변을 생성하도록 돕는다.
 
 
@@ -587,6 +605,7 @@ $$
 $$  
 \text{Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks}  
 $$
+
 - 논문:  
 [https://arxiv.org/pdf/2005.11401](https://arxiv.org/pdf/2005.11401)
 

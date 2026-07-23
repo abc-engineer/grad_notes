@@ -29,12 +29,14 @@
 $$  
 \mathbf{x}^{(n)} \in \mathbb{R}^D,\quad n=1,\ldots,N  
 $$
+
 - 우리의 목표는 이 데이터 포인트들을 $K$개의 클러스터로 구성하는 것이다.
 - 클러스터를 정의하기 위해, 다음과 같은 프로토타입(prototype) 또는 센트로이드(centroid) 집합을 도입한다.  
 
 $$  
 \boldsymbol{\mu}_k \in \mathbb{R}^D,\quad k=1,\ldots,K  
 $$
+
 - 이러한 프로토타입 $\boldsymbol{\mu}_k$는 각 클러스터의 중심(center)을 나타낸다.
 
 
@@ -73,6 +75,7 @@ $$
 $$  
 \left|\mathbf{x}^{(n)}-\boldsymbol{\mu}_k\right|^2  
 $$  
+
 를 최소화하는 $k$번째 클러스터를 선택하여 가장 가까운 클러스터에 할당한다.
 - 이를 수식으로 표현하면 다음과 같다.  
 
@@ -126,6 +129,7 @@ W_K  =
 \sum_{\mathbf{x}_i \in C_k}  
 \left|\mathbf{x}_i-\boldsymbol{\mu}_k\right|^2  
 $$
+
 - 이후 $W_K$를 $K$에 대해 그래프로 나타냈을 때, 감소 속도가 급격히 느려지는 지점, 즉 “팔꿈치(elbow)”가 형성되는 지점의 $K$를 선택한다.
 
 - K 값을 연구자가 정해야함. → 이게 어려운 점.
@@ -139,12 +143,14 @@ $$
 $$  
 s_i  = \frac{b_i-a_i}{\max(a_i,b_i)}  
 $$
+
 - 최종적으로 전체 silhouette score는 다음과 같이 정의된다.  
 
 $$  
 S_K =  \frac{1}{N}  
 \sum_{i=1}^{N} s_i  
 $$
+
 - 실루엣 스코어도 변곡점에서 K를 결정한다고 생각 하면 됨.
 
 - 요약하면, K-means 알고리즘은 일반적으로 유클리드 거리(Euclidean distance)를 사용하여 측정되는 유사성을 기반으로 데이터를 $K$개의 클러스터로 분할하는 널리 사용되는 **비확률적(non-probabilistic) 클러스터링 방법**이다.    
@@ -328,6 +334,7 @@ $$
 $$
 
 - 따라서 식을 다음과 같이 다시 쓸 수 있다.  
+
 $$  
 \sum_{n=1}^{N}  
 \gamma(z_{nk})  
@@ -335,7 +342,9 @@ $$
 (\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)  
 =0  
 $$
+
 - 이 식의 양변에 $\boldsymbol{\Sigma}_k$를 곱하고 항을 정리하면, 평균에 대한 갱신식을 얻는다.  
+
 $$  
 \boldsymbol{\mu}_k  
 =  
@@ -350,6 +359,7 @@ N_k
 $$
 
 - 공분산 행렬 $\boldsymbol{\Sigma}_k$도 유사하게 갱신되며, 새로운 평균으로부터 데이터 포인트들이 얼마나 떨어져 있는지를 가중 편차(weighted deviation)로 반영한다.  
+
 $$  
 \boldsymbol{\Sigma}_k  
 =  
@@ -359,10 +369,12 @@ $$
 (\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)  
 (\mathbf{x}^{(n)}-\boldsymbol{\mu}_k)^T  
 $$
+
 - 마지막으로, mixing coefficient $\pi_k$에 대해  $\ln p(\mathbf{X}\mid\boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma})$ 를 최대화한다.
 - 여기서는 mixing coefficient들의 합이 1이 되어야 한다는 제약 조건  $\sum_{k=1}^{K}\pi_k=1$을 고려해야 한다.
 
 - 이는 라그랑주 승수(Lagrange multiplier) $\lambda$를 사용하여 다음 quantity를 최대화함으로써 해결할 수 있다.  
+
 $$  
 L  
 =  
@@ -376,6 +388,7 @@ L
 $$
 
 - 다음으로, 이 라그랑지안(Lagrangian)을 $\pi_k$에 대해 미분하면 다음을 얻는다.  
+
 $$  
 \frac{\partial L}{\partial \pi_k}  
 =  
@@ -391,6 +404,7 @@ $$
 $$
 
 - 이제 양변에 $\pi_k$를 곱하고 $k$에 대해 합을 취하면 다음과 같다.  
+
 $$  
 \sum_{k=1}^{K}  
 \sum_{n=1}^{N}  
@@ -408,10 +422,13 @@ $$
 $$
 
 - 제약 조건  
+
 $$  
 \sum_{k=1}^{K}\pi_k=1  
 $$  
+
 에 의해 다음을 얻는다.  
+
 $$  
 \sum_{n=1}^{N}  
 \sum_{k=1}^{K}  
@@ -428,6 +445,7 @@ $$
 $$
 
 - 각 고정된 데이터 포인트 $\mathbf{x}^{(n)}$에 대해, $k$에 대한 내부 합은 다음과 같다는 점에 주목하자.  
+
 $$  
 \sum_{k=1}^{K}  
 \frac{  
@@ -441,17 +459,20 @@ $$
 
 - 이는 $k$에 대해 합한 분자가 정확히 분모와 같기 때문이다.
 - 따라서 $n$과 $k$에 대한 이중합은 다음과 같이 줄어든다.  
+
 $$  
 \sum_{n=1}^{N}1=N  
 $$
 
 - 따라서 다음을 얻는다.  
+
 $$  
 N+\lambda=0  
 $$
 
 - 즉, $\lambda=-N$ 이다.
 - 이제 이 값을 사용하여 원래 식에서 $\lambda$를 제거할 수 있다.  
+
 $$  
 \frac{\partial L}{\partial \pi_k}  
 =  
@@ -464,6 +485,7 @@ $$
 }  
 +\lambda  
 $$  
+
 $$  
 =  
 \sum_{n=1}^{N}  
@@ -478,6 +500,7 @@ $$
 $$
 
 - 이제 이 식에 $\pi_k$를 곱하면 다음을 얻는다.  
+
 $$  
 \sum_{n=1}^{N}  
 \frac{  
@@ -491,18 +514,22 @@ $$
 $$
 
 - 이는 mixing coefficient $\pi_k$에 대한 최종 식으로 이어진다.  
+
 $$  
 \pi_k  
 =  
 \frac{N_k}{N}  
 $$  
+
 여기서  
+
 $$  
 N_k  
 =  
 \sum_{n=1}^{N}  
 \gamma(z_{nk})  
 $$  
+
 이다.
 
 - 요약하면, EM 알고리즘은 두 단계를 번갈아 수행한다.    
@@ -561,6 +588,7 @@ $$
 - 예를 들어, Ward 방법(Ward’s method)은 **클러스터 내부 분산(within-cluster variance)의 증가를 최소화**하는 방향으로 클러스터를 병합한다.
 
 - 클러스터 내부 제곱합(within-cluster sum of squares)을 다음과 같이 정의한다.  
+
 $$  
 W(C)=\sum_{\mathbf{x}\in C}|\mathbf{x}-\boldsymbol{\mu}_C|^2,  
 \quad  
@@ -569,6 +597,7 @@ $$
 
 - 여기서 $|C|$는 클러스터 $C$에 속한 데이터 포인트의 개수를 나타낸다.
 - $C_A$와 $C_B$를 병합할 때, Ward 방법은 다음 값을 최소화하는 병합을 선택한다.  
+
 $$  
 \Delta  
 =  
@@ -576,6 +605,7 @@ W(C_A\cup C_B)-W(C_A)-W(C_B)
 $$
 
 - 이는 다음과 같이 단순화할 수 있다(증명은 생략).  
+
 $$  
 \Delta  
 =  
@@ -584,6 +614,7 @@ $$
 $$
 
 - 따라서 Ward의 linkage distance는 다음과 같다.  
+
 $$  
 D_{\mathrm{Ward}}(C_A,C_B)  
 =  

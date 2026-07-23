@@ -35,6 +35,7 @@
 $$  
 a_i = \sum_{x_j \in x} \alpha_{ij} x_j  
 $$
+
 - $a_i$: (문맥을 반영한) 중심 단어 임베딩
 - $x_j$: 문맥 단어 임베딩
 - $\alpha_{ij}$: 단어 $j$가 단어 $i$에 주는 어텐션 가중치  
@@ -119,12 +120,14 @@ $$
 $$  
 q_i = x_i W^Q  
 $$
+
 - Key 표현: Query가 비교되는 문맥(context)을 나타냄  
 	- 질문에 답하는 역할
 
 $$  
 k_i = x_i W^K  
 $$
+
 - Value 표현: 각 단어의 실제 정보를 나타내며, 어텐션 가중치에 따라 결합됨  
 	- 각 단어의 실제 정보보
 
@@ -148,6 +151,7 @@ $$q_i = x_i W^Q \quad k_i = x_i W^K \quad v_i = x_i W^V$$
 $$  
 \alpha_{ij} = \mathrm{Softmax}(q_i \cdot k_j) = \frac{\exp(q_i \cdot k_j)}{\sum_{k} \exp(q_i \cdot k_{k})}  
 $$
+
 - 3. 어텐션 가중치를 사용하여 Value 벡터를 가중합  
 
 $$  
@@ -194,6 +198,7 @@ $$
 $$  
 a_3 = \sum_{j} \alpha_{3j} v_j  
 $$
+
 - 결과: $a_3$는 문맥이 반영된(contextualized) $x_3$의 표현
 
 - 각단어의 밸류 값이 올라가서 곱해지면 최종 벡터가 됨.
@@ -346,6 +351,7 @@ $$
 $$  
 \text{embedding}(x_i) = \text{one-hot}(x_i) \cdot E  
 $$
+
 - 원-핫 벡터는 하나의 위치만 $1$이고 나머지는 모두 $0$인 벡터
 - 위 연산은 해당 인덱스에 해당하는 임베딩 벡터를 선택하는 것과 동일
 - 임베딩은 Word2Vec과 같은 사전학습 벡터를 사용할 수도 있지만, BERT는 이를 처음부터 학습함
@@ -396,6 +402,7 @@ $$
 
 
 - 마스크드 언어 모델링(MLM): 가려진 단어를 예측하는 학습 목표  
+
 $$  
 \mathcal{L}_{\mathrm{MLM}} = - \frac{1}{|M|} \sum_{i \in M} \log P(x_i \mid h_i^L)  
 $$
@@ -411,11 +418,13 @@ $$
 
 - 확률 계산 방법: 선형 레이어와 softmax를 사용
 - 먼저, 마지막 레이어의 은닉 표현 $h_i^L$에 선형 변환 적용  
+
 $$  
 u = h_i^L W  
 $$
 
 - 이후 softmax를 적용하여 확률 분포 계산  
+
 $$  
 y = \mathrm{softmax}(u)  
 $$
@@ -430,9 +439,11 @@ $$
 
 - weight tying은 모델 크기를 줄이고 중복을 방지함
 	- 입력 임베딩 행렬 $E$와 출력 가중치 $W$를 공유하여 별도의 파라미터를 두지 않음  
+
 $$  
 W = E^{\top}  
 $$
+
 - 임베딩 E의 트랜스포즈 한것을 웨이트 벡터로 사용??
 - 동일한 단어 표현을 입력과 출력에서 함께 사용하여 파라미터 효율성과 일반화 성능을 향상시킴
 
@@ -466,28 +477,33 @@ $$
 - hCLS가 나오면 이진 분류를 수행해서 O,X 답변
 
 - 다음 문장 예측(NSP, Next Sentence Prediction) 손실 함수  
+
 $$  
 \mathcal{L}_{\mathrm{NSP}} = - \log P(y \mid h_{\mathrm{[CLS]}}^{L})  
 $$
 
 - linear layer + softmax를 이용함.
+
 $$  
 \mathbf{y}=\text{softmax}\left(\mathbf{h}_{\mathrm{CLS}}^{L}\mathbf{W}_{\mathrm{NSP}}\right)  
 $$
 
 ### BERT optimization = MLM + NSP
 - BERT는 두 가지 학습 목표로 사전학습됨  
+
 $$  
 \mathcal{L}_{\mathrm{BERT}} = \mathcal{L}_{\mathrm{MLM}} + \mathcal{L}_{\mathrm{NSP}}  
 $$
 
 - 마스크드 언어 모델링(MLM)  
+
 $$  
 \mathcal{L}_{\mathrm{MLM}} = - \frac{1}{|M|} \sum_{i \in M} \log P(x_i \mid h_i^L)  
 $$
 
 - 주변 문맥을 기반으로 마스킹된 단어를 예측
 - 다음 문장 예측(NSP)  
+
 $$  
 \mathcal{L}_{\mathrm{NSP}} = - \log P(y \mid h_{\mathrm{[CLS]}}^{L})  
 $$
@@ -499,14 +515,17 @@ $$
 
 
 - BERT는 두 가지 학습 목표로 사전학습됨  
+
 $$  
 \mathcal{L}_{\mathrm{BERT}} = \mathcal{L}_{\mathrm{MLM}} + \mathcal{L}_{\mathrm{NSP}}  
 $$
+
 - 최적화 방법: 경사하강법(gradient descent)
 - 그래디언트 $\nabla_{\theta} \mathcal{L}(\theta)$는 손실을 가장 크게 증가시키는 방향을 나타냄
 - 알고리즘
 - 파라미터 $\theta$를 무작위로 초기화
 - 수렴할 때까지 반복  
+
 $$  
 \theta \leftarrow \theta - \eta \nabla_{\theta} \mathcal{L}(\theta)  
 $$
@@ -568,6 +587,7 @@ $$
 $$  
 a_i = \sum_{x_j \in x} \alpha_{i,j} x_j,\quad \sum_{x_j \in x} \alpha_{i,j} = 1  
 $$
+
 $$  
 \alpha_{i,j} = \text{softmax}(x_i \cdot x_j)  
 $$
@@ -596,6 +616,7 @@ $$
 ### Self-Attention: Overall Computation
 - 입력: 각 단어의 벡터 $x_i$
 - 각 단어에 대해 $Q, K, V$ 표현 계산:  
+
 $$  
 q_i = x_i W^Q,\quad k_i = x_i W^K,\quad v_i = x_i W^V  
 $$
@@ -609,6 +630,7 @@ $$
 $$
 
 - attention 점수로 가중합하여 값 벡터를 결합:  
+
 $$  
 a_i = \sum_{x_j \in x} \alpha_{i,j} v_j  
 $$
@@ -619,22 +641,27 @@ $$
 - 예시: 세 단어로 이루어진 입력 시퀀스 $[x_1, x_2, x_3]$
 - $x_3$에 대한 self-attention을 계산한다고 가정
 - $Q, K, V$ 계산:  
+
 $$  
 q_3 = x_3 W^Q,\quad k_1 = x_1 W^K,\ k_2 = x_2 W^K,\ k_3 = x_3 W^K  
 $$  
+
 $$  
 v_1 = x_1 W^V,\quad v_2 = x_2 W^V,\quad v_3 = x_3 W^V  
 $$
 
 - attention 점수 계산 (query와 모든 key 비교):  
+
 $$  
 \alpha_{3,j} = \text{softmax}\left(\frac{q_3 \cdot k_j}{\sqrt{d}}\right),\quad j \in {1,2,3}  
 $$
 
 - 값 벡터의 가중합으로 출력 생성:  
+
 $$  
 a_3 = \sum_{j=1}^{3} \alpha_{3,j} v_j  
 $$
+
 - 즉, $x_3$는 모든 단어($x_1, x_2, x_3$)를 참고하여 자신의 새로운 표현을 생성한다.
 
 
@@ -656,10 +683,13 @@ $$
 - 전체 연산을 쉽게 병렬화할 수 있으며, GPU의 효율적인 행렬 곱셈을 활용할 수 있다.
 - 길이가 $N$인 입력 시퀀스를 병렬로 처리할 수 있다.
 - 한 단어에 대한 $Q, K, V$ 계산:  
+
 $$  
 q_i = x_i W^Q,\quad k_i = x_i W^K,\quad v_i = x_i W^V \in \mathbb{R}^d  
 $$
+
 - $N$개의 입력을 행렬로 쌓기:  
+
 $$  
 Q = X W^Q,\quad K = X W^K,\quad V = X W^V \in \mathbb{R}^{N \times d}  
 $$
@@ -681,11 +711,13 @@ $$
 ### Parallel Computation of Attention
 - attention 계산은 행렬 형태로도 표현할 수 있다.
 - 하나의 단어에 대한 attention:  
+
 $$  
 a_i = \text{softmax}\left(\frac{q_i \cdot k_j}{\sqrt{d}}\right) v_j  
 $$
 
 - $N$개의 단어에 대한 attention (행렬 형태):  
+
 $$  
 A = \text{softmax}\left(\frac{Q K^T}{\sqrt{d}}\right) V  
 $$
@@ -839,9 +871,11 @@ $$
 - 직관: 문자 단위 어휘에서 시작하여, 가장 자주 등장하는 토큰 쌍을 반복적으로 병합한다.
 - Initialization 초기화:
 	- 어휘를 모든 문자 집합으로 설정  
+
 $$  
 {A, B, C, D, \ldots, a, b, c, d, \ldots}  
 $$
+
 - Frequency counting빈도 계산:
 	- 학습 코퍼스에서 인접한 모든 심볼 쌍(문자 또는 이미 병합된 토큰)의 빈도를 계산한다.
 - Pair merging 쌍 병합:
@@ -934,25 +968,35 @@ Vocabulary
 - 인접 심볼 병합 과정을 계속 수행한다.
 - 병합 순서 및 어휘 변화:
 - $(ne, w) \rightarrow \text{new}$  
+
 $$  
 {- , d, e, i, l, n, o, r, s, t, w, er, ne} \rightarrow {- , d, e, i, l, n, o, r, s, t, w, er, ne, new}  
 $$
+
 - $(l, o) \rightarrow \text{lo}$  
+
 $$  
 \ldots \rightarrow \ldots, lo  
 $$
+
 - $(lo, w) \rightarrow \text{low}$  
+
 $$  
 \ldots \rightarrow \ldots, low  
 $$
+
 - $(new, er) \rightarrow \text{newer}$  
+
 $$  
 \ldots \rightarrow \ldots, newer  
 $$
+
 - $(low, -) \rightarrow \text{low-}$  
+
 $$  
 \ldots \rightarrow \ldots, low-  
 $$
+
 - 이와 같이 반복적으로 자주 등장하는 쌍을 병합하여 점점 더 긴 서브워드(또는 단어)를 구성한다.
 - charater 들이 merge 되어 새로운 단어들이 계속 추가 됨.
 
@@ -961,9 +1005,11 @@ $$
 - 학습 데이터에서 얻은 병합 규칙을 그대로 사용하여, 탐욕적(greedy) 방식으로 적용한다.    
 - 예시:    
 - 병합 규칙: 
+
 $$  
 (le, r),\ (er, -),\ (n, e),\ (ne, w),\ (l, o),\ (lo, w),\ (new, er),\ (low, -)  
 $$
+
 - 적용 과정:
 	- 먼저 “er”를 병합 → 이후 인접한 “ne” 병합 → ... 순차적으로 적용
 - 결과:
@@ -1002,28 +1048,37 @@ low low low low low lowest lowest newer newer newer newer newer newer wider wide
 ### Layer Normalization: Solution
 - 입력 벡터 $x$를 정규화
 - 입력 벡터 차원에 대해 평균과 표준편차 계산  
+
 $$  
 \mu = \frac{1}{d} \sum_{i=1}^{d} x_i  
-$$  $$  
+$$
+
+$$
 \sigma = \sqrt{\frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2}  
 $$
+
 - 정규화 적용  
+
 $$  
 \hat{x} = \frac{x - \mu}{\sigma}  
 $$
 
 - 학습 가능한 파라미터로 스케일 및 시프트  
+
 $$  
 \mathrm{LayerNorm}(x) = \gamma \frac{x - \mu}{\sigma} + \beta  
 $$
+
 - $\gamma, \beta$는 학습 가능한 파라미터(조금 더 학습 잘하라고 파라미터를 추가함. 딥러닝에서 아주 보편적으로 사용)
 
 
 ### Feedforward Network (FFN)
 - 트랜스포머의 FFN은 2층 네트워크(하나의 은닉층, 두 개의 가중치 행렬)  
+
 $$  
 \mathrm{FFN}(x_i) = \mathrm{ReLU}(x_i W_1) W_2  
 $$
+
 - 첫 번째 레이어 이후 비선형 활성화 함수 적용
 - 모든 토큰에 동일한 가중치 적용
 - 가중치는 서로 다른 트랜스포머 레이어 간에는 서로 다름
@@ -1031,6 +1086,7 @@ $$
 
 ### Residual Connections
 - 서브레이어(예: 어텐션, FFN)의 출력에 원래 입력을 더함  
+
 $$  
 y = x + f(x)  
 $$
@@ -1048,9 +1104,11 @@ $$
 - 언어 모델 헤드는 최종 레이어에 추가됨
 - 일반적으로 weight tying 기법을 적용(입력 임베딩과 출력 임베딩의 가중치 공유)
 - 언어 모델 헤드는 $h_N$을 입력으로 받아 어휘 집합 $V$에 대한 확률 분포를 출력  
+
 $$  
 \text{logits} = h_N E^{\top}  
 $$  
+
 $$  
 P(y \mid x) = \mathrm{softmax}(h_N E^{\top})  
 $$
@@ -1061,9 +1119,11 @@ $$
 
 ### Transformer Language Model Training
 - 트랜스포머 언어 모델 학습에는 교차 엔트로피 손실(cross-entropy loss)을 사용 (RNN 기반 언어 모델과 동일)  
+
 $$  
 \mathcal{L} = - \sum_{t=1}^{T} \log P(y_t \mid y_{<t})  
 $$
+
 - 각 시점 $t$에서 정답 토큰 $y_t$에 대한 예측 확률을 최대화하도록 학습
 - softmax로 얻은 확률 분포와 실제 정답 분포 간의 차이를 최소화
 
@@ -1162,6 +1222,7 @@ $$
 	- GPT가 선구 주자
 - 디코더 사전학습은 GPT 모델에서 처음 도입됨(생성 기반 사전학습)
 - 표준 언어 모델링 목표(cross-entropy)를 따름  
+
 $$  
 \mathcal{L}(\theta) = - \frac{1}{N} \sum_{i=1}^{N} \log p_{\theta}(x_i \mid x_1, x_2, \ldots, x_{i-1})  
 $$
