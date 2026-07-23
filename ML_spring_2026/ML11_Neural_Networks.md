@@ -606,7 +606,7 @@ $$
 - 이는 소프트맥스 함수를 제공한다.  
 
 $$  
-\hat{\mathbf{y}}^{(i)} = \operatorname{softmax}\left(\mathbf{z}^{(i)}\right),\quad \hat{y}_c^{(i)} = \frac{\exp\left(z_c^{(i)}\right)}{\sum_{c'} \exp\left(z_{c'}^{(i)}\right)}  
+\hat{\mathbf{y}}^{(i)} = \text{softmax}\left(\mathbf{z}^{(i)}\right),\quad \hat{y}_c^{(i)} = \frac{\exp\left(z_c^{(i)}\right)}{\sum_{c'} \exp\left(z_{c'}^{(i)}\right)}  
 $$
 
 - 소프트맥스 함수는 지수 함수 때문에 점수들 사이의 차이를 증폭하기도 한다.    
