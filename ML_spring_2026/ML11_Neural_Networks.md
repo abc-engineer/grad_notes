@@ -27,6 +27,7 @@
 $$  
 x_1 \cdot w_1 = 0.7,\quad x_2 \cdot w_2 = 0,\quad x_3 \cdot w_3 = 0.5,\quad x_4 \cdot w_4 = 0,\quad x_5 \cdot w_5 = 0.4  
 $$  
+
 | 기준        | 입력        | 가중치         |
 | --------- | --------- | ----------- |
 | 아티스트가 좋다  | $x_1 = 1$ | $w_1 = 0.7$ |
@@ -111,16 +112,19 @@ $$
 $$  
 w=\begin{bmatrix}0\\1\\0.5\end{bmatrix}  
 $$  
+
 이면 discriminant function은 보통 다음처럼 정의합니다.  
 
 $$  
 g(x)=w^T x  
 $$  
+
 입력 벡터를 bias 항까지 포함해서  
 
 $$  
 x=\begin{bmatrix}1\\x_1\\x_2\end{bmatrix}  
 $$  
+
 라고 두면,  
 
 $$  
@@ -128,6 +132,7 @@ g(x)=
 \begin{bmatrix}0&1&0.5\end{bmatrix}  
 \begin{bmatrix}1\\x_1\\x_2\end{bmatrix}  
 $$  
+
 따라서  
 
 $$  
@@ -136,6 +141,7 @@ g(x)&=0\cdot 1+1\cdot x_1+0.5\cdot x_2\\
 g(x)&=x_1+0.5x_2  
 \end{align}
 $$  
+
 $g(x)=0$이 되는 경우는 **결정경계(decision boundary)** 를 구할 때
 
 $$  
@@ -144,6 +150,7 @@ g(x)>0 \Rightarrow C_1 \\
 g(x)<0 \Rightarrow C_2  
 \end{align}
 $$
+
 $(x_1,x_2)=(1,1)$이면 bias 항을 포함한 입력 벡터와 가중치 백터는  
 $x=\begin{bmatrix}1,\,1,\,1\end{bmatrix}$, $w=\begin{bmatrix}0,\,1,\,0.5\end{bmatrix}$  이므로 discriminant function 값은  
 
@@ -157,21 +164,26 @@ g(x)&=w^T x  \\
 &=1.5
 \end{align}
 $$  
+
 따라서 현재 모델은  
 
 $$  
 g(x)>0  
 $$  
+
 이므로 $(1,1)$을 양성 클래스 $C_1$로 분류합니다.
 정답이기 때문에 가중치 업데이트는 하지 않음.
 두 번째 데이터는  
+
 $$(x_1,x_2)=(2,-2),\quad y=-1$$  
+
 입니다.  
 bias 항을 포함하면  
 
 $$  
 x=\begin{bmatrix}1\\2\\-2\end{bmatrix}  
 $$  
+
 입니다.  
 discriminant function은  
 
@@ -185,11 +197,13 @@ g(x)&=w^T x  \\
 &=+1
 \end{align}
 $$
+
 현재 
 
 $$  
 g(x)=1>0  
 $$  
+
 이므로 모델은  $\hat{y}=+1$로 분류합니다.  
 하지만 실제 정답은  $y=-1$이므로 오분류입니다.  
 음성 샘플 $y=+1$을 양성으로 잘못 분류했으므로 perceptron update는  
@@ -203,12 +217,14 @@ $$
 $$  
 w_{\text{new}}=w+\eta x  
 $$
+
 이 방식은 보통 라벨을 $y \in \{-1,+1\}$로 두고, 오분류일 때만 업데이트하는 형태
 여기서  
 
 $$  
 \eta=0.2,\quad x=\begin{bmatrix}1\\2\\-2\end{bmatrix}  
 $$  
+
 이므로  
 
 $$  
@@ -217,12 +233,14 @@ w_{\text{new}}=
 \begin{bmatrix}1\\2\\-2\end{bmatrix}  =  
 \begin{bmatrix}-0.2\\0.6\\0.9\end{bmatrix} 
 $$  
+
 업데이트 후 가중치는  
 
 $$  
 w_{\text{new}}=  
 \begin{bmatrix}-0.2,\,0.6,\,0.9\end{bmatrix}  
 $$
+
 가중치 식을 슬라이드 방식의 것으로 적용하면
 
 $$  
@@ -238,11 +256,13 @@ $$
 $$  
 (x_1,x_2)=(2,-2),\quad y=-1  
 $$  
+
 bias를 따로 두면  
 
 $$  
 b=0,\quad w_1=1,\quad w_2=0.5  
 $$  
+
 입니다.  
 discriminant function은  
 
@@ -253,6 +273,7 @@ g(x)&=b+w_1x_1+w_2x_2\\
 &=2-1=1  
 \end{align}
 $$  
+
 따라서  
 
 $$g(x)>0$$  
@@ -267,13 +288,17 @@ $$
 $$  
 \eta=0.2  
 $$ 
+
 따라서  
 
 $$  
 \Delta w_j=0.2(-2)x_j  
-$$  $$  
+$$
+
+$$
 \Delta w_j=-0.4x_j  
 $$  
+
 각 가중치에 대해 계산하면,  
 
 $$  
@@ -283,11 +308,13 @@ $$
 $$  
 \Delta w_2=-0.4(-2)=0.8  
 $$  
+
 bias는  
 
 $$  
 \Delta b=0.2(-2)=-0.4  
 $$  
+
 따라서 업데이트 후 값은  
 
 $$  
@@ -301,12 +328,14 @@ $$
 $$  
 w_{2,\text{new}}=0.5+0.8=1.3  
 $$  
+
 즉,  
 
 $$  
 w_{\text{new}}=  
 \begin{bmatrix}-0.4\\0.2\\1.3\end{bmatrix}  
 $$  
+
 입니다.
 
 
@@ -384,6 +413,7 @@ $$
 $$  
 \Delta \mathbf{w} = -\eta \nabla_{\mathbf{w}} L(\mathbf{w}, b),\quad \Delta b = -\eta \nabla_b L(\mathbf{w}, b)  
 $$
+
 - 이러한 경사 기반 업데이트는 Adaline을 현대 신경망으로 가는 디딤돌로 만든다.
 
 - Adaline은 경사하강법 기반의 학습을 제안 함.
@@ -489,6 +519,7 @@ $$
 - 우선 네트워크를 훈련하려면 예측값 $\hat{y}^{(i)}$와 레이블 $y^{(i)}$ 사이의 차이를 측정하는 손실 함수를 정의해야 한다.
 
 - 간단한 선택은 평균제곱오차(MSE)이다.  
+
 $$  
 L_{\mathrm{MSE}} = \frac{1}{N}\sum_{i=1}^{N}\left(y^{(i)} - \hat{y}^{(i)}\right)^2  
 $$
@@ -561,6 +592,7 @@ $$
 $$  
 \mathbf{z}^{(i)} \in \mathbb{R}^{C}  
 $$
+
 - 여기서 각 성분은 모델이 특정 클래스를 얼마나 강하게 선호하는지를 반영한다.
 
 - 그러나 이러한 점수는 즉시 해석하기 쉽지 않다.    
