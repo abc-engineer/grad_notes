@@ -51,16 +51,16 @@
 
 
 - 트리를 그리거나 바로 식을 세워 계산하면 다음을 얻는다.  
-$$\begin{align}  
+$$\begin{aligned}  
 P(D_H)&=P(D_H \mid A)P(A)+P(D_H \mid B)P(B)+P(D_H \mid C)P(C)\\  
 &=0.5 \cdot 0.5+0.6 \cdot 0.25+0.9 \cdot 0.25\\  
 &=0.625  
-\end{align}$$  
-$$\begin{align}  
+\end{aligned}$$  
+$$\begin{aligned}  
 P(D_T)&=P(D_T \mid A)P(A)+P(D_T \mid B)P(B)+P(D_T \mid C)P(C)\\  
 &=0.5 \cdot 0.5+0.4 \cdot 0.25+0.1 \cdot 0.25\\  
 &=0.375  
-\end{align}$$
+\end{aligned}$$
 - 데이터가 없는데 서랍에서 동전을 찾아 던졌을 때 앞면이 나올 확률이 얼마인가?
 
 #### Definition
@@ -83,16 +83,16 @@ P(D_T)&=P(D_T \mid A)P(A)+P(D_T \mid B)P(B)+P(D_T \mid C)P(C)\\
 - 동전을 한 번 던져 앞면이 나온 뒤에는, 같은 동전을 두 번째로 던졌을 때 앞면(또는 뒷면)이 나올 확률을 계산할 수 있다.    
 - 계산 방법은 이전과 같지만, 사전확률 $P(A)$, $P(B)$, $P(C)$ 대신 사후확률 $P(A \mid D)$, $P(B \mid D)$, $P(C \mid D)$를 사용한다.
 
-$$\begin{align}  
+$$\begin{aligned}  
 P(D_H \mid D)&=P(D_H \mid A)P(A \mid D)+P(D_H \mid B)P(B \mid D)+P(D_H \mid C)P(C \mid D)\\  
 &=0.5 \cdot 0.4+0.6 \cdot 0.24+0.9 \cdot 0.36\\  
 &=0.668  
-\end{align}$$  
-$$\begin{align}  
+\end{aligned}$$  
+$$\begin{aligned}  
 P(D_T \mid D)&=P(D_T \mid A)P(A \mid D)+P(D_T \mid B)P(B \mid D)+P(D_T \mid C)P(C \mid D)\\  
 &=0.5 \cdot 0.4+0.4 \cdot 0.24+0.1 \cdot 0.36\\  
 &=0.332  
-\end{align}$$
+\end{aligned}$$
 - 앞면이 나온 결과를 본 뒤에 앞면이 나올 확률이 높은 동전의 사후 확률이 올라가고 앞면이 나올 확률도 올라감.
 
 #### Definition

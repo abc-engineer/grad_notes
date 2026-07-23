@@ -88,12 +88,12 @@ $$
 - projected data의 분산은 다음과 같이 주어지며, 여기서 $\mathbf{S}$는 데이터의 covariance matrix이다.  
 
 $$  
-\begin{align}
+\begin{aligned}
 \frac{1}{N} \sum_{n=1}^{N} \left( \mathbf{u}_1^T \mathbf{x}^{(n)} - \mathbf{u}_1^T \bar{\mathbf{x}} \right)^2  
 &= \frac{1}{N} \sum_{n=1}^{N} \left( \mathbf{u}_1^T \left( \mathbf{x}^{(n)} - \bar{\mathbf{x}} \right) \right)^2  \\  
 &= \frac{1}{N} \sum_{n=1}^{N} \mathbf{u}_1^T \left( \mathbf{x}^{(n)} - \bar{\mathbf{x}} \right)\left( \mathbf{x}^{(n)} - \bar{\mathbf{x}} \right)^T \mathbf{u}_1 \\ 
 &= \mathbf{u}_1^T \mathbf{S} \mathbf{u}_1  
-\end{align}
+\end{aligned}
 $$
 
 - covariance matrix $\mathbf{S}$는 다음과 같이 정의된다.  
@@ -617,11 +617,11 @@ $$
 - 따라서 $x$의 확률밀도함수(pdf)는 다음과 같이 표현된다:  
 
 $$
-\begin{align}
+\begin{aligned}
 p(x)&=p(s)\det(W)\\  
 &=\prod_{i=1}^{d}p_s(s_i)\det(W)\\  
 &=\prod_{i=1}^{d}p_s(w_i^Tx)\det(W)  
-\end{align}
+\end{aligned}
 $$
 
 - 여기서 $w_i^Tx$는 $x$를 $W$의 $i$번째 행 방향으로 선형 사영(linear projection)한 값이며, 이는 $i$번째 원천 성분 $s_i$의 추정값을 의미한다.
@@ -670,11 +670,11 @@ $$
 - 첫 번째 항에 대해:  
 
 $$
-\begin{align}
+\begin{aligned}
 \nabla_{w_i}\log g'\left(w_i^Tx^{(n)}\right)  
 &=\frac{g''\left(w_i^Tx^{(n)}\right)}{g'\left(w_i^Tx^{(n)}\right)}x^{(n)}\\
 &=\left(1-2g\left(w_i^Tx^{(n)}\right)\right)x^{(n)}  
-\end{align}
+\end{aligned}
 $$
 
 - 이는 sigmoid 함수 $g(s)$의 성질,  
@@ -685,12 +685,12 @@ $$\frac{g''(s)}{g'(s)}=1-2g(s)$$
 - 두 번째 항에 대해:  
 
 $$
-\begin{align}
+\begin{aligned}
 \nabla_W\log \det(W)  
 &=\frac{1}{\det(W)}\frac{\partial}{\partial W}\det(W)  \\
 &=\frac{1}{\det(W)}\det(W)(W^{-1})^T  \\  
 &=(W^{-1})^T  
-\end{align}
+\end{aligned}
 $$
 
 - 이제 gradient ascent를 적용하면 unmixing matrix를 갱신하는 다음과 같은 학습 규칙(learning rule)을 얻는다:  

@@ -242,7 +242,7 @@ $$
 비용 함수 $J$를 최소화하기 위해서는 $\boldsymbol{\theta}$에 대해 미분한 뒤, 그 값을 0으로 두어야 한다:
 
 $$
-\begin{align}  
+\begin{aligned}  
 \nabla_{\theta}J(\theta)  
 &=\nabla_{\theta}\frac{1}{2}(X\theta-y)^T(X\theta-y)\\  
 &=\frac{1}{2}\nabla_{\theta}\big((X\theta)^T X\theta-(X\theta)^T y-y^T(X\theta)+y^T y\big)\\  
@@ -251,7 +251,7 @@ $$
 &=\frac{1}{2}\big(2X^T X\theta-2X^T y\big)\\  
 &=X^T X\theta-X^T y=0\\  
 \therefore X^T X\theta&=X^T y 
-\end{align}
+\end{aligned}
 $$
 
 - $\boldsymbol{\theta}$를 구하기 위해서는 양변을 $\mathbf{X}^T \mathbf{X}$로 “나누는” 것이 필요하다.

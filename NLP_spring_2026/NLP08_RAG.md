@@ -115,10 +115,10 @@ $$
 $$  
 
 $$
-\begin{align}
+\begin{aligned}
 K\in\mathbb{R}^{d_1\times d_2}\\  
 V\in\mathbb{R}^{d_2\times d_1}  
-\end{align}
+\end{aligned}
 $$  
 - $K$의 열벡터(column vectors)는 key vectors이며, 입력 시퀀스(input sequence)에 대한 패턴 탐지기(pattern detectors) 역할을 한다.
 	- 행렬 연산때 열 백터와 유사도를 파악하게 됨.
@@ -616,14 +616,14 @@ $$
 - 생성 확률  $p(y\mid x)$를 계산하기 위해 top-$K$ 근사(top-$K$ approximation)를 사용하여 주변화(marginalize)한다.  
 
 $$
-\begin{align}
+\begin{aligned}
 p_{\text{RAG-sequence}}(y\mid x)  
 &\approx  
 \sum_{z\in\text{top-}K(p(\cdot\mid x))}  
 p_\eta(z\mid x),p_\theta(y\mid x,z) \\  
 &=\sum_{z\in\text{top-}K(p(\cdot\mid x))}  
 p_\eta(z\mid x)\prod_{i=1}^{N}p_\theta(y_i\mid x,z,y_{<i})  
-\end{align}
+\end{aligned}
 $$
 
 - **top-$K$ 근사는 상위 $K$개의 검색 문서만 고려**한다는 뜻이다.
@@ -641,10 +641,10 @@ $$
 - 주변화(marginalization)는 시퀀스 수준(sequence level)이 아니라 각 생성 토큰(generated token)마다 수행된다.  
 
 $$
-\begin{align}
+\begin{aligned}
 p_{\text{RAG-token}}(y\mid x)&=\prod_{i=1}^{N}p_\theta(y_i\mid x,y_{<i})  \\  
 &\approx \prod_{i=1}^{N}\sum_{z\in\text{top-}K(p(\cdot\mid x,y_{<i}))}p_\eta(z\mid x,y_{<i})\,p_\theta(y_i\mid x,z,y_{<i}) 
-\end{align}
+\end{aligned}
 $$
 
 - 즉, 서로 다른 검색 문서  $z$ 가 시퀀스의 서로 다른 토큰을 생성하는 데 사용될 수 있다.

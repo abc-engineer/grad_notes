@@ -83,14 +83,14 @@ $$
 - 임베딩(embedding): 한 공간의 원소를 다른 공간의 표현으로 매핑하는 함수 또는 과정
 
 $$  
-\begin{align}  
+\begin{aligned}  
 v_{\text{to}} &= [1,0,0,0,0,0,\dots] \\  
 v_{\text{by}} &= [0,1,0,0,0,0,\dots] \\  
 v_{\text{that}} &= [0,0,1,0,0,0,\dots] \\ 
 v_{\text{good}} &= [0,0,0,1,0,0,\dots] \\  
 v_{\text{nice}} &= [0,0,0,0,1,0,\dots] \\  
 v_{\text{bad}} &= [0,0,0,0,0,1,\dots]  
-\end{align}  
+\end{aligned}  
 $$
 - dense vector representations of words를 구현 하는 것임.
 - 비슷한 문맥에서 등장하는 단어는 결과적으로 비슷한 벡터값을 갖게 됨.

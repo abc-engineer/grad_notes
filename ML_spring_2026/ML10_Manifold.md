@@ -417,7 +417,7 @@ $$
 - 매개변수 $\sigma_i$는 $\mathbf{x}^{(i)}$를 중심으로 하는 가우시안의 폭을 제어한다.
 - 실제로 t-SNE에서는 $\sigma_i$를 직접 선택하는 대신 perplexity 값을 지정한다.  
 $$  
-\operatorname{Perplexity}(P_i)  
+\text{Perplexity}(P_i)  
 =  
 2^{H(P_i)},  
 \qquad  

@@ -341,13 +341,13 @@ $$
 - 지수에서 완전제곱을 한다:  
 
 $$
-\begin{align}
+\begin{aligned}
 &-\frac{(\theta-4)^2}{16}-\frac{(3-\theta)^2}{10}\\  
 &=-\frac{5(\theta-4)^2+8(3-\theta)^2}{80}  
 =-\frac{13\theta^2-88\theta+152}{80}\\  
 &=-\frac{\theta^2-\frac{88}{13}\theta+\frac{152}{13}}{80/13}  
 =-\frac{\left(\theta-\frac{44}{13}\right)^2+\frac{152}{13}-\left(\frac{44}{13}\right)^2}{80/13}  
-\end{align}
+\end{aligned}
 $$
 
 - 따라서 사후분포는  

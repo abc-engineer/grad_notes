@@ -10,11 +10,11 @@
 - 값 $x_1,\dots,x_n$으로 이루어진 데이터가 지수분포(exponential distribution)에서 추출되었다고 알고 있다고 하자.    
 - 그러나 여전히 질문은 남는다. 어느 지수분포인가?    
 - 우리는 흔히 지수분포, 이항분포(binomial distribution), 정규분포(normal distribution)라고 가볍게 말한다.    
-	- 사실 $\operatorname{exp}(\lambda)$는 하나의 단일 분포가 아니라, 하나의 parameter를 가진 분포족(family of distributions)이다.    
+	- 사실 $\text{exp}(\lambda)$는 하나의 단일 분포가 아니라, 하나의 parameter를 가진 분포족(family of distributions)이다.    
 	- 각 $\lambda$ 값은 그 분포족 안에서 서로 다른 분포를 정의하며, 확률밀도함수(pdf)는 다음과 같다.  
 
 $$f_\lambda(x)=\lambda e^{-\lambda x},\quad x\in[0,\infty)$$
-- 마찬가지로 이항분포 $\operatorname{bin}(n,p)$는 두 parameter $n,p$에 의해 결정된다.
+- 마찬가지로 이항분포 $\text{bin}(n,p)$는 두 parameter $n,p$에 의해 결정된다.
 - 정규분포 $N(\mu,\sigma^2)$는 두 parameter $\mu,\sigma^2$에 의해 결정된다.
 - 이처럼 parameter(모수)로 표현되는 분포족을 보통 모수적 분포(parametric distributions) 또는 모수적 모형(parametric models)이라 한다.
 
@@ -224,7 +224,7 @@ $$\hat{\lambda}=\frac{5}{13}$$
 
 $$\hat{\lambda}=\frac{1}{\bar{x}}$$
 
-- 따라서 $X\sim \operatorname{exp}(\hat{\lambda})$라면  satisfies $E[X]=\bar{x}$
+- 따라서 $X\sim \text{exp}(\hat{\lambda})$라면  satisfies $E[X]=\bar{x}$
 
 - 다음 예제는 최대우도법(maximum likelihood)을 사용하여 여러 모수를 동시에 추정하는 방법을 보여준다.
 #### Example(Normal distribution)
@@ -517,7 +517,7 @@ $$\hat{\theta}=\frac{2k_1+k_2}{2k_1+2k_2+2k_3}$$
 - 아래에서는 밀도함수(density)를 사용할 때도 본질적으로 같은 일을 하고 있음을 보게 된다.    
 - 이를 위해 전구 예제를 더 작은 규모로 살펴보자.    
 #### Example
-- 수명이 지수분포 $\operatorname{exp}(\lambda)$를 따르는 전구 두 개가 있다고 하자.    
+- 수명이 지수분포 $\text{exp}(\lambda)$를 따르는 전구 두 개가 있다고 하자.    
 - 두 전구의 수명을 서로 독립적으로 측정했더니, 데이터가 $x_1=2$년, $x_2=3$년이었다.    
 - 이 데이터의 확률(밀도)을 최대화하는 $\lambda$의 값을 구하여라.
 
@@ -580,7 +580,7 @@ $$E[\hat{p}_n]\to p\quad\text{as }n\to\infty$$
 - 점근적으로 최소 분산(asymptotically minimal variance)이란 데이터의 양이 커질수록, MLE가 $p$의 모든 불편추정량(unbiased estimators) 가운데 가장 작은 분산을 가진다는 뜻이다.
 - 기호로 쓰면, 임의의 불편추정량 $\tilde{p}_n$과 모든 $\epsilon>0$에 대하여  
 
-$$\operatorname{Var}(\tilde{p}_n)+\epsilon>\operatorname{Var}(\hat{p}_n)\quad\text{as }n\to\infty$$
+$$\text{Var}(\tilde{p}_n)+\epsilon>\text{Var}(\hat{p}_n)\quad\text{as }n\to\infty$$
 
 
 - 문제는 우리가 데이터가 충분히 무한에 가까운 경우는 거의 없음

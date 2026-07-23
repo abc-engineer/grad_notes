@@ -45,14 +45,14 @@ $$P=\int_R p(\mathbf{x}),d\mathbf{x}$$
 - 따라서 영역 $R$ 내부에 있는 점의 개수 $K$는 이항분포를 따른다.
 - 이항분포는 서로 독립인 $N$번의 시행에서 각 시행의 성공확률이 동일하게 $P$일 때, 정확히 $K$번 성공할 확률을 나타낸다.  
 
-$$\operatorname{Bin}(K\mid N,P)=\binom{N}{K}P^K(1-P)^{N-K}=\frac{N!}{K!(N-K)!}P^K(1-P)^{N-K}$$
+$$\text{Bin}(K\mid N,P)=\binom{N}{K}P^K(1-P)^{N-K}=\frac{N!}{K!(N-K)!}P^K(1-P)^{N-K}$$
 
 - 이항분포의 확률 계산 방법
 
 - 핵심 아이디어는 실제 확률 $P$를 알 수 없더라도 경험적으로 추정할 수 있다는 점이다.
 - 영역 $R$ 내부에 들어가는 데이터 점의 비율은 다음의 기댓값과 분산을 가진다.  
 
-$$\mathbb{E}\left[\frac{K}{N}\right]=P,\quad \operatorname{var}\left(\frac{K}{N}\right)=\frac{P(1-P)}{N}$$
+$$\mathbb{E}\left[\frac{K}{N}\right]=P,\quad \text{var}\left(\frac{K}{N}\right)=\frac{P(1-P)}{N}$$
 
 - 관측 개수 $N$이 커질수록 이 비율은 $P$에 매우 가까워진다.
 - 즉, $N$이 충분히 크면 다음과 같이 근사할 수 있다.  
@@ -686,13 +686,13 @@ $$
 예를 들어 실제 성분 배정이 다음과 같다고 해보겠습니다. 
 
 $$  
-\begin{align}  
+\begin{aligned}  
 \mathbf{x}^{(1)} &\rightarrow \text{1번 가우시안분포 성분}\\  
 \mathbf{x}^{(2)} &\rightarrow \text{1번 가우시안분포 성분}\\  
 \mathbf{x}^{(3)} &\rightarrow \text{2번 가우시안분포 성분}\\  
 \mathbf{x}^{(4)} &\rightarrow \text{2번 가우시안분포 성분}\\  
 \mathbf{x}^{(5)} &\rightarrow \text{3번 가우시안분포 성분}  
-\end{align}  
+\end{aligned}  
 $$  
 그러면 $\mathbf{Z}$는 다음과 같습니다.  
 

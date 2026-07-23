@@ -62,7 +62,7 @@
 - 이 두 가지 오류와 그 확률은 다음과 같이 요약할 수 있다. 
 
 $$
-\begin{align}
+\begin{aligned}
 \text{Type I error}&=\text{$H_0$가 참일 때 $H_0$를 기각하는 것}\\ 
 \text{Type II error}&=\text{$H_A$가 참일 때 $H_0$를 기각하지 못하는 것}\\  
 P(\text{type I error})&=P(\text{$H_0$를 잘못 기각})\\  
@@ -71,7 +71,7 @@ P(\text{type I error})&=P(\text{$H_0$를 잘못 기각})\\
 P(\text{type II error})&=P(\text{$H_0$를 잘못 기각하지 않음})\\  
 &=P(\text{검정통계량이 수락역에 있음}\mid H_A)\\
 &=1-\text{power} 
-\end{align}
+\end{aligned}
 $$  
 
 
@@ -195,11 +195,11 @@ $$
 - 따라서 (Python을 사용하면) p-value는 다음과 같다.  
 
 $$  
-\begin{align}
+\begin{aligned}
 p&=P(Z>z)=P(Z>1.79) \\  
 &=1-\texttt{scipy.stats.norm.cdf}(1.79,0,1)  \\
 &=0.037  
-\end{align}
+\end{aligned}
 $$
 - $p<\alpha=0.05$이므로 $\mu>2$라는 대립가설을 지지하며 귀무가설(null hypothesis)을 기각한다.
 
@@ -333,10 +333,10 @@ $$
 - 표본분산(sample variance)을 계산하면 다음과 같다.  
 
 $$  
-\begin{align}
+\begin{aligned}
 s^2&=\frac{1}{4}\left((1-2.2)^2+(2-2.2)^2+(3-2.2)^2+(6-2.2)^2+(-1-2.2)^2\right)\\
 &=6.7
-\end{align}
+\end{aligned}
 $$ 
 - t-통계량(t-statistic)은 Studentized mean이다.  
 
@@ -350,11 +350,11 @@ $$
 - 따라서 (Python을 사용하면) p-value는 다음과 같다.  
 
 $$
-\begin{align}
+\begin{aligned}
 p&=P(T>t)=P(T>1.901)  \\  
 &=1-\texttt{scipy.stats.t.cdf}(1.901,4)   
 =0.065  
-\end{align}
+\end{aligned}
 $$
 - $p>0.05$이므로 귀무가설(null hypothesis)을 기각하지 않는다.
 - 이 검정은 다음과 같이 시각화할 수 있다.
@@ -473,10 +473,10 @@ $$
 - Python을 사용하여 양측 p-value를 계산하면 다음과 같다.  
 
 $$  
-\begin{align}
+\begin{aligned}
 p&=P(|T|>|t|)=2\cdot\texttt{scipy.stats.t.cdf}(-3.8064,1406)\\  
 &=0.00015  
-\end{align}
+\end{aligned}
 $$
 
 #### Solution 8

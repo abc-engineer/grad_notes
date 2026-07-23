@@ -159,7 +159,7 @@ $$
 - 즉, 다음과 같이 전개된다:  
 
 $$
-\begin{align}
+\begin{aligned}
 p(x \mid y)&= p(x_1, x_2, \dots, x_d \mid y)\\
 &= p(x_1 \mid y),  
 p(x_2 \mid y, x_1),  
@@ -170,7 +170,7 @@ p(x_2 \mid y),
 p(x_3 \mid y),\cdots,  
 p(x_d \mid y)\\
 &= \prod_{j=1}^{d} p(x_j \mid y)
-\end{align}
+\end{aligned}
 $$
 - 이 가정은 특징들이 항상 독립이라는 것을 의미하지 않는다.    
     - 오직 클래스 $y$가 주어졌을 때만 독립이라고 가정한다.        
@@ -281,14 +281,14 @@ $$
 - 따라서 전체 로그 우도는 다음과 같이 표현된다:  
 
 $$
-\begin{align}
+\begin{aligned}
 L&= \sum_{i=1}^{n}
 \left[y^{(i)} \log \phi_y + (1 - y^{(i)}) \log(1 - \phi_y)  
 \right] \ + \sum_{i=1}^{n} \sum_{j=1}^{d}  
 \left[x_j^{(i)} \log \phi_{j \mid y^{(i)}} +  
 (1 - x_j^{(i)}) \log(1 - \phi_{j \mid y^{(i)}})  
 \right]  
-\end{align}  
+\end{aligned}  
 $$
 
 - 핵심 포인트는 로그 우도 $L$이 파라미터별로 분리(separable)된다는 것이다.    

@@ -472,7 +472,7 @@ $$
 
 - linear layer + softmax를 이용함.
 $$  
-\mathbf{y}=\operatorname{softmax}\left(\mathbf{h}_{\mathrm{CLS}}^{L}\mathbf{W}_{\mathrm{NSP}}\right)  
+\mathbf{y}=\text{softmax}\left(\mathbf{h}_{\mathrm{CLS}}^{L}\mathbf{W}_{\mathrm{NSP}}\right)  
 $$
 
 ### BERT optimization = MLM + NSP

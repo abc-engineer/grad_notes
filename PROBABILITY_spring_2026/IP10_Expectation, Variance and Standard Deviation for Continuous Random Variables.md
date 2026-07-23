@@ -379,10 +379,10 @@ $$
 #### Solution
 - 변수변환을 사용한다. $z=\dfrac{x-\mu}{\sigma}$ 로 두면  
 
-$$\begin{align}  
+$$\begin{aligned}  
 \mathrm{Var}(X)=E[(X-\mu)^2]&=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{\infty} (x-\mu)^2 e^{-\frac{(x-\mu)^2}{2\sigma^2}} \, dx \\  
 &=\frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{\infty} z^2 e^{-z^2/2}\, dz=\sigma^2 
-\end{align}
+\end{aligned}
 $$
 - 마지막 적분은 이전에 $\mathrm{Var}(Z)$ 를 구할 때 계산한 것과 동일하다.
 

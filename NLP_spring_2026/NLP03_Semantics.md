@@ -571,14 +571,14 @@ $$
 - 각 단어는 고유한 차원으로 식별된다  
 
 $$  
-\begin{align}  
+\begin{aligned}  
 v_{\text{good}} &= [1,0,0,0,0,0] \\  
 v_{\text{feel}} &= [0,1,0,0,0,0] \\  
 v_{\text{I}} &= [0,0,1,0,0,0] \\  
 v_{\text{sad}} &= [0,0,0,1,0,0] \\  
 v_{\text{cats}} &= [0,0,0,0,1,0] \\  
 v_{\text{have}} &= [0,0,0,0,0,1]  
-\end{align}  
+\end{aligned}  
 $$
 
 #### Represent Sequences by Word Occurrences
@@ -588,19 +588,19 @@ $$
 - 한계는 단어가 있냐 없나 수준만 파악가능
 
 $$  
-\begin{align}  
+\begin{aligned}  
 v_{d1} &= [1,1,1,0,0,0] \\  
 v_{d2} &= [0,1,1,1,0,0] \\  
 v_{d3} &= [0,0,1,0,1,1]  
-\end{align}  
+\end{aligned}  
 $$  
 
 $$  
-\begin{align}  
+\begin{aligned}  
 \cos(v_{d1}, v_{d2}) &= \frac{2}{3} \\  
 \cos(v_{d1}, v_{d3}) &= \frac{1}{3} \\  
 \cos(v_{d2}, v_{d3}) &= \frac{1}{3}  
-\end{align}  
+\end{aligned}  
 $$
 
 

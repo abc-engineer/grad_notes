@@ -94,7 +94,7 @@ $$
 - 귀무분포(null distribution):  이는 귀무가설에 기반한 확률함수이다.  
 
 $$  
-p(x \mid \theta = 0.5) \sim \operatorname{Binomial}(10, 0.5)  
+p(x \mid \theta = 0.5) \sim \text{Binomial}(10, 0.5)  
 $$
 
 - 아래는 귀무분포의 확률표이다.
@@ -157,11 +157,11 @@ $$
 #### Definition 정의 7 (복합가설, composite hypotheses)
 - 분포를 완전히 지정할 수 없는 경우, 그 가설을 복합가설이라고 한다.
 - 전형적인 복합가설은 관심 있는 모수가 어떤 값의 범위 안에 있다는 형태이다.
-- 예제 4에서 귀무가설은  $\theta = 0.5$ 라는 것이다. 따라서 귀무분포는  $\operatorname{Binomial}(10,0.5)$이다.
+- 예제 4에서 귀무가설은  $\theta = 0.5$ 라는 것이다. 따라서 귀무분포는  $\text{Binomial}(10,0.5)$이다.
 - 귀무분포가 완전히 지정되어 있으므로, $H_0$는 단순가설이다.
 - 대립가설은  $\theta \ne 0.5$ 이다.
 - 이는 여러 가설을 하나로 묶은 것이다. 예를 들어 $\theta$는 $0.51$, $0.7$, $0.99$ 등이 될 수 있다.
-- 대립분포  $\operatorname{Binomial}(10,\theta)$ 는 완전히 지정되지 않았으므로, $H_A$는 복합가설이다.
+- 대립분포  $\text{Binomial}(10,\theta)$ 는 완전히 지정되지 않았으므로, $H_A$는 복합가설이다.
 
 #### Example 8
 
@@ -169,10 +169,10 @@ $$
 - 또한 우리의 가설이 다음과 같다고 하자.  
 
 $$ 
-\begin{align}
+\begin{aligned}
 H_0: \text{데이터는 } N(0,1)\text{에서 추출된다}\\  
 H_A: \text{데이터는 } N(1,1)\text{에서 추출된다}  
-\end{align}
+\end{aligned}
 $$
 
 - 이들은 둘 다 단순가설이다. 각 가설이 하나의 분포를 완전히 지정하기 때문이다.
@@ -182,10 +182,10 @@ $$
 - 이제 우리의 가설이 다음과 같다고 하자.  
 
 $$ 
-\begin{align}
+\begin{aligned}
 H_0&: \text{데이터는 모수가 알려지지 않은 포아송 분포에서 추출된다} \\  
 H_A&: \text{데이터는 포아송 분포에서 추출되지 않는다}   
-\end{align}
+\end{aligned}
 $$
   
 - 이들은 둘 다 복합가설이다. 분포를 완전히 지정하지 않기 때문이다.
@@ -196,12 +196,12 @@ $$
 - 피험자가 ESP 능력을 가지고 있지 않다는 (단순) 귀무가설은 다음과 같이 주어진다.  
 
 $$  
-H_0 : T \sim \operatorname{Binomial}(100,0.25)  
+H_0 : T \sim \text{Binomial}(100,0.25)  
 $$
 - 피험자가 ESP 능력을 가지고 있다는 (복합) 대립가설은 다음과 같이 주어진다.  
 
 $$  
-H_A : T \sim \operatorname{Binomial}(100,p), \quad p>0.25  
+H_A : T \sim \text{Binomial}(100,p), \quad p>0.25  
 $$
 
 #### Example 11
@@ -209,7 +209,7 @@ $$
 - 순수한 우연 이외의 무언가가 작용하고 있다는 또 다른 (복합) 대립가설은 피험자가 ESP 또는 anti-ESP 능력을 가지고 있다는 것이다. 이는 다음과 같이 주어진다.  
 
 $$  
-H_A : T \sim \operatorname{Binomial}(100,p), \quad p \ne 0.25  
+H_A : T \sim \text{Binomial}(100,p), \quad p \ne 0.25  
 $$
 - $p<0.25$인 값들은 피험자가 일종의 anti-ESP를 가지고 있다는 가설을 나타낸다.
 
@@ -234,12 +234,12 @@ $$
 - 위의 $2 \times 2$ 표에 대응하는 중요한 확률은 모두 4개이다.  
 
 $$ 
-\begin{align}
+\begin{aligned}
 &P(\text{$H_0$를 기각} \mid H_0)\\    
 &P(\text{$H_0$를 기각} \mid H_A)  \\  
 &P(\text{$H_0$를 기각하지 않음} \mid H_0)\\
 &P(\text{$H_0$를 기각하지 않음} \mid H_A) 
-\end{align}
+\end{aligned}
 $$
 
 
@@ -274,10 +274,10 @@ $P(\text{reject}\; H_0 \mid H_A)$
 - 이를 NHST 용어로 표현하면 다음과 같다.  
 
 $$
-\begin{align}
+\begin{aligned}
 &H_0: \text{피고인은 무죄이다(기본값)}  \\  
 &H_A: \text{피고인은 유죄이다} 
-\end{align}
+\end{aligned}
 $$
 - 유의수준(significance level)은 무고한 사람을 유죄로 판단할 확률이다.
 - 검정력(power)은 유죄인 사람을 올바르게 유죄로 판단할 확률이다.
@@ -691,12 +691,12 @@ $$
 - 우리는 대부분의 MIT 학생들이 평균보다 높은 IQ를 가진다고 의심하므로 다음과 같은 가설을 설정한다.  
 
 $$  
-\begin{align}
+\begin{aligned}
 H_0 &= \text{MIT 학생들의 IQ는 일반 모집단과 동일하게 분포한다}\\  
 &= \text{MIT IQ는 } N(100,15^2) \text{ 분포를 따른다}  \\  
 H_A &= \text{MIT 학생들의 IQ는 일반 모집단보다 높은 경향이 있다}  \\  
 &= \text{MIT 학생들의 평균 IQ는 } 100 \text{보다 크다}  
-\end{align}
+\end{aligned}
 $$
 - $H_A$는 단측(one-sided)임에 주의하라.
 	- HA는 MIT 학생의 아이큐가 ㅌ일반 모집단보다 높다이기 때문에 Left tail 값은 필요 없음
@@ -721,11 +721,11 @@ $$
 - 따라서 p-value는 다음과 같다.  
 
 $$
-\begin{align}
+\begin{aligned}
 p&=P(Z\geq2.4)\\  
 &=1-\texttt{scipy.stats.norm.cdf}(2.4,0,1)\\
 &=0.0081975  
-\end{align}
+\end{aligned}
 $$
 
 - _표본이 9일때 표준편차의 제곱을 9로 나눈 정규화 과정 다시 공부!!!!_
